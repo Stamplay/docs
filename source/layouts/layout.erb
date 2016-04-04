@@ -23,7 +23,7 @@ under the License.
     <title><%= current_page.data.title || "API Documentation" %></title>
 
     <style>
-      <%= Rouge::Themes::Base16::Monokai.render(:scope => '.highlight') %>
+      <%= Rouge::Themes::Monokai.render(:scope => '.highlight') %>
     </style>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
@@ -42,7 +42,7 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <%= image_tag "logo.png", :class => 'logo' %>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>

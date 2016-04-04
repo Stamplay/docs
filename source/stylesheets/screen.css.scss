@@ -48,11 +48,11 @@ html, body {
 
 @mixin embossed-bg {
   background:
-    linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
-    linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
-    $nav-subitem-bg;
+  linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
+  linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
+  linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
+  linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
+  $nav-subitem-bg;
 }
 
 .tocify-wrapper {
@@ -83,6 +83,10 @@ html, body {
   &>img {
     display: block;
     max-width: 100%;
+    &.logo {
+      padding:30px 30px 30px 25px;
+      box-sizing:border-box;
+    }
   }
 
   &>.search {
@@ -186,8 +190,17 @@ html, body {
     font-weight: 500;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+      font-size: 13px;
     }
+
+    .tocify-subheader {
+      .tocify-item > a {
+            // Styling here for a level 2 nesting. For example -> 
+            padding-left: $nav-padding + $nav-indent * 2;
+            font-size: 11px;
+          }
+        }
+
 
     // for embossed look:
     @include embossed-bg;
@@ -327,7 +340,6 @@ html, body {
   // to place content above the dark box
   position: relative;
   z-index: 30;
-
   &:after {
     content: '';
     display: block;
@@ -362,7 +374,7 @@ html, body {
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    // background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
   h1:first-child, div:first-child + h1 {
@@ -452,6 +464,7 @@ html, body {
 
   img {
     max-width: 100%;
+    box-sizing:border-box;
   }
 
   code {
@@ -475,7 +488,7 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
-
+    color:#F2F2F2;
     &.warning {
       background-color: $aside-warning-bg;
       text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
