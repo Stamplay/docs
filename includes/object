@@ -1,0 +1,27 @@
+<h1 id="objects">Objects</h1>
+
+<h2 id="schemas">Schemas</h2>
+
+<p>(make an example with an object that as one property for every type, e.g Restaurant)</p>
+
+<h2 id="data-types">Data Types</h2>
+
+<h2 id="permissions">Permissions</h2>
+
+<h2 id="creating-an-object">Creating an Object</h2>
+
+<h2 id="updating-object">Updating Object</h2>
+
+<h2 id="partially-updating-an-object">Partially Updating an Object</h2>
+
+<h2 id="populating-related-objects">Populating related Objects</h2>
+
+<h2 id="managing-object-owner-how-owners-are-added-and-how-to-populateowner">Managing object owner (how owners are added and how to populateOwner)</h2>
+
+<h2 id="retrieving-an-object-by-id">Retrieving an Object by Id</h2>
+
+<h2 id="delete-an-object">Delete an Object</h2>
+
+<h2 id="upvoting-objects">Upvoting Objects</h2>
+
+<h2 id="commenting-objects">Commenting Objects</h2>

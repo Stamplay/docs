@@ -6,92 +6,224 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
-.highlight, .highlight .w {
-  color: #f8f8f2;
-  background-color: #272822;
+.highlight .c, .highlight .cd {
+  color: #75715e;
+  font-style: italic;
 }
-.highlight .err {
-  color: #151515;
-  background-color: #ac4142;
+.highlight .cm {
+  color: #75715e;
+  font-style: italic;
 }
-.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #505050;
+.highlight .c1 {
+  color: #75715e;
+  font-style: italic;
 }
 .highlight .cp {
-  color: #f4bf75;
-}
-.highlight .nt {
-  color: #f4bf75;
-}
-.highlight .o, .highlight .ow {
-  color: #d0d0d0;
-}
-.highlight .p, .highlight .pi {
-  color: #d0d0d0;
-}
-.highlight .gi {
-  color: #90a959;
-}
-.highlight .gd {
-  color: #ac4142;
-}
-.highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
+  color: #75715e;
   font-weight: bold;
 }
-.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f;
+.highlight .cs {
+  color: #75715e;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #960050;
+  background-color: #1e0010;
+}
+.highlight .gi {
+  color: #ffffff;
+  background-color: #324932;
+}
+.highlight .gd {
+  color: #ffffff;
+  background-color: #493131;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .k, .highlight .kv {
+  color: #66d9ef;
+  font-weight: bold;
 }
 .highlight .kc {
-  color: #d28445;
-}
-.highlight .kt {
-  color: #d28445;
+  color: #66d9ef;
+  font-weight: bold;
 }
 .highlight .kd {
-  color: #d28445;
+  color: #66d9ef;
+  font-weight: bold;
 }
-.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959;
+.highlight .kp {
+  color: #66d9ef;
+  font-weight: bold;
 }
-.highlight .sr {
-  color: #75b5aa;
+.highlight .kr {
+  color: #66d9ef;
+  font-weight: bold;
 }
-.highlight .si {
-  color: #8f5536;
+.highlight .kt {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .ow {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
 }
 .highlight .se {
-  color: #8f5536;
+  color: #ae81ff;
 }
-.highlight .nn {
-  color: #f4bf75;
+.highlight .sb {
+  color: #e6db74;
 }
-.highlight .nc {
-  color: #f4bf75;
+.highlight .sc {
+  color: #e6db74;
 }
-.highlight .no {
-  color: #f4bf75;
+.highlight .sd {
+  color: #e6db74;
 }
-.highlight .na {
-  color: #6a9fb5;
+.highlight .s2 {
+  color: #e6db74;
 }
-.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959;
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .sr {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
 }
 .highlight .ss {
-  color: #90a959;
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #f8f8f2;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight {
+  color: #f8f8f2;
+  background-color: #49483e;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;,&quot;coffeescript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -99,11 +231,11 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img class="logo" src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="coffeescript">node.js</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -111,177 +243,198 @@
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        
+          <h1 id="getting-help">Getting Help</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<h2 id="technical-questions">Technical Questions</h2>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>(https://www.firebase.com/docs/help/)</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<h2 id="discussion-and-feedback">Discussion and Feedback</h2>
 
-<h1 id="authentication">Authentication</h1>
+<p>(Points to Slack and Stackoverflow)</p>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+          <h1 id="quickstart">Quickstart</h1>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<h2 id="create-an-account">Create An Account</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<h2 id="install-cli">Install CLI</h2>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<h2 id="setup-sdk">Setup SDK</h2>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<h2 id="define-schema">Define Schema</h2>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<h2 id="write-data">Write Data</h2>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<h2 id="read-data">Read Data</h2>
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+<h2 id="register-users">Register Users</h2>
 
-<h1 id="kittens">Kittens</h1>
+<h2 id="login-users">Login Users</h2>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id="deploy">Deploy</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<h2 id="what-39-s-next">What&rsquo;s Next?</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+          <h1 id="api-overview">API Overview</h1>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+<h2 id="api-summary">API Summary</h2>
 
-<p>This endpoint retrieves all kittens.</p>
+<p>(https://developers.intercom.io/reference#api-summary)</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h2 id="filtering">Filtering</h2>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<h2 id="sorting">Sorting</h2>
 
-<h3 id="query-parameters">Query Parameters</h3>
+<h2 id="selecting">Selecting</h2>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
+<h2 id="advanced-queries">Advanced Queries</h2>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+<h2 id="social-actions">Social Actions</h2>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id="authentication">Authentication</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<h2 id="cors-policy">CORS Policy</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<h2 id="allowed-http-requests">Allowed HTTP Requests</h2>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<h2 id="error-codes-former-server-responses">Error Codes (Former Server Responses)</h2>
 
-<p>This endpoint retrieves a specific kitten.</p>
+          <h1 id="sdk-and-client-libraries">SDK and Client Libraries</h1>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<h2 id="javascript-sdk">Javascript SDK</h2>
 
-<h3 id="http-request">HTTP Request</h3>
+<p>(https://stamplay.com/docs/jssdk/v2/introduction only Install and Init)</p>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<h2 id="nodejs-sdk">NodeJS SDK</h2>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<p>(https://stamplay.com/docs/nodejs-sdk/introduction only Install and Init)</p>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
+          <h1 id="users">Users</h1>
+
+<h2 id="local-auth">Local Auth</h2>
+
+<h2 id="social-auth">Social Auth</h2>
+
+<h3 id="facebook">Facebook</h3>
+
+<h3 id="google">Google+</h3>
+
+<h3 id="twitter">Twitter</h3>
+
+<h3 id="dropbox">Dropbox</h3>
+
+<h3 id="linkedin">Linkedin</h3>
+
+<h3 id="instagram">Instagram</h3>
+
+<h3 id="github">Github</h3>
+
+<h3 id="angellist">Angellist</h3>
+
+<h2 id="sessions">Sessions</h2>
+
+<h2 id="logout">Logout</h2>
+
+<h2 id="permissions">Permissions</h2>
+
+<h2 id="updating-an-object">Updating an Object</h2>
+
+<h2 id="partially-updating-an-user">Partially Updating an User</h2>
+
+<h2 id="retrieving-an-user-by-id">Retrieving an User by Id</h2>
+
+<h2 id="delete-an-user">Delete an User</h2>
+
+          <h1 id="objects">Objects</h1>
+
+<h2 id="schemas">Schemas</h2>
+
+<p>(make an example with an object that as one property for every type, e.g Restaurant)</p>
+
+<h2 id="data-types">Data Types</h2>
+
+<h2 id="permissions">Permissions</h2>
+
+<h2 id="creating-an-object">Creating an Object</h2>
+
+<h2 id="updating-object">Updating Object</h2>
+
+<h2 id="partially-updating-an-object">Partially Updating an Object</h2>
+
+<h2 id="populating-related-objects">Populating related Objects</h2>
+
+<h2 id="managing-object-owner-how-owners-are-added-and-how-to-populateowner">Managing object owner (how owners are added and how to populateOwner)</h2>
+
+<h2 id="retrieving-an-object-by-id">Retrieving an Object by Id</h2>
+
+<h2 id="delete-an-object">Delete an Object</h2>
+
+<h2 id="upvoting-objects">Upvoting Objects</h2>
+
+<h2 id="commenting-objects">Commenting Objects</h2>
+
+          <h1 id="code-blocks">Code Blocks</h1>
+
+<h2 id="setup">Setup</h2>
+
+<h2 id="programming-models">Programming Models</h2>
+
+<h2 id="simple-model">Simple Model</h2>
+
+<h2 id="contextual-model">Contextual Model</h2>
+
+<h2 id="full-control-model">Full Control Model</h2>
+
+<h2 id="running-code-blocks">Running Code Blocks</h2>
+
+<p>(API)</p>
+
+<h2 id="app-secrets">App Secrets</h2>
+
+<h2 id="npm-modules">NPM Modules</h2>
+
+<h2 id="common-errors">Common Errors</h2>
+
+<h2 id="logs">Logs</h2>
+
+<p>(https://stamplay.com/docs/platform/codeblocks/manage#logs)</p>
+
+<h2 id="lost-logs">Lost Logs</h2>
+
+          <h1 id="web-hosting">Web Hosting</h1>
+
+<h2 id="stamplay-command-line-tool">Stamplay Command line Tool</h2>
+
+<h3 id="stamplay-json">stamplay.json</h3>
+
+<h3 id="app-deploy">App Deploy</h3>
+
+<h3 id="rollback">Rollback</h3>
+
+<h3 id="app-development">App Development</h3>
+
+<h3 id="open-in-browser">Open In Browser</h3>
+
+<h3 id="cli-updates">CLI Updates</h3>
+
+<h2 id="custom-domains-and-sll">Custom Domains and SLL</h2>
+
+<h3 id="setup">Setup</h3>
+
+<h3 id="pretty-urls">Pretty URLs</h3>
+
+<h3 id="cors-enabled-domains">CORS Enabled Domains</h3>
+
+<h3 id="domain-ownership">Domain Ownership</h3>
 
           <h1 id="errors">Errors</h1>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The Stamplay API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -338,9 +491,9 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="coffeescript">node.js</a>
           </div>
       </div>
     </div>

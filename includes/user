@@ -1,0 +1,35 @@
+<h1 id="users">Users</h1>
+
+<h2 id="local-auth">Local Auth</h2>
+
+<h2 id="social-auth">Social Auth</h2>
+
+<h3 id="facebook">Facebook</h3>
+
+<h3 id="google">Google+</h3>
+
+<h3 id="twitter">Twitter</h3>
+
+<h3 id="dropbox">Dropbox</h3>
+
+<h3 id="linkedin">Linkedin</h3>
+
+<h3 id="instagram">Instagram</h3>
+
+<h3 id="github">Github</h3>
+
+<h3 id="angellist">Angellist</h3>
+
+<h2 id="sessions">Sessions</h2>
+
+<h2 id="logout">Logout</h2>
+
+<h2 id="permissions">Permissions</h2>
+
+<h2 id="updating-an-object">Updating an Object</h2>
+
+<h2 id="partially-updating-an-user">Partially Updating an User</h2>
+
+<h2 id="retrieving-an-user-by-id">Retrieving an User by Id</h2>
+
+<h2 id="delete-an-user">Delete an User</h2>
