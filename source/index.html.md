@@ -1,10 +1,10 @@
 ---
-title: API Reference
+title: Stamplay Documentation
 
 language_tabs:
 - shell: cURL
 - javascript
-- coffeescript : node.js
+- nodejs : node.js
 
 toc_footers:
 
@@ -19,6 +19,7 @@ includes:
 - codeblock
 - hosting
 - error
+- demo
 
 search: true
 ---
