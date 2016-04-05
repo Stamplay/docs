@@ -9,6 +9,45 @@
 <h2 id="define-schema">Define Schema</h2>
 
 <h2 id="write-data">Write Data</h2>
+<pre class="highlight javascript"><code>
+  <span class="kd">var</span> <span class="nx">dinner</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">price</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="na">city</span><span class="p">:</span> <span class="s1">'New York'</span><span class="p">,</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s1">'Volare'</span><span class="p">,</span>
+    <span class="na">description</span><span class="p">:</span> <span class="s1">'a beautiful italian dinner'</span><span class="p">,</span>
+    <span class="na">meal</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">course_1</span><span class="p">:</span> <span class="s1">'pasta'</span><span class="p">,</span>
+      <span class="na">course_2</span><span class="p">:</span> <span class="s1">'pizza'</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'dinner'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">dinner</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// error</span>
+      <span class="p">})</span>
+
+</code></pre>
+<pre class="highlight nodejs"><code>
+  <span class="kd">var</span> <span class="nx">dinner</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">price</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="na">city</span><span class="p">:</span> <span class="s1">'New York'</span><span class="p">,</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s1">'Volare'</span><span class="p">,</span>
+    <span class="na">description</span><span class="p">:</span> <span class="s1">'a beautiful italian dinner'</span><span class="p">,</span>
+    <span class="na">meal</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">course_1</span><span class="p">:</span> <span class="s1">'pasta'</span><span class="p">,</span>
+      <span class="na">course_2</span><span class="p">:</span> <span class="s1">'pizza'</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'dinner'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">myDinner</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// response</span>
+  <span class="p">})</span>
+
+</code></pre>
 
 <h2 id="read-data">Read Data</h2>
 
