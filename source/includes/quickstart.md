@@ -1,8 +1,6 @@
 # Quickstart
 ## Create An Account
-```shell
 
-```
 ## Install CLI
 ## Setup SDK
 ## Define Schema
@@ -10,7 +8,7 @@
 
 ```js
 
-  var myDinner = {
+  var dinner = {
     price: 10,
     city: 'New York',
     name: 'Volare',
@@ -21,30 +19,19 @@
     }
   }
 
-
-
-  // With Callback
   Stamplay.Object('dinner')
-    .save(myDinner, function(err, res) {
-      if(error) return console.log(err);
-      console.log(res);
-  })
-
-
-  // With Promise
-  Stamplay.Object('dinner')
-    .save(myDinner)
+    .save(dinner)
       .then(function(res) {
-        // Success
+        // success
       }, function(err) {
-        // Handle Error
+        // error
       })
         
 ```
 
 ```nodejs
 
-  var myDinner = {
+  var dinner = {
     price: 10,
     city: 'New York',
     name: 'Volare',
@@ -57,8 +44,7 @@
 
   Stamplay.Object('dinner')
     .save(myDinner, function(err, res) {
-      if(error) return console.log(err);
-      console.log(res);
+      // response
   })
         
 ```

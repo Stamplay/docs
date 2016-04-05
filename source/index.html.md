@@ -3,8 +3,8 @@ title: Stamplay Documentation
 
 language_tabs:
 - shell: cURL
-- javascript
-- nodejs : node.js
+- javascript : JavaScript
+- nodejs : Node.js
 
 toc_footers:
 
