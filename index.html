@@ -218,9 +218,10 @@
   background-color: #49483e;
 }
     </style>
+    <link href="images/favicon.png" rel="icon" type="image/png" />
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
   <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;,&quot;nodejs&quot;]">
@@ -237,10 +238,6 @@
               <a href="#" data-language-name="javascript">JavaScript</a>
               <a href="#" data-language-name="nodejs">Node.js</a>
         </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <div id="toc">
       </div>
     </div>
@@ -252,96 +249,470 @@
 
 <h2 id="technical-questions">Technical Questions</h2>
 
-<p>(https://www.firebase.com/docs/help/)</p>
+<p>For questions related to our API, SDKs, or general technical help, use the <a href="https://stackoverflow.com/tags/stamplay">Stamplay tag on Stackoverflow</a>.</p>
+
+<p>After posting on Stackoverflow, adding the link to your question in our <a href="http://slackinvites.stamplayapp.com">Slack Community</a> will allow other Stamplayers the opportunity to provide any insight into your question.</p>
 
 <h2 id="discussion-and-feedback">Discussion and Feedback</h2>
 
-<p>(Points to Slack and Stackoverflow)</p>
+<p>To discuss Stamplay with other Stamplayers, give feedback, report bugs, or submit feature requests, <a href="http://slackinvites.stamplayapp.com">join our Slack Community</a>.</p>
+
+<p>For account related questions, submit a ticket to <a href="mailto:support@stamplay.com">support@stamplay.com</a>.</p>
 
           <h1 id="quickstart">Quickstart</h1>
 
 <h2 id="create-an-account">Create An Account</h2>
 
-<h2 id="install-cli">Install CLI</h2>
+<p>The first thing needed to get started with Stamplay is to <a href="https://editor.stamplay.com">signup for a free account</a>.</p>
 
-<h2 id="setup-sdk">Setup SDK</h2>
+<p>After signing up, create your first Stamplay application in the dashboard by entering a name for your application in the input and selecing <strong>CREATE</strong>.</p>
+
+<h2 id="install-cli">Install CLI</h2>
+<pre class="highlight shell-always"><code>    <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">cli</span>
+</code></pre>
+
+<p>The Stamplay CLI will allow you to run your application locally, manage application versioning, deploy to the cloud, etc.</p>
+
+<p>Ensure you have Node.js &amp; NPM installed, then <code class="prettyprint">npm install</code> the <code class="prettyprint">stamplay-cli</code> package globally.</p>
+
+<p>After installing the CLI, initialize a project locally inside a project folder by running an <code class="prettyprint">init</code> command from the <code class="prettyprint">stamplay</code> CLI.</p>
+<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">init</span>
+</code></pre>
+
+<p>You will be prompted to enter an <code class="prettyprint">APP ID</code> and <code class="prettyprint">API KEY</code> for a Stamplay application. These can be found in the <strong>Dashboard</strong> of the application created in the previous step.</p>
+<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">start</span>
+</code></pre>
+
+<p>To run our application locally, run the <code class="prettyprint">start</code> command from the <code class="prettyprint">stamplay</code> CLI.</p>
+
+<h2 id="javascript-sdk-setup">JavaScript SDK Setup</h2>
+
+<p>The <a href="https://github.com/Stamplay/stamplay-js-sdk">Stamplay JavaScript SDK</a> is a client-side library for interacting with Stamplay.</p>
+<pre class="highlight shell-always"><code>    <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
+</code></pre>
+
+<p>Run <code class="prettyprint">npm install</code> for the <code class="prettyprint">stamplay-js-sdk</code> package to download from <code class="prettyprint">npm</code> into your local project directory.</p>
+<pre class="highlight shell-always"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">)</span>
+</code></pre>
+
+<p>To initialize the library, run the <code class="prettyprint">init</code> method from the <code class="prettyprint">Stamplay</code> SDK.</p>
 
 <h2 id="define-schema">Define Schema</h2>
 
+<p>Create a new Object schema by visiting the <strong>Object</strong> section within the editor for your application through the sidebar. </p>
+
+<p>Inside the <strong>Object</strong> section, add a name and data type for each property on the schema desired and <strong>Save</strong>.</p>
+
 <h2 id="write-data">Write Data</h2>
-<pre class="highlight javascript"><code>
-  <span class="kd">var</span> <span class="nx">dinner</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">price</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="na">city</span><span class="p">:</span> <span class="s1">'New York'</span><span class="p">,</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Volare'</span><span class="p">,</span>
-    <span class="na">description</span><span class="p">:</span> <span class="s1">'a beautiful italian dinner'</span><span class="p">,</span>
-    <span class="na">meal</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">course_1</span><span class="p">:</span> <span class="s1">'pasta'</span><span class="p">,</span>
-      <span class="na">course_2</span><span class="p">:</span> <span class="s1">'pizza'</span>
+
+<p>To write data to Stamplay, model an object after the schema just created.</p>
+
+<p>Pass the object into the <code class="prettyprint">save</code> method on the <code class="prettyprint">Stamplay.Object</code> class.</p>
+<pre class="highlight shell-always"><code>    <span class="kd">var</span> <span class="nx">car</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">make</span> <span class="p">:</span> <span class="s2">"Volkswagen"</span><span class="p">,</span>
+        <span class="na">model</span> <span class="p">:</span> <span class="s2">"Jetta"</span><span class="p">,</span>
+        <span class="na">year</span> <span class="p">:</span> <span class="mi">2013</span><span class="p">,</span>
+        <span class="na">color</span> <span class="p">:</span> <span class="s2">"silver"</span><span class="p">,</span>
+        <span class="na">top_speed</span> <span class="p">:</span> <span class="mi">140</span>
     <span class="p">}</span>
-  <span class="p">}</span>
 
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'dinner'</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">dinner</span><span class="p">)</span>
-      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// success</span>
-      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// error</span>
-      <span class="p">})</span>
-
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"car"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">car</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
 </code></pre>
-<pre class="highlight nodejs"><code>
-  <span class="kd">var</span> <span class="nx">dinner</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">price</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="na">city</span><span class="p">:</span> <span class="s1">'New York'</span><span class="p">,</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Volare'</span><span class="p">,</span>
-    <span class="na">description</span><span class="p">:</span> <span class="s1">'a beautiful italian dinner'</span><span class="p">,</span>
-    <span class="na">meal</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">course_1</span><span class="p">:</span> <span class="s1">'pasta'</span><span class="p">,</span>
-      <span class="na">course_2</span><span class="p">:</span> <span class="s1">'pizza'</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
 
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'dinner'</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">myDinner</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// response</span>
-  <span class="p">})</span>
-
-</code></pre>
+<p>Most every SDK method returns a promise, or you can pass a callback in as the last method argument.</p>
 
 <h2 id="read-data">Read Data</h2>
 
+<p>To fetch <strong>Object</strong> data from  Stamplay, use the <code class="prettyprint">get</code> method on the <code class="prettyprint">Stamplay.Object</code> class.</p>
+
+<p>The <code class="prettyprint">get</code> method takes an options object. The object is matched against all records, and returns only those that match.</p>
+<pre class="highlight shell-always"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"car"</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">get</span><span class="p">({})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+
 <h2 id="register-users">Register Users</h2>
+
+<p>To register a user with a local account, no additional setup within the Stamplay editor is required.</p>
+
+<p>Use the <code class="prettyprint">signup</code> method on the the <code class="prettyprint">Stamplay.User</code> class, and pass in an object with at least an <code class="prettyprint">email</code> and <code class="prettyprint">password</code> property.</p>
+<pre class="highlight shell-always"><code>    <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">email</span> <span class="p">:</span> <span class="s2">"user@provider.com"</span><span class="p">,</span>
+        <span class="na">password</span> <span class="p">:</span> <span class="s2">"123123"</span>
+    <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
 
 <h2 id="login-users">Login Users</h2>
 
+<p>To login a user to a local account, use the <code class="prettyprint">login</code> method on the <code class="prettyprint">Stamplay.User</code> class.</p>
+<pre class="highlight shell-always"><code>    <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">email</span> <span class="p">:</span> <span class="s2">"user@provider.com"</span><span class="p">,</span>
+        <span class="na">password</span> <span class="p">:</span> <span class="s2">"123123"</span>
+    <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
 <h2 id="deploy">Deploy</h2>
 
-<h2 id="what-39-s-next">What&rsquo;s Next?</h2>
+<p>To deploy your application, run the <code class="prettyprint">deploy</code> command from the <code class="prettyprint">stamplay</code> CLI.</p>
+<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">deploy</span>
+</code></pre>
+
+<p>After deployment is finished, your application will be live at <a href="[YOUR APP ID].stamplayapp.com">[YOUR APP ID].stamplayapp.com</a>.</p>
 
           <h1 id="api-overview">API Overview</h1>
 
 <h2 id="api-summary">API Summary</h2>
 
-<p>(https://developers.intercom.io/reference#api-summary)</p>
+<p>The Stamplay API exposes the following resources:</p>
+
+<p>Manage and access object data.
+Manage and access user data, create user sessions.
+Manage and access user roles, assign roles.
+Execute Code Blocks.
+Manage customers and payment information, charge a customer, add subscriptions.
+Send an email.</p>
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th style="text-align: right">Endpoint</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Objects</td>
+<td style="text-align: right">/api/cobject/v1/{id}</td>
+</tr>
+<tr>
+<td>Users</td>
+<td style="text-align: right">/api/user/v1/users</td>
+</tr>
+<tr>
+<td>Roles</td>
+<td style="text-align: right">/api/user/v1/roles</td>
+</tr>
+<tr>
+<td>Code Blocks</td>
+<td style="text-align: right">/api/v1/run/:codeblock</td>
+</tr>
+<tr>
+<td>Stripe</td>
+<td style="text-align: right">/api/stripe/v1/</td>
+</tr>
+<tr>
+<td>Email</td>
+<td style="text-align: right">/api/email/v1/send</td>
+</tr>
+</tbody></table>
+
+<h2 id="pagination">Pagination</h2>
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_elements"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Responses from the <strong>User</strong> and <strong>Object</strong> resource will also return a <code class="prettyprint">pagination</code> object.</p>
+
+<p>Pagination can be managed by using the <code class="prettyprint">page</code> and <code class="prettyprint">per_page</code> query parameters.</p>
+
+<p>Pagination details are included using the Link header introduced by RFC 5988.
+The Link header returns a set of ready-made links so the API consumer does not have to construct the links themselves.</p>
 
 <h2 id="filtering">Filtering</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/picture?status=published"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"picture"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">status</span> <span class="p">:</span> <span class="s2">"published"</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'picture'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">status</span> <span class="p">:</span> <span class="s2">"published"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// response</span>
+        <span class="p">})</span>
+</code></pre>
+
+<p>To filter a response based on a value of a field, set the field and value as a parameter in the request. To filter by more than one field, add each filterable field to the request as a paramter.</p>
 
 <h2 id="sorting">Sorting</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/picture?sort=-dt_create"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"picture"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">sort</span> <span class="p">:</span> <span class="s2">"-dt_create"</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'picture'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">sort</span> <span class="p">:</span> <span class="s2">"-dt_create"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// response</span>
+        <span class="p">})</span>
+</code></pre>
+
+<p>To sort the response, set a <code class="prettyprint">sort</code> parameter as a comma delimited list to sort by in order of importance.</p>
+
+<p>If a field name is appened to an <code class="prettyprint">-</code> character then that field will be sorted in descending order based on the type, otherwise by default the field will be sort in ascending order.</p>
 
 <h2 id="selecting">Selecting</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/picture?select=-dt_create,owner,status"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"picture"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">select</span> <span class="p">:</span> <span class="s2">"dt_create,owner,status"</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'picture'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">sort</span> <span class="p">:</span> <span class="s2">"dt_create,owner,status"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// response</span>
+        <span class="p">})</span>
+</code></pre>
+
+<p>Selecting is the response projection for each object returned. This allows for a lighter data transfer between requests, and simplifies response objects.</p>
+
+<p>To select a field to return, set the <code class="prettyprint">select</code> request parameter to the value of the field name to return. If you want to return more than one field, set the <code class="prettyprint">select</code> parameter as a comma delimited set of properties to return.</p>
+
+<p>The <code class="prettyprint">_id</code> field is always returned.</p>
 
 <h2 id="advanced-queries">Advanced Queries</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/picture?where=%7B%20rating'%20:%20%7B%20</span><span class="nv">$gt</span><span class="s2">%20:%205%20%7D%20%7D"</span>
 
-<h2 id="social-actions">Social Actions</h2>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"picture"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">where</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">rating</span> <span class="p">:</span> <span class="p">{</span> <span class="na">$gt</span> <span class="p">:</span> <span class="mi">5</span> <span class="p">}</span> <span class="p">})</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'picture'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">where</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">rating</span> <span class="p">:</span> <span class="p">{</span> <span class="na">$gt</span> <span class="p">:</span> <span class="mi">5</span> <span class="p">}</span> <span class="p">})</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// response</span>
+        <span class="p">})</span>
+</code></pre>
+
+<p>For more advanced methods of queries, Stamplay supports an array of MongoDB&rsquo;s conditional operators.</p>
+
+<p>By setting a JSON query string to the <code class="prettyprint">where</code> parameter you can use the operators to perform advanced queries.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Operator</th>
+<th style="text-align: left">Summary</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">$gt</td>
+<td style="text-align: left">Matches values that are greater than the value specified in the query.</td>
+</tr>
+<tr>
+<td style="text-align: left">$gte</td>
+<td style="text-align: left">Matches values that are greater than or equal to the value specified in the query.</td>
+</tr>
+<tr>
+<td style="text-align: left">$in</td>
+<td style="text-align: left">Matches any of the values that exist in an array specified in the query.</td>
+</tr>
+<tr>
+<td style="text-align: left">$lt</td>
+<td style="text-align: left">Matches values that are less than the value specified in the query.</td>
+</tr>
+<tr>
+<td style="text-align: left">$lte</td>
+<td style="text-align: left">Matches values that are less than or equal to the value specified in the query.</td>
+</tr>
+<tr>
+<td style="text-align: left">$ne</td>
+<td style="text-align: left">Matches all values that are not equal to the value specified in the query.</td>
+</tr>
+<tr>
+<td style="text-align: left">$nin</td>
+<td style="text-align: left">Matches values that do not exist in an array specified to the query.</td>
+</tr>
+<tr>
+<td style="text-align: left">$or</td>
+<td style="text-align: left">Joins query clauses with a logical OR returns all documents that match the conditions of either clause.</td>
+</tr>
+<tr>
+<td style="text-align: left">$and</td>
+<td style="text-align: left">Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.</td>
+</tr>
+<tr>
+<td style="text-align: left">$not</td>
+<td style="text-align: left">Inverts the effect of a query expression and returns documents that do not match the query expression.</td>
+</tr>
+<tr>
+<td style="text-align: left">$nor</td>
+<td style="text-align: left">Joins query clauses with a logical NOR returns all documents that fail to match both clauses.</td>
+</tr>
+<tr>
+<td style="text-align: left">$exists</td>
+<td style="text-align: left">Matches documents that have the specified field.</td>
+</tr>
+<tr>
+<td style="text-align: left">$type</td>
+<td style="text-align: left">Selects documents if a field is of the specified type.</td>
+</tr>
+<tr>
+<td style="text-align: left">$all</td>
+<td style="text-align: left">Matches arrays that contain all elements specified in the query.</td>
+</tr>
+<tr>
+<td style="text-align: left">$elemMatch</td>
+<td style="text-align: left">Selects documents if element in the array field matches all the specified $elemMatch condition.</td>
+</tr>
+<tr>
+<td style="text-align: left">$size</td>
+<td style="text-align: left">Selects documents if the array field is a specified size</td>
+</tr>
+<tr>
+<td style="text-align: left">$regex</td>
+<td style="text-align: left">Selects documents where values match a specified regular expression.</td>
+</tr>
+</tbody></table>
 
 <h2 id="authentication">Authentication</h2>
+<pre class="highlight shell-always"><code>
+    <span class="s2">"Authorization"</span> <span class="err">:</span> <span class="s2">"Basic c3RhbXBsYXlrYjo5MTRhMmUzMaMwZWRlMDdmZThhNjYzMzkxMWQyYWQyOTNkNjJkNTQ3OGFiYmViNjEyNzhhYjFjYzE2MDhiZaRi"</span>
+</code></pre>
+<pre class="highlight shell-always"><code>    <span class="s2">"x-stamplay-jwt"</span> <span class="err">:</span> <span class="s2">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"</span>
+</code></pre>
+
+<p>Depending on the origin enviornment of a request to Stamplay, the method of authenticating the request differs.</p>
+
+<p>Client side requests can be authenticated by setting the <code class="prettyprint">x-stamplay-jwt</code> header as the JSON Web Token issued when a user authenticates with an email and password, or social provider.</p>
+
+<p>Server side request can be authenticated by setting the <code class="prettyprint">Authorization</code> header as <code class="prettyprint">Basic AppId:ApiKey</code>. The <code class="prettyprint">AppId:ApiKey</code> are to be set as a base64 encoding.</p>
 
 <h2 id="cors-policy">CORS Policy</h2>
 
+<p>Stamplay uses a selective cross-origin resource sharing (CORS) policy, meaning that you may only make requests to the Stamplay from an origin that has been previously declared.</p>
+
+<p>This is made to govern which origins are authorized and which are not. By default only the base URL ending with <code class="prettyprint">.stamplayapp.com</code> is the one allowed to send requests.</p>
+
+<p>To enabled other CORS enabled domains, visit the <strong>Hosting</strong> section with the Stamplay editor.</p>
+
 <h2 id="allowed-http-requests">Allowed HTTP Requests</h2>
 
-<h2 id="error-codes-former-server-responses">Error Codes (Former Server Responses)</h2>
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Summary</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>GET</td>
+<td>Get a resource or list of resources</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>Create a resource</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>pdate a resource</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>Update a resource partially</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Delete a resource</td>
+</tr>
+</tbody></table>
+
+<h2 id="error-codes">Error Codes</h2>
+
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Status Text</th>
+<th>Summary</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>The request was successful.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>The request was successful and a resource was created.</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content</td>
+<td>The request was successful but there is no representation to return (i.e. the response is empty).</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>The request could not be understood or was missing required parameters.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Authentication failed or the user request the resource doesn’t have the required permissions for reqested operation.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>Access denied, Authentication will not help.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>Resource not found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+<td>Requested method is not supported for resource.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>Something went wrong during your request</td>
+</tr>
+</tbody></table>
 
           <h1 id="sdk-and-client-libraries">SDK and Client Libraries</h1>
 
