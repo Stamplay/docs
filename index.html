@@ -717,12 +717,32 @@ The Link header returns a set of ready-made links so the API consumer does not h
           <h1 id="sdk-and-client-libraries">SDK and Client Libraries</h1>
 
 <h2 id="javascript-sdk">Javascript SDK</h2>
+<pre class="highlight shell-always"><code>    <span class="nx">bower</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
+</code></pre>
+<pre class="highlight shell-always"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">);</span>
+</code></pre>
 
-<p>(https://stamplay.com/docs/jssdk/v2/introduction only Install and Init)</p>
+<p>The JavaScript SDK is a client side library to help simplify interacting with the Stamplay API.</p>
+
+<p>To install the JavasScript SDK, run <code class="prettyprint">bower install</code> for the <code class="prettyprint">stamplay-js-sdk</code>.</p>
+
+<p>To initialize the SDK within your client side enviornment, run the <code class="prettyprint">init</code> method on the <code class="prettyprint">Stamplay</code> global object. Ensure the module has been included before running the method, and pass in your <code class="prettyprint">APP ID</code> as the sole method argument.</p>
+
+<p>An additional options object can be passed in as the second argument, but is primarily meant for use within a mobile application.</p>
 
 <h2 id="nodejs-sdk">NodeJS SDK</h2>
+<pre class="highlight shell-always"><code>    <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">stamplay</span>
+</code></pre>
+<pre class="highlight shell-always"><code>    <span class="kd">var</span> <span class="nx">stamplay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"stamplay"</span><span class="p">),</span>
+        <span class="nx">Stamplay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">stamplay</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">,</span> <span class="s2">"API KEY"</span><span class="p">)</span>
 
-<p>(https://stamplay.com/docs/nodejs-sdk/introduction only Install and Init)</p>
+</code></pre>
+
+<p>The Node.js SDK is a server side library to help simplify admin interaction with the Stamplay API.</p>
+
+<p>To install the Node.js SDK, run <code class="prettyprint">npm install</code> for the <code class="prettyprint">stamplay</code>.</p>
+
+<p>To initialize the SDK within your server side enviornment, first <code class="prettyprint">require</code> the module, then create a new instance of the module require and pass in your <code class="prettyprint">APP ID</code> and <code class="prettyprint">API KEY</code> credentials as seperate arguments.</p>
 
           <h1 id="users">Users</h1>
 
