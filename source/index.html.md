@@ -14,6 +14,7 @@ includes:
 - api
 - sdk
 - user
+- role
 - object
 - codeblock
 - hosting

@@ -14,12 +14,12 @@ Send an email.
 
 | Resource | Endpoint |	
 |---------|-------------------------:|
-| Objects | /api/cobject/v1/{id} |
-| Users | /api/user/v1/users |
-| Roles | /api/user/v1/roles |
-| Code Blocks | /api/v1/run/:codeblock |
-| Stripe | /api/stripe/v1/ |
-| Email | /api/email/v1/send |
+| [Objects](#objects) | /api/cobject/v1/{id} |
+| [Users](#users) | /api/user/v1/users |
+| [Roles](#roles) | /api/user/v1/roles |
+| [Code Blocks](#codeblocks) | /api/v1/run/:codeblock |
+| [Stripe](#stripe) | /api/stripe/v1/ |
+| [Email](#email) | /api/email/v1/send |
 
 ## Pagination
 
