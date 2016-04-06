@@ -63,39 +63,39 @@
 
 <p>Follow the instructions below to add the Facebook provider to your Stamplay application.</p>
 
-<p><strong>1. Create a Facebook App</strong></p>
+<p><strong>Create a Facebook App</strong></p>
 
 <p>1.1. Go to Facebook developers.</p>
 
-<p>1.2. In the upper right corner, click on <strong>Add a New App</strong>.</p>
+<p><strong>1.2.</strong> In the upper right corner, click on <strong>Add a New App</strong>.</p>
 
-<p>1.3. Choose the type of app you want to create.</p>
+<p><strong>1.3.</strong> Choose the type of app you want to create.</p>
 
-<p>1.4. Name your Facebook App and select <strong>Create Facebook App Id</strong>.</p>
+<p><strong>1.4.</strong> Name your Facebook App and select <strong>Create Facebook App Id</strong>.</p>
 
-<p>1.5. Skip the Quick Start by clicking on the button in the upper right corner.</p>
-
-<hr>
-
-<p><strong>2. Configure the Facebook App Settings</strong></p>
-
-<p>2.1. Click on <strong>Settings</strong> in the left menu.</p>
-
-<p>2.2. Click on <strong>+ Add Platform</strong>.</p>
-
-<p>2.3. Fill the <strong>Site Url</strong> field with your Stamplay domain: <code class="prettyprint">https://[appId].stamplayapp.com</code> (and/or your custom domain if you have a paid plan).</p>
-
-<p>2.4. From the <strong>Settings</strong> view click on the <strong>Advanced</strong> tab and type in the <strong>OAuth Redirect URIs</strong> the following: <code class="prettyprint">https://[appId].stamplayapp.com/auth/v1/facebook/callback</code> and <code class="prettyprint">https://localhost:8080/auth/v1/facebook/callback</code> so that you can also test the signup flow locally when using Stamplay Command Line.</p>
+<p><strong>1.5.</strong> Skip the Quick Start by clicking on the button in the upper right corner.</p>
 
 <hr>
 
-<p><strong>3. Add The Facebook App Credentials To Stamplay</strong></p>
+<p><strong>Configure the Facebook App Settings</strong></p>
 
-<p>3.1. Copy the <code class="prettyprint">App Id</code> and <code class="prettyprint">App Secret</code> from the Facebook App and add the values to the corresponding field inside the Stamplay editor in the <strong>Users</strong> - <strong>Authentication</strong> section.</p>
+<p><strong>2.1.</strong> Click on <strong>Settings</strong> in the left menu.</p>
 
-<p>3.2. To test the social login integration, copy and paste this link with your <code class="prettyprint">APP ID</code> into a browser: <code class="prettyprint">https://[appId].stamplayapp.com/auth/v1/facebook/connect</code>. After connecting your account, check the <strong>DATA</strong> section to inspect the new User record created.</p>
+<p><strong>2.2.</strong> Click on <strong>+ Add Platform</strong>.</p>
 
-<p>3.3. The steps covered in this guide are not enough to have a Facebook app approved for production. You need to provide other information and submit the app for review; the process can take many days to complete. Refer to Facebook documentation for more information.</p>
+<p><strong>2.3.</strong> Fill the <strong>Site Url</strong> field with your Stamplay domain: <code class="prettyprint">https://[appId].stamplayapp.com</code> (and/or your custom domain if you have a paid plan).</p>
+
+<p><strong>2.4.</strong> From the <strong>Settings</strong> view click on the <strong>Advanced</strong> tab and type in the <strong>OAuth Redirect URIs</strong> the following: <code class="prettyprint">https://[appId].stamplayapp.com/auth/v1/facebook/callback</code> and <code class="prettyprint">https://localhost:8080/auth/v1/facebook/callback</code> so that you can also test the signup flow locally when using Stamplay Command Line.</p>
+
+<hr>
+
+<p><strong>Add The Facebook App Credentials To Stamplay</strong></p>
+
+<p><strong>3.1.</strong> Copy the <code class="prettyprint">App Id</code> and <code class="prettyprint">App Secret</code> from the Facebook App and add the values to the corresponding field inside the Stamplay editor in the <strong>Users</strong> - <strong>Authentication</strong> section.</p>
+
+<p><strong>3.2.</strong> To test the social login integration, copy and paste this link with your <code class="prettyprint">APP ID</code> into a browser: <code class="prettyprint">https://[appId].stamplayapp.com/auth/v1/facebook/connect</code>. After connecting your account, check the <strong>DATA</strong> section to inspect the new User record created.</p>
+
+<p><strong>3.3.</strong> The steps covered in this guide are not enough to have a Facebook app approved for production. You need to provide other information and submit the app for review; the process can take many days to complete. Refer to Facebook documentation for more information.</p>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/facebook/connect"</span>
 </code></pre>
 <pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"facebook"</span><span class="p">)</span>
@@ -114,6 +114,50 @@
 <p>We store data from <code class="prettyprint">public_profile</code> and <code class="prettyprint">email</code>. Refer to the Facebook documentation for more information.</p>
 
 <h3 id="google">Google+</h3>
+
+<p><strong>Create a Google Client Id</strong></p>
+
+<p><strong>1.1.</strong> Go to <a href="https://code.google.com/apis/console">https://code.google.com/apis/console</a> and create an APIs project.</p>
+
+<p><strong>1.2.</strong> Click on <strong>Credentials</strong> from the <strong>API &amp; Auth</strong> section of the left menu.</p>
+
+<p><strong>1.3.</strong> Click on <strong>Create new Client Id</strong> button.</p>
+
+<hr>
+
+<p><strong>Configure the Client ID</strong></p>
+
+<p><strong>2.1.</strong> Choose the type <strong>Web application</strong> and click on <strong>Configure Consent Screen</strong> button.</p>
+
+<p><strong>2.2.</strong> Add the required information to the consent screen and save.</p>
+
+<p><strong>2.3.</strong> Fill in the <strong>Authorized Javascripts Origins</strong> field with your Stamplay 
+    domain: https://[appId].stamplayapp.com (and/or your custom domain if you have a paid plan).</p>
+
+<p><strong>2.4.</strong> Fill in the <strong>Authorized Redirect URIs</strong> field with the following value: https://[appId].stamplayapp.com/auth/v1/google/callback.</p>
+
+<p><strong>2.5.</strong> Click on <strong>Create client ID</strong></p>
+
+<hr>
+
+<p><strong>Add the Google+ Integration To Stamplay</strong></p>
+
+<p><strong>3.1.</strong> Copy the <strong>Client Id</strong> and <strong>Client Secret</strong> from the Google App and add the values to the Stamplay app.</p>
+
+<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <code class="prettyprint">https://[appId].stamplayapp.com/auth/v1/google/connect</code>.</p>
+
+<p><strong>3.3.</strong> Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
+
+<p>Stamplay asks for the following permissions:</p>
+
+<p>Stamplay asks for the following permissions:</p>
+
+<ul>
+<li><code class="prettyprint">userinfo.profile</code></li>
+<li><code class="prettyprint">userinfo.email</code></li>
+</ul>
+
+<p>Refer to the Google documentation for more information.</p>
 
 <h3 id="twitter">Twitter</h3>
 
