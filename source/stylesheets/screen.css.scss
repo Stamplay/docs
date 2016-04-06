@@ -431,9 +431,9 @@ html, body {
   }
   
   hr {
-    margin: 2em 0;
-    border-top: 2px solid $examples-bg;
-    border-bottom: 2px solid $main-bg;
+    margin: 2em 5%;
+    border-top: 1px solid $nav-bg;
+    width:40%;
   }
 
   table {
@@ -483,6 +483,11 @@ html, body {
     width:50%;
     margin-right: 0;
     display: inline-block;
+  }
+
+  li {
+    width: 100%;
+    margin-top: 10px;
   }
 
   img {
