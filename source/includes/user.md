@@ -68,11 +68,24 @@ To authenticate a user's credentials for a local account, send an email and pass
 
 ## Social Auth
 
+
+```shell
+	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/{provider}/connect"
+```
+
+```javascript
+	Stamplay.User.login("provider")
+```
+
+```nodejs
+	// no method
+```
+
 Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.
 
 ### Facebook
 	
-	Follow the instructions below to add the Facebook provider to your Stamplay application.
+---
 
 **Create a Facebook App**
 
@@ -108,6 +121,15 @@ Authentication via an array of different social provider is possibled by some mi
 	
 	**3.3.** The steps covered in this guide are not enough to have a Facebook app approved for production. You need to provide other information and submit the app for review; the process can take many days to complete. Refer to Facebook documentation for more information.
 
+Stamplay asks for the following permissions:
+
+* `public_profile`
+* `email`
+* `user_friends`
+
+We store data from `public_profile` and `email`. Refer to the Facebook documentation for more information.
+
+
 ```shell
 	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/facebook/connect"
 ```
@@ -120,16 +142,9 @@ Authentication via an array of different social provider is possibled by some mi
 	// no method
 ```
 
-Stamplay asks for the following permissions:
-
-* `public_profile`
-* `email`
-* `user_friends`
-
-We store data from `public_profile` and `email`. Refer to the Facebook documentation for more information.
-
-
 ### Google+
+
+---
 
 **Create a Google Client Id**
 
@@ -166,16 +181,153 @@ We store data from `public_profile` and `email`. Refer to the Facebook documenta
 
 Stamplay asks for the following permissions:
 
-Stamplay asks for the following permissions:
-
 * `userinfo.profile`
 * `userinfo.email`
 
 Refer to the Google documentation for more information.
 
+```shell
+	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/google/connect"
+```
+
+```javascript
+	Stamplay.User.login("google")
+```
+
+```nodejs
+	// no method
+```
+
 ### Twitter
+
+---
+
+**Create a Twitter app**
+	
+	**1.1.** Go to [https://apps.twitter.com/app/new](https://apps.twitter.com/app/new) to create a new Twitter app.
+
+---
+
+**Configure the app**
+
+	**2.1.** Fill in name and description.
+	
+	**2.2.** Fill in the Website field with your Stamplay domain: https://[appId].stamplayapp.com (and/or your custom domain if you have a paid plan).
+	
+	**2.3.** Fill in the Authorized Redirect URIs field with the following value: https://[appId].stamplayapp.com/auth/v1/twitter/callback. Create the Twitter application.
+
+---
+
+**Add the Twitter Integration to Stamplay**
+
+	**3.1.** Click on the **Keys and Access Tokens** tab.
+
+	**3.2.** Copy the **Consumer Key** (API Key) and **Consumer Secret** (API Secret) from the Twitter app and add the values to the Stamplay app.
+
+	**3.3.** To quickly test the integration, copy and paste this link into your browser: https://[appId].stamplayapp.com/auth/v1/twitter/connect. Then click on **Users** in the left menu of the editor to browse the data fetched.
+
+Stamplay collects all profile data provided.
+
+Twitter does not have scopes, and the user `email` is not provided. You must request access from Twitter, and be whitelisted to receive user emails.
+
+Please refer to the Twitter documentation for more information.
+
+```shell
+	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/twitter/connect"
+```
+
+```javascript
+	Stamplay.User.login("twitter")
+```
+
+```nodejs
+	// no method
+```
+
 ### Dropbox
+
+---
+
+**Create a Drop API App**
+
+	**1.1.** Go to https://www.dropbox.com/developers/apps/create.
+
+	**1.2.** Create a Dropbox API app.
+	
+	**1.3.** Choose the values you prefer for the data type and file the app can access (these options are not relevant for login). Name your app.
+
+---
+
+**Configure The Dropbox App**
+
+	**2.1.** Fill in the **Redirect URIs** field in the **Oauth2** section with the following value: https://[appId].stamplayapp.com (and/or your custom domain if you have a paid plan).
+
+---
+
+**Add the Dropbox Integration To Stamplay**
+
+	**3.1.** Copy the **App Key** and **App Secret** from the Dropbox app and add the values to the Stamplay app.
+
+	**3.2.** To quickly test the integration, copy and paste this link into your browser: https://[appId].stamplayapp.com/auth/v1/dropbox/connect. Then click on “Users” in the left menu of the Editor to browse the data fetched.
+
+	**3.3.** You have added Dropbox login to your Stamplay app, but be aware that you must provide Dropbox with a lot of other information to get their approval. Refer to the Dropbox documentation to learn how to have your Dropbox app approved for production. In the mean time, you can continue to develop and test the integration.
+
+Stamplay collects the following data from Dropbox:
+
+* `userinfo.profile`
+
+Refer to the Dropbox documentation for more information.
+
+```shell
+	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/dropbox/connect"
+```
+
+```javascript
+	Stamplay.User.login("dropbox")
+```
+
+```nodejs
+	// no method
+```
+
 ### Linkedin
+
+---
+
+**Create a LinkedIn app**
+
+	**1.1.** Go to https://www.linkedin.com/secure/developer and click on “Add a new application”.
+
+---
+
+**Configure the app**
+
+	**2.1.** Fill in all the required data.
+
+	**2.2.** Fill in the OAuth redirect_uri field with the following value: https://[appId].stamplayapp.com/auth/v1/linkedin/callback.
+
+	**2.3.** Click the “Add application” button.
+
+---
+
+**Add the LinkedIn Integration to Stamplay**
+
+	**3.1.** Copy the API Key and Secret Key from the LinkedIn app and add the values to the Stamplay app.
+
+	**3.2.** Click on the “End” button.
+
+	**3.3.** To quickly test the integration, copy and paste this link into your browser: https://[appId].stamplayapp.com/auth/v1/linkedin/connect. Then click on “Users” in the left menu of the Editor to browse the data fetched.
+
+Stamplay asks for the following permissions:
+
+* r_basicprofile
+* r_emailaddress
+* r_fullprofile
+
+We store only data from `r_basicprofile and r_emailaddress`.
+
+Refer to the Linkedin documentation for more information.
+
 ### Instagram
 ### Github
 ### Angellist
