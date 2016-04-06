@@ -1,15 +1,15 @@
 # API Overview
 
-## API Summary
+## Summary
 
 The Stamplay API exposes the following resources:
 
-Manage and access object data.
+<!-- Manage and access object data.
 Manage and access user data, create user sessions.
 Manage and access user roles, assign roles.
 Execute Code Blocks.
 Manage customers and payment information, charge a customer, add subscriptions.
-Send an email.
+Send an email. -->
 
 
 | Resource | Endpoint |	
@@ -17,7 +17,7 @@ Send an email.
 | [Objects](#objects) | /api/cobject/v1/{id} |
 | [Users](#users) | /api/user/v1/users |
 | [Roles](#roles) | /api/user/v1/roles |
-| [Code Blocks](#codeblocks) | /api/v1/run/:codeblock |
+| [Code Blocks](#code-blocks) | /api/v1/run/:codeblock |
 | [Stripe](#stripe) | /api/stripe/v1/ |
 | [Email](#email) | /api/email/v1/send |
 
