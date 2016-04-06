@@ -2,9 +2,116 @@
 
 <h2 id="local-auth">Local Auth</h2>
 
+<p>A local authentication flow for login and signups is baked in to every Stamplay application.</p>
+
+<h3 id="signup">Signup</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/user/v1/users"</span> <span class="se">\</span>
+        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">email</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">user@stamplay.com</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">password</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">my_password</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">email</span> <span class="p">:</span> <span class="s2">"user@stamplay.com"</span><span class="p">,</span>
+        <span class="na">password</span> <span class="p">:</span> <span class="s2">"my_password"</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error    </span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">email</span> <span class="p">:</span> <span class="s2">"user@stamplay.com"</span><span class="p">,</span>
+        <span class="na">password</span> <span class="p">:</span> <span class="s2">"my_password"</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">credentials</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To signup or add a user for a local account, send an email and password as the body of the request to Stamplay, with any additional data to save to the new user record.</p>
+
+<h3 id="login">Login</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/local/login"</span> <span class="se">\</span>
+        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">email</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">user@stamplay.com</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">password</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">my_password</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">email</span> <span class="p">:</span> <span class="s2">"user@stamplay.com"</span><span class="p">,</span>
+        <span class="na">password</span> <span class="p">:</span> <span class="s2">"my_password"</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error    </span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+</code></pre>
+
+<p>To authenticate a user&rsquo;s credentials for a local account, send an email and password as the body of the request to Stamplay.</p>
+
 <h2 id="social-auth">Social Auth</h2>
 
+<p>Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.</p>
+
 <h3 id="facebook">Facebook</h3>
+
+<p>Follow the instructions below to add the Facebook provider to your Stamplay application.</p>
+
+<p><strong>1. Create a Facebook App</strong></p>
+
+<p>1.1. Go to Facebook developers.</p>
+
+<p>1.2. In the upper right corner, click on <strong>Add a New App</strong>.</p>
+
+<p>1.3. Choose the type of app you want to create.</p>
+
+<p>1.4. Name your Facebook App and select <strong>Create Facebook App Id</strong>.</p>
+
+<p>1.5. Skip the Quick Start by clicking on the button in the upper right corner.</p>
+
+<hr>
+
+<p><strong>2. Configure the Facebook App Settings</strong></p>
+
+<p>2.1. Click on <strong>Settings</strong> in the left menu.</p>
+
+<p>2.2. Click on <strong>+ Add Platform</strong>.</p>
+
+<p>2.3. Fill the <strong>Site Url</strong> field with your Stamplay domain: <code class="prettyprint">https://[appId].stamplayapp.com</code> (and/or your custom domain if you have a paid plan).</p>
+
+<p>2.4. From the <strong>Settings</strong> view click on the <strong>Advanced</strong> tab and type in the <strong>OAuth Redirect URIs</strong> the following: <code class="prettyprint">https://[appId].stamplayapp.com/auth/v1/facebook/callback</code> and <code class="prettyprint">https://localhost:8080/auth/v1/facebook/callback</code> so that you can also test the signup flow locally when using Stamplay Command Line.</p>
+
+<hr>
+
+<p><strong>3. Add The Facebook App Credentials To Stamplay</strong></p>
+
+<p>3.1. Copy the <code class="prettyprint">App Id</code> and <code class="prettyprint">App Secret</code> from the Facebook App and add the values to the corresponding field inside the Stamplay editor in the <strong>Users</strong> - <strong>Authentication</strong> section.</p>
+
+<p>3.2. To test the social login integration, copy and paste this link with your <code class="prettyprint">APP ID</code> into a browser: <code class="prettyprint">https://[appId].stamplayapp.com/auth/v1/facebook/connect</code>. After connecting your account, check the <strong>DATA</strong> section to inspect the new User record created.</p>
+
+<p>3.3. The steps covered in this guide are not enough to have a Facebook app approved for production. You need to provide other information and submit the app for review; the process can take many days to complete. Refer to Facebook documentation for more information.</p>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/facebook/connect"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"facebook"</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+</code></pre>
+
+<p>Stamplay asks for the following permissions:</p>
+
+<ul>
+<li><code class="prettyprint">public_profile</code></li>
+<li><code class="prettyprint">email</code></li>
+<li><code class="prettyprint">user_friends</code></li>
+</ul>
+
+<p>We store data from <code class="prettyprint">public_profile</code> and <code class="prettyprint">email</code>. Refer to the Facebook documentation for more information.</p>
 
 <h3 id="google">Google+</h3>
 
