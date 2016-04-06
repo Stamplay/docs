@@ -2,12 +2,11 @@
 title: Stamplay Documentation
 
 language_tabs:
-- shell: cURL
+- shell : cURL
 - javascript : JavaScript
 - nodejs : Node.js
 
 toc_footers:
-
 
 includes:
 - help
@@ -21,7 +20,7 @@ includes:
 - error
 - demo
 
-search: true
+search: false
 ---
 
 
