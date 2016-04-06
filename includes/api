@@ -18,27 +18,27 @@ Send an email.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>Objects</td>
+<td><a href="#objects">Objects</a></td>
 <td style="text-align: right">/api/cobject/v1/{id}</td>
 </tr>
 <tr>
-<td>Users</td>
+<td><a href="#users">Users</a></td>
 <td style="text-align: right">/api/user/v1/users</td>
 </tr>
 <tr>
-<td>Roles</td>
+<td><a href="#roles">Roles</a></td>
 <td style="text-align: right">/api/user/v1/roles</td>
 </tr>
 <tr>
-<td>Code Blocks</td>
+<td><a href="#codeblocks">Code Blocks</a></td>
 <td style="text-align: right">/api/v1/run/:codeblock</td>
 </tr>
 <tr>
-<td>Stripe</td>
+<td><a href="#stripe">Stripe</a></td>
 <td style="text-align: right">/api/stripe/v1/</td>
 </tr>
 <tr>
-<td>Email</td>
+<td><a href="#email">Email</a></td>
 <td style="text-align: right">/api/email/v1/send</td>
 </tr>
 </tbody></table>
