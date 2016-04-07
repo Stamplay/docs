@@ -17,6 +17,8 @@ To initialize the SDK within your client side enviornment, run the `init` method
 
 An additional options object can be passed in as the second argument, but is primarily meant for use within a mobile application.
 
+Our [JavaScript SDK is open source on Github](https://github.com/Stamplay/stamplay-js-sdk)!
+
 ## NodeJS SDK
 
 ```shell-always
@@ -34,4 +36,6 @@ The Node.js SDK is a server side library to help simplify admin interaction with
 To install the Node.js SDK, run `npm install` for the `stamplay`.
 
 To initialize the SDK within your server side enviornment, first `require` the module, then create a new instance of the module require and pass in your `APP ID` and `API KEY` credentials as seperate arguments.
+
+Our [Node.js SDK is open source on Github](https://github.com/Stamplay/stamplay-nodejs-sdk)!
 

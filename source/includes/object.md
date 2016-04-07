@@ -11,7 +11,11 @@ There are 3 properties that are included by default:
 
 * `dt_create` - The date the record was create
 * `dt_update` - The date the record was last updated
-* `owner` - The `-id` of the user who created this object.
+* `owner` - The `_id` of the user who created this object.
+
+<aside class="warning">
+	The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
+</aside>
 
 [![Schema Overview](/images/schema-overview.png)](/images/schema-overview.png)
 
@@ -386,13 +390,15 @@ The object type for the example is `movie`.
 ### Find By Current User
 
 ```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/question/find/{attributes}"
+	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/{attributes}"
 ```
 
 ```javascript
 	var attrs = ["owner", "contributor"];
 
-	Stamplay.Object("dinner").findByCurrentUser(attrs)
+	// default attribute is owner is no arguments are passed to method
+
+	Stamplay.Object("movie").findByCurrentUser(attrs)
 		.then(function(res) {
 			// Success
 		}, function(err) {
@@ -408,6 +414,9 @@ To find all objects with attributes that match the current user's `_id`. Specify
 
 Make a `GET` request to the Object resource for the object model. Specifying the attributes in the resource URI.
 
+The object type for the example is `movie`.
+
+
 ## Update Objects
 
 To update an object record partially, or completely overwrite the existing record.
@@ -415,16 +424,189 @@ To update an object record partially, or completely overwrite the existing recor
 ### Partial Update
 
 ```shell
-
+	curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+		-H "Content-Type: application/json" \
+		-d "{\"title\":\"Goodbye World\"}"
 ```
 
-To make a partial update to an object record, perform a `PUT` request to the Object API resource with any fields to update on the stored records in the request body.
+```javascript
+	var data = {
+		"title" : "Goodbye World"
+	}
+
+	Stamplay.Object("movie").patch("object_id", data)
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	var data = {
+		"title" : "Goodbye World"
+	}
+
+	Stamplay.Object("movie").patch("object_id", data, function(err, res) {
+		// response
+	})
+```
+
+To make a partial update to an object record, perform a `PATCH` request to the Object API resource with any fields to update on the stored record in the request body.
+
+The object type for the example is `movie`.
 
 ### Complete Update
+
+```shell
+	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+		-H "Content-Type: application/json" \
+		-d "{\"title\":\"Goodbye World\",\"year\":\"2001\"}"
+```
+
+```javascript
+	var data = {
+		"title" : "Goodbye World"
+	}
+
+	Stamplay.Object("movie").update("object_id", data)
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	var data = {
+		"title" : "Goodbye World"
+	}
+
+	Stamplay.Object("movie").update("object_id", data, function(err, res) {
+		// response
+	})
+```
+
+To over write an object record, perform a `PUT` request to the Object API resource with a complete represenation to write over the stored record in the request body.
+
 ## Remove Objects
+
+To remove an object record, send a `DELETE` request with the `_id` of the record to remove in the Object API resource URI.
+
+```shell
+	curl -X "DELETE" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"
+```
+
+```javascript
+	var data = {
+		"title" : "Goodbye World"
+	}
+
+	Stamplay.Object("movie").remove("object_id")
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	var data = {
+		"title" : "Goodbye World"
+	}
+
+	Stamplay.Object("movie").remove("object_id", function(err, res) {
+		// response
+	})
+```
+
 ## Relationships
+
+Data relationships are pointers from one record to another.
+
 ### User Relationship
+
+```shell
+	curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+		-H "Content-Type: application/json" \
+		-d "{\"director\":\"56cf08e362641ca813b1ae6c\"}"
+```
+
+```javascript
+	Stamplay.Object("movie").patch("object_id", { director: "56cf08e362641ca813b1ae6c" })
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	Stamplay.Object("movie").patch("object_id", { director: "56cf08e362641ca813b1ae6c" }, function(err, res) {
+		// response
+	})
+```
+
+A **User** relationship is a pointer to a user record. This field type is to be set only as an `_id` of a user record.
+
+This is so it may be populated with the parent object, eliminating the need for a subsequent request to fetch the relationship data. To populate the `owner` field, include the query parameter `populate_owner` as `true` in your request.
+
+The `owner` property is a default User relationship, but others can be added through the Stamplay editor.
+
+To manage these relationships, just update this field to the "_id" of the User to reference in the relationship.
+
+In this example, `movie` is the object type, and the `director` field is a User Relationship field.
+
 ### Object Relationships
+
+```shell
+	curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+		-H "Content-Type: application/json" \
+		-d "{\"characters\":[\"57cf08e362641ca813b1ae6c\",\"56cf09e362641sa813b1ae6d\",\"54cfdae662641ca813b1ae6c\"]}"
+```
+
+```javascript
+	Stamplay.Object("movie").push("object_id", "characters", "57cf08e362641ca813b1ae6c")
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	var movieChars = ["57cf08e362641ca813b1ae6c", "56cf09e362641sa813b1ae6d", "54cfdae662641ca813b1ae6c"]
+	Stamplay.Object("movie").patch("object_id", movieChars, function(err, res) {
+		// response
+	})
+```
+An **Object** relationship is a pointer to another record; specifically a certain type of record as specified when defining the schema.
+
+This field type is to contain only an array of the property `_id` of a each related record of the relationship type.
+
+This is so it may be populated with the parent object, eliminating the need for a subsequent request to fetch the relationship data. To populate these fields, add the query parameter `populate` as `true` to your request.
+
+To manage this relationship field, update the field to represent the collection of object references to store.
+
+The **JavaScript SDK** has a `push` method to allow an easier method for pushing new relationships onto the array field. See the example in the `JavaScript` tab, otherwise you will need to manage this manually by sending a complete copy of the field in the request.
+
+In this example, `movie` is the object type, and the `characters` field is a **Object Relationship** field.
+
 ## Voting
+
+The Stamplay API provides a voting mechansim for managing a vote system, tracking users who have voted, how they have voted, and the total vote count.
+
+Each Stamplay Object is able to be voted upon, out of the box without any additional setup.
+
+The data for voting is stored on a `actions` object on each Object.
+
+### Downvoting
+
+To downvote and object send a `PUT` request to the Object resource with the object `_id` in the URI.
+
+### Upvoting
+
+
+
 ## Commenting
 ## Rating
