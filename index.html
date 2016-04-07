@@ -384,16 +384,16 @@
 
           <h1 id="api-overview">API Overview</h1>
 
-<h2 id="api-summary">API Summary</h2>
+<h2 id="summary">Summary</h2>
 
 <p>The Stamplay API exposes the following resources:</p>
 
-<p>Manage and access object data.
+<!-- Manage and access object data.
 Manage and access user data, create user sessions.
 Manage and access user roles, assign roles.
 Execute Code Blocks.
 Manage customers and payment information, charge a customer, add subscriptions.
-Send an email.</p>
+Send an email. -->
 
 <table><thead>
 <tr>
@@ -414,7 +414,7 @@ Send an email.</p>
 <td style="text-align: right">/api/user/v1/roles</td>
 </tr>
 <tr>
-<td><a href="#codeblocks">Code Blocks</a></td>
+<td><a href="#code-blocks">Code Blocks</a></td>
 <td style="text-align: right">/api/v1/run/:codeblock</td>
 </tr>
 <tr>
@@ -746,7 +746,51 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
           <h1 id="users">Users</h1>
 
-<h2 id="local-auth">Local Auth</h2>
+<p>The base user data structure:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Summary</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_id</td>
+<td>user unique id</td>
+</tr>
+<tr>
+<td>displayName</td>
+<td>the user&rsquo;s displayName</td>
+</tr>
+<tr>
+<td>name</td>
+<td>the user&rsquo;s name</td>
+</tr>
+<tr>
+<td>email</td>
+<td>the user&rsquo;s email</td>
+</tr>
+<tr>
+<td>identities</td>
+<td>an object that contains social informations provided by the third party authentication services</td>
+</tr>
+<tr>
+<td>dt_create</td>
+<td>a date that represent the user&rsquo;s signup date</td>
+</tr>
+<tr>
+<td>dt_update</td>
+<td>a date that represent the last time the user has been updated</td>
+</tr>
+<tr>
+<td>givenRole</td>
+<td>the role&#39;sunique id</td>
+</tr>
+</tbody></table>
+
+<p>The User data collection is schemaless, meaning that properties can be added on the go without adding them to a defined schema with specific property data types.</p>
+
+<h2 id="local-authentication">Local Authentication</h2>
 
 <p>A local authentication flow for login and signups is baked in to every Stamplay application.</p>
 
@@ -777,7 +821,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
     <span class="p">})</span>
 </code></pre>
 
-<p>To signup or add a user for a local account, send an email and password as the body of the request to Stamplay, with any additional data to save to the new user record.</p>
+<p>To signup or add a user for a local account, send an <code class="prettyprint">email</code> and<code class="prettyprint">password</code> as object in the body of the request to Stamplay, with any additional data to save to the new user record.</p>
 
 <h3 id="login">Login</h3>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/local/login"</span> <span class="se">\</span>
@@ -799,9 +843,9 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
 
-<p>To authenticate a user&rsquo;s credentials for a local account, send an email and password as the body of the request to Stamplay.</p>
+<p>To authenticate a user&rsquo;s credentials for a local account, send an <code class="prettyprint">email</code> and <code class="prettyprint">password</code> as an object in the body of the request to Stamplay.</p>
 
-<h2 id="social-auth">Social Auth</h2>
+<h2 id="social-authentication">Social Authentication</h2>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/{provider}/connect"</span>
 </code></pre>
 <pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"provider"</span><span class="p">)</span>
@@ -812,6 +856,12 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <p>Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.</p>
 
 <h3 id="facebook">Facebook</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/facebook/connect"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"facebook"</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+</code></pre>
 
 <hr>
 
@@ -835,17 +885,17 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>2.2.</strong> Click on <strong>+ Add Platform</strong>.</p>
 
-<p><strong>2.3.</strong> Fill the <strong>Site Url</strong> field with your Stamplay domain: <a href="https://[appId].stamplayapp.com">https://[appId].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
+<p><strong>2.3.</strong> Fill the <strong>Site Url</strong> field with your Stamplay domain: <a href="https://[APP-ID].stamplayapp.com">https://[APP-ID].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
 
-<p><strong>2.4.</strong> From the <strong>Settings</strong> view click on the <strong>Advanced</strong> tab and type in the <strong>OAuth Redirect URIs</strong> the following: <a href="https://[appId].stamplayapp.com/auth/v1/facebook/callback">https://[appId].stamplayapp.com/auth/v1/facebook/callback</a> and <a href="https://localhost:8080/auth/v1/facebook/callback">https://localhost:8080/auth/v1/facebook/callback</a> so that you can also test the signup flow locally when using Stamplay Command Line.</p>
+<p><strong>2.4.</strong> From the <strong>Settings</strong> view click on the <strong>Advanced</strong> tab and type in the <strong>OAuth Redirect URIs</strong> the following: <a href="https://[APP-ID].stamplayapp.com/auth/v1/facebook/callback">https://[APP-ID].stamplayapp.com/auth/v1/facebook/callback</a> and <a href="https://localhost:8080/auth/v1/facebook/callback">https://localhost:8080/auth/v1/facebook/callback</a> so that you can also test the signup flow locally when using Stamplay Command Line.</p>
 
 <hr>
 
-<p><strong>Add The Facebook App Credentials To Stamplay</strong></p>
+<p><strong>Add the Facebook Integration to Stamplay</strong></p>
 
 <p><strong>3.1.</strong> Copy the <code class="prettyprint">App Id</code> and <code class="prettyprint">App Secret</code> from the Facebook App and add the values to the corresponding field inside the Stamplay editor in the <strong>Users</strong> - <strong>Authentication</strong> section.</p>
 
-<p><strong>3.2.</strong> To test the social login integration, copy and paste this link with your <code class="prettyprint">APP ID</code> into a browser: <a href="https://[appId].stamplayapp.com/auth/v1/facebook/connect">https://[appId].stamplayapp.com/auth/v1/facebook/connect</a>. After connecting your account, check the <strong>DATA</strong> section to inspect the new User record created.</p>
+<p><strong>3.2.</strong> To test the social login integration, copy and paste this link with your <code class="prettyprint">APP ID</code> into a browser: <a href="https://[APP-ID].stamplayapp.com/auth/v1/facebook/connect">https://[APP-ID].stamplayapp.com/auth/v1/facebook/connect</a>. After connecting your account, check the <strong>DATA</strong> section to inspect the new User record created.</p>
 
 <p><strong>3.3.</strong> The steps covered in this guide are not enough to have a Facebook app approved for production. You need to provide other information and submit the app for review; the process can take many days to complete. Refer to Facebook documentation for more information.</p>
 
@@ -858,14 +908,14 @@ The Link header returns a set of ready-made links so the API consumer does not h
 </ul>
 
 <p>We store data from <code class="prettyprint">public_profile</code> and <code class="prettyprint">email</code>. Refer to the Facebook documentation for more information.</p>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/facebook/connect"</span>
+
+<h3 id="google">Google+</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/google/connect"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"facebook"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"google"</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
-
-<h3 id="google">Google+</h3>
 
 <hr>
 
@@ -886,9 +936,9 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <p><strong>2.2.</strong> Add the required information to the consent screen and save.</p>
 
 <p><strong>2.3.</strong> Fill in the <strong>Authorized Javascripts Origins</strong> field with your Stamplay 
-    domain: <a href="https://[appId].stamplayapp.com">https://[appId].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
+    domain: <a href="https://[APP-ID].stamplayapp.com">https://[APP-ID].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
 
-<p><strong>2.4.</strong> Fill in the <strong>Authorized Redirect URIs</strong> field with the following value: <a href="https://[appId].stamplayapp.com/auth/v1/google/callback">https://[appId].stamplayapp.com/auth/v1/google/callback</a>.</p>
+<p><strong>2.4.</strong> Fill in the <strong>Authorized Redirect URIs</strong> field with the following value: <a href="https://[APP-ID].stamplayapp.com/auth/v1/google/callback">https://[APP-ID].stamplayapp.com/auth/v1/google/callback</a>.</p>
 
 <p><strong>2.5.</strong> Click on <strong>Create client ID</strong></p>
 
@@ -898,7 +948,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>3.1.</strong> Copy the <strong>Client Id</strong> and <strong>Client Secret</strong> from the Google App and add the values to the Stamplay app.</p>
 
-<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[appId].stamplayapp.com/auth/v1/google/connect">https://[appId].stamplayapp.com/auth/v1/google/connect</a>.</p>
+<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[APP-ID].stamplayapp.com/auth/v1/google/connect">https://[APP-ID].stamplayapp.com/auth/v1/google/connect</a>.</p>
 
 <p><strong>3.3.</strong> Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
 
@@ -910,14 +960,14 @@ The Link header returns a set of ready-made links so the API consumer does not h
 </ul>
 
 <p>Refer to the Google documentation for more information.</p>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/google/connect"</span>
+
+<h3 id="twitter">Twitter</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/twitter/connect"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"google"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"twitter"</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
-
-<h3 id="twitter">Twitter</h3>
 
 <hr>
 
@@ -931,9 +981,9 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>2.1.</strong> Fill in name and description.</p>
 
-<p><strong>2.2.</strong> Fill in the Website field with your Stamplay domain: <a href="https://[appId].stamplayapp.com">https://[appId].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
+<p><strong>2.2.</strong> Fill in the Website field with your Stamplay domain: <a href="https://[APP-ID].stamplayapp.com">https://[APP-ID].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
 
-<p><strong>2.3.</strong> Fill in the Authorized Redirect URIs field with the following value: <a href="https://[appId].stamplayapp.com/auth/v1/twitter/callback">https://[appId].stamplayapp.com/auth/v1/twitter/callback</a>. Create the Twitter application.</p>
+<p><strong>2.3.</strong> Fill in the Authorized Redirect URIs field with the following value: <a href="https://[APP-ID].stamplayapp.com/auth/v1/twitter/callback">https://[APP-ID].stamplayapp.com/auth/v1/twitter/callback</a>. Create the Twitter application.</p>
 
 <hr>
 
@@ -943,21 +993,21 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>3.2.</strong> Copy the <strong>Consumer Key</strong> (API Key) and <strong>Consumer Secret</strong> (API Secret) from the Twitter app and add the values to the Stamplay app.</p>
 
-<p><strong>3.3.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[appId].stamplayapp.com/auth/v1/twitter/connect">https://[appId].stamplayapp.com/auth/v1/twitter/connect</a>. Then click on <strong>Users</strong> in the left menu of the editor to browse the data fetched.</p>
+<p><strong>3.3.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[APP-ID].stamplayapp.com/auth/v1/twitter/connect">https://[APP-ID].stamplayapp.com/auth/v1/twitter/connect</a>. Then click on <strong>Users</strong> in the left menu of the editor to browse the data fetched.</p>
 
 <p>Stamplay collects all profile data provided.</p>
 
 <p>Twitter does not have scopes, and the user <code class="prettyprint">email</code> is not provided. You must request access from Twitter, and be whitelisted to receive user emails.</p>
 
 <p>Please refer to the Twitter documentation for more information.</p>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/twitter/connect"</span>
+
+<h3 id="dropbox">Dropbox</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/dropbox/connect"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"twitter"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"dropbox"</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
-
-<h3 id="dropbox">Dropbox</h3>
 
 <hr>
 
@@ -973,7 +1023,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>Configure The Dropbox App</strong></p>
 
-<p><strong>2.1.</strong> Fill in the <strong>Redirect URIs</strong> field in the <strong>Oauth2</strong> section with the following value: <a href="https://[appId].stamplayapp.com">https://[appId].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
+<p><strong>2.1.</strong> Fill in the <strong>Redirect URIs</strong> field in the <strong>Oauth2</strong> section with the following value: <a href="https://[APP-ID].stamplayapp.com">https://[APP-ID].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
 
 <hr>
 
@@ -981,7 +1031,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>3.1.</strong> Copy the <strong>App Key</strong> and <strong>App Secret</strong> from the Dropbox app and add the values to the Stamplay app.</p>
 
-<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[appId].stamplayapp.com/auth/v1/dropbox/connect">https://[appId].stamplayapp.com/auth/v1/dropbox/connect</a>. Then click on “Users” in the left menu of the Editor to browse the data fetched.</p>
+<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[APP-ID].stamplayapp.com/auth/v1/dropbox/connect">https://[APP-ID].stamplayapp.com/auth/v1/dropbox/connect</a>. Then click on “Users” in the left menu of the Editor to browse the data fetched.</p>
 
 <p><strong>3.3.</strong> You have added Dropbox login to your Stamplay app, but be aware that you must provide Dropbox with a lot of other information to get their approval. Refer to the Dropbox documentation to learn how to have your Dropbox app approved for production. In the mean time, you can continue to develop and test the integration.</p>
 
@@ -992,14 +1042,14 @@ The Link header returns a set of ready-made links so the API consumer does not h
 </ul>
 
 <p>Refer to the Dropbox documentation for more information.</p>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/dropbox/connect"</span>
+
+<h3 id="linkedin">Linkedin</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/linkedin/connect"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"dropbox"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"linkedin"</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
-
-<h3 id="linkedin">Linkedin</h3>
 
 <hr>
 
@@ -1013,7 +1063,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>2.1.</strong> Fill in all the required data.</p>
 
-<p><strong>2.2.</strong> Fill in the OAuth <strong>redirect_uri</strong> field with the following value: <a href="https://[appId].stamplayapp.com/auth/v1/linkedin/callback">https://[appId].stamplayapp.com/auth/v1/linkedin/callback</a>.</p>
+<p><strong>2.2.</strong> Fill in the OAuth <strong>redirect_uri</strong> field with the following value: <a href="https://[APP-ID].stamplayapp.com/auth/v1/linkedin/callback">https://[APP-ID].stamplayapp.com/auth/v1/linkedin/callback</a>.</p>
 
 <p><strong>2.3.</strong> Click the “Add application” button.</p>
 
@@ -1025,7 +1075,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>3.2.</strong> Click on the “End” button.</p>
 
-<p><strong>3.3.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[appId].stamplayapp.com/auth/v1/linkedin/connect">https://[appId].stamplayapp.com/auth/v1/linkedin/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
+<p><strong>3.3.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[APP-ID].stamplayapp.com/auth/v1/linkedin/connect">https://[APP-ID].stamplayapp.com/auth/v1/linkedin/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
 
 <p>Stamplay asks for the following permissions:</p>
 
@@ -1038,14 +1088,14 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <p>We store only data from <code class="prettyprint">r_basicprofile and r_emailaddress</code>.</p>
 
 <p>Refer to the Linkedin documentation for more information.</p>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/linkedin/connect"</span>
+
+<h3 id="instagram">Instagram</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/instagram/connect"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"linkedin"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"instagram"</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
-
-<h3 id="instagram">Instagram</h3>
 
 <hr>
 
@@ -1063,9 +1113,9 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>2.1.</strong> Fill in the required fields.</p>
 
-<p><strong>2.2.</strong> Fill in the <strong>Website</strong> field with your Stamplay domain: <a href="https://[appId].stamplayapp.com">https://[appId].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
+<p><strong>2.2.</strong> Fill in the <strong>Website</strong> field with your Stamplay domain: <a href="https://[APP-ID].stamplayapp.com">https://[APP-ID].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
 
-<p><strong>2.3.</strong> Fill in the OAuth <strong>redirect_uri</strong> field with the following value: <a href="https://[appId].stamplayapp.com/auth/v1/instagram/callback">https://[appId].stamplayapp.com/auth/v1/instagram/callback</a>.</p>
+<p><strong>2.3.</strong> Fill in the OAuth <strong>redirect_uri</strong> field with the following value: <a href="https://[APP-ID].stamplayapp.com/auth/v1/instagram/callback">https://[APP-ID].stamplayapp.com/auth/v1/instagram/callback</a>.</p>
 
 <hr>
 
@@ -1073,7 +1123,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>3.1.</strong> Copy the <strong>Client Id</strong> and <strong>Client Secret</strong> from the Instagram client and add the values to the Stamplay app.</p>
 
-<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[appId].stamplayapp.com/auth/v1/instagram/connect">https://[appId].stamplayapp.com/auth/v1/instagram/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
+<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[APP-ID].stamplayapp.com/auth/v1/instagram/connect">https://[APP-ID].stamplayapp.com/auth/v1/instagram/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
 
 <p>Stamplay asks for the following permissions:</p>
 
@@ -1084,20 +1134,20 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <p>We store only data from <code class="prettyprint">basic</code>.</p>
 
 <p>Refer to the Instagram documentation for more information.</p>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/instagram/connect"</span>
+
+<h3 id="github">Github</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/github/connect"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"instagram"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"github"</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
 
-<h3 id="github">Github</h3>
-
 <hr>
 
-<p><strong>Create a Github app</strong></p>
+<p><strong>Create a Github App</strong></p>
 
-<p>**1.1. Go to <a href="https://github.com/settings/profile">https://github.com/settings/profile</a>.</p>
+<p><strong>1.1.</strong> Go to <a href="https://github.com/settings/profile">https://github.com/settings/profile</a>.</p>
 
 <p><strong>1.2</strong> Click on <strong>Applications</strong> in the left menu.</p>
 
@@ -1109,29 +1159,29 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>2.1.</strong> Fill in all the required fields.</p>
 
-<p><strong>2.2.</strong> Fill in the <strong>Homepage URL</strong> field with your Stamplay domain: <a href="https://[appId].stamplayapp.com">https://[appId].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
+<p><strong>2.2.</strong> Fill in the <strong>Homepage URL</strong> field with your Stamplay domain: <a href="https://[APP-ID].stamplayapp.com">https://[APP-ID].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
 
-<p><strong>2.3.</strong> Fill the <strong>Authorization Callback URL</strong> field with the following value: <a href="https://[appId].stamplayapp.com/auth/v1/github/callback">https://[appId].stamplayapp.com/auth/v1/github/callback</a>.</p>
+<p><strong>2.3.</strong> Fill the <strong>Authorization Callback URL</strong> field with the following value: <a href="https://[APP-ID].stamplayapp.com/auth/v1/github/callback">https://[APP-ID].stamplayapp.com/auth/v1/github/callback</a>.</p>
 
 <hr>
 
-<p><strong>Add integration and test it</strong></p>
+<p><strong>Add the Github Integration to Stamplay</strong></p>
 
 <p><strong>3.1.</strong> Copy the <strong>Client ID</strong> and <strong>Client Secret</strong> from the Github app and add the values to the Stamplay app.</p>
 
-<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[appId].stamplayapp.com/auth/v1/github/connect">https://[appId].stamplayapp.com/auth/v1/github/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
+<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[APP-ID].stamplayapp.com/auth/v1/github/connect">https://[APP-ID].stamplayapp.com/auth/v1/github/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
 
 <p>Stamplay requests access to public information. We store all public data.</p>
 
 <p>Refer to the Github documentation for more information.</p>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/github/connect"</span>
+
+<h3 id="angellist">Angellist</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/angellist/connect"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"github"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"angellist"</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
-
-<h3 id="angellist">Angellist</h3>
 
 <hr>
 
@@ -1145,9 +1195,9 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>2.1.</strong> Name your app.</p>
 
-<p><strong>2.2.</strong> Fill in the <strong>Main URL</strong> field with your Stamplay domain: <a href="https://[appId].stamplayapp.com">https://[appId].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
+<p><strong>2.2.</strong> Fill in the <strong>Main URL</strong> field with your Stamplay domain: <a href="https://[APP-ID].stamplayapp.com">https://[APP-ID].stamplayapp.com</a> (and/or your custom domain if you have a paid plan).</p>
 
-<p><strong>2.3.</strong> Fill in the field Callback URL with the following value: <a href="https://[appId].stamplayapp.com/auth/v1/angellist/callback">https://[appId].stamplayapp.com/auth/v1/angellist/callback</a>.</p>
+<p><strong>2.3.</strong> Fill in the field Callback URL with the following value: <a href="https://[APP-ID].stamplayapp.com/auth/v1/angellist/callback">https://[APP-ID].stamplayapp.com/auth/v1/angellist/callback</a>.</p>
 
 <hr>
 
@@ -1155,7 +1205,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p><strong>3.1.</strong> Angel List will send you an email with the <strong>Client ID</strong> and <strong>Client Secret</strong>. Add these values to the Stamplay app.</p>
 
-<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[appId].stamplayapp.com/auth/v1/angellist/connect">https://[appId].stamplayapp.com/auth/v1/angellist/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
+<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://[APP-ID].stamplayapp.com/auth/v1/angellist/connect">https://[APP-ID].stamplayapp.com/auth/v1/angellist/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
 
 <p>Stamplay requests permission to access the following:</p>
 
@@ -1167,56 +1217,602 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <p>We store the default information data and email.</p>
 
 <p>Refer to the Angel List documentation for more information.</p>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/angellist/connect"</span>
+
+<h2 id="sessions">Sessions</h2>
+<pre class="highlight shell-always"><code>
+    <span class="s2">"Authorization"</span> <span class="err">:</span> <span class="s2">"Basic c3RhbXBsYXlrYjo5MTRhMmUzMaMwZWRlMDdmZThhNjYzMzkxMWQyYWQyOTNkNjJkNTQ3OGFiYmViNjEyNzhhYjFjYzE2MDhiZaRi"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"angellist"</span><span class="p">)</span>
+<pre class="highlight shell-always"><code>    <span class="s2">"x-stamplay-jwt"</span> <span class="err">:</span> <span class="s2">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"</span>
+</code></pre>
+
+<p>A session represents an instance of a user logged into a device within a Stamplay application. A session is automatically created when users log in or sign up.</p>
+
+<p>By default user sessions last 7 days.</p>
+
+<p>Stamplay manages session leveraging a <a href="https://jwt.io/">Token-Based Authentication</a> approach. This relies on a signed token that is sent to the server on each request. The implementation is done by generating a token when the user is authenticated and then setting that token in the <code class="prettyprint">x-stamplay-jwt</code> header of each subsequent request to our back-end, or as part of the <code class="prettyprint">Authorization</code> header from server to server requests.</p>
+
+<p>If you use the <strong>Stamplay Javascript SDK</strong> you do not need to worry about this; but in the case you send request to our APIs without the SDK, this is something you need to be aware of.</p>
+
+<p>If users log in or sign up using an external provider (e.g. <a href="#facebook">Facebook</a>, <a href="#linkedin">Linkedin</a>, <a href="#google+">Google</a>, etc.) the token issued by Stamplay will be available as a query param <code class="prettyprint">?jwt</code>. Again, if you are using the SDK, you will not need to manage the token yourself.</p>
+
+<p>If your app let users log in or sign up with the traditional email+password API, tokens will be in the <code class="prettyprint">x-stamplay-jwt</code> header of the response.</p>
+
+<p>To check whether or not the token is expired you can do the following:</p>
+
+<ol>
+<li>Split the token in three parts using the <code class="prettyprint">.</code> (dot) as the divider.</li>
+<li>Base64 decode of the second chunk.</li>
+<li>Check if the current date (in UNIX timestamp format) is between the &ldquo;issued at time&rdquo; date and &ldquo;expiration&rdquo; date to check that the token is still valid.</li>
+</ol>
+
+<h2 id="permissions">Permissions</h2>
+
+<p>Stamplay supports Role-Based Authorization schemes, on a per object level, and user to user level.</p>
+
+<p>The Roles scheme can be configured with the <strong>Users</strong> section <strong>Roles</strong> section for the <strong>Role -&gt; Role</strong> permissions, and inside each <strong>Object</strong> model&rsquo;s view under the <strong>Permissions</strong> tab for each object individual schema.</p>
+
+<p>For further detail, view the <a href="#roles">Roles documetation</a>.</p>
+
+<h2 id="logging-out">Logging Out</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/logout"</span> <span class="se">\</span>
+    -H <span class="s2">"x-stamplay-jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"</span>
+
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
 </code></pre>
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
 
-<h2 id="sessions">Sessions</h2>
+<p>To logout, and end a user session, send a request to the logout endpoint. The <code class="prettyprint">x-stamplay-jwt</code> header must be included otherwise the session will not be ended.</p>
 
-<h2 id="logout">Logout</h2>
+<p>The request response will redirect the application by default to the root of your application. This can be managed within the Stamplay editor in the <strong>User</strong> -&gt; <strong>Authentication</strong> section by select the settings icon.</p>
 
-<h2 id="permissions">Permissions</h2>
+<h2 id="fetch">Fetch</h2>
 
-<h2 id="updating-an-object">Updating an Object</h2>
+<p>Retrieve an individual user, all users, or the current session user, or any users matching specific criteria.</p>
 
-<h2 id="partially-updating-an-user">Partially Updating an User</h2>
+<h3 id="current">Current</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/getstatus"</span> <span class="se">\</span>
+    -H <span class="s2">"x-stamplay-jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">current</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+</code></pre>
 
-<h2 id="retrieving-an-user-by-id">Retrieving an User by Id</h2>
+<p>To fetch the user that is currently logged in, send a request to the <code class="prettyprint">getStatus</code> endpoint, on the user API resource.</p>
 
-<h2 id="delete-an-user">Delete an User</h2>
+<h3 id="individual">Individual</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"user_id"</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"user_id"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To fetch an single user, send the <code class="prettyprint">_id</code> of the user to fetch in the request body to the user API resource.</p>
+
+<h3 id="all">All</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">({})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To retrieve all users, send a request without any parameters to match in the body, to the user API resource.</p>
+
+<h3 id="query">Query</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">30</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">name</span> <span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span>
+        <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">name</span> <span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span>
+        <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To retrieve all users that match a certain set of parameters, send a request with any parameters to match in the body, to the user API resource.</p>
+
+<h2 id="update">Update</h2>
+
+<p>To update a user record partially, or completely overwrite the existing record.</p>
+
+<h3 id="partial-user-update">Partial User Update</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">30</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">updatedInfo</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">name</span> <span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span>
+        <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">updatedInfo</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">name</span> <span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span>
+        <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To partially update a User record, send a <code class="prettyprint">PATCH</code> request with an properties to update in the request body, to the User API resource with the <code class="prettyprint">_id</code> of the user to update.</p>
+
+<h3 id="complete-user-update">Complete User Update</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">111 Market St. San Francisco, CA</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">30</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">_id</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">56fb116e5ab65a4446dd3b2d</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">_id</span> <span class="p">:</span> <span class="s2">"56fb116e5ab65a4446dd3b2d"</span><span class="p">,</span>
+        <span class="na">address</span> <span class="p">:</span> <span class="s2">"111 Market St. San Francisco, CA"</span>
+        <span class="na">name</span> <span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span>
+        <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">_id</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">_id</span> <span class="p">:</span> <span class="s2">"56fb116e5ab65a4446dd3b2d"</span><span class="p">,</span>
+        <span class="na">address</span> <span class="p">:</span> <span class="s2">"111 Market St. San Francisco, CA"</span>
+        <span class="na">name</span> <span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span>
+        <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">_id</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To completely update a user record, send a <code class="prettyprint">PUT</code> request with a complete representation of the data to overwrite the existing record with.</p>
+
+<p>Include this representation in the request body, in the request to the User API resource with the <code class="prettyprint">_id</code> of the user to update.</p>
+
+<h2 id="remove">Remove</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To remove a user record from the database, send a <code class="prettyprint">DELETE</code> request to the user resource with the user <code class="prettyprint">_id</code> to the User API resource.</p>
+
+<h2 id="assign-role">Assign Role</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">givenRole</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">role_id</span><span class="se">\"</span><span class="s2">}"</span>
+
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">givenRole</span> <span class="p">:</span> <span class="s2">"role_id"</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">givenRole</span> <span class="p">:</span> <span class="s2">"role_id"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To assign a new role to a user, send a <code class="prettyprint">PATCH</code> request with the <code class="prettyprint">givenRole</code> property as the role to assign unique <code class="prettyprint">_id</code>, in the request body to the User API resource.</p>
+
+<p>To retrieve the roles available to assign, see the <a href="#roles">Roles API</a>.</p>
+
+<!-- ## Activity -->
+
+<!-- 
+    Return the activities that user with the specified userId has done. Each activity is composed by a triple:
+
+    activity: the name of the activity
+    actor: the entity that has done the activity
+    target: the entity on which the activity is done
+ -->
+
+<!-- ## Follower System
+### Follow User
+### Unfollow User
+### Get Followers
+### Get Following -->
 
           <h1 id="roles">Roles</h1>
+
+<p>Stamplay supports role based access control for a fine grained authorization layer if needed.</p>
+
+<p>Roles provide a logical way of grouping users with common access privileges to your data and how a user is able to perform CRUD operations on a resource.</p>
+
+<p>Roles can be created and deleted only inside Stamplay but you can assign them to your users via APIs.</p>
+
+<h2 id="fetch-all-roles">Fetch All Roles</h2>
+
+<p>To retrieve all roles within your application, send a <code class="prettyprint">GET</code> request to the Roles API resource.</p>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/roles"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">getRoles</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+</code></pre>
+
+<h2 id="fetch-individual-role">Fetch Individual Role</h2>
+
+<p>To fetch a single role, send a <code class="prettyprint">GET</code> request to the Roles API resource, with the <code class="prettyprint">_id</code> as part of the request URI.</p>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/roles/{role_id}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">getRole</span><span class="p">(</span><span class="s2">"role_Id"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+</code></pre>
 
           <h1 id="objects">Objects</h1>
 
 <h2 id="schemas">Schemas</h2>
 
-<p>(make an example with an object that as one property for every type, e.g Restaurant)</p>
+<p>Schemas are defined data structures that enfore type validation.</p>
+
+<p>They can be created throught Stamplay Editor, inside the <strong>Object</strong> section.</p>
+
+<p>Below is an example schema of a <strong>Restaurant</strong> with every possible data type available as a field type.</p>
+
+<p>There are 3 properties that are included by default:</p>
+
+<ul>
+<li><code class="prettyprint">dt_create</code> - The date the record was create</li>
+<li><code class="prettyprint">dt_update</code> - The date the record was last updated</li>
+<li><code class="prettyprint">owner</code> - The <code class="prettyprint">-id</code> of the user who created this object.</li>
+</ul>
+
+<p><a href="images/schema-overview.png"><img alt="Schema Overview" src="images/schema-overview.png" /></a></p>
 
 <h2 id="data-types">Data Types</h2>
 
+<p>The types and formats of each field type is listed below:</p>
+<pre class="highlight shell-always"><code><span class="p">{</span>
+    <span class="nl">Boolean</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nb">String</span> <span class="err">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+    <span class="nb">Number</span> <span class="err">:</span> <span class="mi">45</span><span class="p">,</span>
+    <span class="nx">Float</span> <span class="err">:</span> <span class="mf">3.14</span><span class="p">,</span>
+    <span class="nx">PlainObject</span> <span class="err">:</span> <span class="p">{</span>
+        <span class="nl">prop_one</span> <span class="p">:</span> <span class="s2">"GoodBye World"</span><span class="p">,</span>
+        <span class="nx">prop_two</span> <span class="err">:</span> <span class="mi">1200</span>
+    <span class="p">},</span>
+    <span class="nx">Array_Number</span> <span class="err">:</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">345</span><span class="p">],</span>
+    <span class="nx">Array_String</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"Hello"</span><span class="p">,</span> <span class="s2">"World"</span><span class="p">],</span>
+    <span class="nb">Date</span> <span class="err">:</span> <span class="s2">"2016-03-10T14:51:28.625Z"</span><span class="p">,</span>
+    <span class="nx">File</span> <span class="err">:</span> <span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png"</span><span class="p">,</span>
+    <span class="nx">Geolocation</span> <span class="err">:</span> <span class="p">{</span>
+        <span class="nl">type</span><span class="p">:</span> <span class="s2">"Point"</span><span class="p">,</span>
+        <span class="nx">coordinates</span><span class="err">:</span> <span class="p">[</span>
+            <span class="mf">12.4608</span><span class="p">,</span>
+            <span class="mf">41.9015</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nx">ObjectRelation_Array</span> <span class="err">:</span> <span class="p">[</span> <span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span> <span class="mi">562</span><span class="nx">ec06e77589e2e0f86c207</span><span class="p">],</span>
+    <span class="nx">UserRelation_String</span> <span class="err">:</span> <span class="s2">"562bb24e007983c67c8ee9df"</span>
+<span class="p">}</span>   
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Summary</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Boolean</td>
+<td>A boolean value type</td>
+</tr>
+<tr>
+<td>String</td>
+<td>String value type. Strings are stored as UTF-8.</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>An integer value type.</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>A float value type.</td>
+</tr>
+<tr>
+<td>Plain Object</td>
+<td>A Javascript object.</td>
+</tr>
+<tr>
+<td>Array - Number</td>
+<td>An array of integer value types.</td>
+</tr>
+<tr>
+<td>Array - String</td>
+<td>An array of string value types.</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>Date value type. Dates are stored in ISODateTimeFormat.</td>
+</tr>
+<tr>
+<td>File</td>
+<td>Any kind of file. Location of the resource uploaded.</td>
+</tr>
+<tr>
+<td>Geolocation</td>
+<td>GeoJSON object.</td>
+</tr>
+<tr>
+<td>Object Relation - Array</td>
+<td>An arrays of pointers to an specific object type.</td>
+</tr>
+<tr>
+<td>User Relation - String</td>
+<td>A pointer to a user object.</td>
+</tr>
+</tbody></table>
+
+<h3 id="boolean">Boolean</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">verified</span> <span class="err">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Boolean</strong> type is a <code class="prettyprint">true</code> or <code class="prettyprint">false</code> value.</p>
+
+<h3 id="string">String</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">name</span> <span class="err">:</span> <span class="s2">"John"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>String</strong> type is a series of characters enclosed by single, or double quotes.</p>
+
+<h3 id="number">Number</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">age</span> <span class="err">:</span> <span class="mi">29</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Number</strong> type is an integer value type without a period or exponent notation.</p>
+
+<h3 id="float">Float</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">pie</span> <span class="err">:</span> <span class="mf">3.14</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Float</strong> type is an integer value type with a period or exponent notation.</p>
+
+<h3 id="plain-object">Plain Object</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+      <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+      <span class="nx">car</span> <span class="err">:</span> <span class="p">{</span>
+        <span class="nl">color</span> <span class="p">:</span> <span class="s2">"blue"</span><span class="p">,</span>
+        <span class="nx">year</span> <span class="err">:</span> <span class="mi">2014</span><span class="p">,</span>
+        <span class="nx">automatic</span> <span class="err">:</span> <span class="kc">false</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Plain Object</strong> type is a plain javascript object. The property <code class="prettyprint">car</code> is a plain object type in the example.</p>
+
+<h3 id="array-number">Array - Number</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">colors</span> <span class="err">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">235</span><span class="p">,</span> <span class="mi">66</span><span class="p">]</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>An <strong>Array</strong> of <strong>Number</strong> value types:</p>
+
+<h3 id="array-string">Array - String</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">colors</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">]</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>An <strong>Array</strong> of <strong>String</strong> value types:</p>
+
+<h3 id="date">Date</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+      <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+      <span class="nx">start_date</span> <span class="err">:</span> <span class="s2">"2016-03-10T14:51:28.625Z"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>The property <code class="prettyprint">end_date</code> is a Date type in <strong>RFC-1123</strong> format in the last example.</p>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+      <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+      <span class="nx">end_date</span> <span class="err">:</span> <span class="s2">"Thu, 10 Mar 2016 14:51:43 GMT"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Date</strong> type is a date string in either the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString">ISO 8601</a> format, or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toUTCString">RFC-1123</a> format.</p>
+
+<p>The property <code class="prettyprint">start_date</code> is a Date type in <strong>ISO 8601</strong> format in the first example.     </p>
+
+<h3 id="file">File</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">profile_image</span> <span class="err">:</span> <span class="s2">"https://[APPID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>File</strong> type is a file upload. Any kind of file is accepted. When a file is uploaded, and saved, the property will be a link to the file upload location.</p>
+
+<p>To save a file type, the request must be sent as <code class="prettyprint">multipart/form-data</code>.</p>
+
+<p>The <code class="prettyprint">profile_image</code> is an example of a <strong>File</strong> type in the example.</p>
+
+<h3 id="geolocation">Geolocation</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">_geolocation</span> <span class="err">:</span> <span class="p">{</span>
+            <span class="nl">type</span><span class="p">:</span> <span class="s2">"Point"</span><span class="p">,</span>
+            <span class="nx">coordinates</span><span class="err">:</span> <span class="p">[</span>
+                <span class="mf">12.4608</span><span class="p">,</span>
+                <span class="mf">41.9015</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Geolocation</strong> type is stored as <strong>GeoJSON</strong> object with this coordinate-axis order: <code class="prettyprint">longitude</code>, <code class="prettyprint">latitude</code>.</p>
+
+<p>A Point stored on Stamplay will look like the example:</p>
+
+<p>Currently supported data types are:</p>
+
+<ul>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#point">Point</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#linestring">LineString</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#polygon">Polygon</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#multipoint">MultiPoint</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#multilinestring">MultiLineString</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#multipolygon">MultiPolygon</a></li>
+</ul>
+
+<p>In order to save any instance of geolocation data you need to send the complete <strong>GeoJSON</strong> representation.</p>
+
+<p>To make this easier if you want to create a Point you&rsquo;re allowed to send an array of coordinates in <code class="prettyprint">longitude, latitude</code> format and Stamplay will create the <strong>GeoJSON</strong> for you.</p>
+
+<h3 id="object-relation">Object Relation</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">solutions</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"6c641c8a81e3625f03b1ae6c"</span><span class="p">,</span> <span class="s2">"3b1ae6c8a81e3625f06c641c"</span><span class="p">,</span> <span class="s2">"825f06c641c3ba81e361ae6c"</span><span class="p">,</span> <span class="s2">"f06c641c3b8a81e3625ae6c"</span><span class="p">]</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Object Relation</strong> is set of pointers to another object.</p>
+
+<p>Select the <strong>Object Relation - [Object Name]</strong> from the dropdown to the object type to point to. The pointers are each a <code class="prettyprint">_id</code> of another object. This field can be populated.</p>
+
+<p>The <code class="prettyprint">solutions</code> property is an example of a <strong>Object Relation</strong> type in the example.</p>
+
+<h3 id="user-relation">User Relation</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">author</span> <span class="err">:</span> <span class="s2">"8a81e3625f06c641c3b1ae6c"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>User Relation</strong> is a pointer to a user object represented by an <code class="prettyprint">_id</code> of a user. This field can be populated. The <code class="prettyprint">author</code> property is an example of a <code class="prettyprint">User Relation</code> in the example.</p>
+
 <h2 id="permissions">Permissions</h2>
 
-<h2 id="creating-an-object">Creating an Object</h2>
+<p>In permissions at an Object level, you define who can perform operations on your data. You can do that by choosing a preset or creating your own permission model.</p>
 
-<h2 id="updating-object">Updating Object</h2>
+<p><img alt="Permissions Overview" src="images/object-permissions-overview.png" /></p>
 
-<h2 id="partially-updating-an-object">Partially Updating an Object</h2>
+<p>We’ve identified some commonly used permission patterns (we refer to them as &ldquo;policies&rdquo;). Stamplay provides an easy way to use these patterns on the data your app manages. These policies offer a convenient mechanism for supporting very common security scenarios without having to manage complex settings:</p>
 
-<h2 id="populating-related-objects">Populating related Objects</h2>
+<ul>
+<li><p><strong>Private</strong>: Use this preset if you want to make users’ data inaccessible to other users. Any user will be able to read and write only his or her own information.</p></li>
+<li><p><strong>Public</strong>: When this policy is applied to user profiles, any user can read and write any other user&rsquo;s information. Proceed with caution.</p></li>
+<li><p><strong>Read-only</strong>: Use this preset if you want users to read all profiles, but you don’t want to give them permission to write any profile information.</p></li>
+<li><p><strong>Shared</strong>: This preset is suitable for social apps; any user can modify his or her own profile and can read all other user profiles.</p></li>
+</ul>
 
-<h2 id="managing-object-owner-how-owners-are-added-and-how-to-populateowner">Managing object owner (how owners are added and how to populateOwner)</h2>
+<p>If the predefined security policies are not flexible enough for your app and you have created your own user roles, you can choose to use role-based security. The settings specify whether a role is allowed to create, read, update or delete items.</p>
 
-<h2 id="retrieving-an-object-by-id">Retrieving an Object by Id</h2>
+<h2 id="create">Create</h2>
 
-<h2 id="delete-an-object">Delete an Object</h2>
+<h2 id="fetch">Fetch</h2>
 
-<h2 id="upvoting-objects">Upvoting Objects</h2>
+<h3 id="individual">Individual</h3>
 
-<h2 id="commenting-objects">Commenting Objects</h2>
+<h3 id="all">All</h3>
+
+<h3 id="query">Query</h3>
+
+<h2 id="update">Update</h2>
+
+<h3 id="partial-update">Partial Update</h3>
+
+<h3 id="complete-update">Complete Update</h3>
+
+<h2 id="remove">Remove</h2>
+
+<h2 id="relationships">Relationships</h2>
+
+<h3 id="user">User</h3>
+
+<h3 id="objects">Objects</h3>
+
+<h2 id="voting">Voting</h2>
+
+<h2 id="commenting">Commenting</h2>
+
+<h2 id="rating">Rating</h2>
 
           <h1 id="code-blocks">Code Blocks</h1>
 

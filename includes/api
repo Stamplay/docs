@@ -1,15 +1,15 @@
 <h1 id="api-overview">API Overview</h1>
 
-<h2 id="api-summary">API Summary</h2>
+<h2 id="summary">Summary</h2>
 
 <p>The Stamplay API exposes the following resources:</p>
 
-<p>Manage and access object data.
+<!-- Manage and access object data.
 Manage and access user data, create user sessions.
 Manage and access user roles, assign roles.
 Execute Code Blocks.
 Manage customers and payment information, charge a customer, add subscriptions.
-Send an email.</p>
+Send an email. -->
 
 <table><thead>
 <tr>
@@ -30,7 +30,7 @@ Send an email.</p>
 <td style="text-align: right">/api/user/v1/roles</td>
 </tr>
 <tr>
-<td><a href="#codeblocks">Code Blocks</a></td>
+<td><a href="#code-blocks">Code Blocks</a></td>
 <td style="text-align: right">/api/v1/run/:codeblock</td>
 </tr>
 <tr>

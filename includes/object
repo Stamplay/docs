@@ -2,26 +2,301 @@
 
 <h2 id="schemas">Schemas</h2>
 
-<p>(make an example with an object that as one property for every type, e.g Restaurant)</p>
+<p>Schemas are defined data structures that enfore type validation.</p>
+
+<p>They can be created throught Stamplay Editor, inside the <strong>Object</strong> section.</p>
+
+<p>Below is an example schema of a <strong>Restaurant</strong> with every possible data type available as a field type.</p>
+
+<p>There are 3 properties that are included by default:</p>
+
+<ul>
+<li><code class="prettyprint">dt_create</code> - The date the record was create</li>
+<li><code class="prettyprint">dt_update</code> - The date the record was last updated</li>
+<li><code class="prettyprint">owner</code> - The <code class="prettyprint">-id</code> of the user who created this object.</li>
+</ul>
+
+<p><a href="../images/schema-overview.png"><img alt="Schema Overview" src="/images/schema-overview.png" /></a></p>
 
 <h2 id="data-types">Data Types</h2>
 
+<p>The types and formats of each field type is listed below:</p>
+<pre class="highlight shell-always"><code><span class="p">{</span>
+    <span class="nl">Boolean</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nb">String</span> <span class="err">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+    <span class="nb">Number</span> <span class="err">:</span> <span class="mi">45</span><span class="p">,</span>
+    <span class="nx">Float</span> <span class="err">:</span> <span class="mf">3.14</span><span class="p">,</span>
+    <span class="nx">PlainObject</span> <span class="err">:</span> <span class="p">{</span>
+        <span class="nl">prop_one</span> <span class="p">:</span> <span class="s2">"GoodBye World"</span><span class="p">,</span>
+        <span class="nx">prop_two</span> <span class="err">:</span> <span class="mi">1200</span>
+    <span class="p">},</span>
+    <span class="nx">Array_Number</span> <span class="err">:</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">345</span><span class="p">],</span>
+    <span class="nx">Array_String</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"Hello"</span><span class="p">,</span> <span class="s2">"World"</span><span class="p">],</span>
+    <span class="nb">Date</span> <span class="err">:</span> <span class="s2">"2016-03-10T14:51:28.625Z"</span><span class="p">,</span>
+    <span class="nx">File</span> <span class="err">:</span> <span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png"</span><span class="p">,</span>
+    <span class="nx">Geolocation</span> <span class="err">:</span> <span class="p">{</span>
+        <span class="nl">type</span><span class="p">:</span> <span class="s2">"Point"</span><span class="p">,</span>
+        <span class="nx">coordinates</span><span class="err">:</span> <span class="p">[</span>
+            <span class="mf">12.4608</span><span class="p">,</span>
+            <span class="mf">41.9015</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nx">ObjectRelation_Array</span> <span class="err">:</span> <span class="p">[</span> <span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span> <span class="mi">562</span><span class="nx">ec06e77589e2e0f86c207</span><span class="p">],</span>
+    <span class="nx">UserRelation_String</span> <span class="err">:</span> <span class="s2">"562bb24e007983c67c8ee9df"</span>
+<span class="p">}</span>   
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Summary</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Boolean</td>
+<td>A boolean value type</td>
+</tr>
+<tr>
+<td>String</td>
+<td>String value type. Strings are stored as UTF-8.</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>An integer value type.</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>A float value type.</td>
+</tr>
+<tr>
+<td>Plain Object</td>
+<td>A Javascript object.</td>
+</tr>
+<tr>
+<td>Array - Number</td>
+<td>An array of integer value types.</td>
+</tr>
+<tr>
+<td>Array - String</td>
+<td>An array of string value types.</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>Date value type. Dates are stored in ISODateTimeFormat.</td>
+</tr>
+<tr>
+<td>File</td>
+<td>Any kind of file. Location of the resource uploaded.</td>
+</tr>
+<tr>
+<td>Geolocation</td>
+<td>GeoJSON object.</td>
+</tr>
+<tr>
+<td>Object Relation - Array</td>
+<td>An arrays of pointers to an specific object type.</td>
+</tr>
+<tr>
+<td>User Relation - String</td>
+<td>A pointer to a user object.</td>
+</tr>
+</tbody></table>
+
+<h3 id="boolean">Boolean</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">verified</span> <span class="err">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Boolean</strong> type is a <code class="prettyprint">true</code> or <code class="prettyprint">false</code> value.</p>
+
+<h3 id="string">String</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">name</span> <span class="err">:</span> <span class="s2">"John"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>String</strong> type is a series of characters enclosed by single, or double quotes.</p>
+
+<h3 id="number">Number</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">age</span> <span class="err">:</span> <span class="mi">29</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Number</strong> type is an integer value type without a period or exponent notation.</p>
+
+<h3 id="float">Float</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">pie</span> <span class="err">:</span> <span class="mf">3.14</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Float</strong> type is an integer value type with a period or exponent notation.</p>
+
+<h3 id="plain-object">Plain Object</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+      <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+      <span class="nx">car</span> <span class="err">:</span> <span class="p">{</span>
+        <span class="nl">color</span> <span class="p">:</span> <span class="s2">"blue"</span><span class="p">,</span>
+        <span class="nx">year</span> <span class="err">:</span> <span class="mi">2014</span><span class="p">,</span>
+        <span class="nx">automatic</span> <span class="err">:</span> <span class="kc">false</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Plain Object</strong> type is a plain javascript object. The property <code class="prettyprint">car</code> is a plain object type in the example.</p>
+
+<h3 id="array-number">Array - Number</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">colors</span> <span class="err">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">235</span><span class="p">,</span> <span class="mi">66</span><span class="p">]</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>An <strong>Array</strong> of <strong>Number</strong> value types:</p>
+
+<h3 id="array-string">Array - String</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">colors</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">]</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>An <strong>Array</strong> of <strong>String</strong> value types:</p>
+
+<h3 id="date">Date</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+      <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+      <span class="nx">start_date</span> <span class="err">:</span> <span class="s2">"2016-03-10T14:51:28.625Z"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>The property <code class="prettyprint">end_date</code> is a Date type in <strong>RFC-1123</strong> format in the last example.</p>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+      <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+      <span class="nx">end_date</span> <span class="err">:</span> <span class="s2">"Thu, 10 Mar 2016 14:51:43 GMT"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Date</strong> type is a date string in either the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString">ISO 8601</a> format, or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toUTCString">RFC-1123</a> format.</p>
+
+<p>The property <code class="prettyprint">start_date</code> is a Date type in <strong>ISO 8601</strong> format in the first example.     </p>
+
+<h3 id="file">File</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">profile_image</span> <span class="err">:</span> <span class="s2">"https://[APPID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>File</strong> type is a file upload. Any kind of file is accepted. When a file is uploaded, and saved, the property will be a link to the file upload location.</p>
+
+<p>To save a file type, the request must be sent as <code class="prettyprint">multipart/form-data</code>.</p>
+
+<p>The <code class="prettyprint">profile_image</code> is an example of a <strong>File</strong> type in the example.</p>
+
+<h3 id="geolocation">Geolocation</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">_geolocation</span> <span class="err">:</span> <span class="p">{</span>
+            <span class="nl">type</span><span class="p">:</span> <span class="s2">"Point"</span><span class="p">,</span>
+            <span class="nx">coordinates</span><span class="err">:</span> <span class="p">[</span>
+                <span class="mf">12.4608</span><span class="p">,</span>
+                <span class="mf">41.9015</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Geolocation</strong> type is stored as <strong>GeoJSON</strong> object with this coordinate-axis order: <code class="prettyprint">longitude</code>, <code class="prettyprint">latitude</code>.</p>
+
+<p>A Point stored on Stamplay will look like the example:</p>
+
+<p>Currently supported data types are:</p>
+
+<ul>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#point">Point</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#linestring">LineString</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#polygon">Polygon</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#multipoint">MultiPoint</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#multilinestring">MultiLineString</a></li>
+<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#multipolygon">MultiPolygon</a></li>
+</ul>
+
+<p>In order to save any instance of geolocation data you need to send the complete <strong>GeoJSON</strong> representation.</p>
+
+<p>To make this easier if you want to create a Point you&rsquo;re allowed to send an array of coordinates in <code class="prettyprint">longitude, latitude</code> format and Stamplay will create the <strong>GeoJSON</strong> for you.</p>
+
+<h3 id="object-relation">Object Relation</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">solutions</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"6c641c8a81e3625f03b1ae6c"</span><span class="p">,</span> <span class="s2">"3b1ae6c8a81e3625f06c641c"</span><span class="p">,</span> <span class="s2">"825f06c641c3ba81e361ae6c"</span><span class="p">,</span> <span class="s2">"f06c641c3b8a81e3625ae6c"</span><span class="p">]</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>Object Relation</strong> is set of pointers to another object.</p>
+
+<p>Select the <strong>Object Relation - [Object Name]</strong> from the dropdown to the object type to point to. The pointers are each a <code class="prettyprint">_id</code> of another object. This field can be populated.</p>
+
+<p>The <code class="prettyprint">solutions</code> property is an example of a <strong>Object Relation</strong> type in the example.</p>
+
+<h3 id="user-relation">User Relation</h3>
+<pre class="highlight shell-always"><code>    <span class="p">{</span>
+        <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+        <span class="nx">author</span> <span class="err">:</span> <span class="s2">"8a81e3625f06c641c3b1ae6c"</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A <strong>User Relation</strong> is a pointer to a user object represented by an <code class="prettyprint">_id</code> of a user. This field can be populated. The <code class="prettyprint">author</code> property is an example of a <code class="prettyprint">User Relation</code> in the example.</p>
+
 <h2 id="permissions">Permissions</h2>
 
-<h2 id="creating-an-object">Creating an Object</h2>
+<p>In permissions at an Object level, you define who can perform operations on your data. You can do that by choosing a preset or creating your own permission model.</p>
 
-<h2 id="updating-object">Updating Object</h2>
+<p><img alt="Permissions Overview" src="/images/object-permissions-overview.png" /></p>
 
-<h2 id="partially-updating-an-object">Partially Updating an Object</h2>
+<p>We’ve identified some commonly used permission patterns (we refer to them as &ldquo;policies&rdquo;). Stamplay provides an easy way to use these patterns on the data your app manages. These policies offer a convenient mechanism for supporting very common security scenarios without having to manage complex settings:</p>
 
-<h2 id="populating-related-objects">Populating related Objects</h2>
+<ul>
+<li><p><strong>Private</strong>: Use this preset if you want to make users’ data inaccessible to other users. Any user will be able to read and write only his or her own information.</p></li>
+<li><p><strong>Public</strong>: When this policy is applied to user profiles, any user can read and write any other user&rsquo;s information. Proceed with caution.</p></li>
+<li><p><strong>Read-only</strong>: Use this preset if you want users to read all profiles, but you don’t want to give them permission to write any profile information.</p></li>
+<li><p><strong>Shared</strong>: This preset is suitable for social apps; any user can modify his or her own profile and can read all other user profiles.</p></li>
+</ul>
 
-<h2 id="managing-object-owner-how-owners-are-added-and-how-to-populateowner">Managing object owner (how owners are added and how to populateOwner)</h2>
+<p>If the predefined security policies are not flexible enough for your app and you have created your own user roles, you can choose to use role-based security. The settings specify whether a role is allowed to create, read, update or delete items.</p>
 
-<h2 id="retrieving-an-object-by-id">Retrieving an Object by Id</h2>
+<h2 id="create">Create</h2>
 
-<h2 id="delete-an-object">Delete an Object</h2>
+<h2 id="fetch">Fetch</h2>
 
-<h2 id="upvoting-objects">Upvoting Objects</h2>
+<h3 id="individual">Individual</h3>
 
-<h2 id="commenting-objects">Commenting Objects</h2>
+<h3 id="all">All</h3>
+
+<h3 id="query">Query</h3>
+
+<h2 id="update">Update</h2>
+
+<h3 id="partial-update">Partial Update</h3>
+
+<h3 id="complete-update">Complete Update</h3>
+
+<h2 id="remove">Remove</h2>
+
+<h2 id="relationships">Relationships</h2>
+
+<h3 id="user">User</h3>
+
+<h3 id="objects">Objects</h3>
+
+<h2 id="voting">Voting</h2>
+
+<h2 id="commenting">Commenting</h2>
+
+<h2 id="rating">Rating</h2>
