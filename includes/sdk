@@ -14,6 +14,8 @@
 
 <p>An additional options object can be passed in as the second argument, but is primarily meant for use within a mobile application.</p>
 
+<p>Our <a href="https://github.com/Stamplay/stamplay-js-sdk">JavaScript SDK is open source on Github</a>!</p>
+
 <h2 id="nodejs-sdk">NodeJS SDK</h2>
 <pre class="highlight shell-always"><code>    <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">stamplay</span>
 </code></pre>
@@ -27,3 +29,5 @@
 <p>To install the Node.js SDK, run <code class="prettyprint">npm install</code> for the <code class="prettyprint">stamplay</code>.</p>
 
 <p>To initialize the SDK within your server side enviornment, first <code class="prettyprint">require</code> the module, then create a new instance of the module require and pass in your <code class="prettyprint">APP ID</code> and <code class="prettyprint">API KEY</code> credentials as seperate arguments.</p>
+
+<p>Our <a href="https://github.com/Stamplay/stamplay-nodejs-sdk">Node.js SDK is open source on Github</a>!</p>

@@ -13,8 +13,12 @@
 <ul>
 <li><code class="prettyprint">dt_create</code> - The date the record was create</li>
 <li><code class="prettyprint">dt_update</code> - The date the record was last updated</li>
-<li><code class="prettyprint">owner</code> - The <code class="prettyprint">-id</code> of the user who created this object.</li>
+<li><code class="prettyprint">owner</code> - The <code class="prettyprint">_id</code> of the user who created this object.</li>
 </ul>
+
+<aside class="warning">
+    The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
+</aside>
 
 <p><a href="../images/schema-overview.png"><img alt="Schema Overview" src="/images/schema-overview.png" /></a></p>
 
@@ -377,11 +381,13 @@
 <p>The object type for the example is <code class="prettyprint">movie</code>.</p>
 
 <h3 id="find-by-current-user">Find By Current User</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/question/find/{attributes}"</span>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/find/{attributes}"</span>
 </code></pre>
 <pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"owner"</span><span class="p">,</span> <span class="s2">"contributor"</span><span class="p">];</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"dinner"</span><span class="p">).</span><span class="nx">findByCurrentUser</span><span class="p">(</span><span class="nx">attrs</span><span class="p">)</span>
+    <span class="c1">// default attribute is owner is no arguments are passed to method</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">findByCurrentUser</span><span class="p">(</span><span class="nx">attrs</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// Success</span>
         <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -395,27 +401,167 @@
 
 <p>Make a <code class="prettyprint">GET</code> request to the Object resource for the object model. Specifying the attributes in the resource URI.</p>
 
+<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
+
 <h2 id="update-objects">Update Objects</h2>
 
 <p>To update an object record partially, or completely overwrite the existing record.</p>
 
 <h3 id="partial-update">Partial Update</h3>
-<pre class="highlight shell"><code>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
+        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">title</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Goodbye World</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// response</span>
+    <span class="p">})</span>
 </code></pre>
 
-<p>To make a partial update to an object record, perform a <code class="prettyprint">PUT</code> request to the Object API resource with any fields to update on the stored records in the request body.</p>
+<p>To make a partial update to an object record, perform a <code class="prettyprint">PATCH</code> request to the Object API resource with any fields to update on the stored record in the request body.</p>
+
+<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
 
 <h3 id="complete-update">Complete Update</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
+        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">title</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Goodbye World</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">year</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">2001</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To over write an object record, perform a <code class="prettyprint">PUT</code> request to the Object API resource with a complete represenation to write over the stored record in the request body.</p>
 
 <h2 id="remove-objects">Remove Objects</h2>
 
+<p>To remove an object record, send a <code class="prettyprint">DELETE</code> request with the <code class="prettyprint">_id</code> of the record to remove in the Object API resource URI.</p>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
+
 <h2 id="relationships">Relationships</h2>
 
+<p>Data relationships are pointers from one record to another.</p>
+
 <h3 id="user-relationship">User Relationship</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
+        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">director</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">56cf08e362641ca813b1ae6c</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">director</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">director</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>A <strong>User</strong> relationship is a pointer to a user record. This field type is to be set only as an <code class="prettyprint">_id</code> of a user record.</p>
+
+<p>This is so it may be populated with the parent object, eliminating the need for a subsequent request to fetch the relationship data. To populate the <code class="prettyprint">owner</code> field, include the query parameter <code class="prettyprint">populate_owner</code> as <code class="prettyprint">true</code> in your request.</p>
+
+<p>The <code class="prettyprint">owner</code> property is a default User relationship, but others can be added through the Stamplay editor.</p>
+
+<p>To manage these relationships, just update this field to the &ldquo;_id&rdquo; of the User to reference in the relationship.</p>
+
+<p>In this example, <code class="prettyprint">movie</code> is the object type, and the <code class="prettyprint">director</code> field is a User Relationship field.</p>
 
 <h3 id="object-relationships">Object Relationships</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
+        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">characters</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">57cf08e362641ca813b1ae6c</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">56cf09e362641sa813b1ae6d</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">54cfdae662641ca813b1ae6c</span><span class="se">\"</span><span class="s2">]}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="s2">"characters"</span><span class="p">,</span> <span class="s2">"57cf08e362641ca813b1ae6c"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">movieChars</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"57cf08e362641ca813b1ae6c"</span><span class="p">,</span> <span class="s2">"56cf09e362641sa813b1ae6d"</span><span class="p">,</span> <span class="s2">"54cfdae662641ca813b1ae6c"</span><span class="p">]</span>
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">movieChars</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>An <strong>Object</strong> relationship is a pointer to another record; specifically a certain type of record as specified when defining the schema.</p>
+
+<p>This field type is to contain only an array of the property <code class="prettyprint">_id</code> of a each related record of the relationship type.</p>
+
+<p>This is so it may be populated with the parent object, eliminating the need for a subsequent request to fetch the relationship data. To populate these fields, add the query parameter <code class="prettyprint">populate</code> as <code class="prettyprint">true</code> to your request.</p>
+
+<p>To manage this relationship field, update the field to represent the collection of object references to store.</p>
+
+<p>The <strong>JavaScript SDK</strong> has a <code class="prettyprint">push</code> method to allow an easier method for pushing new relationships onto the array field. See the example in the <code class="prettyprint">JavaScript</code> tab, otherwise you will need to manage this manually by sending a complete copy of the field in the request.</p>
+
+<p>In this example, <code class="prettyprint">movie</code> is the object type, and the <code class="prettyprint">characters</code> field is a <strong>Object Relationship</strong> field.</p>
 
 <h2 id="voting">Voting</h2>
+
+<p>The Stamplay API provides a voting mechansim for managing a vote system, tracking users who have voted, how they have voted, and the total vote count.</p>
+
+<p>Each Stamplay Object is able to be voted upon, out of the box without any additional setup.</p>
+
+<p>The data for voting is stored on a <code class="prettyprint">actions</code> object on each Object.</p>
+
+<h3 id="downvoting">Downvoting</h3>
+
+<p>To downvote and object send a <code class="prettyprint">PUT</code> request to the Object resource with the object <code class="prettyprint">_id</code> in the URI.</p>
+
+<h3 id="upvoting">Upvoting</h3>
 
 <h2 id="commenting">Commenting</h2>
 
