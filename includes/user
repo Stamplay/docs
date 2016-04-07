@@ -499,7 +499,7 @@
 <li>Check if the current date (in UNIX timestamp format) is between the &ldquo;issued at time&rdquo; date and &ldquo;expiration&rdquo; date to check that the token is still valid.</li>
 </ol>
 
-<h2 id="permissions">Permissions</h2>
+<h2 id="user-to-user-permissions">User to User Permissions</h2>
 
 <p>Stamplay supports Role-Based Authorization schemes, on a per object level, and user to user level.</p>
 
@@ -521,11 +521,11 @@
 
 <p>The request response will redirect the application by default to the root of your application. This can be managed within the Stamplay editor in the <strong>User</strong> -&gt; <strong>Authentication</strong> section by select the settings icon.</p>
 
-<h2 id="fetch">Fetch</h2>
+<h2 id="fetch-users">Fetch Users</h2>
 
 <p>Retrieve an individual user, all users, or the current session user, or any users matching specific criteria.</p>
 
-<h3 id="current">Current</h3>
+<h3 id="current-user">Current User</h3>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/getstatus"</span> <span class="se">\</span>
     -H <span class="s2">"x-stamplay-jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"</span>
 </code></pre>
@@ -541,7 +541,7 @@
 
 <p>To fetch the user that is currently logged in, send a request to the <code class="prettyprint">getStatus</code> endpoint, on the user API resource.</p>
 
-<h3 id="individual">Individual</h3>
+<h3 id="individual-user">Individual User</h3>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"</span>
 </code></pre>
 <pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"user_id"</span> <span class="p">})</span>
@@ -558,7 +558,7 @@
 
 <p>To fetch an single user, send the <code class="prettyprint">_id</code> of the user to fetch in the request body to the user API resource.</p>
 
-<h3 id="all">All</h3>
+<h3 id="all-users">All Users</h3>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users"</span>
 </code></pre>
 <pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">({})</span>
@@ -575,7 +575,7 @@
 
 <p>To retrieve all users, send a request without any parameters to match in the body, to the user API resource.</p>
 
-<h3 id="query">Query</h3>
+<h3 id="query-users">Query Users</h3>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">30</span><span class="se">\"</span><span class="s2">}"</span>
@@ -604,7 +604,7 @@
 
 <p>To retrieve all users that match a certain set of parameters, send a request with any parameters to match in the body, to the user API resource.</p>
 
-<h2 id="update">Update</h2>
+<h2 id="update-user">Update User</h2>
 
 <p>To update a user record partially, or completely overwrite the existing record.</p>
 
@@ -672,7 +672,7 @@
 
 <p>Include this representation in the request body, in the request to the User API resource with the <code class="prettyprint">_id</code> of the user to update.</p>
 
-<h2 id="remove">Remove</h2>
+<h2 id="remove-user">Remove User</h2>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"</span>
 </code></pre>
 <pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">)</span>

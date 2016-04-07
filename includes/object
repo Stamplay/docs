@@ -256,7 +256,7 @@
 
 <h2 id="permissions">Permissions</h2>
 
-<p>In permissions at an Object level, you define who can perform operations on your data. You can do that by choosing a preset or creating your own permission model.</p>
+<p>With permissions at an Object level, you define who can perform operations on your data. You can do that by choosing a preset or creating your own permission model.</p>
 
 <p><img alt="Permissions Overview" src="/images/object-permissions-overview.png" /></p>
 
@@ -272,28 +272,148 @@
 <p>If the predefined security policies are not flexible enough for your app and you have created your own user roles, you can choose to use role-based security. The settings specify whether a role is allowed to create, read, update or delete items.</p>
 
 <h2 id="create">Create</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/object"</span> <span class="se">\</span>
+        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">title</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"\\\"</span><span class="s2">Hello World</span><span class="se">\\\"\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">year</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">2016</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+        <span class="na">year</span> <span class="p">:</span> <span class="mi">2016</span>
+    <span class="p">}</span>
 
-<h2 id="fetch">Fetch</h2>
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
 
-<h3 id="individual">Individual</h3>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+        <span class="na">year</span> <span class="p">:</span> <span class="mi">2016</span>
+    <span class="p">}</span>
 
-<h3 id="all">All</h3>
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
 
-<h3 id="query">Query</h3>
+<p>To create new object data for a particular model, send the data in the body of a<code class="prettyprint">POST</code> request to the Object resource, specifying the object type in the URI.</p>
 
-<h2 id="update">Update</h2>
+<aside class="notice">
+    The data sent in the request body must validate against the schema defined for the particular object resource being saved.
+</aside>
+
+<h2 id="fetch-objects">Fetch Objects</h2>
+
+<p>Retrieve an individual object, all objects, or any matching specific criteria of a particular model type.</p>
+
+<h3 id="individual-object">Individual Object</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"object_id"</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"object_id"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To fetch a single object, send a <code class="prettyprint">GET</code> request to the Object resource with the object&rsquo;s <code class="prettyprint">_id</code> in the URI.</p>
+
+<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
+
+<h3 id="all-objects">All Objects</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To fetch all objects, send a <code class="prettyprint">GET</code> request to the Object resource.</p>
+
+<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
+
+<h3 id="query-objects">Query Objects</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie?title=Hello%20World&amp;year=1998"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+        <span class="na">year</span> <span class="p">:</span> <span class="mi">1998</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+        <span class="na">year</span> <span class="p">:</span> <span class="mi">1998</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To fetch all objects that match a certain parameters, send a <code class="prettyprint">GET</code> request to the Object resource with any parameters to match in the request body.</p>
+
+<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
+
+<h3 id="find-by-current-user">Find By Current User</h3>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/question/find/{attributes}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"owner"</span><span class="p">,</span> <span class="s2">"contributor"</span><span class="p">];</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"dinner"</span><span class="p">).</span><span class="nx">findByCurrentUser</span><span class="p">(</span><span class="nx">attrs</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Error</span>
+        <span class="p">}))</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+</code></pre>
+
+<p>To find all objects with attributes that match the current user&rsquo;s <code class="prettyprint">_id</code>. Specify the attributes to match against with a comma delimited list.</p>
+
+<p>Make a <code class="prettyprint">GET</code> request to the Object resource for the object model. Specifying the attributes in the resource URI.</p>
+
+<h2 id="update-objects">Update Objects</h2>
+
+<p>To update an object record partially, or completely overwrite the existing record.</p>
 
 <h3 id="partial-update">Partial Update</h3>
+<pre class="highlight shell"><code>
+</code></pre>
+
+<p>To make a partial update to an object record, perform a <code class="prettyprint">PUT</code> request to the Object API resource with any fields to update on the stored records in the request body.</p>
 
 <h3 id="complete-update">Complete Update</h3>
 
-<h2 id="remove">Remove</h2>
+<h2 id="remove-objects">Remove Objects</h2>
 
 <h2 id="relationships">Relationships</h2>
 
-<h3 id="user">User</h3>
+<h3 id="user-relationship">User Relationship</h3>
 
-<h3 id="objects">Objects</h3>
+<h3 id="object-relationships">Object Relationships</h3>
 
 <h2 id="voting">Voting</h2>
 
