@@ -99,6 +99,10 @@ To authenticate a user's credentials for a local account, send an `email` and `p
 
 Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.
 
+###Ionic Integration
+
+To Do
+
 ### Facebook
 
 ```shell

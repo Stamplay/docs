@@ -51,18 +51,18 @@ The types and formats of each field type is listed below:
 
 | Type                    | Summary                                                 |
 |-------------------------|---------------------------------------------------------|
-| Boolean                 | A boolean value type                                    |
-| String                  | String value type. Strings are stored as UTF-8.         |
-| Number                  | An integer value type.                                  |
-| Float                   | A float value type.                                     |
-| Plain Object            | A Javascript object.                                    |
-| Array - Number          | An array of integer value types.                        |
-| Array - String          | An array of string value types.                         |
-| Date		              | Date value type. Dates are stored in ISODateTimeFormat. |
-| File                    | Any kind of file. Location of the resource uploaded.    |
-| Geolocation             | GeoJSON object.                                         |
-| Object Relation - Array | An arrays of pointers to an specific object type.       |
-| User Relation - String  | A pointer to a user object.                             |
+| [Boolean](#boolean) | A boolean value type |
+| [String](#string) | String value type. Strings are stored as UTF-8. |
+| [Number](#number) | An integer value type. |
+| [Float](#float) | A float value type. |
+| [Plain Object](#plain-object) | A Javascript object. |
+| [Array - Number](#array-number) | An array of integer value types. |
+| [Array - String](#array-string) | An array of string value types. |
+| [Date](#date) | Date value type. Dates are stored in ISODateTimeFormat. |
+| [File](#file) | Any kind of file. Location of the resource uploaded.    |
+| [Geolocation](#geolocation) | GeoJSON object. |
+| [Object Relation - Array](#object-relation) | An arrays of pointers to an specific object type. |
+| [User Relation - String](#user-relation)| A pointer to a user object. |
 
 ### Boolean
 
@@ -154,7 +154,6 @@ An **Array** of **String** value types:
     }
 ```
         
-The property `end_date` is a Date type in **RFC-1123** format in the last example.
 
 ```javascript-always
 	{
@@ -166,6 +165,9 @@ The property `end_date` is a Date type in **RFC-1123** format in the last exampl
 A **Date** type is a date string in either the [ISO 8601](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) format, or [RFC-1123](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toUTCString) format.
 
 The property `start_date` is a Date type in **ISO 8601** format in the first example.     
+
+The property `end_date` is a Date type in **RFC-1123** format in the last example.
+
 
 ### File
 
@@ -599,14 +601,159 @@ The Stamplay API provides a voting mechansim for managing a vote system, trackin
 Each Stamplay Object is able to be voted upon, out of the box without any additional setup.
 
 The data for voting is stored on a `actions` object on each Object.
+The following data is stored :
+
+```json
+{
+	"actions" : {
+		"votes" : {
+			"users_downvote" : ["user_id"],
+			"users_upvote" : ["another_user_id"],
+			"users" : ["user_id", "another_user_id"],
+			"total" : 2
+		}
+	}
+}
+```
+
 
 ### Downvoting
 
-To downvote and object send a `PUT` request to the Object resource with the object `_id` in the URI.
+```shell
+	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote" \
+		-H "Content-Type: application/json" \
+		-d "{\"type\":\"downvote\"}"
+```
+
+```javascript
+	Stamplay.Object("movie").downVote("object_id")
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	// no method
+```
+
+To downvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `downvote`.
 
 ### Upvoting
+
+```shell
+	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote" \
+		-H "Content-Type: application/json" \
+		-d "{\"type\":\"upvote\"}"
+```
+
+```javascript
+	Stamplay.Object("movie").upVote("object_id")
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	// no method
+```
+
+To upvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `upvote`.
 
 
 
 ## Commenting
+
+```shell
+	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/comment" \
+		-H "Content-Type: application/json" \
+		-d "{\"text\":\"comment text goes here\"}"
+```
+
+```javascript
+	var txt = "comment text goes here";
+
+	Stamplay.Object("movie").comment("object_id", txt)
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	// no method
+```
+
+The Stamplay API provides a comment mechansim for managing a comment system.
+
+Each Stamplay Object is able to be commented upon, out of the box without any additional setup.
+
+To comment on an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `text` property in the body specifying the comment text.
+
+The data for comments is stored on a `actions` object on each Object.
+
+For each comment, a comment object is stored in the `comments` array.
+
+```json
+{
+	"actions" : {
+		"comments" : [
+			{
+				"picture": "user_image_url",
+				"displayName": "user_displayName",
+				"userId": "user_id",
+				"text": "comment text",
+				"_id": "comment_id",
+				"dt_create": "date commented"
+			}
+		]
+	}
+}
+```
+
 ## Rating
+
+```shell
+	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/rate" \
+		-H "Content-Type: application/json" \
+		-d "{\"rate\": 5}"
+```
+
+```javascript
+
+	Stamplay.Object("movie").rate("object_id", 5)
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	// no method
+```
+
+The Stamplay API provides a rate mechansim for managing a rating system.
+
+Each Stamplay Object is able to be be rated, out of the box without any additional setup.
+
+To rate an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `rate` property in the body specifying the rating as an integer.
+
+The data for `ratings` is stored on a `actions` object on each Object.
+
+
+```json
+{
+	"actions" : {
+		"ratings" : {
+			"users": ["user_id", "another_user_id", "third_user"],
+			"avg": 4,
+			"total": 3
+		}
+	}
+}
+
