@@ -109,6 +109,10 @@
 
 <p>Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.</p>
 
+<h3 id="ionic-integration">Ionic Integration</h3>
+
+<p>To Do</p>
+
 <h3 id="facebook">Facebook</h3>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/facebook/connect"</span>
 </code></pre>

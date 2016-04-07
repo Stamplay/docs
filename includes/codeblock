@@ -1,27 +1,218 @@
 <h1 id="code-blocks">Code Blocks</h1>
 
+<p>Our vision is to empower developers to build applications without having to deal with server side development.</p>
+
+<p>For more complex applications, Tasks are not always enough, and the need for a bit of custom logic becomes greater. </p>
+
+<p>Code Blocks make this possible. With Code Blocks, you can add custom server side logic when neccessary, and let us do the heavily lifting when it&rsquo;s not.</p>
+
 <h2 id="setup">Setup</h2>
+
+<p>To create a Code Block:</p>
+
+<ul>
+<li>Open the <strong>Code Blocks</strong> section and click on <strong>+Add</strong>;</li>
+<li>Insert a name for your code and press <strong>Enter</strong>.</li>
+</ul>
+
+<p><a href="../images/codeblock_new.png"><img alt="New Code Block" src="/images/codeblock_new.png" /></a></p>
+
+<p>Stamplay generates a RESTful endpoint, whenever you create a Code Block.</p>
+
+<p><a href="../images/codeblock_landing.png"><img alt="New Code Block" src="/images/codeblock_landing.png" /></a></p>
 
 <h2 id="programming-models">Programming Models</h2>
 
-<h2 id="simple-model">Simple Model</h2>
+<p>There are three ways of writing custom server side code based on your needs:</p>
 
-<h2 id="contextual-model">Contextual Model</h2>
+<ul>
+<li><p><a href="#simple-model">Simple</a> : when you do not need any external parameters, or the use of the incoming request body..</p></li>
+<li><p><a href="#contextual-model">Contextual</a>: when you need to access request body, query parameters and/or secrets.</p></li>
+<li><p><a href="#full-control-model">Full Control</a>: when you need access to the raw request and response.</p></li>
+</ul>
 
-<h2 id="full-control-model">Full Control Model</h2>
+<aside class="warning">
+    All your code <strong>MUST</strong> be inside the main function, everything written outside will break your Code Block.
+</aside>
+
+<h3 id="simple-model">Simple Model</h3>
+<pre class="highlight nodejs-always"><code>    <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span> <span class="na">i_am</span><span class="p">:</span> <span class="s1">'done'</span><span class="p">});</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>Within the <strong>Simple</strong> programming model, you must provide JavaScript code that returns a function which accepts a single argument: a callback.</p>
+
+<p>To indicate completion, the function must call the callback with two arguments: an error, and the result.</p>
+
+<p>The result, or the second argument in the callback, will be the response to the originating request, or the destination <em>(i.e. Execution of a Task after a Code Block executes.)</em> request body.</p>
+
+<p>When the callback is invoked, the result value or an error will be serialized as JSON and sent back to the caller as <code class="prettyprint">application/json</code> content type.</p>
+
+<h3 id="contextual-model">Contextual Model</h3>
+<pre class="highlight nodejs-always"><code>    <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span> <span class="na">hello</span><span class="p">:</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span> <span class="p">});</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>A more advanced version of the programming model allows you to return a function that accepts two arguments: a <code class="prettyprint">context</code> and a <code class="prettyprint">callback</code>.</p>
+
+<p>The <code class="prettyprint">context</code> parameter is a JavaScript object with data and optionally body properties.
+The <code class="prettyprint">context.data</code> is a JavaScript object that combines parameters passed to the code using one of several mechanisms:</p>
+
+<ul>
+<li>The <a href="#app-secrets">secrets</a> that you&rsquo;ve defined in the Stamplay Editor.</li>
+<li>The URL query parameters of the request.</li>
+<li>The key value pairs passed in the request body.</li>
+</ul>
+
+<p>The request can be parsed correctly only if <code class="prettyprint">application/json</code> or <code class="prettyprint">application/x-www-form-urlencoded</code> is used as <code class="prettyprint">content-type</code>.</p>
+
+<h3 id="full-control-model">Full Control Model</h3>
+<pre class="highlight nodejs-always"><code>    <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">});</span>
+        <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"hello"</span> <span class="p">:</span> <span class="nx">context</span><span class="p">.</span><span class="nx">body</span> <span class="p">};</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
+    <span class="p">};</span>
+</code></pre>
+
+<p>The most flexible programming model allows you to take full control over the HTTP <code class="prettyprint">request</code> and <code class="prettyprint">response</code>.</p>
+
+<p>The <code class="prettyprint">context</code> argument behaves the same way as in the two simpler programming models.</p>
+
+<p>Note that this programming model does not have a concept of a callback. <a href="https://nodejs.org/api/http.html">Ending the HTTP response</a> indicates completion.</p>
 
 <h2 id="running-code-blocks">Running Code Blocks</h2>
 
-<p>(API)</p>
+<p>To execute a Code Block send a <code class="prettyprint">POST</code> request to the Code Block API resource with the identifier of the Code block to run in the URI.</p>
+
+<p>Include any data to pass into the Code block within the body of the request, and any query params within the URI itself.</p>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?page=2&amp;per_page=30"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">message</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Hello</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">message</span> <span class="p">:</span> <span class="s2">"Hello"</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">page</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="na">per_page</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">}</span>
+
+    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">run</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+</code></pre>
 
 <h2 id="app-secrets">App Secrets</h2>
 
+<p>In order to develop a full-featured application you&rsquo;ll need to communicate with external services using secret credentials. Stamplay allows you to securely store these parameters within the Secrets area.</p>
+
+<h3 id="adding-secrets">Adding Secrets</h3>
+
+<p>Four steps are required in order to save a secret value:</p>
+
+<ul>
+<li>1. Navigate to the <strong>Secrets</strong> area, under the <strong>Properties</strong> tab.</li>
+</ul>
+
+<p><a href="../images/cb_sec_save_1.png"><img alt="Navigate To Secrets Area" src="/images/cb_sec_save_1.png" /></a></p>
+
+<ul>
+<li>2. Add a <code class="prettyprint">name</code> key and a key <code class="prettyprint">value</code>.</li>
+</ul>
+
+<p><a href="../images/cb_sec_save_2.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_2.png" /></a></p>
+
+<ul>
+<li>3. Click the <strong>Add</strong> Button.</li>
+</ul>
+
+<p><a href="../images/cb_sec_save_3.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_3.png" /></a></p>
+
+<p>Now your secret has been added and is ready for use with the Code Block.</p>
+
+<p><a href="../images/cb_sec_save_4.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_4.png" /></a></p>
+
+<h3 id="accessing-secrets">Accessing Secrets</h3>
+<pre class="highlight nodejs-always"><code>    <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span> <span class="na">pass_this_secret</span> <span class="p">:</span> <span class="nx">context</span><span class="p">.</span><span class="nx">secrets</span><span class="p">.</span><span class="nx">name</span> <span class="p">});</span>
+    <span class="p">}</span>
+</code></pre>
+
+<p>In order to access secrets you need to use the <a href="#contextual-model">Contextual</a> or the <a href="#full-control-model">Full Control</a> programming model.</p>
+
+<p>You&rsquo;ll find your secrets in the <code class="prettyprint">context.secrets</code>, or the <code class="prettyprint">context.data</code> object in the key that you specified from the Stamplay Editor.</p>
+
+<p>Example shown uses the <strong>Contextual</strong> programming model.</p>
+
 <h2 id="npm-modules">NPM Modules</h2>
+<pre class="highlight nodejs-always"><code>    <span class="kd">var</span> <span class="nx">stamplay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"stamplay"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">Stamplay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stamplay</span><span class="p">(</span><span class="s2">"APPID"</span><span class="p">,</span> <span class="s2">"APIKEY"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">_</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"underscore"</span><span class="p">);</span>
+
+    <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">request</span><span class="p">(</span><span class="s2">"req_url"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+
+            <span class="kd">var</span> <span class="nx">movieFound</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="p">{</span> <span class="na">director</span> <span class="p">:</span> <span class="s2">"John Doe"</span> <span class="p">})</span>
+
+            <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">movieFound</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">).</span><span class="nx">data</span><span class="p">);</span>
+            <span class="p">})</span>
+
+        <span class="p">})</span>
+
+    <span class="p">}</span>
+</code></pre>
+
+<p>When using Code Blocks you can rely on over 800 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.</p>
+
+<p>You can browse available modules at <a href="https://canirequire.stamplayapp.com">https://canirequire.stamplayapp.com</a>.</p>
+
+<p>If there is a module that is not list on the directory that you need, let us know at <a href="mailto:support@stamplay.com">support@stamplay.com</a> and we can have the requested module live within 24hrs or less typically.</p>
+
+<p>To use the <code class="prettyprint">require</code> method, simply pass the name of the desired NPM module to <code class="prettyprint">require</code> to include inside your Code Block as you normally may in a Node.js enviornment.</p>
+
+<p>The example <code class="prettyprint">require</code>s the <a href="http://underscorejs.org/">underscore</a>, <a href="https://github.com/request/request">request</a>, and <a href="https://github.com/Stamplay/stamplay-nodejs-sdk">Stamplay Node.js SDK</a>.</p>
 
 <h2 id="common-errors">Common Errors</h2>
 
+<p>These are some of the most common errors that you may encounter when writing Code Blocks:</p>
+
+<h4 id="writing-code-outside-the-method-signature">Writing code outside the method signature.</h4>
+
+<p>No code outside the main <code class="prettyprint">module.export</code>, please. It&rsquo;s a tradeoff for using Code Blocks .</p>
+
+<h4 id="async-code-not-handled-properly">Async code not handled properly.</h4>
+
+<p>If you&rsquo;re writing code in Node.js, async code is the way to go. If you&rsquo;re having problems syncronizing your code please consider the use of libraries such as q or async which are available in our modules.</p>
+
+<h4 id="i-ve-configured-a-task-that-says-on-code-block-run-then-but-it-s-not-working">I’ve configured a Task that says “On Code Block run then &hellip;” but it’s not working.</h4>
+
+<p>There are several reason why the Task may not be triggered:</p>
+
+<p>Tasks work only if the output has as <strong>Content-Type</strong> <code class="prettyprint">application/json</code>: if you’re using the <strong>Simple</strong> or <strong>Context</strong> way to write a Code Block you can just pass null as the first argument (which is the error) and an object to the final callback, and Tasks will be triggered in the right way.</p>
+
+<p>If you’re using the <strong>Full Control</strong> programming model, make sure to return <code class="prettyprint">application/json</code> as Content-Type.</p>
+
+<p>A task is triggered only if the Code Block returns a <code class="prettyprint">200</code> status code.</p>
+
+<p>A Code Block is currently only executed only using <code class="prettyprint">POST</code> request, ensure that you&rsquo;re using the right HTTP verb.</p>
+
 <h2 id="logs">Logs</h2>
 
-<p>(https://stamplay.com/docs/platform/codeblocks/manage#logs)</p>
+<p>If you need to debug your Code Block to see how it behaves, check the <strong>Logs</strong> tab and you&rsquo;ll be able to see the <code class="prettyprint">console.log</code> output, and the output of your Code Block from the callback, or the stack trace.</p>
 
 <h2 id="lost-logs">Lost Logs</h2>
+
+<p>Logs are automatically deleted after two weeks. If you have different needs, please <a href="mailto:support@stamplay.com?subject=Logs+Expiration">let us know</a>.</p>
