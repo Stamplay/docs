@@ -789,10 +789,22 @@ To remove a user record from the database, send a `DELETE` request to the user r
 ```
 
 
-To assign a new role to a user, send a `PATCH` request with the `givenRole` property as the role to assign's `_id`, in the request body to the User API resource.
+To assign a new role to a user, send a `PATCH` request with the `givenRole` property as the role to assign unique `_id`, in the request body to the User API resource.
 
 To retrieve the roles available to assign, see the [Roles API](#roles).
 
-## Activity
+<!-- ## Activity -->
 
-## Follow
+<!-- 
+	Return the activities that user with the specified userId has done. Each activity is composed by a triple:
+
+	activity: the name of the activity
+	actor: the entity that has done the activity
+	target: the entity on which the activity is done
+ -->
+
+<!-- ## Follower System
+### Follow User
+### Unfollow User
+### Get Followers
+### Get Following -->

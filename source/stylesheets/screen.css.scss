@@ -491,6 +491,9 @@ html, body {
   li {
     width: 100%;
     margin-top: 10px;
+    & p {
+      width: 100%;
+    }
   }
 
   img {
