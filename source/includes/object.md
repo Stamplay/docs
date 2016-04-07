@@ -238,7 +238,7 @@ A **User Relation** is a pointer to a user object represented by an `_id` of a u
 
 ## Permissions
 
-In permissions at an Object level, you define who can perform operations on your data. You can do that by choosing a preset or creating your own permission model.
+With permissions at an Object level, you define who can perform operations on your data. You can do that by choosing a preset or creating your own permission model.
 
 ![Permissions Overview](/images/object-permissions-overview.png)
 
@@ -255,17 +255,176 @@ We’ve identified some commonly used permission patterns (we refer to them as "
 If the predefined security policies are not flexible enough for your app and you have created your own user roles, you can choose to use role-based security. The settings specify whether a role is allowed to create, read, update or delete items.
 
 ## Create
-## Fetch
-### Individual
-### All
-### Query
-## Update
+```shell
+	curl -X "POST" "https://APPID.stamplayapp.com/api/cobject/v1/object" \
+		-H "Content-Type: application/json" \
+		-d "{\"title\":\"\\\"Hello World\\\"\",\"year\":\"2016\"}"
+```
+
+```javascript
+	var data = {
+		title : "Hello World",
+		year : 2016
+	}
+
+	Stamplay.Object("movie").save(data)
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+
+```
+
+```nodejs
+	var data = {
+		title : "Hello World",
+		year : 2016
+	}
+
+	Stamplay.Object("movie").save(data, function(err, res) {
+			// response
+	})
+```
+
+To create new object data for a particular model, send the data in the body of a`POST` request to the Object resource, specifying the object type in the URI.
+
+<aside class="notice">
+	The data sent in the request body must validate against the schema defined for the particular object resource being saved.
+</aside>
+
+## Fetch Objects
+
+Retrieve an individual object, all objects, or any matching specific criteria of a particular model type.
+
+### Individual Object
+
+```shell
+	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"
+```
+
+```javascript
+	Stamplay.Object("movie").get({ _id : "object_id"})
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	Stamplay.Object("movie").get({ _id : "object_id"}, function(err, res) {
+			// response
+	})
+```
+
+To fetch a single object, send a `GET` request to the Object resource with the object's `_id` in the URI.
+
+The object type for the example is `movie`.
+
+
+### All Objects
+
+```shell
+	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie"
+```
+
+```javascript
+	Stamplay.Object("movie").get({})
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	Stamplay.Object("movie").get({}, function(err, res) {
+			// response
+	})
+```
+
+To fetch all objects, send a `GET` request to the Object resource.
+
+The object type for the example is `movie`.
+
+### Query Objects
+
+```shell
+	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie?title=Hello%20World&year=1998"
+```
+
+```javascript
+	var query = {
+		title : "Hello World",
+		year : 1998
+	}
+
+	Stamplay.Object("movie").get(query)
+		.then(function(res) {
+			// success
+		}, function(err) {
+			// error
+		})
+```
+
+```nodejs
+	var query = {
+		title : "Hello World",
+		year : 1998
+	}
+
+	Stamplay.Object("movie").get(query, function(err, res) {
+			// response
+	})
+```
+
+To fetch all objects that match a certain parameters, send a `GET` request to the Object resource with any parameters to match in the request body.
+
+The object type for the example is `movie`.
+
+### Find By Current User
+
+```shell
+	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/question/find/{attributes}"
+```
+
+```javascript
+	var attrs = ["owner", "contributor"];
+
+	Stamplay.Object("dinner").findByCurrentUser(attrs)
+		.then(function(res) {
+			// Success
+		}, function(err) {
+			// Error
+		}))
+```
+
+```nodejs
+	// no method
+```
+
+To find all objects with attributes that match the current user's `_id`. Specify the attributes to match against with a comma delimited list.
+
+Make a `GET` request to the Object resource for the object model. Specifying the attributes in the resource URI.
+
+## Update Objects
+
+To update an object record partially, or completely overwrite the existing record.
+
 ### Partial Update
+
+```shell
+
+```
+
+To make a partial update to an object record, perform a `PUT` request to the Object API resource with any fields to update on the stored records in the request body.
+
 ### Complete Update
-## Remove
+## Remove Objects
 ## Relationships
-### User
-### Objects
+### User Relationship
+### Object Relationships
 ## Voting
 ## Commenting
 ## Rating

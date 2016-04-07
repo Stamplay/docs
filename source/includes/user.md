@@ -527,7 +527,7 @@ To check whether or not the token is expired you can do the following:
 2. Base64 decode of the second chunk.
 3. Check if the current date (in UNIX timestamp format) is between the "issued at time" date and "expiration" date to check that the token is still valid.
 
-## Permissions
+## User to User Permissions
 
 Stamplay supports Role-Based Authorization schemes, on a per object level, and user to user level.
 
@@ -555,11 +555,11 @@ To logout, and end a user session, send a request to the logout endpoint. The `x
 
 The request response will redirect the application by default to the root of your application. This can be managed within the Stamplay editor in the **User** -> **Authentication** section by select the settings icon.
 
-## Fetch
+## Fetch Users
 
 Retrieve an individual user, all users, or the current session user, or any users matching specific criteria.
 
-### Current
+### Current User
 
 ```shell
 	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/getstatus" \
@@ -581,7 +581,7 @@ Retrieve an individual user, all users, or the current session user, or any user
 
 To fetch the user that is currently logged in, send a request to the `getStatus` endpoint, on the user API resource.
 
-### Individual
+### Individual User
 
 ```shell
 	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"
@@ -604,7 +604,7 @@ To fetch the user that is currently logged in, send a request to the `getStatus`
 
 To fetch an single user, send the `_id` of the user to fetch in the request body to the user API resource.
 
-### All
+### All Users
 
 ```shell
 	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users"
@@ -627,7 +627,7 @@ To fetch an single user, send the `_id` of the user to fetch in the request body
 
 To retrieve all users, send a request without any parameters to match in the body, to the user API resource.
 
-### Query
+### Query Users
 
 ```shell
 	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users" \
@@ -662,7 +662,7 @@ To retrieve all users, send a request without any parameters to match in the bod
 
 To retrieve all users that match a certain set of parameters, send a request with any parameters to match in the body, to the user API resource.
 
-## Update
+## Update User
 
 To update a user record partially, or completely overwrite the existing record.
 
@@ -741,7 +741,7 @@ To completely update a user record, send a `PUT` request with a complete represe
 
 Include this representation in the request body, in the request to the User API resource with the `_id` of the user to update.
 
-## Remove
+## Remove User
 
 ```shell
 	curl -X "DELETE" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"
