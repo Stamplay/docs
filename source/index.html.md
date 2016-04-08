@@ -19,7 +19,6 @@ includes:
 - codeblock
 - webhook
 - stripe
-- email
 - hosting
 - demo
 

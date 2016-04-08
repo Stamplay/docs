@@ -33,10 +33,10 @@ To run our application locally, run the `start` command from the `stamplay` CLI.
 The [Stamplay JavaScript SDK](https://github.com/Stamplay/stamplay-js-sdk) is a client-side library for interacting with Stamplay.
 
 ```shell-always
-	npm install stamplay-js-sdk
+	bower install stamplay-js-sdk
 ```
 
-Run `npm install` for the `stamplay-js-sdk` package to download from `npm` into your local project directory.
+Run `bower install` for the `stamplay-js-sdk` package to download from `bower` into your local project directory.
 
 ```javascript-always
 	Stamplay.init("APP ID")

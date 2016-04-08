@@ -426,6 +426,19 @@ html, body {
     }
   }
 
+i {
+  &.checked {
+    &:before {
+      @extend %icon-checkbox-checked;
+    }
+  }
+  &.unchecked {
+    &:before {
+      @extend %icon-checkbox-unchecked;
+    }
+  }
+}
+
   strong {
     font-weight: 900;
     text-shadow: 0.2px 0.2px #3D3F4D;

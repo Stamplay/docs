@@ -17,35 +17,37 @@ There are 3 properties that are included by default:
 	The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
 </aside>
 
-[![Schema Overview](/images/schema-overview.png)](/images/schema-overview.png)
-
 ## Data Types
 
 The types and formats of each field type is listed below:
 
-```javascript-always
+```json
+
+	// Schema property equals type
+	// Property value equals valid type
+
 {
-	Boolean : true,
-	String : "Hello World",
-	Number : 45,
-	Float : 3.14,
-	PlainObject : {
-		prop_one : "GoodBye World",
-		prop_two : 1200
+	"boolean" : true,
+	"string" : "Hello World",
+	"number" : 45,
+	"float" : 3.14,
+	"plain_object" : {
+		"prop_one" : "GoodBye World",
+		"prop_two" : 1200
 	},
-	Array_Number : [23, 76, 345],
-	Array_String : ["Hello", "World"],
-	Date : "2016-03-10T14:51:28.625Z",
-	File : "https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png",
-	Geolocation : {
-		type: "Point",
-		coordinates: [
+	"array_number" : [23, 76, 345],
+	"array_string" : ["Hello", "World"],
+	"date" : "2016-03-10T14:51:28.625Z",
+	"file" : "https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png",
+	"_geolocation" : {
+		"type" : "Point",
+		"coordinates ": [
 			12.4608,
 			41.9015
 		]
 	},
-	ObjectRelation_Array : [ "562c45af4c0f20367d7ca4be", 562ec06e77589e2e0f86c207],
-	UserRelation_String : "562bb24e007983c67c8ee9df"
+	"object_relation_array" : [ "562c45af4c0f20367d7ca4be", "562ec06e77589e2e0f86c207"],
+	"user_relation_string" : "562bb24e007983c67c8ee9df"
 }	
 ```
 
@@ -63,6 +65,44 @@ The types and formats of each field type is listed below:
 | [Geolocation](#geolocation) | GeoJSON object. |
 | [Object Relation - Array](#object-relation) | An arrays of pointers to an specific object type. |
 | [User Relation - String](#user-relation)| A pointer to a user object. |
+
+#### Example Schema
+
+**Restaurant Schema**
+
+[![Schema Overview](/images/schema-overview.png)](/images/schema-overview.png)
+
+```json
+// Example Object From Restaurant Schema
+
+{
+	"owner" : "4df62bb24e007983c67c8ee9",
+	"name" : "Hello World",
+	"employee_count" : 12,
+	"average_price" : 9.75,
+	"hours" : {
+		"Monday_Friday" : "10:00am - 6:00pm",
+		"Saturday" : "8:00am - 8:00pm",
+		"Sunday" : "10:00am - 4:00pm"
+	},
+	"ratings" : [4, 3, 4, 5, 1],
+	"cuisine_types" : ["Mediterranean", "Italian"],
+	"vegan_options" : true,
+	"menu" : "https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_men.png",
+	"_geolocation" : {
+		"type" : "Point",
+		"coordinates ": [
+			12.4608,
+			41.9015
+		]
+	},
+	"supply_vendors" : [ "562c45af4c0f20367d7ca4be", "562ec06e77589e2e0f86c207"],
+	"manager" : "562bb24e007983c67c8ee9df",
+	"dt_opened" : "2014-05-15T14:51:28.625Z",
+	"dt_create" : "2014-03-04T12:56:08.625Z",
+	"dt_update" : "2016-01-23T02:05:58.625Z"
+}
+```
 
 ### Boolean
 

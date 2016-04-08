@@ -531,6 +531,10 @@ To check whether or not the token is expired you can do the following:
 2. Base64 decode of the second chunk.
 3. Check if the current date (in UNIX timestamp format) is between the "issued at time" date and "expiration" date to check that the token is still valid.
 
+## Reset Password
+
+To Do
+
 ## User to User Permissions
 
 Stamplay supports Role-Based Authorization schemes, on a per object level, and user to user level.
@@ -768,34 +772,6 @@ Include this representation in the request body, in the request to the User API 
 
 To remove a user record from the database, send a `DELETE` request to the user resource with the user `_id` to the User API resource.
 
-## Assign Role
-
-```shell
-	curl -X "PATCH" "https://APPID.stamplayapp.com/api/user/v1/users/" \
-	-H "Content-Type: application/json" \
-	-d "{\"givenRole\":\"role_id\"}"
-
-```
-
-```javascript
-	Stamplay.User.patch("user_id", { givenRole : "role_id" })
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
-
-```nodejs
-	Stamplay.User.patch("user_id", { givenRole : "role_id" }, function(err, res) {
-		// success
-	})
-```
-
-
-To assign a new role to a user, send a `PATCH` request with the `givenRole` property as the role to assign unique `_id`, in the request body to the User API resource.
-
-To retrieve the roles available to assign, see the [Roles API](#roles).
 
 <!-- ## Activity -->
 

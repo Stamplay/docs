@@ -11,3 +11,7 @@ After posting on Stackoverflow, adding the link to your question in our [Slack C
 To discuss Stamplay with other Stamplayers, give feedback, report bugs, or submit feature requests, [join our Slack Community](http://slackinvites.stamplayapp.com).
 
 For account related questions, submit a ticket to [support@stamplay.com](mailto:support@stamplay.com).
+
+## Contributing
+
+To Do

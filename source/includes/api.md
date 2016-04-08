@@ -14,14 +14,43 @@ Send an email. -->
 
 | Resource | Endpoint |	
 |---------|-------------------------:|
-| [Objects](#objects) | /api/cobject/v1/{id} |
+| [Objects](#objects) | /api/cobject/v1/:cobjectId |
 | [Users](#users) | /api/user/v1/users |
 | [Roles](#roles) | /api/user/v1/roles |
-| [Code Blocks](#code-blocks) | /api/v1/run/:codeblock |
+| [Code Blocks](#code-blocks) | /api/v1/run/:codeblockId |
 | [Stripe](#stripe) | /api/stripe/v1/ |
-| [Email](#email) | /api/email/v1/send |
 
 ## Pagination
+
+```shell
+	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?page=2&per_page=30"
+```
+
+```javascript
+	Stamplay.Object("movie").get({
+		page : 2,
+		per_page : 30
+	}).then(function(res) {
+		// success
+	}. function(err) {
+		// error
+	})
+```
+
+```nodejs
+	Stamplay.Object("movie").get({
+		page : 2,
+		per_page : 30
+	}, function(err, res) {
+		// response
+	})
+```
+Responses from the **User** and **Object** resource will also return a `pagination` object.
+
+Pagination can be managed by using the `page` and `per_page` query parameters.
+
+Pagination details are included using the Link header introduced by RFC 5988.
+The Link header returns a set of ready-made links so the API consumer does not have to construct the links themselves.
 
 ```json
 	{
@@ -35,12 +64,16 @@ Send an email. -->
 	}
 ```
 
-Responses from the **User** and **Object** resource will also return a `pagination` object.
+---
 
-Pagination can be managed by using the `page` and `per_page` query parameters.
+*Default pagination attribute values:*
 
-Pagination details are included using the Link header introduced by RFC 5988.
-The Link header returns a set of ready-made links so the API consumer does not have to construct the links themselves.
+|    Property    |   Data Type  |    Default   |
+|----------------|--------------|--------------|
+| page     	     |   Number     |      1       |
+| per_page       |   Number     |      20      |
+| total_pages    |   Number     | `total_elements / per_page` |
+| total_elements |   Number     | total of the type queried  |
 
 ## Filtering
 
@@ -67,14 +100,26 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 To filter a response based on a value of a field, set the field and value as a parameter in the request. To filter by more than one field, add each filterable field to the request as a paramter.
 
+---
+
+*Default properties available to filter by:*
+
+|  Property | Data Type |
+|-----------|-----------|
+| dt_create | Date      |
+| dt_update | Date      |
+| _id       | MongoID (String)    |
+
+Any property on a data structure is filterable, the above only contain the absolute base structure which is always present on a Stamplay database record.
+
 ## Sorting
 
 ```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/picture?sort=-dt_create"
+	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?sort=-dt_create"
 ```
 
 ```javascript
-	Stamplay.Object("picture")
+	Stamplay.Object("movie")
 		.get({ sort : "-dt_create" })
 		.then(function(res) {
 			// success
@@ -84,7 +129,7 @@ To filter a response based on a value of a field, set the field and value as a p
 ```
 
 ```nodejs
-	Stamplay.Object('picture')
+	Stamplay.Object('movie')
 		.get({ sort : "-dt_create" }, function(err, res) {
 		  // response
 		})
@@ -94,16 +139,24 @@ To sort the response, set a `sort` parameter as a comma delimited list to sort b
 
 If a field name is appened to an `-` character then that field will be sorted in descending order based on the type, otherwise by default the field will be sort in ascending order.
 
+*Default properties available to sort by:*
+
+|  Property | Data Type        | Sort By : Default - Ascending |
+|-----------|------------------|:-----------------------------:|
+| dt_create | Date             | <i class="checked"></i>       |
+| dt_update | Date             | <i class="unchecked"></i>     |
+| _id       | MongoID (String) | <i class="unchecked"></i>     |
+
 
 ## Selecting
 
 ```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/picture?select=-dt_create,owner,status"
+	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?select=-dt_create,owner,title"
 ```
 
 ```javascript
-	Stamplay.Object("picture")
-		.get({ select : "dt_create,owner,status" })
+	Stamplay.Object("movie")
+		.get({ select : "dt_create,owner,title" })
 		.then(function(res) {
 			// success
 		}, function(err) {
@@ -112,8 +165,8 @@ If a field name is appened to an `-` character then that field will be sorted in
 ```
 
 ```nodejs
-	Stamplay.Object('picture')
-		.get({ sort : "dt_create,owner,status" }, function(err, res) {
+	Stamplay.Object('movie')
+		.get({ sort : "dt_create,owner,title" }, function(err, res) {
 		  // response
 		})
 ```
@@ -124,6 +177,12 @@ To select a field to return, set the `select` request parameter to the value of 
 
 The `_id` field is always returned.
 
+---
+
+*Default return properties:*
+
+By default all properties are returned.
+
 ## Populating References
 
 To Do
@@ -133,12 +192,12 @@ To Do
 ## Advanced Queries
 
 ```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/picture?where=%7B%20rating'%20:%20%7B%20$gt%20:%205%20%7D%20%7D"
+	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=%7B%20rating'%20:%20%7B%20$gt%20:%205%20%7D%20%7D"
 
 ```
 
 ```javascript
-	Stamplay.Object("picture")
+	Stamplay.Object("movie")
 		.get({ where : JSON.stringify({ rating : { $gt : 5 } }) })
 		.then(function(res) {
 			// success
@@ -148,7 +207,7 @@ To Do
 ```
 
 ```nodejs
-	Stamplay.Object('picture')
+	Stamplay.Object('movie')
 		.get({ where : JSON.stringify({ rating : { $gt : 5 } }) }, function(err, res) {
 		  // response
 		})
