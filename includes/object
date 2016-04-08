@@ -20,35 +20,37 @@
     The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
 </aside>
 
-<p><a href="../images/schema-overview.png"><img alt="Schema Overview" src="/images/schema-overview.png" /></a></p>
-
 <h2 id="data-types">Data Types</h2>
 
 <p>The types and formats of each field type is listed below:</p>
-<pre class="highlight shell-always"><code><span class="p">{</span>
-    <span class="nl">Boolean</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nb">String</span> <span class="err">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
-    <span class="nb">Number</span> <span class="err">:</span> <span class="mi">45</span><span class="p">,</span>
-    <span class="nx">Float</span> <span class="err">:</span> <span class="mf">3.14</span><span class="p">,</span>
-    <span class="nx">PlainObject</span> <span class="err">:</span> <span class="p">{</span>
-        <span class="nl">prop_one</span> <span class="p">:</span> <span class="s2">"GoodBye World"</span><span class="p">,</span>
-        <span class="nx">prop_two</span> <span class="err">:</span> <span class="mi">1200</span>
-    <span class="p">},</span>
-    <span class="nx">Array_Number</span> <span class="err">:</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">345</span><span class="p">],</span>
-    <span class="nx">Array_String</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"Hello"</span><span class="p">,</span> <span class="s2">"World"</span><span class="p">],</span>
-    <span class="nb">Date</span> <span class="err">:</span> <span class="s2">"2016-03-10T14:51:28.625Z"</span><span class="p">,</span>
-    <span class="nx">File</span> <span class="err">:</span> <span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png"</span><span class="p">,</span>
-    <span class="nx">Geolocation</span> <span class="err">:</span> <span class="p">{</span>
-        <span class="nl">type</span><span class="p">:</span> <span class="s2">"Point"</span><span class="p">,</span>
-        <span class="nx">coordinates</span><span class="err">:</span> <span class="p">[</span>
-            <span class="mf">12.4608</span><span class="p">,</span>
-            <span class="mf">41.9015</span>
-        <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="nx">ObjectRelation_Array</span> <span class="err">:</span> <span class="p">[</span> <span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span> <span class="mi">562</span><span class="nx">ec06e77589e2e0f86c207</span><span class="p">],</span>
-    <span class="nx">UserRelation_String</span> <span class="err">:</span> <span class="s2">"562bb24e007983c67c8ee9df"</span>
-<span class="p">}</span>   
-</code></pre>
+<pre class="highlight json"><code><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">property</span><span class="w"> </span><span class="err">equals</span><span class="w"> </span><span class="err">type</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Property</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">equals</span><span class="w"> </span><span class="err">valid</span><span class="w"> </span><span class="err">type</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"boolean"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"float"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"plain_object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"prop_one"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GoodBye World"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prop_two"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"array_number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">345</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"array_string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Hello"</span><span class="p">,</span><span class="w"> </span><span class="s2">"World"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-10T14:51:28.625Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"file"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"_geolocation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"coordinates "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mf">12.4608</span><span class="p">,</span><span class="w">
+            </span><span class="mf">41.9015</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"object_relation_array"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span><span class="w"> </span><span class="s2">"562ec06e77589e2e0f86c207"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"user_relation_string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"562bb24e007983c67c8ee9df"</span><span class="w">
+</span><span class="p">}</span><span class="w">   
+</span></code></pre>
 
 <table><thead>
 <tr>
@@ -105,6 +107,42 @@
 <td>A pointer to a user object.</td>
 </tr>
 </tbody></table>
+
+<h4 id="example-schema">Example Schema</h4>
+
+<p><strong>Restaurant Schema</strong></p>
+
+<p><a href="../images/schema-overview.png"><img alt="Schema Overview" src="/images/schema-overview.png" /></a></p>
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">Object</span><span class="w"> </span><span class="err">From</span><span class="w"> </span><span class="err">Restaurant</span><span class="w"> </span><span class="err">Schema</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"owner"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4df62bb24e007983c67c8ee9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_count"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"average_price"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">9.75</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hours"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"Monday_Friday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00am - 6:00pm"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"Saturday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8:00am - 8:00pm"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"Sunday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00am - 4:00pm"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"ratings"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"cuisine_types"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Mediterranean"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Italian"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"vegan_options"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"menu"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_men.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"_geolocation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"coordinates "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mf">12.4608</span><span class="p">,</span><span class="w">
+            </span><span class="mf">41.9015</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"supply_vendors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span><span class="w"> </span><span class="s2">"562ec06e77589e2e0f86c207"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"manager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"562bb24e007983c67c8ee9df"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dt_opened"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-05-15T14:51:28.625Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dt_create"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-04T12:56:08.625Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dt_update"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-23T02:05:58.625Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h3 id="boolean">Boolean</h3>
 <pre class="highlight shell-always"><code>    <span class="p">{</span>

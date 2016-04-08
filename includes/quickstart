@@ -27,10 +27,10 @@
 <h2 id="javascript-sdk-setup">JavaScript SDK Setup</h2>
 
 <p>The <a href="https://github.com/Stamplay/stamplay-js-sdk">Stamplay JavaScript SDK</a> is a client-side library for interacting with Stamplay.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
+<pre class="highlight shell-always"><code>    <span class="nx">bower</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
 </code></pre>
 
-<p>Run <code class="prettyprint">npm install</code> for the <code class="prettyprint">stamplay-js-sdk</code> package to download from <code class="prettyprint">npm</code> into your local project directory.</p>
+<p>Run <code class="prettyprint">bower install</code> for the <code class="prettyprint">stamplay-js-sdk</code> package to download from <code class="prettyprint">bower</code> into your local project directory.</p>
 <pre class="highlight shell-always"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">)</span>
 </code></pre>
 

@@ -263,6 +263,10 @@
 
 <p>For account related questions, submit a ticket to <a href="mailto:support@stamplay.com">support@stamplay.com</a>.</p>
 
+<h2 id="contributing">Contributing</h2>
+
+<p>To Do</p>
+
           <h1 id="quickstart">Quickstart</h1>
 
 <h2 id="create-an-account">Create An Account</h2>
@@ -292,10 +296,10 @@
 <h2 id="javascript-sdk-setup">JavaScript SDK Setup</h2>
 
 <p>The <a href="https://github.com/Stamplay/stamplay-js-sdk">Stamplay JavaScript SDK</a> is a client-side library for interacting with Stamplay.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
+<pre class="highlight shell-always"><code>    <span class="nx">bower</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
 </code></pre>
 
-<p>Run <code class="prettyprint">npm install</code> for the <code class="prettyprint">stamplay-js-sdk</code> package to download from <code class="prettyprint">npm</code> into your local project directory.</p>
+<p>Run <code class="prettyprint">bower install</code> for the <code class="prettyprint">stamplay-js-sdk</code> package to download from <code class="prettyprint">bower</code> into your local project directory.</p>
 <pre class="highlight shell-always"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">)</span>
 </code></pre>
 
@@ -407,7 +411,7 @@ Send an email. -->
 </thead><tbody>
 <tr>
 <td><a href="#objects">Objects</a></td>
-<td style="text-align: right">/api/cobject/v1/{id}</td>
+<td style="text-align: right">/api/cobject/v1/:cobjectId</td>
 </tr>
 <tr>
 <td><a href="#users">Users</a></td>
@@ -419,19 +423,40 @@ Send an email. -->
 </tr>
 <tr>
 <td><a href="#code-blocks">Code Blocks</a></td>
-<td style="text-align: right">/api/v1/run/:codeblock</td>
+<td style="text-align: right">/api/v1/run/:codeblockId</td>
 </tr>
 <tr>
 <td><a href="#stripe">Stripe</a></td>
 <td style="text-align: right">/api/stripe/v1/</td>
 </tr>
-<tr>
-<td><a href="#email">Email</a></td>
-<td style="text-align: right">/api/email/v1/send</td>
-</tr>
 </tbody></table>
 
 <h2 id="pagination">Pagination</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/movie?page=2&amp;per_page=30"</span>
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({</span>
+        <span class="na">page</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="na">per_page</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">}.</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({</span>
+        <span class="na">page</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="na">per_page</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// response</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>Responses from the <strong>User</strong> and <strong>Object</strong> resource will also return a <code class="prettyprint">pagination</code> object.</p>
+
+<p>Pagination can be managed by using the <code class="prettyprint">page</code> and <code class="prettyprint">per_page</code> query parameters.</p>
+
+<p>Pagination details are included using the Link header introduced by RFC 5988.
+The Link header returns a set of ready-made links so the API consumer does not have to construct the links themselves.</p>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
         </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -443,12 +468,38 @@ Send an email. -->
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Responses from the <strong>User</strong> and <strong>Object</strong> resource will also return a <code class="prettyprint">pagination</code> object.</p>
+<hr>
 
-<p>Pagination can be managed by using the <code class="prettyprint">page</code> and <code class="prettyprint">per_page</code> query parameters.</p>
+<p><em>Default pagination attribute values:</em></p>
 
-<p>Pagination details are included using the Link header introduced by RFC 5988.
-The Link header returns a set of ready-made links so the API consumer does not have to construct the links themselves.</p>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Data Type</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>Number</td>
+<td>1</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td>Number</td>
+<td>20</td>
+</tr>
+<tr>
+<td>total_pages</td>
+<td>Number</td>
+<td><code class="prettyprint">total_elements / per_page</code></td>
+</tr>
+<tr>
+<td>total_elements</td>
+<td>Number</td>
+<td>total of the type queried</td>
+</tr>
+</tbody></table>
 
 <h2 id="filtering">Filtering</h2>
 <pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/picture?status=published"</span>
@@ -469,10 +520,36 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p>To filter a response based on a value of a field, set the field and value as a parameter in the request. To filter by more than one field, add each filterable field to the request as a paramter.</p>
 
+<hr>
+
+<p><em>Default properties available to filter by:</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Data Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dt_create</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>dt_update</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>_id</td>
+<td>MongoID (String)</td>
+</tr>
+</tbody></table>
+
+<p>Any property on a data structure is filterable, the above only contain the absolute base structure which is always present on a Stamplay database record.</p>
+
 <h2 id="sorting">Sorting</h2>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/picture?sort=-dt_create"</span>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/movie?sort=-dt_create"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"picture"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">sort</span> <span class="p">:</span> <span class="s2">"-dt_create"</span> <span class="p">})</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// success</span>
@@ -480,7 +557,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
             <span class="c1">// error</span>
         <span class="p">})</span>
 </code></pre>
-<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'picture'</span><span class="p">)</span>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'movie'</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">sort</span> <span class="p">:</span> <span class="s2">"-dt_create"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
           <span class="c1">// response</span>
         <span class="p">})</span>
@@ -490,19 +567,45 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p>If a field name is appened to an <code class="prettyprint">-</code> character then that field will be sorted in descending order based on the type, otherwise by default the field will be sort in ascending order.</p>
 
+<p><em>Default properties available to sort by:</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Data Type</th>
+<th style="text-align: center">Sort By : Default - Ascending</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dt_create</td>
+<td>Date</td>
+<td style="text-align: center"><i class="checked"></i></td>
+</tr>
+<tr>
+<td>dt_update</td>
+<td>Date</td>
+<td style="text-align: center"><i class="unchecked"></i></td>
+</tr>
+<tr>
+<td>_id</td>
+<td>MongoID (String)</td>
+<td style="text-align: center"><i class="unchecked"></i></td>
+</tr>
+</tbody></table>
+
 <h2 id="selecting">Selecting</h2>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/picture?select=-dt_create,owner,status"</span>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/movie?select=-dt_create,owner,title"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"picture"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">select</span> <span class="p">:</span> <span class="s2">"dt_create,owner,status"</span> <span class="p">})</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">select</span> <span class="p">:</span> <span class="s2">"dt_create,owner,title"</span> <span class="p">})</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// success</span>
         <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// error</span>
         <span class="p">})</span>
 </code></pre>
-<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'picture'</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">sort</span> <span class="p">:</span> <span class="s2">"dt_create,owner,status"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'movie'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">sort</span> <span class="p">:</span> <span class="s2">"dt_create,owner,title"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
           <span class="c1">// response</span>
         <span class="p">})</span>
 </code></pre>
@@ -513,15 +616,21 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p>The <code class="prettyprint">_id</code> field is always returned.</p>
 
+<hr>
+
+<p><em>Default return properties:</em></p>
+
+<p>By default all properties are returned.</p>
+
 <h2 id="populating-references">Populating References</h2>
 
 <p>To Do</p>
 
 <h2 id="advanced-queries">Advanced Queries</h2>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/picture?where=%7B%20rating'%20:%20%7B%20</span><span class="nv">$gt</span><span class="s2">%20:%205%20%7D%20%7D"</span>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=%7B%20rating'%20:%20%7B%20</span><span class="nv">$gt</span><span class="s2">%20:%205%20%7D%20%7D"</span>
 
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"picture"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">where</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">rating</span> <span class="p">:</span> <span class="p">{</span> <span class="na">$gt</span> <span class="p">:</span> <span class="mi">5</span> <span class="p">}</span> <span class="p">})</span> <span class="p">})</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// success</span>
@@ -529,7 +638,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
             <span class="c1">// error</span>
         <span class="p">})</span>
 </code></pre>
-<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'picture'</span><span class="p">)</span>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'movie'</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">where</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">rating</span> <span class="p">:</span> <span class="p">{</span> <span class="na">$gt</span> <span class="p">:</span> <span class="mi">5</span> <span class="p">}</span> <span class="p">})</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
           <span class="c1">// response</span>
         <span class="p">})</span>
@@ -1261,6 +1370,10 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <li>Check if the current date (in UNIX timestamp format) is between the &ldquo;issued at time&rdquo; date and &ldquo;expiration&rdquo; date to check that the token is still valid.</li>
 </ol>
 
+<h2 id="reset-password">Reset Password</h2>
+
+<p>To Do</p>
+
 <h2 id="user-to-user-permissions">User to User Permissions</h2>
 
 <p>Stamplay supports Role-Based Authorization schemes, on a per object level, and user to user level.</p>
@@ -1451,28 +1564,6 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <p>To remove a user record from the database, send a <code class="prettyprint">DELETE</code> request to the user resource with the user <code class="prettyprint">_id</code> to the User API resource.</p>
 
-<h2 id="assign-role">Assign Role</h2>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/"</span> <span class="se">\</span>
-    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">givenRole</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">role_id</span><span class="se">\"</span><span class="s2">}"</span>
-
-</code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">givenRole</span> <span class="p">:</span> <span class="s2">"role_id"</span> <span class="p">})</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
-</code></pre>
-<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">givenRole</span> <span class="p">:</span> <span class="s2">"role_id"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// success</span>
-    <span class="p">})</span>
-</code></pre>
-
-<p>To assign a new role to a user, send a <code class="prettyprint">PATCH</code> request with the <code class="prettyprint">givenRole</code> property as the role to assign unique <code class="prettyprint">_id</code>, in the request body to the User API resource.</p>
-
-<p>To retrieve the roles available to assign, see the <a href="#roles">Roles API</a>.</p>
-
 <!-- ## Activity -->
 
 <!-- 
@@ -1496,6 +1587,10 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <p>Roles provide a logical way of grouping users with common access privileges to your data and how a user is able to perform CRUD operations on a resource.</p>
 
 <p>Roles can be created and deleted only inside Stamplay but you can assign them to your users via APIs.</p>
+
+<h2 id="how-roles-work">How Roles Work</h2>
+
+<p>To Do</p>
 
 <h2 id="fetch-all-roles">Fetch All Roles</h2>
 
@@ -1527,6 +1622,26 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
 </code></pre>
 
+<h2 id="assign-role">Assign Role</h2>
+<pre class="highlight shell"><code>    curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">givenRole</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">role_id</span><span class="se">\"</span><span class="s2">}"</span>
+
+</code></pre>
+<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">givenRole</span> <span class="p">:</span> <span class="s2">"role_id"</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// error</span>
+        <span class="p">})</span>
+</code></pre>
+<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">givenRole</span> <span class="p">:</span> <span class="s2">"role_id"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>To assign a new role to a user, send a <code class="prettyprint">PATCH</code> request with the <code class="prettyprint">givenRole</code> property as the unique <code class="prettyprint">_id</code> of the role to assign in the request body, to the User API resource with the user&rsquo;s <code class="prettyprint">_id</code> as part of the URI.</p>
+
           <h1 id="objects">Objects</h1>
 
 <h2 id="schemas">Schemas</h2>
@@ -1549,35 +1664,37 @@ The Link header returns a set of ready-made links so the API consumer does not h
     The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
 </aside>
 
-<p><a href="images/schema-overview.png"><img alt="Schema Overview" src="images/schema-overview.png" /></a></p>
-
 <h2 id="data-types">Data Types</h2>
 
 <p>The types and formats of each field type is listed below:</p>
-<pre class="highlight shell-always"><code><span class="p">{</span>
-    <span class="nl">Boolean</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nb">String</span> <span class="err">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
-    <span class="nb">Number</span> <span class="err">:</span> <span class="mi">45</span><span class="p">,</span>
-    <span class="nx">Float</span> <span class="err">:</span> <span class="mf">3.14</span><span class="p">,</span>
-    <span class="nx">PlainObject</span> <span class="err">:</span> <span class="p">{</span>
-        <span class="nl">prop_one</span> <span class="p">:</span> <span class="s2">"GoodBye World"</span><span class="p">,</span>
-        <span class="nx">prop_two</span> <span class="err">:</span> <span class="mi">1200</span>
-    <span class="p">},</span>
-    <span class="nx">Array_Number</span> <span class="err">:</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">345</span><span class="p">],</span>
-    <span class="nx">Array_String</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"Hello"</span><span class="p">,</span> <span class="s2">"World"</span><span class="p">],</span>
-    <span class="nb">Date</span> <span class="err">:</span> <span class="s2">"2016-03-10T14:51:28.625Z"</span><span class="p">,</span>
-    <span class="nx">File</span> <span class="err">:</span> <span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png"</span><span class="p">,</span>
-    <span class="nx">Geolocation</span> <span class="err">:</span> <span class="p">{</span>
-        <span class="nl">type</span><span class="p">:</span> <span class="s2">"Point"</span><span class="p">,</span>
-        <span class="nx">coordinates</span><span class="err">:</span> <span class="p">[</span>
-            <span class="mf">12.4608</span><span class="p">,</span>
-            <span class="mf">41.9015</span>
-        <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="nx">ObjectRelation_Array</span> <span class="err">:</span> <span class="p">[</span> <span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span> <span class="mi">562</span><span class="nx">ec06e77589e2e0f86c207</span><span class="p">],</span>
-    <span class="nx">UserRelation_String</span> <span class="err">:</span> <span class="s2">"562bb24e007983c67c8ee9df"</span>
-<span class="p">}</span>   
-</code></pre>
+<pre class="highlight json"><code><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">property</span><span class="w"> </span><span class="err">equals</span><span class="w"> </span><span class="err">type</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Property</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">equals</span><span class="w"> </span><span class="err">valid</span><span class="w"> </span><span class="err">type</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"boolean"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"float"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"plain_object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"prop_one"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GoodBye World"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prop_two"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"array_number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">345</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"array_string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Hello"</span><span class="p">,</span><span class="w"> </span><span class="s2">"World"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-10T14:51:28.625Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"file"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"_geolocation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"coordinates "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mf">12.4608</span><span class="p">,</span><span class="w">
+            </span><span class="mf">41.9015</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"object_relation_array"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span><span class="w"> </span><span class="s2">"562ec06e77589e2e0f86c207"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"user_relation_string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"562bb24e007983c67c8ee9df"</span><span class="w">
+</span><span class="p">}</span><span class="w">   
+</span></code></pre>
 
 <table><thead>
 <tr>
@@ -1634,6 +1751,42 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <td>A pointer to a user object.</td>
 </tr>
 </tbody></table>
+
+<h4 id="example-schema">Example Schema</h4>
+
+<p><strong>Restaurant Schema</strong></p>
+
+<p><a href="images/schema-overview.png"><img alt="Schema Overview" src="images/schema-overview.png" /></a></p>
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">Object</span><span class="w"> </span><span class="err">From</span><span class="w"> </span><span class="err">Restaurant</span><span class="w"> </span><span class="err">Schema</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"owner"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4df62bb24e007983c67c8ee9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_count"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"average_price"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">9.75</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hours"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"Monday_Friday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00am - 6:00pm"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"Saturday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8:00am - 8:00pm"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"Sunday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00am - 4:00pm"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"ratings"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"cuisine_types"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Mediterranean"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Italian"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"vegan_options"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"menu"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_men.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"_geolocation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"coordinates "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mf">12.4608</span><span class="p">,</span><span class="w">
+            </span><span class="mf">41.9015</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"supply_vendors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span><span class="w"> </span><span class="s2">"562ec06e77589e2e0f86c207"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"manager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"562bb24e007983c67c8ee9df"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dt_opened"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-05-15T14:51:28.625Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dt_create"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-04T12:56:08.625Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dt_update"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-23T02:05:58.625Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h3 id="boolean">Boolean</h3>
 <pre class="highlight shell-always"><code>    <span class="p">{</span>
@@ -2433,10 +2586,6 @@ The <code class="prettyprint">context.data</code> is a JavaScript object that co
 <p>To Do</p>
 
           <h1 id="stripe">Stripe</h1>
-
-<p>To Do</p>
-
-          <h1 id="email">Email</h1>
 
 <p>To Do</p>
 
