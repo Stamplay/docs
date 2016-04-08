@@ -324,12 +324,21 @@ html, body {
     }
   }
 
+
   &:after {
     content: '';
     clear: both;
     display: block;
   }
 }
+
+
+  .lang-content {
+      display: none;
+    &.active {
+      display: block !important;
+    }
+  }
 
 ////////////////////////////////////////////////////////////////////////////////
 // CONTENT STYLES

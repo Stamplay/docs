@@ -11,6 +11,10 @@ After signing up, create your first Stamplay application in the dashboard by ent
 	npm install -g stamplay-cli
 ```
 
+<div class="lang-content" data-language-name="javascript">
+	<h4>Does this show up</h4>
+</div>
+
 The Stamplay CLI will allow you to run your application locally, manage application versioning, deploy to the cloud, etc.
 
 Ensure you have Node.js & NPM installed, then `npm install` the `stamplay-cli` package globally.
