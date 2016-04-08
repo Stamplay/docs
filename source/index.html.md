@@ -18,10 +18,12 @@ includes:
 - object
 - codeblock
 - webhook
+- stripe
+- email
 - hosting
 - demo
 
-search: false
+search: true
 ---
 
 
