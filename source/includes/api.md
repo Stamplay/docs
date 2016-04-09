@@ -234,7 +234,7 @@ By setting a JSON query string to the `where` parameter you can use the operator
 | $size      | Selects documents if the array field is a specified size |
 | $regex     | Selects documents where values match a specified regular expression. |
           
-## Authentication
+## Authorization
 
 ~~~ shell-always
 	
