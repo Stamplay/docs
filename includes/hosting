@@ -11,186 +11,208 @@
 <p>The <a href="https://github.com/Stamplay/stamplay-cli">Stamplay Command Line (CLI) Tool</a> can be used to:</p>
 
 <ul>
-<li>- Administer your Stamplay account</li>
-<li>- Interact with Stamplay Platform, our product to host your static HTML, JS, CSS, images, etc.</li>
-<li>- Test you application locally.</li>
+  <li>
+    <ul>
+      <li>Administer your Stamplay account</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>Interact with Stamplay Platform, our product to host your static HTML, JS, CSS, images, etc.</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>Test you application locally.</li>
+    </ul>
+  </li>
 </ul>
 
 <p>The Stamplay CLI requires Node.js and NPM, which can both be installed by following the instructions at <a href="https://nodejs.org/">https://nodejs.org/</a>. Installing Node.js also installs NPM by default.</p>
 
 <p>Once you have Node.js and NPM installed, you can install the Stamplay command line tools via NPM.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">cli</span>
-    <span class="c1">// sudo may be required depending on your system permissions</span>
-    <span class="c1">// sudo npm install -g stamplay-cli</span>
+
+<pre class="highlight shell-always"><code>  <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">cli</span>
+  <span class="c1">// sudo may be required depending on your system permissions</span>
+  <span class="c1">// sudo npm install -g stamplay-cli</span>
 </code></pre>
 
-<p>This installs <code class="prettyprint">stamplay</code> as a globally available command interface.</p>
+<p>This installs <code>stamplay</code> as a globally available command interface.</p>
 
-<h3 id="stamplay-json">stamplay.json</h3>
-<pre class="highlight shell"><code>    stamplay init
+<h3 id="stamplayjson">stamplay.json</h3>
+
+<pre class="highlight shell"><code>  stamplay init
 </code></pre>
 
-<p>The <code class="prettyprint">stamplay.json</code> file, when create is typically in the root of your project&rsquo;s directory.</p>
-<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"appId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yourAppId"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yourAppApiKey"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"public"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="s2">"stamplay.json"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"**/.*"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"**/node_modules/**"</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+<p>The <code>stamplay.json</code> file, when create is typically in the root of your project's directory.</p>
+
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"appId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yourAppId"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yourAppApiKey"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"public"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"stamplay.json"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"**/.*"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"**/node_modules/**"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>This required file is used to configure which files are published upon deployment, set customer headers, etc.</p>
 
-<p>To generate a <code class="prettyprint">stamplay.json</code> file, run the <code class="prettyprint">init</code> CLI command.</p>
+<p>To generate a <code>stamplay.json</code> file, run the <code>init</code> CLI command.</p>
 
-<p>After running the command, you will be prompted to enter the <code class="prettyprint">APP ID</code> and <code class="prettyprint">API Key</code> of the application.</p>
+<p>After running the command, you will be prompted to enter the <code>APP ID</code> and <code>API Key</code> of the application.</p>
 
-<p>The default <code class="prettyprint">stamplay.json</code> file will look like the example:</p>
+<p>The default <code>stamplay.json</code> file will look like the example:</p>
 
-<p>An optional <code class="prettyprint">headers</code> property is available to define browser side caching of static resources such as libraries or images.</p>
+<p>An optional <code>headers</code> property is available to define browser side caching of static resources such as libraries or images.</p>
 
 <p>Caching removes the need to load static libraries every time. This is helpful in a production enviornment to help speed up load times, and even reduce server load. See below for more details.</p>
 
 <h4 id="appid-and-apikey">appId and apiKey</h4>
-<pre class="highlight json"><code><span class="w">    </span><span class="s2">"appId"</span><span class="err">:</span><span class="w"> </span><span class="s2">"yourAppId"</span><span class="err">,</span><span class="w">
-    </span><span class="s2">"apiKey"</span><span class="err">:</span><span class="w"> </span><span class="s2">"yourAppApiKey"</span><span class="w">
+<pre class="highlight json"><code><span class="w">  </span><span class="s2">"appId"</span><span class="err">:</span><span class="w"> </span><span class="s2">"yourAppId"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"apiKey"</span><span class="err">:</span><span class="w"> </span><span class="s2">"yourAppApiKey"</span><span class="w">
 </span></code></pre>
 
-<p>The <code class="prettyprint">appId</code> and <code class="prettyprint">apiKey</code> are used by the command line tool as authentication parameters.</p>
+<p>The <code>appId</code> and <code>apiKey</code> are used by the command line tool as authentication parameters.</p>
 
 <h4 id="public">public</h4>
-<pre class="highlight json"><code><span class="w">    </span><span class="s2">"public"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"./"</span><span class="w"> 
+
+<pre class="highlight json"><code><span class="w">  </span><span class="s2">"public"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"./"</span><span class="w"> 
 </span></code></pre>
 
-<p>The <code class="prettyprint">public</code> property tells the command line which directory to upload to Stamplay. This directory must be inside the project directory and must exist.</p>
+<p>The <code>public</code> property tells the command line which directory to upload to Stamplay. This directory must be inside the project directory and must exist.</p>
 
 <p>The default value is the root directory or your project. This directory is also the one used by the command line tool when running the local server.</p>
 
 <h4 id="ignore">ignore</h4>
-<pre class="highlight json"><code><span class="w">    </span><span class="s2">"ignore"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"stamplay.json"</span><span class="p">,</span><span class="w">
+
+<pre class="highlight json"><code><span class="w">  </span><span class="s2">"ignore"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"stamplay.json"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"**/.*"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"**/node_modules/**"</span><span class="w">
-    </span><span class="p">]</span><span class="w"> 
+  </span><span class="p">]</span><span class="w"> 
 </span></code></pre>
-
-<p>The <code class="prettyprint">ignore</code> specifies which files to ignore on deploy. It can take glob definitions in the same way git handles <code class="prettyprint">.gitignore</code>.</p>
+<p>The <code>ignore</code> specifies which files to ignore on deploy. It can take glob definitions in the same way git handles <code>.gitignore</code>.</p>
 
 <h4 id="headers">headers</h4>
-<pre class="highlight json"><code><span class="w">    </span><span class="s2">"headers"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+<pre class="highlight json"><code><span class="w">  </span><span class="s2">"headers"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"source"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"**/*.@(jpg|jpeg|gif|png)"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"headers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"source"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"**/*.@(jpg|jpeg|gif|png)"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"headers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Cache-Control"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"max-age=7200"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"source"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"404.html"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"headers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Expires"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1y"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
+          </span><span class="nt">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Cache-Control"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"max-age=7200"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"source"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"404.html"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"headers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Expires"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1y"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>The <code class="prettyprint">headers</code> is an optional parameter in the <code class="prettyprint">stamplay.json</code> file.</p>
+<p>The <code>headers</code> is an optional parameter in the <code>stamplay.json</code> file.</p>
 
-<p>It is only available to be used only if your <code class="prettyprint">stamplay-cli</code> version is <code class="prettyprint">1.3.9</code> or greater.</p>
+<p>It is only available to be used only if your <code>stamplay-cli</code> version is <code>1.3.9</code> or greater.</p>
 
 <p>This property is an array of header objects. Each object specifies:</p>
 
-<hr>
+<hr />
 
 <p><strong>source</strong></p>
 
 <p>A file glob pattern to be matched.</p>
 
-<hr>
+<hr />
 
 <p><strong>headers</strong></p>
 
 <p>A headers property of its own, as an array of header objects for the glob pattern source.</p>
 
-<hr>
+<hr />
 
 <p>Each specifies a key and value property.</p>
 
 <p>The key designates the header type, and value is the value of the header type itself.</p>
 
-<p>Each definition must have a <code class="prettyprint">source</code> key that is matched against the original request path using glob notation; and must also have the array of headers applied, each with a valid key and a value.</p>
+<p>Each definition must have a <code>source</code> key that is matched against the original request path using glob notation; and must also have the array of headers applied, each with a valid key and a value.</p>
 
 <p>The following header types are supported:</p>
 
-<hr>
+<hr />
 
 <p><strong>Expires</strong></p>
 
-<p>The time in the <code class="prettyprint">Expires</code> header is computed as a sum of the current time and time specified in the directive.</p>
+<p>The time in the <code>Expires</code> header is computed as a sum of the current time and time specified in the directive.</p>
 
-<p>Allowed values for the <code class="prettyprint">Expires</code> header are <strong>minutes</strong> : <code class="prettyprint">m</code>, <strong>hours</strong> : <code class="prettyprint">h</code>, <strong>days</strong> : <code class="prettyprint">d</code>, <strong>weeks</strong> : <code class="prettyprint">w</code>, <strong>years</strong> :  <code class="prettyprint">y</code>.</p>
+<p>Allowed values for the <code>Expires</code> header are <strong>minutes</strong> : <code>m</code>, <strong>hours</strong> : <code>h</code>, <strong>days</strong> : <code>d</code>, <strong>weeks</strong> : <code>w</code>, <strong>years</strong> :  <code>y</code>.</p>
 
-<p>For example, <code class="prettyprint">5d</code> is <strong>5 days</strong>, or <code class="prettyprint">120m</code> is <strong>120 minutes</strong>.</p>
+<p>For example, <code>5d</code> is <strong>5 days</strong>, or <code>120m</code> is <strong>120 minutes</strong>.</p>
 
-<hr>
+<hr />
 
 <p><strong>Cache-Control</strong></p>
 
-<p>The time in the <code class="prettyprint">Cache-Control</code> header is represented in seconds.</p>
+<p>The time in the <code>Cache-Control</code> header is represented in seconds.</p>
 
-<p>For example, <code class="prettyprint">3600</code> is <strong>3600 seconds</strong>.</p>
+<p>For example, <code>3600</code> is <strong>3600 seconds</strong>.</p>
 
-<hr>
+<hr />
 
 <h3 id="app-deploy">App Deploy</h3>
-<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">deploy</span>
+
+<pre class="highlight shell-always"><code>  <span class="nx">stamplay</span> <span class="nx">deploy</span>
 </code></pre>
 
-<p>To deploy a new release, run the <code class="prettyprint">deploy</code> with the CLI.</p>
+<p>To deploy a new release, run the <code>deploy</code> with the CLI.</p>
 
-<p>This pushes the <code class="prettyprint">public</code> directory as defined with the <code class="prettyprint">stamplay.json</code> to Stamplay, which the deploys your static app to your <a href="stamplayapp.com">stamplayapp.com</a> domain.</p>
+<p>This pushes the <code>public</code> directory as defined with the <code>stamplay.json</code> to Stamplay, which the deploys your static app to your <a href="stamplayapp.com">stamplayapp.com</a> domain.</p>
 
 <h3 id="rollback">Rollback</h3>
 
-<p>To rollback to a previous deploy, run the <code class="prettyprint">rollback</code> CLI command.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">rollback</span>
+<p>To rollback to a previous deploy, run the <code>rollback</code> CLI command.</p>
+
+<pre class="highlight shell-always"><code>  <span class="nx">stamplay</span> <span class="nx">rollback</span>
 </code></pre>
 
-<p>You&rsquo;ll be prompted to pick one of your previous deploys from a list and your app will be restored.</p>
+<p>You'll be prompted to pick one of your previous deploys from a list and your app will be restored.</p>
 
 <h3 id="app-development">App Development</h3>
-<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">start</span>
+
+<pre class="highlight shell-always"><code>  <span class="nx">stamplay</span> <span class="nx">start</span>
 </code></pre>
 
 <p>You can run the Stamplay command line tool to build your app in development mode on your local environment. This will make the tool initialize a local server that will serve your app on <a href="http://localhost:8080">http://localhost:8080</a>.</p>
 
-<p>To run your application locally, run the <code class="prettyprint">start</code> CLI command.</p>
+<p>To run your application locally, run the <code>start</code> CLI command.</p>
 
-<p>Applications built with Stamplay must have an <code class="prettyprint">index.html</code> file at root level of the <code class="prettyprint">public</code> property defined in the <code class="prettyprint">stamplay.json</code>.</p>
+<p>Applications built with Stamplay must have an <code>index.html</code> file at root level of the <code>public</code> property defined in the <code>stamplay.json</code>.</p>
 
-<p>By default the root level defined in <code class="prettyprint">stamplay.json</code> public setting is <code class="prettyprint">&quot;./&quot;</code>.</p>
+<p>By default the root level defined in <code>stamplay.json</code> public setting is <code>"./"</code>.</p>
 
-<p>The <code class="prettyprint">index.html</code> will be served when serving the application locally on <a href="http://localhost:8080">localhost</a>, or at <a href="https://APPID.stamplayapp.com">https://APPID.stamplayapp.com</a> after deployment.</p>
+<p>The <code>index.html</code> will be served when serving the application locally on <a href="http://localhost:8080">localhost</a>, or at <a href="https://APPID.stamplayapp.com">https://APPID.stamplayapp.com</a> after deployment.</p>
 
 <h3 id="open-in-browser">Open In Browser</h3>
 
-<p>To launch the live version of your application, run the <code class="prettyprint">open</code> CLI command.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">open</span>
+<p>To launch the live version of your application, run the <code>open</code> CLI command.</p>
+
+<pre class="highlight shell-always"><code>  <span class="nx">stamplay</span> <span class="nx">open</span>
 </code></pre>
 
 <h3 id="cli-updates">CLI Updates</h3>
 
-<p>You can update the Stamplay CLI by running <code class="prettyprint">npm install</code> for the <code class="prettyprint">stamplay-cli</code> npm package with the <code class="prettyprint">-g</code> global option.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">cli</span>
+<p>You can update the Stamplay CLI by running <code>npm install</code> for the <code>stamplay-cli</code> npm package with the <code>-g</code> global option.</p>
+
+<pre class="highlight shell-always"><code>  <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">cli</span>
 </code></pre>
 
 <p>Thi will update your Stamplay command line tool to the latest version.</p>
@@ -206,16 +228,16 @@
 <p>In the Stamplay Editor, in the <strong>Hosting</strong> section. Select <strong>Use A Custom Domain</strong> and add the value <a href="www.mybeautifulwebsite.com">www.mybeautifulwebsite.com</a> to the <strong>App Domain</strong> field.</p>
 
 <aside class="notice">
-    Application must be on a paid plan to use a custom domain.
+  Application must be on a paid plan to use a custom domain.
 </aside>
 
 <p><a href="../images/prettyurls_config.png"><img alt="Pretty URL Configuration" src="/images/prettyurls_config.png" /></a></p>
 
-<p>On your DNS provider, add a <strong>CNAME</strong> record from <a href="www.mybeautifulwebsite.com">www.mybeautifulwebsite.com</a> to <a href="#">mydemoapp.stamplayapp.com</a> to begin sending traffic to your hosted app.</p>
+<p>On your DNS provider, add a <strong>CNAME</strong> record from <a href="www.mybeautifulwebsite.com">www.mybeautifulwebsite.com</a> to <a href="">mydemoapp.stamplayapp.com</a> to begin sending traffic to your hosted app.</p>
 
-<p>After completing these steps, <a href="www.mybeautifulwebsite.com">www.mybeautifulwebsite.com</a> will serve the same content as <a href="#">mydemoapp.stamplayapp.com</a>. </p>
+<p>After completing these steps, <a href="www.mybeautifulwebsite.com">www.mybeautifulwebsite.com</a> will serve the same content as <a href="">mydemoapp.stamplayapp.com</a>.</p>
 
-<p>If you want to serve content at an apex domain such as <a href="example.com">example.com</a>, you might have trouble with the steps above because root domains generally don&rsquo;t support <strong>CNAME</strong> records. To support this situation, you must configure <strong>ALIAS</strong>, <strong>ANAME</strong> or <strong>A</strong> records with your DNS provider.</p>
+<p>If you want to serve content at an apex domain such as <a href="example.com">example.com</a>, you might have trouble with the steps above because root domains generally don't support <strong>CNAME</strong> records. To support this situation, you must configure <strong>ALIAS</strong>, <strong>ANAME</strong> or <strong>A</strong> records with your DNS provider.</p>
 
 <p>If your DNS provider supports <strong>ALIAS</strong> records (such as with DNSimple) or <strong>ANAME</strong> records (such as with DNS Made Easy), you may choose to create an <strong>ALIAS</strong> or <strong>ANAME</strong> record to <a href="mydemoapp.stamplayapp.com">mydemoapp.stamplayapp.com</a> instead (Note: some DNS providers allow an apex domain configured with an <strong>ALIAS</strong> record to point to some other domain name).</p>
 
@@ -225,7 +247,7 @@
 
 <h3 id="pretty-urls">Pretty URLs</h3>
 
-<p>To enable the url rewrite on the server side for single page applications, all you need to do is navigate to the <strong>Hosting</strong> section inside the Stamplay Editor, and check the box in the middle of the configuration under the <strong>URL Rewriting</strong> heading to enable all entry points to your domain, to point to the <code class="prettyprint">index.html</code> page.</p>
+<p>To enable the url rewrite on the server side for single page applications, all you need to do is navigate to the <strong>Hosting</strong> section inside the Stamplay Editor, and check the box in the middle of the configuration under the <strong>URL Rewriting</strong> heading to enable all entry points to your domain, to point to the <code>index.html</code> page.</p>
 
 <p><a href="../images/prettyurls_config.png"><img alt="Pretty URL Configuration" src="/images/prettyurls_config.png" /></a></p>
 
@@ -237,14 +259,15 @@
 
 <p>To enabled a domain for Cross Origin Requests, add the domain to the list inside the <strong>Dashboard</strong> section of the Stamplay Editor.</p>
 
-<p>The isf field is under the <strong>CORS enabled domains</strong> heading. You can add the wildcard <code class="prettyprint">*</code> to allow all origins. This is however not recommended.</p>
+<p>The isf field is under the <strong>CORS enabled domains</strong> heading. You can add the wildcard <code>*</code> to allow all origins. This is however not recommended.</p>
 
 <p><a href="../images/cors_config.png"><img alt="Pretty URL Configuration" src="/images/cors_config.png" /></a></p>
 
-<h3 id="domain-ownership-amp-ssl">Domain Ownership &amp; SSL</h3>
+<h3 id="domain-ownership--ssl">Domain Ownership &amp; SSL</h3>
 
 <p>Stamplay will handle provisioning an SSL certificate for your domain and serving your content over a CDN. However, before setting up your SSL certificate, you will need to update the DNS entries for your domain by a <strong>CNAME</strong> entry.</p>
 
 <p>The entries will be available via email once you begin the process of adding a custom domain. Depending on your domain name server host, this verification step may be instant or it may take an hour or more.</p>
 
 <p>Once domain ownership is verified, we will provision an SSL certficate for your domain and deploy it across our global CDN. This process can take up to 48 hours, and you will receive an email when it is complete.</p>
+

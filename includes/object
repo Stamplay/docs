@@ -11,213 +11,227 @@
 <p>There are 3 properties that are included by default:</p>
 
 <ul>
-<li><code class="prettyprint">dt_create</code> - The date the record was create</li>
-<li><code class="prettyprint">dt_update</code> - The date the record was last updated</li>
-<li><code class="prettyprint">owner</code> - The <code class="prettyprint">_id</code> of the user who created this object.</li>
+  <li><code>dt_create</code> - The date the record was create</li>
+  <li><code>dt_update</code> - The date the record was last updated</li>
+  <li><code>owner</code> - The <code>_id</code> of the user who created this object.</li>
 </ul>
 
 <aside class="warning">
-    The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
+  The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
 </aside>
 
 <h2 id="data-types">Data Types</h2>
 
 <p>The types and formats of each field type is listed below:</p>
+
 <pre class="highlight json"><code><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">property</span><span class="w"> </span><span class="err">equals</span><span class="w"> </span><span class="err">type</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">Property</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">equals</span><span class="w"> </span><span class="err">valid</span><span class="w"> </span><span class="err">type</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">property</span><span class="w"> </span><span class="err">equals</span><span class="w"> </span><span class="err">type</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">Property</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">equals</span><span class="w"> </span><span class="err">valid</span><span class="w"> </span><span class="err">type</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"boolean"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"float"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"plain_object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"prop_one"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GoodBye World"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"prop_two"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"array_number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">345</span><span class="p">],</span><span class="w">
-    </span><span class="nt">"array_string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Hello"</span><span class="p">,</span><span class="w"> </span><span class="s2">"World"</span><span class="p">],</span><span class="w">
-    </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-10T14:51:28.625Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"file"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"_geolocation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"coordinates "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="mf">12.4608</span><span class="p">,</span><span class="w">
-            </span><span class="mf">41.9015</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"object_relation_array"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span><span class="w"> </span><span class="s2">"562ec06e77589e2e0f86c207"</span><span class="p">],</span><span class="w">
-    </span><span class="nt">"user_relation_string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"562bb24e007983c67c8ee9df"</span><span class="w">
-</span><span class="p">}</span><span class="w">   
+  </span><span class="nt">"boolean"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"float"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"plain_object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"prop_one"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GoodBye World"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prop_two"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"array_number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">345</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"array_string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Hello"</span><span class="p">,</span><span class="w"> </span><span class="s2">"World"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-10T14:51:28.625Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"file"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"_geolocation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"coordinates "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mf">12.4608</span><span class="p">,</span><span class="w">
+      </span><span class="mf">41.9015</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"object_relation_array"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span><span class="w"> </span><span class="s2">"562ec06e77589e2e0f86c207"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"user_relation_string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"562bb24e007983c67c8ee9df"</span><span class="w">
+</span><span class="p">}</span><span class="w">  
 </span></code></pre>
 
-<table><thead>
-<tr>
-<th>Type</th>
-<th>Summary</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><a href="#boolean">Boolean</a></td>
-<td>A boolean value type</td>
-</tr>
-<tr>
-<td><a href="#string">String</a></td>
-<td>String value type. Strings are stored as UTF-8.</td>
-</tr>
-<tr>
-<td><a href="#number">Number</a></td>
-<td>An integer value type.</td>
-</tr>
-<tr>
-<td><a href="#float">Float</a></td>
-<td>A float value type.</td>
-</tr>
-<tr>
-<td><a href="#plain-object">Plain Object</a></td>
-<td>A Javascript object.</td>
-</tr>
-<tr>
-<td><a href="#array-number">Array - Number</a></td>
-<td>An array of integer value types.</td>
-</tr>
-<tr>
-<td><a href="#array-string">Array - String</a></td>
-<td>An array of string value types.</td>
-</tr>
-<tr>
-<td><a href="#date">Date</a></td>
-<td>Date value type. Dates are stored in ISODateTimeFormat.</td>
-</tr>
-<tr>
-<td><a href="#file">File</a></td>
-<td>Any kind of file. Location of the resource uploaded.</td>
-</tr>
-<tr>
-<td><a href="#geolocation">Geolocation</a></td>
-<td>GeoJSON object.</td>
-</tr>
-<tr>
-<td><a href="#object-relation">Object Relation - Array</a></td>
-<td>An arrays of pointers to an specific object type.</td>
-</tr>
-<tr>
-<td><a href="#user-relation">User Relation - String</a></td>
-<td>A pointer to a user object.</td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#boolean">Boolean</a></td>
+      <td>A boolean value type</td>
+    </tr>
+    <tr>
+      <td><a href="#string">String</a></td>
+      <td>String value type. Strings are stored as UTF-8.</td>
+    </tr>
+    <tr>
+      <td><a href="#number">Number</a></td>
+      <td>An integer value type.</td>
+    </tr>
+    <tr>
+      <td><a href="#float">Float</a></td>
+      <td>A float value type.</td>
+    </tr>
+    <tr>
+      <td><a href="#plain-object">Plain Object</a></td>
+      <td>A Javascript object.</td>
+    </tr>
+    <tr>
+      <td><a href="#array-number">Array - Number</a></td>
+      <td>An array of integer value types.</td>
+    </tr>
+    <tr>
+      <td><a href="#array-string">Array - String</a></td>
+      <td>An array of string value types.</td>
+    </tr>
+    <tr>
+      <td><a href="#date">Date</a></td>
+      <td>Date value type. Dates are stored in ISODateTimeFormat.</td>
+    </tr>
+    <tr>
+      <td><a href="#file">File</a></td>
+      <td>Any kind of file. Location of the resource uploaded.</td>
+    </tr>
+    <tr>
+      <td><a href="#geolocation">Geolocation</a></td>
+      <td>GeoJSON object.</td>
+    </tr>
+    <tr>
+      <td><a href="#object-relation">Object Relation - Array</a></td>
+      <td>An arrays of pointers to an specific object type.</td>
+    </tr>
+    <tr>
+      <td><a href="#user-relation">User Relation - String</a></td>
+      <td>A pointer to a user object.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h4 id="example-schema">Example Schema</h4>
 
 <p><strong>Restaurant Schema</strong></p>
 
 <p><a href="../images/schema-overview.png"><img alt="Schema Overview" src="/images/schema-overview.png" /></a></p>
+
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">Object</span><span class="w"> </span><span class="err">From</span><span class="w"> </span><span class="err">Restaurant</span><span class="w"> </span><span class="err">Schema</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"owner"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4df62bb24e007983c67c8ee9"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"employee_count"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"average_price"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">9.75</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"hours"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"Monday_Friday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00am - 6:00pm"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Saturday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8:00am - 8:00pm"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Sunday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00am - 4:00pm"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"ratings"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-    </span><span class="nt">"cuisine_types"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Mediterranean"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Italian"</span><span class="p">],</span><span class="w">
-    </span><span class="nt">"vegan_options"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"menu"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_men.png"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"_geolocation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"coordinates "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="mf">12.4608</span><span class="p">,</span><span class="w">
-            </span><span class="mf">41.9015</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"supply_vendors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span><span class="w"> </span><span class="s2">"562ec06e77589e2e0f86c207"</span><span class="p">],</span><span class="w">
-    </span><span class="nt">"manager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"562bb24e007983c67c8ee9df"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"dt_opened"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-05-15T14:51:28.625Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"dt_create"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-04T12:56:08.625Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"dt_update"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-23T02:05:58.625Z"</span><span class="w">
+  </span><span class="nt">"owner"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4df62bb24e007983c67c8ee9"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"employee_count"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"average_price"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">9.75</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"hours"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Monday_Friday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00am - 6:00pm"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Saturday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8:00am - 8:00pm"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Sunday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00am - 4:00pm"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"ratings"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"cuisine_types"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Mediterranean"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Italian"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"vegan_options"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"menu"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_men.png"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"_geolocation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"coordinates "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mf">12.4608</span><span class="p">,</span><span class="w">
+      </span><span class="mf">41.9015</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"supply_vendors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"562c45af4c0f20367d7ca4be"</span><span class="p">,</span><span class="w"> </span><span class="s2">"562ec06e77589e2e0f86c207"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"manager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"562bb24e007983c67c8ee9df"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_opened"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-05-15T14:51:28.625Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_create"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-04T12:56:08.625Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_update"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-23T02:05:58.625Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h3 id="boolean">Boolean</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">verified</span> <span class="err">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">verified</span> <span class="err">:</span> <span class="kc">true</span>
+  <span class="p">}</span>
 </code></pre>
 
-<p>A <strong>Boolean</strong> type is a <code class="prettyprint">true</code> or <code class="prettyprint">false</code> value.</p>
+<p>A <strong>Boolean</strong> type is a <code>true</code> or <code>false</code> value.</p>
 
 <h3 id="string">String</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">name</span> <span class="err">:</span> <span class="s2">"John"</span>
-    <span class="p">}</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">name</span> <span class="err">:</span> <span class="s2">"John"</span>
+  <span class="p">}</span>
 </code></pre>
 
 <p>A <strong>String</strong> type is a series of characters enclosed by single, or double quotes.</p>
 
 <h3 id="number">Number</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">age</span> <span class="err">:</span> <span class="mi">29</span>
-    <span class="p">}</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">age</span> <span class="err">:</span> <span class="mi">29</span>
+  <span class="p">}</span>
 </code></pre>
 
 <p>A <strong>Number</strong> type is an integer value type without a period or exponent notation.</p>
 
 <h3 id="float">Float</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">pie</span> <span class="err">:</span> <span class="mf">3.14</span>
-    <span class="p">}</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">pie</span> <span class="err">:</span> <span class="mf">3.14</span>
+  <span class="p">}</span>
 </code></pre>
 
 <p>A <strong>Float</strong> type is an integer value type with a period or exponent notation.</p>
 
 <h3 id="plain-object">Plain Object</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-      <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-      <span class="nx">car</span> <span class="err">:</span> <span class="p">{</span>
-        <span class="nl">color</span> <span class="p">:</span> <span class="s2">"blue"</span><span class="p">,</span>
-        <span class="nx">year</span> <span class="err">:</span> <span class="mi">2014</span><span class="p">,</span>
-        <span class="nx">automatic</span> <span class="err">:</span> <span class="kc">false</span>
-      <span class="p">}</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">car</span> <span class="err">:</span> <span class="p">{</span>
+      <span class="nl">color</span> <span class="p">:</span> <span class="s2">"blue"</span><span class="p">,</span>
+      <span class="nx">year</span> <span class="err">:</span> <span class="mi">2014</span><span class="p">,</span>
+      <span class="nx">automatic</span> <span class="err">:</span> <span class="kc">false</span>
     <span class="p">}</span>
+  <span class="p">}</span>
 </code></pre>
 
-<p>A <strong>Plain Object</strong> type is a plain javascript object. The property <code class="prettyprint">car</code> is a plain object type in the example.</p>
+<p>A <strong>Plain Object</strong> type is a plain javascript object. The property <code>car</code> is a plain object type in the example.</p>
 
-<h3 id="array-number">Array - Number</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">colors</span> <span class="err">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">235</span><span class="p">,</span> <span class="mi">66</span><span class="p">]</span>
-    <span class="p">}</span>
+<h3 id="array---number">Array - Number</h3>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">colors</span> <span class="err">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">235</span><span class="p">,</span> <span class="mi">66</span><span class="p">]</span>
+  <span class="p">}</span>
 </code></pre>
 
 <p>An <strong>Array</strong> of <strong>Number</strong> value types:</p>
 
-<h3 id="array-string">Array - String</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">colors</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">]</span>
-    <span class="p">}</span>
+<h3 id="array---string">Array - String</h3>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">colors</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">]</span>
+  <span class="p">}</span>
 </code></pre>
 
 <p>An <strong>Array</strong> of <strong>String</strong> value types:</p>
 
 <h3 id="date">Date</h3>
+
 <pre class="highlight shell-always"><code>    <span class="p">{</span>
       <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
       <span class="nx">start_date</span> <span class="err">:</span> <span class="s2">"2016-03-10T14:51:28.625Z"</span>
     <span class="p">}</span>
 </code></pre>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
       <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
       <span class="nx">end_date</span> <span class="err">:</span> <span class="s2">"Thu, 10 Mar 2016 14:51:43 GMT"</span>
     <span class="p">}</span>
@@ -225,76 +239,104 @@
 
 <p>A <strong>Date</strong> type is a date string in either the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString">ISO 8601</a> format, or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toUTCString">RFC-1123</a> format.</p>
 
-<p>The property <code class="prettyprint">start_date</code> is a Date type in <strong>ISO 8601</strong> format in the first example.     </p>
+<p>The property <code>start_date</code> is a Date type in <strong>ISO 8601</strong> format in the first example.</p>
 
-<p>The property <code class="prettyprint">end_date</code> is a Date type in <strong>RFC-1123</strong> format in the last example.</p>
+<p>The property <code>end_date</code> is a Date type in <strong>RFC-1123</strong> format in the last example.</p>
 
 <h3 id="file">File</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">profile_image</span> <span class="err">:</span> <span class="s2">"https://[APPID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"</span>
-    <span class="p">}</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">profile_image</span> <span class="err">:</span> <span class="s2">"https://[APPID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"</span>
+  <span class="p">}</span>
 </code></pre>
 
 <p>A <strong>File</strong> type is a file upload. Any kind of file is accepted. When a file is uploaded, and saved, the property will be a link to the file upload location.</p>
 
-<p>To save a file type, the request must be sent as <code class="prettyprint">multipart/form-data</code>.</p>
+<p>To save a file type, the request must be sent as <code>multipart/form-data</code>.</p>
 
-<p>The <code class="prettyprint">profile_image</code> is an example of a <strong>File</strong> type in the example.</p>
+<p>The <code>profile_image</code> is an example of a <strong>File</strong> type in the example.</p>
 
 <h3 id="geolocation">Geolocation</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">_geolocation</span> <span class="err">:</span> <span class="p">{</span>
-            <span class="nl">type</span><span class="p">:</span> <span class="s2">"Point"</span><span class="p">,</span>
-            <span class="nx">coordinates</span><span class="err">:</span> <span class="p">[</span>
-                <span class="mf">12.4608</span><span class="p">,</span>
-                <span class="mf">41.9015</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">_geolocation</span> <span class="err">:</span> <span class="p">{</span>
+      <span class="nl">type</span><span class="p">:</span> <span class="s2">"Point"</span><span class="p">,</span>
+      <span class="nx">coordinates</span><span class="err">:</span> <span class="p">[</span>
+        <span class="mf">12.4608</span><span class="p">,</span>
+        <span class="mf">41.9015</span>
+      <span class="p">]</span>
     <span class="p">}</span>
+  <span class="p">}</span>
 </code></pre>
 
-<p>A <strong>Geolocation</strong> type is stored as <strong>GeoJSON</strong> object with this coordinate-axis order: <code class="prettyprint">longitude</code>, <code class="prettyprint">latitude</code>.</p>
+<p>A <strong>Geolocation</strong> type is stored as <strong>GeoJSON</strong> object with this coordinate-axis order: <code>longitude</code>, <code>latitude</code>.</p>
 
 <p>A Point stored on Stamplay will look like the example:</p>
 
 <p>Currently supported data types are:</p>
 
 <ul>
-<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#point">Point</a></li>
-<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#linestring">LineString</a></li>
-<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#polygon">Polygon</a></li>
-<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#multipoint">MultiPoint</a></li>
-<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#multilinestring">MultiLineString</a></li>
-<li>- <a href="https://docs.mongodb.org/manual/reference/geojson/#multipolygon">MultiPolygon</a></li>
+  <li>
+    <ul>
+      <li><a href="https://docs.mongodb.org/manual/reference/geojson/#point">Point</a></li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li><a href="https://docs.mongodb.org/manual/reference/geojson/#linestring">LineString</a></li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li><a href="https://docs.mongodb.org/manual/reference/geojson/#polygon">Polygon</a></li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li><a href="https://docs.mongodb.org/manual/reference/geojson/#multipoint">MultiPoint</a></li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li><a href="https://docs.mongodb.org/manual/reference/geojson/#multilinestring">MultiLineString</a></li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li><a href="https://docs.mongodb.org/manual/reference/geojson/#multipolygon">MultiPolygon</a></li>
+    </ul>
+  </li>
 </ul>
 
 <p>In order to save any instance of geolocation data you need to send the complete <strong>GeoJSON</strong> representation.</p>
 
-<p>To make this easier if you want to create a Point you&rsquo;re allowed to send an array of coordinates in <code class="prettyprint">longitude, latitude</code> format and Stamplay will create the <strong>GeoJSON</strong> for you.</p>
+<p>To make this easier if you want to create a Point you're allowed to send an array of coordinates in <code>longitude, latitude</code> format and Stamplay will create the <strong>GeoJSON</strong> for you.</p>
 
 <h3 id="object-relation">Object Relation</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">solutions</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"6c641c8a81e3625f03b1ae6c"</span><span class="p">,</span> <span class="s2">"3b1ae6c8a81e3625f06c641c"</span><span class="p">,</span> <span class="s2">"825f06c641c3ba81e361ae6c"</span><span class="p">,</span> <span class="s2">"f06c641c3b8a81e3625ae6c"</span><span class="p">]</span>
-    <span class="p">}</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">solutions</span> <span class="err">:</span> <span class="p">[</span><span class="s2">"6c641c8a81e3625f03b1ae6c"</span><span class="p">,</span> <span class="s2">"3b1ae6c8a81e3625f06c641c"</span><span class="p">,</span> <span class="s2">"825f06c641c3ba81e361ae6c"</span><span class="p">,</span> <span class="s2">"f06c641c3b8a81e3625ae6c"</span><span class="p">]</span>
+  <span class="p">}</span>
 </code></pre>
 
 <p>A <strong>Object Relation</strong> is set of pointers to another object.</p>
 
-<p>Select the <strong>Object Relation - [Object Name]</strong> from the dropdown to the object type to point to. The pointers are each a <code class="prettyprint">_id</code> of another object. This field can be populated.</p>
+<p>Select the <strong>Object Relation - [Object Name]</strong> from the dropdown to the object type to point to. The pointers are each a <code>_id</code> of another object. This field can be populated.</p>
 
-<p>The <code class="prettyprint">solutions</code> property is an example of a <strong>Object Relation</strong> type in the example.</p>
+<p>The <code>solutions</code> property is an example of a <strong>Object Relation</strong> type in the example.</p>
 
 <h3 id="user-relation">User Relation</h3>
-<pre class="highlight shell-always"><code>    <span class="p">{</span>
-        <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-        <span class="nx">author</span> <span class="err">:</span> <span class="s2">"8a81e3625f06c641c3b1ae6c"</span>
-    <span class="p">}</span>
+
+<pre class="highlight shell-always"><code>  <span class="p">{</span>
+    <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
+    <span class="nx">author</span> <span class="err">:</span> <span class="s2">"8a81e3625f06c641c3b1ae6c"</span>
+  <span class="p">}</span>
 </code></pre>
 
-<p>A <strong>User Relation</strong> is a pointer to a user object represented by an <code class="prettyprint">_id</code> of a user. This field can be populated. The <code class="prettyprint">author</code> property is an example of a <code class="prettyprint">User Relation</code> in the example.</p>
+<p>A <strong>User Relation</strong> is a pointer to a user object represented by an <code>_id</code> of a user. This field can be populated. The <code>author</code> property is an example of a <code>User Relation</code> in the example.</p>
 
 <h2 id="permissions">Permissions</h2>
 
@@ -302,49 +344,59 @@
 
 <p><img alt="Permissions Overview" src="/images/object-permissions-overview.png" /></p>
 
-<p>We’ve identified some commonly used permission patterns (we refer to them as &ldquo;policies&rdquo;). Stamplay provides an easy way to use these patterns on the data your app manages. These policies offer a convenient mechanism for supporting very common security scenarios without having to manage complex settings:</p>
+<p>We’ve identified some commonly used permission patterns (we refer to them as "policies"). Stamplay provides an easy way to use these patterns on the data your app manages. These policies offer a convenient mechanism for supporting very common security scenarios without having to manage complex settings:</p>
 
 <ul>
-<li><p><strong>Private</strong>: Use this preset if you want to make users’ data inaccessible to other users. Any user will be able to read and write only his or her own information.</p></li>
-<li><p><strong>Public</strong>: When this policy is applied to user profiles, any user can read and write any other user&rsquo;s information. Proceed with caution.</p></li>
-<li><p><strong>Read-only</strong>: Use this preset if you want users to read all profiles, but you don’t want to give them permission to write any profile information.</p></li>
-<li><p><strong>Shared</strong>: This preset is suitable for social apps; any user can modify his or her own profile and can read all other user profiles.</p></li>
+  <li>
+    <p><strong>Private</strong>: Use this preset if you want to make users’ data inaccessible to other users. Any user will be able to read and write only his or her own information.</p>
+  </li>
+  <li>
+    <p><strong>Public</strong>: When this policy is applied to user profiles, any user can read and write any other user's information. Proceed with caution.</p>
+  </li>
+  <li>
+    <p><strong>Read-only</strong>: Use this preset if you want users to read all profiles, but you don’t want to give them permission to write any profile information.</p>
+  </li>
+  <li>
+    <p><strong>Shared</strong>: This preset is suitable for social apps; any user can modify his or her own profile and can read all other user profiles.</p>
+  </li>
 </ul>
 
 <p>If the predefined security policies are not flexible enough for your app and you have created your own user roles, you can choose to use role-based security. The settings specify whether a role is allowed to create, read, update or delete items.</p>
 
 <h2 id="create">Create</h2>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/object"</span> <span class="se">\</span>
-        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">title</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"\\\"</span><span class="s2">Hello World</span><span class="se">\\\"\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">year</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">2016</span><span class="se">\"</span><span class="s2">}"</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/object"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">title</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"\\\"</span><span class="s2">Hello World</span><span class="se">\\\"\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">year</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">2016</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
-        <span class="na">year</span> <span class="p">:</span> <span class="mi">2016</span>
-    <span class="p">}</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+    <span class="na">year</span> <span class="p">:</span> <span class="mi">2016</span>
+  <span class="p">}</span>
 
-</code></pre>
-<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
-        <span class="na">year</span> <span class="p">:</span> <span class="mi">2016</span>
-    <span class="p">}</span>
-
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// response</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
     <span class="p">})</span>
+
 </code></pre>
 
-<p>To create new object data for a particular model, send the data in the body of a<code class="prettyprint">POST</code> request to the Object resource, specifying the object type in the URI.</p>
+<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+    <span class="na">year</span> <span class="p">:</span> <span class="mi">2016</span>
+  <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
+
+<p>To create new object data for a particular model, send the data in the body of a<code>POST</code> request to the Object resource, specifying the object type in the URI.</p>
 
 <aside class="notice">
-    The data sent in the request body must validate against the schema defined for the particular object resource being saved.
+  The data sent in the request body must validate against the schema defined for the particular object resource being saved.
 </aside>
 
 <h2 id="fetch-objects">Fetch Objects</h2>
@@ -352,178 +404,199 @@
 <p>Retrieve an individual object, all objects, or any matching specific criteria of a particular model type.</p>
 
 <h3 id="individual-object">Individual Object</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"object_id"</span><span class="p">})</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
-</code></pre>
-<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"object_id"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// response</span>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"object_id"</span><span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
-<p>To fetch a single object, send a <code class="prettyprint">GET</code> request to the Object resource with the object&rsquo;s <code class="prettyprint">_id</code> in the URI.</p>
+<pre class="highlight nodejs"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"object_id"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
 
-<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
+<p>To fetch a single object, send a <code>GET</code> request to the Object resource with the object's <code>_id</code> in the URI.</p>
+
+<p>The object type for the example is <code>movie</code>.</p>
 
 <h3 id="all-objects">All Objects</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie"</span>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({})</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
-</code></pre>
-<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// response</span>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
-<p>To fetch all objects, send a <code class="prettyprint">GET</code> request to the Object resource.</p>
+<pre class="highlight nodejs"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
 
-<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
+<p>To fetch all objects, send a <code>GET</code> request to the Object resource.</p>
+
+<p>The object type for the example is <code>movie</code>.</p>
 
 <h3 id="query-objects">Query Objects</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie?title=Hello%20World&amp;year=1998"</span>
-</code></pre>
-<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
-        <span class="na">year</span> <span class="p">:</span> <span class="mi">1998</span>
-    <span class="p">}</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie?title=Hello%20World&amp;year=1998"</span>
 </code></pre>
-<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
-        <span class="na">year</span> <span class="p">:</span> <span class="mi">1998</span>
-    <span class="p">}</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// response</span>
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+    <span class="na">year</span> <span class="p">:</span> <span class="mi">1998</span>
+  <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
-<p>To fetch all objects that match a certain parameters, send a <code class="prettyprint">GET</code> request to the Object resource with any parameters to match in the request body.</p>
+<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
+    <span class="na">year</span> <span class="p">:</span> <span class="mi">1998</span>
+  <span class="p">}</span>
 
-<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
+
+<p>To fetch all objects that match a certain parameters, send a <code>GET</code> request to the Object resource with any parameters to match in the request body.</p>
+
+<p>The object type for the example is <code>movie</code>.</p>
 
 <h3 id="find-by-current-user">Find By Current User</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/find/{attributes}"</span>
-</code></pre>
-<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"owner"</span><span class="p">,</span> <span class="s2">"contributor"</span><span class="p">];</span>
 
-    <span class="c1">// default attribute is owner is no arguments are passed to method</span>
-
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">findByCurrentUser</span><span class="p">(</span><span class="nx">attrs</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// Success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// Error</span>
-        <span class="p">}))</span>
-</code></pre>
-<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/find/{attributes}"</span>
 </code></pre>
 
-<p>To find all objects with attributes that match the current user&rsquo;s <code class="prettyprint">_id</code>. Specify the attributes to match against with a comma delimited list.</p>
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"owner"</span><span class="p">,</span> <span class="s2">"contributor"</span><span class="p">];</span>
 
-<p>Make a <code class="prettyprint">GET</code> request to the Object resource for the object model. Specifying the attributes in the resource URI.</p>
+  <span class="c1">// default attribute is owner is no arguments are passed to method</span>
 
-<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">findByCurrentUser</span><span class="p">(</span><span class="nx">attrs</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Error</span>
+    <span class="p">}))</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<p>To find all objects with attributes that match the current user's <code>_id</code>. Specify the attributes to match against with a comma delimited list.</p>
+
+<p>Make a <code>GET</code> request to the Object resource for the object model. Specifying the attributes in the resource URI.</p>
+
+<p>The object type for the example is <code>movie</code>.</p>
 
 <h2 id="update-objects">Update Objects</h2>
 
 <p>To update an object record partially, or completely overwrite the existing record.</p>
 
 <h3 id="partial-update">Partial Update</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
-        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">title</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Goodbye World</span><span class="se">\"</span><span class="s2">}"</span>
-</code></pre>
-<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
-    <span class="p">}</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">title</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Goodbye World</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
-<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
-    <span class="p">}</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// response</span>
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+  <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
-<p>To make a partial update to an object record, perform a <code class="prettyprint">PATCH</code> request to the Object API resource with any fields to update on the stored record in the request body.</p>
+<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+  <span class="p">}</span>
 
-<p>The object type for the example is <code class="prettyprint">movie</code>.</p>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
+
+<p>To make a partial update to an object record, perform a <code>PATCH</code> request to the Object API resource with any fields to update on the stored record in the request body.</p>
+
+<p>The object type for the example is <code>movie</code>.</p>
 
 <h3 id="complete-update">Complete Update</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
-        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">title</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Goodbye World</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">year</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">2001</span><span class="se">\"</span><span class="s2">}"</span>
-</code></pre>
-<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
-    <span class="p">}</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">title</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Goodbye World</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">year</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">2001</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
-<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
-    <span class="p">}</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// response</span>
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+  <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
-<p>To over write an object record, perform a <code class="prettyprint">PUT</code> request to the Object API resource with a complete represenation to write over the stored record in the request body.</p>
+<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+  <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
+
+<p>To over write an object record, perform a <code>PUT</code> request to the Object API resource with a complete represenation to write over the stored record in the request body.</p>
 
 <h2 id="remove-objects">Remove Objects</h2>
 
-<p>To remove an object record, send a <code class="prettyprint">DELETE</code> request with the <code class="prettyprint">_id</code> of the record to remove in the Object API resource URI.</p>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span>
-</code></pre>
-<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
-    <span class="p">}</span>
+<p>To remove an object record, send a <code>DELETE</code> request with the <code>_id</code> of the record to remove in the Object API resource URI.</p>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span>
 </code></pre>
-<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
-    <span class="p">}</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// response</span>
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+  <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
     <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Goodbye World"</span>
+  <span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// response</span>
+  <span class="p">})</span>
 </code></pre>
 
 <h2 id="relationships">Relationships</h2>
@@ -531,61 +604,66 @@
 <p>Data relationships are pointers from one record to another.</p>
 
 <h3 id="user-relationship">User Relationship</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
-        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">director</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">56cf08e362641ca813b1ae6c</span><span class="se">\"</span><span class="s2">}"</span>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">director</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">56cf08e362641ca813b1ae6c</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">director</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span> <span class="p">})</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
-</code></pre>
-<pre class="highlight nodejs"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">director</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// response</span>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">director</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span> <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
-<p>A <strong>User</strong> relationship is a pointer to a user record. This field type is to be set only as an <code class="prettyprint">_id</code> of a user record.</p>
+<pre class="highlight nodejs"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">director</span><span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
 
-<p>This is so it may be populated with the parent object, eliminating the need for a subsequent request to fetch the relationship data. To populate the <code class="prettyprint">owner</code> field, include the query parameter <code class="prettyprint">populate_owner</code> as <code class="prettyprint">true</code> in your request.</p>
+<p>A <strong>User</strong> relationship is a pointer to a user record. This field type is to be set only as an <code>_id</code> of a user record.</p>
 
-<p>The <code class="prettyprint">owner</code> property is a default User relationship, but others can be added through the Stamplay editor.</p>
+<p>This is so it may be populated with the parent object, eliminating the need for a subsequent request to fetch the relationship data. To populate the <code>owner</code> field, include the query parameter <code>populate_owner</code> as <code>true</code> in your request.</p>
 
-<p>To manage these relationships, just update this field to the &ldquo;_id&rdquo; of the User to reference in the relationship.</p>
+<p>The <code>owner</code> property is a default User relationship, but others can be added through the Stamplay editor.</p>
 
-<p>In this example, <code class="prettyprint">movie</code> is the object type, and the <code class="prettyprint">director</code> field is a User Relationship field.</p>
+<p>To manage these relationships, just update this field to the "_id" of the User to reference in the relationship.</p>
+
+<p>In this example, <code>movie</code> is the object type, and the <code>director</code> field is a User Relationship field.</p>
 
 <h3 id="object-relationships">Object Relationships</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
-        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">characters</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">57cf08e362641ca813b1ae6c</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">56cf09e362641sa813b1ae6d</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">54cfdae662641ca813b1ae6c</span><span class="se">\"</span><span class="s2">]}"</span>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">characters</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">57cf08e362641ca813b1ae6c</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">56cf09e362641sa813b1ae6d</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">54cfdae662641ca813b1ae6c</span><span class="se">\"</span><span class="s2">]}"</span>
 </code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="s2">"characters"</span><span class="p">,</span> <span class="s2">"57cf08e362641ca813b1ae6c"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
-</code></pre>
-<pre class="highlight nodejs"><code>    <span class="kd">var</span> <span class="nx">movieChars</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"57cf08e362641ca813b1ae6c"</span><span class="p">,</span> <span class="s2">"56cf09e362641sa813b1ae6d"</span><span class="p">,</span> <span class="s2">"54cfdae662641ca813b1ae6c"</span><span class="p">]</span>
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">movieChars</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// response</span>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="s2">"characters"</span><span class="p">,</span> <span class="s2">"57cf08e362641ca813b1ae6c"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
+<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">movieChars</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"57cf08e362641ca813b1ae6c"</span><span class="p">,</span> <span class="s2">"56cf09e362641sa813b1ae6d"</span><span class="p">,</span> <span class="s2">"54cfdae662641ca813b1ae6c"</span><span class="p">]</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">movieChars</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
 <p>An <strong>Object</strong> relationship is a pointer to another record; specifically a certain type of record as specified when defining the schema.</p>
 
-<p>This field type is to contain only an array of the property <code class="prettyprint">_id</code> of a each related record of the relationship type.</p>
+<p>This field type is to contain only an array of the property <code>_id</code> of a each related record of the relationship type.</p>
 
-<p>This is so it may be populated with the parent object, eliminating the need for a subsequent request to fetch the relationship data. To populate these fields, add the query parameter <code class="prettyprint">populate</code> as <code class="prettyprint">true</code> to your request.</p>
+<p>This is so it may be populated with the parent object, eliminating the need for a subsequent request to fetch the relationship data. To populate these fields, add the query parameter <code>populate</code> as <code>true</code> to your request.</p>
 
 <p>To manage this relationship field, update the field to represent the collection of object references to store.</p>
 
-<p>The <strong>JavaScript SDK</strong> has a <code class="prettyprint">push</code> method to allow an easier method for pushing new relationships onto the array field. See the example in the <code class="prettyprint">JavaScript</code> tab, otherwise you will need to manage this manually by sending a complete copy of the field in the request.</p>
+<p>The <strong>JavaScript SDK</strong> has a <code>push</code> method to allow an easier method for pushing new relationships onto the array field. See the example in the <code>JavaScript</code> tab, otherwise you will need to manage this manually by sending a complete copy of the field in the request.</p>
 
-<p>In this example, <code class="prettyprint">movie</code> is the object type, and the <code class="prettyprint">characters</code> field is a <strong>Object Relationship</strong> field.</p>
+<p>In this example, <code>movie</code> is the object type, and the <code>characters</code> field is a <strong>Object Relationship</strong> field.</p>
 
 <h2 id="voting">Voting</h2>
 
@@ -593,127 +671,142 @@
 
 <p>Each Stamplay Object is able to be voted upon, out of the box without any additional setup.</p>
 
-<p>The data for voting is stored on a <code class="prettyprint">actions</code> object on each Object.
+<p>The data for voting is stored on a <code>actions</code> object on each Object.
 The following data is stored :</p>
+
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"actions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"votes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"users_downvote"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">],</span><span class="w">
-            </span><span class="nt">"users_upvote"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"another_user_id"</span><span class="p">],</span><span class="w">
-            </span><span class="nt">"users"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">,</span><span class="w"> </span><span class="s2">"another_user_id"</span><span class="p">],</span><span class="w">
-            </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+  </span><span class="nt">"actions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"votes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"users_downvote"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"users_upvote"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"another_user_id"</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"users"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">,</span><span class="w"> </span><span class="s2">"another_user_id"</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
     </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h3 id="downvoting">Downvoting</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote"</span> <span class="se">\</span>
-        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">downvote</span><span class="se">\"</span><span class="s2">}"</span>
-</code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">downVote</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
-</code></pre>
-<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">downvote</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<p>To downvote an object send a <code class="prettyprint">PUT</code> request to the Object resource with the object <code class="prettyprint">_id</code> in the URI, and a <code class="prettyprint">type</code> property in the body specifying <code class="prettyprint">downvote</code>.</p>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">downVote</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<p>To downvote an object send a <code>PUT</code> request to the Object resource with the object <code>_id</code> in the URI, and a <code>type</code> property in the body specifying <code>downvote</code>.</p>
 
 <h3 id="upvoting">Upvoting</h3>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote"</span> <span class="se">\</span>
-        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">upvote</span><span class="se">\"</span><span class="s2">}"</span>
-</code></pre>
-<pre class="highlight javascript"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">upVote</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
-</code></pre>
-<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">upvote</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<p>To upvote an object send a <code class="prettyprint">PUT</code> request to the Object resource with the object <code class="prettyprint">_id</code> in the URI, and a <code class="prettyprint">type</code> property in the body specifying <code class="prettyprint">upvote</code>.</p>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">upVote</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<p>To upvote an object send a <code>PUT</code> request to the Object resource with the object <code>_id</code> in the URI, and a <code>type</code> property in the body specifying <code>upvote</code>.</p>
 
 <h2 id="commenting">Commenting</h2>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/comment"</span> <span class="se">\</span>
-        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">text</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">comment text goes here</span><span class="se">\"</span><span class="s2">}"</span>
-</code></pre>
-<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">txt</span> <span class="o">=</span> <span class="s2">"comment text goes here"</span><span class="p">;</span>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">comment</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">txt</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/comment"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">text</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">comment text goes here</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
-<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">txt</span> <span class="o">=</span> <span class="s2">"comment text goes here"</span><span class="p">;</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">comment</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="nx">txt</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
 <p>The Stamplay API provides a comment mechansim for managing a comment system.</p>
 
 <p>Each Stamplay Object is able to be commented upon, out of the box without any additional setup.</p>
 
-<p>To comment on an object send a <code class="prettyprint">PUT</code> request to the Object resource with the object <code class="prettyprint">_id</code> in the URI, and a <code class="prettyprint">text</code> property in the body specifying the comment text.</p>
+<p>To comment on an object send a <code>PUT</code> request to the Object resource with the object <code>_id</code> in the URI, and a <code>text</code> property in the body specifying the comment text.</p>
 
-<p>The data for comments is stored on a <code class="prettyprint">actions</code> object on each Object.</p>
+<p>The data for comments is stored on a <code>actions</code> object on each Object.</p>
 
-<p>For each comment, a comment object is stored in the <code class="prettyprint">comments</code> array.</p>
+<p>For each comment, a comment object is stored in the <code>comments</code> array.</p>
+
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"actions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"comments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_image_url"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_displayName"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_id"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comment text"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comment_id"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date commented"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="nt">"actions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"comments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_image_url"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_displayName"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comment text"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comment_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date commented"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h2 id="rating">Rating</h2>
-<pre class="highlight shell"><code>    curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/rate"</span> <span class="se">\</span>
-        -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">rate</span><span class="se">\"</span><span class="s2">: 5}"</span>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/rate"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">rate</span><span class="se">\"</span><span class="s2">: 5}"</span>
 </code></pre>
+
 <pre class="highlight javascript"><code>
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">rate</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">rate</span><span class="p">(</span><span class="s2">"object_id"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
 </code></pre>
-<pre class="highlight nodejs"><code>    <span class="c1">// no method</span>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
 <p>The Stamplay API provides a rate mechansim for managing a rating system.</p>
 
 <p>Each Stamplay Object is able to be be rated, out of the box without any additional setup.</p>
 
-<p>To rate an object send a <code class="prettyprint">PUT</code> request to the Object resource with the object <code class="prettyprint">_id</code> in the URI, and a <code class="prettyprint">rate</code> property in the body specifying the rating as an integer.</p>
+<p>To rate an object send a <code>PUT</code> request to the Object resource with the object <code>_id</code> in the URI, and a <code>rate</code> property in the body specifying the rating as an integer.</p>
 
-<p>The data for <code class="prettyprint">ratings</code> is stored on a <code class="prettyprint">actions</code> object on each Object.</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"actions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"ratings"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">,</span><span class="w"> </span><span class="s2">"another_user_id"</span><span class="p">,</span><span class="w"> </span><span class="s2">"third_user"</span><span class="p">],</span><span class="w">
-            </span><span class="nt">"avg"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<p>The data for <code>ratings</code> is stored on a <code>actions</code> object on each Object.</p>
 
-</span></code></pre>
+<p>~~~ json
+{
+  "actions" : {
+    "ratings" : {
+      "users": ["user_id", "another_user_id", "third_user"],
+      "avg": 4,
+      "total": 3
+    }
+  }
+}</p>
+

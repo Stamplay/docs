@@ -7,38 +7,42 @@
 <p>After signing up, create your first Stamplay application in the dashboard by entering a name for your application in the input and selecing <strong>CREATE</strong>.</p>
 
 <h2 id="install-cli">Install CLI</h2>
-<pre class="highlight shell-always"><code>    <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">cli</span>
+
+<pre class="highlight shell-always"><code>  <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">cli</span>
 </code></pre>
 
 <p>The Stamplay CLI will allow you to run your application locally, manage application versioning, deploy to the cloud, etc.</p>
 
-<p>Ensure you have Node.js &amp; NPM installed, then <code class="prettyprint">npm install</code> the <code class="prettyprint">stamplay-cli</code> package globally.</p>
+<p>Ensure you have Node.js &amp; NPM installed, then <code>npm install</code> the <code>stamplay-cli</code> package globally.</p>
 
-<p>After installing the CLI, initialize a project locally inside a project folder by running an <code class="prettyprint">init</code> command from the <code class="prettyprint">stamplay</code> CLI.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">init</span>
+<p>After installing the CLI, initialize a project locally inside a project folder by running an <code>init</code> command from the <code>stamplay</code> CLI.</p>
+
+<pre class="highlight shell-always"><code>  <span class="nx">stamplay</span> <span class="nx">init</span>
 </code></pre>
 
-<p>You will be prompted to enter an <code class="prettyprint">APP ID</code> and <code class="prettyprint">API KEY</code> for a Stamplay application. These can be found in the <strong>Dashboard</strong> of the application created in the previous step.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">start</span>
+<p>You will be prompted to enter an <code>APP ID</code> and <code>API KEY</code> for a Stamplay application. These can be found in the <strong>Dashboard</strong> of the application created in the previous step.</p>
+
+<pre class="highlight shell-always"><code>  <span class="nx">stamplay</span> <span class="nx">start</span>
 </code></pre>
 
-<p>To run our application locally, run the <code class="prettyprint">start</code> command from the <code class="prettyprint">stamplay</code> CLI.</p>
+<p>To run our application locally, run the <code>start</code> command from the <code>stamplay</code> CLI.</p>
 
 <h2 id="javascript-sdk-setup">JavaScript SDK Setup</h2>
-
 <p>The <a href="https://github.com/Stamplay/stamplay-js-sdk">Stamplay JavaScript SDK</a> is a client-side library for interacting with Stamplay.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">bower</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
+
+<pre class="highlight shell-always"><code>  <span class="nx">bower</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
 </code></pre>
 
-<p>Run <code class="prettyprint">bower install</code> for the <code class="prettyprint">stamplay-js-sdk</code> package to download from <code class="prettyprint">bower</code> into your local project directory.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">)</span>
+<p>Run <code>bower install</code> for the <code>stamplay-js-sdk</code> package to download from <code>bower</code> into your local project directory.</p>
+
+<pre class="highlight shell-always"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">)</span>
 </code></pre>
 
-<p>To initialize the library, run the <code class="prettyprint">init</code> method from the <code class="prettyprint">Stamplay</code> SDK.</p>
+<p>To initialize the library, run the <code>init</code> method from the <code>Stamplay</code> SDK.</p>
 
 <h2 id="define-schema">Define Schema</h2>
 
-<p>Create a new Object schema by visiting the <strong>Object</strong> section within the editor for your application through the sidebar. </p>
+<p>Create a new Object schema by visiting the <strong>Object</strong> section within the editor for your application through the sidebar.</p>
 
 <p>Inside the <strong>Object</strong> section, add a name and data type for each property on the schema desired and <strong>Save</strong>.</p>
 
@@ -46,77 +50,82 @@
 
 <p>To write data to Stamplay, model an object after the schema just created.</p>
 
-<p>Pass the object into the <code class="prettyprint">save</code> method on the <code class="prettyprint">Stamplay.Object</code> class.</p>
-<pre class="highlight shell-always"><code>    <span class="kd">var</span> <span class="nx">car</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">make</span> <span class="p">:</span> <span class="s2">"Volkswagen"</span><span class="p">,</span>
-        <span class="na">model</span> <span class="p">:</span> <span class="s2">"Jetta"</span><span class="p">,</span>
-        <span class="na">year</span> <span class="p">:</span> <span class="mi">2013</span><span class="p">,</span>
-        <span class="na">color</span> <span class="p">:</span> <span class="s2">"silver"</span><span class="p">,</span>
-        <span class="na">top_speed</span> <span class="p">:</span> <span class="mi">140</span>
-    <span class="p">}</span>
+<p>Pass the object into the <code>save</code> method on the <code>Stamplay.Object</code> class.</p>
 
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"car"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">car</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// error</span>
-        <span class="p">})</span>
+<pre class="highlight shell-always"><code><span class="kd">var</span> <span class="nx">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">make</span> <span class="p">:</span> <span class="s2">"Volkswagen"</span><span class="p">,</span>
+  <span class="na">model</span> <span class="p">:</span> <span class="s2">"Jetta"</span><span class="p">,</span>
+  <span class="na">year</span> <span class="p">:</span> <span class="mi">2013</span><span class="p">,</span>
+  <span class="na">color</span> <span class="p">:</span> <span class="s2">"silver"</span><span class="p">,</span>
+  <span class="na">top_speed</span> <span class="p">:</span> <span class="mi">140</span>
+<span class="p">}</span>
+
+<span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"car"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">car</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// success</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// error</span>
+  <span class="p">})</span>
 </code></pre>
 
 <p>Most every SDK method returns a promise, or you can pass a callback in as the last method argument.</p>
 
 <h2 id="read-data">Read Data</h2>
 
-<p>To fetch <strong>Object</strong> data from  Stamplay, use the <code class="prettyprint">get</code> method on the <code class="prettyprint">Stamplay.Object</code> class.</p>
+<p>To fetch <strong>Object</strong> data from  Stamplay, use the <code>get</code> method on the <code>Stamplay.Object</code> class.</p>
 
-<p>The <code class="prettyprint">get</code> method takes an options object. The object is matched against all records, and returns only those that match.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"car"</span><span class="p">)</span>
-      <span class="p">.</span><span class="nx">get</span><span class="p">({})</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-          <span class="c1">// success</span>
-        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-          <span class="c1">// error</span>
-        <span class="p">})</span>
+<p>The <code>get</code> method takes an options object. The object is matched against all records, and returns only those that match.</p>
+
+<pre class="highlight shell-always"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"car"</span><span class="p">).</span><span class="nx">get</span><span class="p">({})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
 </code></pre>
 
 <h2 id="register-users">Register Users</h2>
 
 <p>To register a user with a local account, no additional setup within the Stamplay editor is required.</p>
 
-<p>Use the <code class="prettyprint">signup</code> method on the the <code class="prettyprint">Stamplay.User</code> class, and pass in an object with at least an <code class="prettyprint">email</code> and <code class="prettyprint">password</code> property.</p>
-<pre class="highlight shell-always"><code>    <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">email</span> <span class="p">:</span> <span class="s2">"user@provider.com"</span><span class="p">,</span>
-        <span class="na">password</span> <span class="p">:</span> <span class="s2">"123123"</span>
-    <span class="p">}</span>
+<p>Use the <code>signup</code> method on the the <code>Stamplay.User</code> class, and pass in an object with at least an <code>email</code> and <code>password</code> property.</p>
 
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// error</span>
-    <span class="p">})</span>
+<pre class="highlight shell-always"><code>
+<span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">email</span> <span class="p">:</span> <span class="s2">"user@provider.com"</span><span class="p">,</span>
+  <span class="na">password</span> <span class="p">:</span> <span class="s2">"123123"</span>
+<span class="p">};</span>
+
+<span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// success</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// error</span>
+  <span class="p">})</span>
 </code></pre>
 
 <h2 id="login-users">Login Users</h2>
 
-<p>To login a user to a local account, use the <code class="prettyprint">login</code> method on the <code class="prettyprint">Stamplay.User</code> class.</p>
-<pre class="highlight shell-always"><code>    <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">email</span> <span class="p">:</span> <span class="s2">"user@provider.com"</span><span class="p">,</span>
-        <span class="na">password</span> <span class="p">:</span> <span class="s2">"123123"</span>
-    <span class="p">}</span>
+<p>To login a user to a local account, use the <code>login</code> method on the <code>Stamplay.User</code> class.</p>
 
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// error</span>
-    <span class="p">})</span>
+<pre class="highlight shell-always"><code><span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">email</span> <span class="p">:</span> <span class="s2">"user@provider.com"</span><span class="p">,</span>
+  <span class="na">password</span> <span class="p">:</span> <span class="s2">"123123"</span>
+<span class="p">}</span>
+
+<span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// success</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// error</span>
+  <span class="p">})</span>
 </code></pre>
 
 <h2 id="deploy">Deploy</h2>
 
-<p>To deploy your application, run the <code class="prettyprint">deploy</code> command from the <code class="prettyprint">stamplay</code> CLI.</p>
-<pre class="highlight shell-always"><code>    <span class="nx">stamplay</span> <span class="nx">deploy</span>
+<p>To deploy your application, run the <code>deploy</code> command from the <code>stamplay</code> CLI.</p>
+
+<pre class="highlight shell-always"><code>  <span class="nx">stamplay</span> <span class="nx">deploy</span>
 </code></pre>
 
 <p>After deployment is finished, your application will be live at <a href="[YOUR APP ID].stamplayapp.com">[YOUR APP ID].stamplayapp.com</a>.</p>
