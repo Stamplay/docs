@@ -21,81 +21,81 @@ A local authentication flow for login and signups is baked in to every Stamplay 
 
 ### Signup
 
-```shell
-	curl -X "POST" "https://APP-ID.stamplayapp.com/api/user/v1/users" \
-		-H "Content-Type: application/json" \
-		-d "{\"email\":\"user@stamplay.com\",\"password\":\"my_password\"}"
-```
+~~~ shell
+  curl -X "POST" "https://APP-ID.stamplayapp.com/api/user/v1/users" \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"user@stamplay.com\",\"password\":\"my_password\"}"
+~~~ 
 
-```javascript
-	var credentials = {
-		email : "user@stamplay.com",
-		password : "my_password"
-	}
+~~~ javascript
+  var credentials = {
+    email : "user@stamplay.com",
+    password : "my_password"
+  }
 
-	Stamplay.User.signup(credentials)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error	
-		})
-```
+  Stamplay.User.signup(credentials)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error  
+    })
+~~~ 
 
-```nodejs
-	var credentials = {
-		email : "user@stamplay.com",
-		password : "my_password"
-	}
+~~~ nodejs
+  var credentials = {
+    email : "user@stamplay.com",
+    password : "my_password"
+  }
 
-	Stamplay.User.save(credentials, function(err, res) {
-		// response
-	})
-```
+  Stamplay.User.save(credentials, function(err, res) {
+    // response
+  })
+~~~ 
 
 To signup or add a user for a local account, send an `email` and` password` as object in the body of the request to Stamplay, with any additional data to save to the new user record.
 
 ### Login
 
-```shell
-	curl -X "POST" "https://APP-ID.stamplayapp.com/auth/v1/local/login" \
-		-H "Content-Type: application/json" \
-		-d "{\"email\":\"user@stamplay.com\",\"password\":\"my_password\"}"
-```
+~~~ shell
+  curl -X "POST" "https://APP-ID.stamplayapp.com/auth/v1/local/login" \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"user@stamplay.com\",\"password\":\"my_password\"}"
+~~~ 
 
-```javascript
-	var credentials = {
-		email : "user@stamplay.com",
-		password : "my_password"
-	}
+~~~ javascript
+  var credentials = {
+    email : "user@stamplay.com",
+    password : "my_password"
+  }
 
-	Stamplay.User.login(credentials)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error	
-		})
-```
+  Stamplay.User.login(credentials)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error  
+    })
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 To authenticate a user's credentials for a local account, send an `email` and `password` as an object in the body of the request to Stamplay.
 
 ## Social Authentication
 
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/{provider}/connect"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/{provider}/connect"
+~~~ 
 
-```javascript
-	Stamplay.User.login("provider")
-```
+~~~ javascript
+  Stamplay.User.login("provider")
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.
 
@@ -105,17 +105,17 @@ To Do
 
 ### Facebook
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/facebook/connect"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/facebook/connect"
+~~~ 
 
-```javascript
-	Stamplay.User.login("facebook")
-```
+~~~ javascript
+  Stamplay.User.login("facebook")
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 ---
 
@@ -123,35 +123,35 @@ To Do
 
 1.1. Go to Facebook developers.
 
-	**1.2.** In the upper right corner, click on **Add a New App**.
+  **1.2.** In the upper right corner, click on **Add a New App**.
 
-	**1.3.** Choose the type of app you want to create.
+  **1.3.** Choose the type of app you want to create.
 
-	**1.4.** Name your Facebook App and select **Create Facebook App Id**.
+  **1.4.** Name your Facebook App and select **Create Facebook App Id**.
 
-	**1.5.** Skip the Quick Start by clicking on the button in the upper right corner.
+  **1.5.** Skip the Quick Start by clicking on the button in the upper right corner.
 
 ---
 
 **Configure the Facebook App Settings**
 
-	**2.1.** Click on **Settings** in the left menu.
+  **2.1.** Click on **Settings** in the left menu.
 
-	**2.2.** Click on **+ Add Platform**.
+  **2.2.** Click on **+ Add Platform**.
 
-	**2.3.** Fill the **Site Url** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.3.** Fill the **Site Url** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
-	**2.4.** From the **Settings** view click on the **Advanced** tab and type in the **OAuth Redirect URIs** the following: [https://[APP-ID].stamplayapp.com/auth/v1/facebook/callback](https://[APP-ID].stamplayapp.com/auth/v1/facebook/callback) and [https://localhost:8080/auth/v1/facebook/callback](https://localhost:8080/auth/v1/facebook/callback) so that you can also test the signup flow locally when using Stamplay Command Line.
+  **2.4.** From the **Settings** view click on the **Advanced** tab and type in the **OAuth Redirect URIs** the following: [https://[APP-ID].stamplayapp.com/auth/v1/facebook/callback](https://[APP-ID].stamplayapp.com/auth/v1/facebook/callback) and [https://localhost:8080/auth/v1/facebook/callback](https://localhost:8080/auth/v1/facebook/callback) so that you can also test the signup flow locally when using Stamplay Command Line.
  
  ---
 
 **Add the Facebook Integration to Stamplay**
 
-	**3.1.** Copy the `App Id` and `App Secret` from the Facebook App and add the values to the corresponding field inside the Stamplay editor in the **Users** - **Authentication** section.
-	
-	**3.2.** To test the social login integration, copy and paste this link with your `APP ID` into a browser: [https://[APP-ID].stamplayapp.com/auth/v1/facebook/connect](https://[APP-ID].stamplayapp.com/auth/v1/facebook/connect). After connecting your account, check the **DATA** section to inspect the new User record created.
-	
-	**3.3.** The steps covered in this guide are not enough to have a Facebook app approved for production. You need to provide other information and submit the app for review; the process can take many days to complete. Refer to Facebook documentation for more information.
+  **3.1.** Copy the `App Id` and `App Secret` from the Facebook App and add the values to the corresponding field inside the Stamplay editor in the **Users** - **Authentication** section.
+  
+  **3.2.** To test the social login integration, copy and paste this link with your `APP ID` into a browser: [https://[APP-ID].stamplayapp.com/auth/v1/facebook/connect](https://[APP-ID].stamplayapp.com/auth/v1/facebook/connect). After connecting your account, check the **DATA** section to inspect the new User record created.
+  
+  **3.3.** The steps covered in this guide are not enough to have a Facebook app approved for production. You need to provide other information and submit the app for review; the process can take many days to complete. Refer to Facebook documentation for more information.
 
 Stamplay asks for the following permissions:
 
@@ -163,52 +163,52 @@ We store data from `public_profile` and `email`. Refer to the Facebook documenta
 
 ### Google+
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/google/connect"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/google/connect"
+~~~ 
 
-```javascript
-	Stamplay.User.login("google")
-```
+~~~ javascript
+  Stamplay.User.login("google")
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 ---
 
 **Create a Google Client Id**
 
-	**1.1.** Go to [https://code.google.com/apis/console](https://code.google.com/apis/console) and create an APIs project.
-	
-	**1.2.** Click on **Credentials** from the **API & Auth** section of the left menu.
-	
-	**1.3.** Click on **Create new Client Id** button.
+  **1.1.** Go to [https://code.google.com/apis/console](https://code.google.com/apis/console) and create an APIs project.
+  
+  **1.2.** Click on **Credentials** from the **API & Auth** section of the left menu.
+  
+  **1.3.** Click on **Create new Client Id** button.
 
 ---
 
 **Configure the Client ID**
 
-	**2.1.** Choose the type **Web application** and click on **Configure Consent Screen** button.
+  **2.1.** Choose the type **Web application** and click on **Configure Consent Screen** button.
 
-	**2.2.** Add the required information to the consent screen and save.
+  **2.2.** Add the required information to the consent screen and save.
 
-	**2.3.** Fill in the **Authorized Javascripts Origins** field with your Stamplay 
-	domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.3.** Fill in the **Authorized Javascripts Origins** field with your Stamplay 
+  domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
-	**2.4.** Fill in the **Authorized Redirect URIs** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/google/callback](https://[APP-ID].stamplayapp.com/auth/v1/google/callback).
+  **2.4.** Fill in the **Authorized Redirect URIs** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/google/callback](https://[APP-ID].stamplayapp.com/auth/v1/google/callback).
 
-	**2.5.** Click on **Create client ID**
+  **2.5.** Click on **Create client ID**
 
 ---
 
 **Add the Google+ Integration To Stamplay**
 
-	**3.1.** Copy the **Client Id** and **Client Secret** from the Google App and add the values to the Stamplay app.
+  **3.1.** Copy the **Client Id** and **Client Secret** from the Google App and add the values to the Stamplay app.
 
-	**3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/google/connect](https://[APP-ID].stamplayapp.com/auth/v1/google/connect).
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/google/connect](https://[APP-ID].stamplayapp.com/auth/v1/google/connect).
 
-	**3.3.** Then click on **Users** in the left menu of the Editor to browse the data fetched.
+  **3.3.** Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
 Stamplay asks for the following permissions:
 
@@ -219,43 +219,43 @@ Refer to the Google documentation for more information.
 
 ### Twitter
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/twitter/connect"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/twitter/connect"
+~~~ 
 
-```javascript
-	Stamplay.User.login("twitter")
-```
+~~~ javascript
+  Stamplay.User.login("twitter")
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 ---
 
 **Create a Twitter app**
-	
-	**1.1.** Go to [https://apps.twitter.com/app/new](https://apps.twitter.com/app/new) to create a new Twitter app.
+  
+  **1.1.** Go to [https://apps.twitter.com/app/new](https://apps.twitter.com/app/new) to create a new Twitter app.
 
 ---
 
 **Configure the app**
 
-	**2.1.** Fill in name and description.
-	
-	**2.2.** Fill in the Website field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
-	
-	**2.3.** Fill in the Authorized Redirect URIs field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/twitter/callback](https://[APP-ID].stamplayapp.com/auth/v1/twitter/callback). Create the Twitter application.
+  **2.1.** Fill in name and description.
+  
+  **2.2.** Fill in the Website field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  
+  **2.3.** Fill in the Authorized Redirect URIs field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/twitter/callback](https://[APP-ID].stamplayapp.com/auth/v1/twitter/callback). Create the Twitter application.
 
 ---
 
 **Add the Twitter Integration to Stamplay**
 
-	**3.1.** Click on the **Keys and Access Tokens** tab.
+  **3.1.** Click on the **Keys and Access Tokens** tab.
 
-	**3.2.** Copy the **Consumer Key** (API Key) and **Consumer Secret** (API Secret) from the Twitter app and add the values to the Stamplay app.
+  **3.2.** Copy the **Consumer Key** (API Key) and **Consumer Secret** (API Secret) from the Twitter app and add the values to the Stamplay app.
 
-	**3.3.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/twitter/connect](https://[APP-ID].stamplayapp.com/auth/v1/twitter/connect). Then click on **Users** in the left menu of the editor to browse the data fetched.
+  **3.3.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/twitter/connect](https://[APP-ID].stamplayapp.com/auth/v1/twitter/connect). Then click on **Users** in the left menu of the editor to browse the data fetched.
 
 Stamplay collects all profile data provided.
 
@@ -265,43 +265,43 @@ Please refer to the Twitter documentation for more information.
 
 ### Dropbox
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/dropbox/connect"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/dropbox/connect"
+~~~ 
 
-```javascript
-	Stamplay.User.login("dropbox")
-```
+~~~ javascript
+  Stamplay.User.login("dropbox")
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 ---
 
 **Create a Drop API App**
 
-	**1.1.** Go to [https://www.dropbox.com/developers/apps/create](https://www.dropbox.com/developers/apps/create).
+  **1.1.** Go to [https://www.dropbox.com/developers/apps/create](https://www.dropbox.com/developers/apps/create).
 
-	**1.2.** Create a Dropbox API app.
-	
-	**1.3.** Choose the values you prefer for the data type and file the app can access (these options are not relevant for login). Name your app.
+  **1.2.** Create a Dropbox API app.
+  
+  **1.3.** Choose the values you prefer for the data type and file the app can access (these options are not relevant for login). Name your app.
 
 ---
 
 **Configure The Dropbox App**
 
-	**2.1.** Fill in the **Redirect URIs** field in the **Oauth2** section with the following value: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.1.** Fill in the **Redirect URIs** field in the **Oauth2** section with the following value: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
 ---
 
 **Add the Dropbox Integration To Stamplay**
 
-	**3.1.** Copy the **App Key** and **App Secret** from the Dropbox app and add the values to the Stamplay app.
+  **3.1.** Copy the **App Key** and **App Secret** from the Dropbox app and add the values to the Stamplay app.
 
-	**3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/dropbox/connect](https://[APP-ID].stamplayapp.com/auth/v1/dropbox/connect). Then click on “Users” in the left menu of the Editor to browse the data fetched.
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/dropbox/connect](https://[APP-ID].stamplayapp.com/auth/v1/dropbox/connect). Then click on “Users” in the left menu of the Editor to browse the data fetched.
 
-	**3.3.** You have added Dropbox login to your Stamplay app, but be aware that you must provide Dropbox with a lot of other information to get their approval. Refer to the Dropbox documentation to learn how to have your Dropbox app approved for production. In the mean time, you can continue to develop and test the integration.
+  **3.3.** You have added Dropbox login to your Stamplay app, but be aware that you must provide Dropbox with a lot of other information to get their approval. Refer to the Dropbox documentation to learn how to have your Dropbox app approved for production. In the mean time, you can continue to develop and test the integration.
 
 Stamplay collects the following data from Dropbox:
 
@@ -311,43 +311,43 @@ Refer to the Dropbox documentation for more information.
 
 ### Linkedin
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/linkedin/connect"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/linkedin/connect"
+~~~ 
 
-```javascript
-	Stamplay.User.login("linkedin")
-```
+~~~ javascript
+  Stamplay.User.login("linkedin")
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 ---
 
 **Create a LinkedIn app**
 
-	**1.1.** Go to [https://www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer) and click on “Add a new application”.
+  **1.1.** Go to [https://www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer) and click on “Add a new application”.
 
 ---
 
 **Configure the app**
 
-	**2.1.** Fill in all the required data.
+  **2.1.** Fill in all the required data.
 
-	**2.2.** Fill in the OAuth **redirect_uri** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/linkedin/callback](https://[APP-ID].stamplayapp.com/auth/v1/linkedin/callback).
+  **2.2.** Fill in the OAuth **redirect_uri** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/linkedin/callback](https://[APP-ID].stamplayapp.com/auth/v1/linkedin/callback).
 
-	**2.3.** Click the “Add application” button.
+  **2.3.** Click the “Add application” button.
 
 ---
 
 **Add the LinkedIn Integration to Stamplay**
 
-	**3.1.** Copy the **API Key** and **Secret Key** from the LinkedIn app and add the values to the Stamplay app.
+  **3.1.** Copy the **API Key** and **Secret Key** from the LinkedIn app and add the values to the Stamplay app.
 
-	**3.2.** Click on the “End” button.
+  **3.2.** Click on the “End” button.
 
-	**3.3.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/linkedin/connect](https://[APP-ID].stamplayapp.com/auth/v1/linkedin/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+  **3.3.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/linkedin/connect](https://[APP-ID].stamplayapp.com/auth/v1/linkedin/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
 Stamplay asks for the following permissions:
 
@@ -361,45 +361,45 @@ Refer to the Linkedin documentation for more information.
 
 ### Instagram
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/instagram/connect"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/instagram/connect"
+~~~ 
 
-```javascript
-	Stamplay.User.login("instagram")
-```
+~~~ javascript
+  Stamplay.User.login("instagram")
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 ---
 
 **Create an Instagram App**
 
-	**1.1.** Go to [https://instagram.com/developer/clients/manage](https://instagram.com/developer/clients/manage).
+  **1.1.** Go to [https://instagram.com/developer/clients/manage](https://instagram.com/developer/clients/manage).
 
-	**1.2.** Click on **Manage Client** in the menu bar.
-	
-	**1.3.** Click on **Register a new Client ID**.
+  **1.2.** Click on **Manage Client** in the menu bar.
+  
+  **1.3.** Click on **Register a new Client ID**.
 
 ---
 
 **Configure the App**
 
-	**2.1.** Fill in the required fields.
+  **2.1.** Fill in the required fields.
 
-	**2.2.** Fill in the **Website** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
-	
-	**2.3.** Fill in the OAuth **redirect_uri** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/instagram/callback](https://[APP-ID].stamplayapp.com/auth/v1/instagram/callback).
+  **2.2.** Fill in the **Website** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  
+  **2.3.** Fill in the OAuth **redirect_uri** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/instagram/callback](https://[APP-ID].stamplayapp.com/auth/v1/instagram/callback).
 
 ---
 
 **Add the Instagram Integration to Stamplay**
 
-	**3.1.** Copy the **Client Id** and **Client Secret** from the Instagram client and add the values to the Stamplay app.
+  **3.1.** Copy the **Client Id** and **Client Secret** from the Instagram client and add the values to the Stamplay app.
 
-	**3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/instagram/connect](https://[APP-ID].stamplayapp.com/auth/v1/instagram/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/instagram/connect](https://[APP-ID].stamplayapp.com/auth/v1/instagram/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
 Stamplay asks for the following permissions:
 
@@ -411,45 +411,45 @@ Refer to the Instagram documentation for more information.
 
 ### Github
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/github/connect"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/github/connect"
+~~~ 
 
-```javascript
-	Stamplay.User.login("github")
-```
+~~~ javascript
+  Stamplay.User.login("github")
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 ---
 
 **Create a Github App**
 
-	**1.1.** Go to [https://github.com/settings/profile](https://github.com/settings/profile).
+  **1.1.** Go to [https://github.com/settings/profile](https://github.com/settings/profile).
 
-	**1.2** Click on **Applications** in the left menu.
+  **1.2** Click on **Applications** in the left menu.
 
-	**1.3.** Click on **Register new application** button.
+  **1.3.** Click on **Register new application** button.
 
 ---
 
 **Configure the app**
 
-	**2.1.** Fill in all the required fields.
+  **2.1.** Fill in all the required fields.
 
-	**2.2.** Fill in the **Homepage URL** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.2.** Fill in the **Homepage URL** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
-	**2.3.** Fill the **Authorization Callback URL** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/github/callback](https://[APP-ID].stamplayapp.com/auth/v1/github/callback).
+  **2.3.** Fill the **Authorization Callback URL** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/github/callback](https://[APP-ID].stamplayapp.com/auth/v1/github/callback).
 
 ---
 
 **Add the Github Integration to Stamplay**
 
-	**3.1.** Copy the **Client ID** and **Client Secret** from the Github app and add the values to the Stamplay app.
+  **3.1.** Copy the **Client ID** and **Client Secret** from the Github app and add the values to the Stamplay app.
 
-	**3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/github/connect](https://[APP-ID].stamplayapp.com/auth/v1/github/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/github/connect](https://[APP-ID].stamplayapp.com/auth/v1/github/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
 Stamplay requests access to public information. We store all public data.
 
@@ -457,41 +457,41 @@ Refer to the Github documentation for more information.
 
 ### Angellist
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/angellist/connect"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/angellist/connect"
+~~~ 
 
-```javascript
-	Stamplay.User.login("angellist")
-```
+~~~ javascript
+  Stamplay.User.login("angellist")
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 ---
 
 **Create an Angel List App**
 
-	**1.1.** Go to [https://angel.co/api/oauth/clients](https://angel.co/api/oauth/clients).
+  **1.1.** Go to [https://angel.co/api/oauth/clients](https://angel.co/api/oauth/clients).
 
 ---
 
 **Configure the App**
 
-	**2.1.** Name your app.
+  **2.1.** Name your app.
 
-	**2.2.** Fill in the **Main URL** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.2.** Fill in the **Main URL** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
-	**2.3.** Fill in the field Callback URL with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/angellist/callback](https://[APP-ID].stamplayapp.com/auth/v1/angellist/callback).
+  **2.3.** Fill in the field Callback URL with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/angellist/callback](https://[APP-ID].stamplayapp.com/auth/v1/angellist/callback).
 
 ---
 
 **Add the Angellist Integration to Stamplay**
 
-	**3.1.** Angel List will send you an email with the **Client ID** and **Client Secret**. Add these values to the Stamplay app.
+  **3.1.** Angel List will send you an email with the **Client ID** and **Client Secret**. Add these values to the Stamplay app.
 
-	**3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/angellist/connect](https://[APP-ID].stamplayapp.com/auth/v1/angellist/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/angellist/connect](https://[APP-ID].stamplayapp.com/auth/v1/angellist/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
 Stamplay requests permission to access the following:
 
@@ -504,14 +504,14 @@ Refer to the Angel List documentation for more information.
 
 ## Sessions
 
-```shell-always
-	
-	"Authorization" : "Basic c3RhbXBsYXlrYjo5MTRhMmUzMaMwZWRlMDdmZThhNjYzMzkxMWQyYWQyOTNkNjJkNTQ3OGFiYmViNjEyNzhhYjFjYzE2MDhiZaRi"
-```
+~~~ shell-always
+  
+  "Authorization" : "Basic c3RhbXBsYXlrYjo5MTRhMmUzMaMwZWRlMDdmZThhNjYzMzkxMWQyYWQyOTNkNjJkNTQ3OGFiYmViNjEyNzhhYjFjYzE2MDhiZaRi"
+~~~ 
 
-```shell-always
-	"x-stamplay-jwt" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"
-```
+~~~ shell-always
+  "x-stamplay-jwt" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"
+~~~ 
 
 A session represents an instance of a user logged into a device within a Stamplay application. A session is automatically created when users log in or sign up.
 
@@ -545,19 +545,19 @@ For further detail, view the [Roles documetation](#roles).
 
 ## Logging Out
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/logout" \
-	-H "x-stamplay-jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/logout" \
+  -H "x-stamplay-jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"
 
-```
+~~~ 
 
-```javascript
-	Stamplay.User.logout();
-```
+~~~ javascript
+  Stamplay.User.logout();
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 To logout, and end a user session, send a request to the logout endpoint. The `x-stamplay-jwt` header must be included otherwise the session will not be ended.
 
@@ -569,104 +569,104 @@ Retrieve an individual user, all users, or the current session user, or any user
 
 ### Current User
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/getstatus" \
-	-H "x-stamplay-jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/getstatus" \
+  -H "x-stamplay-jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"
+~~~ 
 
-```javascript
-	Stamplay.User.current()
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.User.current()
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 To fetch the user that is currently logged in, send a request to the `getStatus` endpoint, on the user API resource.
 
 ### Individual User
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"
+~~~ 
 
-```javascript
-	Stamplay.User.get({ _id : "user_id" })
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.User.get({ _id : "user_id" })
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	Stamplay.User.get({ _id : "user_id" }, function(err, res) {
-		// success
-	})
-```
+~~~ nodejs
+  Stamplay.User.get({ _id : "user_id" }, function(err, res) {
+    // success
+  })
+~~~ 
 
 To fetch an single user, send the `_id` of the user to fetch in the request body to the user API resource.
 
 ### All Users
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users"
+~~~ 
 
-```javascript
-	Stamplay.User.get({})
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.User.get({})
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	Stamplay.User.get({}, function(err, res) {
-		// success
-	})
-```
+~~~ nodejs
+  Stamplay.User.get({}, function(err, res) {
+    // success
+  })
+~~~ 
 
 To retrieve all users, send a request without any parameters to match in the body, to the user API resource.
 
 ### Query Users
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users" \
-	-H "Content-Type: application/json" \
-	-d "{\"name\":\"John\",\"age\":\"30\"}"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users" \
+  -H "Content-Type: application/json" \
+  -d "{\"name\":\"John\",\"age\":\"30\"}"
+~~~ 
 
-```javascript
-	var query = {
-		name : "John",
-		age : 30
-	}
+~~~ javascript
+  var query = {
+    name : "John",
+    age : 30
+  }
 
-	Stamplay.User.get(query)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.User.get(query)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	var query = {
-		name : "John",
-		age : 30
-	}
+~~~ nodejs
+  var query = {
+    name : "John",
+    age : 30
+  }
 
-	Stamplay.User.get(query, function(err, res) {
-		// success
-	})
-```
+  Stamplay.User.get(query, function(err, res) {
+    // success
+  })
+~~~ 
 
 To retrieve all users that match a certain set of parameters, send a request with any parameters to match in the body, to the user API resource.
 
@@ -676,99 +676,99 @@ To update a user record partially, or completely overwrite the existing record.
 
 ### Partial User Update
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}" \
-	-H "Content-Type: application/json" \
-	-d "{\"name\":\"John\",\"age\":\"30\"}"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}" \
+  -H "Content-Type: application/json" \
+  -d "{\"name\":\"John\",\"age\":\"30\"}"
+~~~ 
 
-```javascript
-	var updatedInfo = {
-		name : "John",
-		age : 30
-	}
+~~~ javascript
+  var updatedInfo = {
+    name : "John",
+    age : 30
+  }
 
-	Stamplay.User.get("user_id", updatedInfo)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.User.get("user_id", updatedInfo)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	var updatedInfo = {
-		name : "John",
-		age : 30
-	}
+~~~ nodejs
+  var updatedInfo = {
+    name : "John",
+    age : 30
+  }
 
-	Stamplay.User.get("user_id", updatedInfo, function(err, res) {
-		// success
-	})
-```
+  Stamplay.User.get("user_id", updatedInfo, function(err, res) {
+    // success
+  })
+~~~ 
 
 To partially update a User record, send a `PATCH` request with an properties to update in the request body, to the User API resource with the `_id` of the user to update.
 
 ### Complete User Update
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users" \
-	-H "Content-Type: application/json" \
-	-d "{\"name\":\"John\",\"address\":\"111 Market St. San Francisco, CA\",\"age\":\"30\",\"_id\":\"56fb116e5ab65a4446dd3b2d\"}"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users" \
+  -H "Content-Type: application/json" \
+  -d "{\"name\":\"John\",\"address\":\"111 Market St. San Francisco, CA\",\"age\":\"30\",\"_id\":\"56fb116e5ab65a4446dd3b2d\"}"
+~~~ 
 
-```javascript
-	var user = {
-		_id : "56fb116e5ab65a4446dd3b2d",
-		address : "111 Market St. San Francisco, CA"
-		name : "John",
-		age : 30
-	}
+~~~ javascript
+  var user = {
+    _id : "56fb116e5ab65a4446dd3b2d",
+    address : "111 Market St. San Francisco, CA"
+    name : "John",
+    age : 30
+  }
 
-	Stamplay.User.get(user._id, updatedInfo)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.User.get(user._id, updatedInfo)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	var user = {
-		_id : "56fb116e5ab65a4446dd3b2d",
-		address : "111 Market St. San Francisco, CA"
-		name : "John",
-		age : 30
-	}
+~~~ nodejs
+  var user = {
+    _id : "56fb116e5ab65a4446dd3b2d",
+    address : "111 Market St. San Francisco, CA"
+    name : "John",
+    age : 30
+  }
 
-	Stamplay.User.get(user._id, updatedInfo, function(err, res) {
-		// success
-	})
-```
+  Stamplay.User.get(user._id, updatedInfo, function(err, res) {
+    // success
+  })
+~~~ 
 To completely update a user record, send a `PUT` request with a complete representation of the data to overwrite the existing record with.
 
 Include this representation in the request body, in the request to the User API resource with the `_id` of the user to update.
 
 ## Remove User
 
-```shell
-	curl -X "DELETE" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"
-```
+~~~ shell
+  curl -X "DELETE" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"
+~~~ 
 
-```javascript
-	Stamplay.User.remove("user_id")
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.User.remove("user_id")
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	Stamplay.User.remove("user_id", function(err, res) {
-		// success
-	})
-```
+~~~ nodejs
+  Stamplay.User.remove("user_id", function(err, res) {
+    // success
+  })
+~~~ 
 
 To remove a user record from the database, send a `DELETE` request to the user resource with the user `_id` to the User API resource.
 
@@ -776,11 +776,11 @@ To remove a user record from the database, send a `DELETE` request to the user r
 <!-- ## Activity -->
 
 <!-- 
-	Return the activities that user with the specified userId has done. Each activity is composed by a triple:
+  Return the activities that user with the specified userId has done. Each activity is composed by a triple:
 
-	activity: the name of the activity
-	actor: the entity that has done the activity
-	target: the entity on which the activity is done
+  activity: the name of the activity
+  actor: the entity that has done the activity
+  target: the entity on which the activity is done
  -->
 
 <!-- ## Follower System

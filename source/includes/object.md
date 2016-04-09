@@ -1,4 +1,5 @@
 # Objects
+
 ## Schemas
 
 Schemas are defined data structures that enfore type validation.
@@ -14,42 +15,42 @@ There are 3 properties that are included by default:
 * `owner` - The `_id` of the user who created this object.
 
 <aside class="warning">
-	The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
+  The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
 </aside>
 
 ## Data Types
 
 The types and formats of each field type is listed below:
 
-```json
+~~~ json
 
-	// Schema property equals type
-	// Property value equals valid type
+  // Schema property equals type
+  // Property value equals valid type
 
 {
-	"boolean" : true,
-	"string" : "Hello World",
-	"number" : 45,
-	"float" : 3.14,
-	"plain_object" : {
-		"prop_one" : "GoodBye World",
-		"prop_two" : 1200
-	},
-	"array_number" : [23, 76, 345],
-	"array_string" : ["Hello", "World"],
-	"date" : "2016-03-10T14:51:28.625Z",
-	"file" : "https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png",
-	"_geolocation" : {
-		"type" : "Point",
-		"coordinates ": [
-			12.4608,
-			41.9015
-		]
-	},
-	"object_relation_array" : [ "562c45af4c0f20367d7ca4be", "562ec06e77589e2e0f86c207"],
-	"user_relation_string" : "562bb24e007983c67c8ee9df"
-}	
-```
+  "boolean" : true,
+  "string" : "Hello World",
+  "number" : 45,
+  "float" : 3.14,
+  "plain_object" : {
+    "prop_one" : "GoodBye World",
+    "prop_two" : 1200
+  },
+  "array_number" : [23, 76, 345],
+  "array_string" : ["Hello", "World"],
+  "date" : "2016-03-10T14:51:28.625Z",
+  "file" : "https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_file-upload.png",
+  "_geolocation" : {
+    "type" : "Point",
+    "coordinates ": [
+      12.4608,
+      41.9015
+    ]
+  },
+  "object_relation_array" : [ "562c45af4c0f20367d7ca4be", "562ec06e77589e2e0f86c207"],
+  "user_relation_string" : "562bb24e007983c67c8ee9df"
+}  
+~~~ 
 
 | Type                    | Summary                                                 |
 |-------------------------|---------------------------------------------------------|
@@ -72,135 +73,135 @@ The types and formats of each field type is listed below:
 
 [![Schema Overview](/images/schema-overview.png)](/images/schema-overview.png)
 
-```json
+~~~ json
 // Example Object From Restaurant Schema
 
 {
-	"owner" : "4df62bb24e007983c67c8ee9",
-	"name" : "Hello World",
-	"employee_count" : 12,
-	"average_price" : 9.75,
-	"hours" : {
-		"Monday_Friday" : "10:00am - 6:00pm",
-		"Saturday" : "8:00am - 8:00pm",
-		"Sunday" : "10:00am - 4:00pm"
-	},
-	"ratings" : [4, 3, 4, 5, 1],
-	"cuisine_types" : ["Mediterranean", "Italian"],
-	"vegan_options" : true,
-	"menu" : "https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_men.png",
-	"_geolocation" : {
-		"type" : "Point",
-		"coordinates ": [
-			12.4608,
-			41.9015
-		]
-	},
-	"supply_vendors" : [ "562c45af4c0f20367d7ca4be", "562ec06e77589e2e0f86c207"],
-	"manager" : "562bb24e007983c67c8ee9df",
-	"dt_opened" : "2014-05-15T14:51:28.625Z",
-	"dt_create" : "2014-03-04T12:56:08.625Z",
-	"dt_update" : "2016-01-23T02:05:58.625Z"
+  "owner" : "4df62bb24e007983c67c8ee9",
+  "name" : "Hello World",
+  "employee_count" : 12,
+  "average_price" : 9.75,
+  "hours" : {
+    "Monday_Friday" : "10:00am - 6:00pm",
+    "Saturday" : "8:00am - 8:00pm",
+    "Sunday" : "10:00am - 4:00pm"
+  },
+  "ratings" : [4, 3, 4, 5, 1],
+  "cuisine_types" : ["Mediterranean", "Italian"],
+  "vegan_options" : true,
+  "menu" : "https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_men.png",
+  "_geolocation" : {
+    "type" : "Point",
+    "coordinates ": [
+      12.4608,
+      41.9015
+    ]
+  },
+  "supply_vendors" : [ "562c45af4c0f20367d7ca4be", "562ec06e77589e2e0f86c207"],
+  "manager" : "562bb24e007983c67c8ee9df",
+  "dt_opened" : "2014-05-15T14:51:28.625Z",
+  "dt_create" : "2014-03-04T12:56:08.625Z",
+  "dt_update" : "2016-01-23T02:05:58.625Z"
 }
-```
+~~~ 
 
 ### Boolean
 
-```javascript-always
-	{
-		_id: "56cf08e362641ca813b1ae6c",
-		verified : true
-	}
-```
+~~~ javascript-always
+  {
+    _id: "56cf08e362641ca813b1ae6c",
+    verified : true
+  }
+~~~ 
 
 A **Boolean** type is a `true` or `false` value.
 
 ### String
 
-```javascript-always
-	{
-		_id: "56cf08e362641ca813b1ae6c",
-		name : "John"
-	}
-```
+~~~ javascript-always
+  {
+    _id: "56cf08e362641ca813b1ae6c",
+    name : "John"
+  }
+~~~ 
 
 A **String** type is a series of characters enclosed by single, or double quotes.
 
 ### Number
 
-```javascript-always
-	{
-		_id: "56cf08e362641ca813b1ae6c",
-		age : 29
-	}
-```
+~~~ javascript-always
+  {
+    _id: "56cf08e362641ca813b1ae6c",
+    age : 29
+  }
+~~~ 
 
 A **Number** type is an integer value type without a period or exponent notation.
 
 ### Float
 
-```javascript-always
-	{
-		_id: "56cf08e362641ca813b1ae6c",
-		pie : 3.14
-	}
-```
+~~~ javascript-always
+  {
+    _id: "56cf08e362641ca813b1ae6c",
+    pie : 3.14
+  }
+~~~ 
 
 A **Float** type is an integer value type with a period or exponent notation.
 
 ### Plain Object
 
-```javascript-always
-	{
-	  _id: "56cf08e362641ca813b1ae6c",
-	  car : {
-	    color : "blue",
-	    year : 2014,
-	    automatic : false
-	  }
-	}
-```
+~~~ javascript-always
+  {
+    _id: "56cf08e362641ca813b1ae6c",
+    car : {
+      color : "blue",
+      year : 2014,
+      automatic : false
+    }
+  }
+~~~ 
 
 A **Plain Object** type is a plain javascript object. The property `car` is a plain object type in the example.
 
 ### Array - Number
 
-```javascript-always
-	{
-		_id: "56cf08e362641ca813b1ae6c",
-		colors : [12, 43, 235, 66]
-	}
-```
+~~~ javascript-always
+  {
+    _id: "56cf08e362641ca813b1ae6c",
+    colors : [12, 43, 235, 66]
+  }
+~~~ 
 
 An **Array** of **Number** value types:
 
 ### Array - String
 
-```javascript-always
-	{
-		_id: "56cf08e362641ca813b1ae6c",
-		colors : ["yellow", "green", "blue", "red"]
-	}
-```
+~~~ javascript-always
+  {
+    _id: "56cf08e362641ca813b1ae6c",
+    colors : ["yellow", "green", "blue", "red"]
+  }
+~~~ 
 
 An **Array** of **String** value types:
 
 ### Date
 
-```javascript-always
+~~~ javascript-always
     {
       _id : "56cf08e362641ca813b1ae6c",
       start_date : "2016-03-10T14:51:28.625Z"
     }
-```
+~~~ 
         
 
-```javascript-always
-	{
+~~~ javascript-always
+  {
       _id : "56cf08e362641ca813b1ae6c",
       end_date : "Thu, 10 Mar 2016 14:51:43 GMT"
     }
-``` 
+~~~  
 
 A **Date** type is a date string in either the [ISO 8601](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) format, or [RFC-1123](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toUTCString) format.
 
@@ -211,12 +212,12 @@ The property `end_date` is a Date type in **RFC-1123** format in the last exampl
 
 ### File
 
-```javascript-always
-	{
-		_id : "56cf08e362641ca813b1ae6c",
-		profile_image : "https://[APPID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"
-	}
-```
+~~~ javascript-always
+  {
+    _id : "56cf08e362641ca813b1ae6c",
+    profile_image : "https://[APPID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"
+  }
+~~~ 
 
 A **File** type is a file upload. Any kind of file is accepted. When a file is uploaded, and saved, the property will be a link to the file upload location.
 
@@ -226,18 +227,18 @@ The `profile_image` is an example of a **File** type in the example.
 
 ### Geolocation
 
-```javascript-always
-	{
-		_id: "56cf08e362641ca813b1ae6c",
-		_geolocation : {
-			type: "Point",
-			coordinates: [
-				12.4608,
-				41.9015
-			]
-		}
-	}
-```
+~~~ javascript-always
+  {
+    _id: "56cf08e362641ca813b1ae6c",
+    _geolocation : {
+      type: "Point",
+      coordinates: [
+        12.4608,
+        41.9015
+      ]
+    }
+  }
+~~~ 
 
 A **Geolocation** type is stored as **GeoJSON** object with this coordinate-axis order: `longitude`, `latitude`.
 
@@ -258,12 +259,12 @@ To make this easier if you want to create a Point you're allowed to send an arra
 
 ### Object Relation
 
-```javascript-always
-	{
-		_id : "56cf08e362641ca813b1ae6c",
-		solutions : ["6c641c8a81e3625f03b1ae6c", "3b1ae6c8a81e3625f06c641c", "825f06c641c3ba81e361ae6c", "f06c641c3b8a81e3625ae6c"]
-	}
-```
+~~~ javascript-always
+  {
+    _id : "56cf08e362641ca813b1ae6c",
+    solutions : ["6c641c8a81e3625f03b1ae6c", "3b1ae6c8a81e3625f06c641c", "825f06c641c3ba81e361ae6c", "f06c641c3b8a81e3625ae6c"]
+  }
+~~~ 
 
 A **Object Relation** is set of pointers to another object.
 
@@ -273,12 +274,12 @@ The `solutions` property is an example of a **Object Relation** type in the exam
 
 ### User Relation
 
-```javascript-always
-	{
-		_id : "56cf08e362641ca813b1ae6c",
-		author : "8a81e3625f06c641c3b1ae6c"
-	}
-```
+~~~ javascript-always
+  {
+    _id : "56cf08e362641ca813b1ae6c",
+    author : "8a81e3625f06c641c3b1ae6c"
+  }
+~~~ 
 
 A **User Relation** is a pointer to a user object represented by an `_id` of a user. This field can be populated. The `author` property is an example of a `User Relation` in the example.
 
@@ -301,42 +302,42 @@ We’ve identified some commonly used permission patterns (we refer to them as "
 If the predefined security policies are not flexible enough for your app and you have created your own user roles, you can choose to use role-based security. The settings specify whether a role is allowed to create, read, update or delete items.
 
 ## Create
-```shell
-	curl -X "POST" "https://APPID.stamplayapp.com/api/cobject/v1/object" \
-		-H "Content-Type: application/json" \
-		-d "{\"title\":\"\\\"Hello World\\\"\",\"year\":\"2016\"}"
-```
+~~~ shell
+  curl -X "POST" "https://APPID.stamplayapp.com/api/cobject/v1/object" \
+    -H "Content-Type: application/json" \
+    -d "{\"title\":\"\\\"Hello World\\\"\",\"year\":\"2016\"}"
+~~~ 
 
-```javascript
-	var data = {
-		title : "Hello World",
-		year : 2016
-	}
+~~~ javascript
+  var data = {
+    title : "Hello World",
+    year : 2016
+  }
 
-	Stamplay.Object("movie").save(data)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
+  Stamplay.Object("movie").save(data)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
 
-```
+~~~ 
 
-```nodejs
-	var data = {
-		title : "Hello World",
-		year : 2016
-	}
+~~~ nodejs
+  var data = {
+    title : "Hello World",
+    year : 2016
+  }
 
-	Stamplay.Object("movie").save(data, function(err, res) {
-			// response
-	})
-```
+  Stamplay.Object("movie").save(data, function(err, res) {
+      // response
+  })
+~~~ 
 
 To create new object data for a particular model, send the data in the body of a`POST` request to the Object resource, specifying the object type in the URI.
 
 <aside class="notice">
-	The data sent in the request body must validate against the schema defined for the particular object resource being saved.
+  The data sent in the request body must validate against the schema defined for the particular object resource being saved.
 </aside>
 
 ## Fetch Objects
@@ -345,24 +346,24 @@ Retrieve an individual object, all objects, or any matching specific criteria of
 
 ### Individual Object
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"
+~~~ 
 
-```javascript
-	Stamplay.Object("movie").get({ _id : "object_id"})
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.Object("movie").get({ _id : "object_id"})
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	Stamplay.Object("movie").get({ _id : "object_id"}, function(err, res) {
-			// response
-	})
-```
+~~~ nodejs
+  Stamplay.Object("movie").get({ _id : "object_id"}, function(err, res) {
+      // response
+  })
+~~~ 
 
 To fetch a single object, send a `GET` request to the Object resource with the object's `_id` in the URI.
 
@@ -371,24 +372,24 @@ The object type for the example is `movie`.
 
 ### All Objects
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie"
+~~~ 
 
-```javascript
-	Stamplay.Object("movie").get({})
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.Object("movie").get({})
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	Stamplay.Object("movie").get({}, function(err, res) {
-			// response
-	})
-```
+~~~ nodejs
+  Stamplay.Object("movie").get({}, function(err, res) {
+      // response
+  })
+~~~ 
 
 To fetch all objects, send a `GET` request to the Object resource.
 
@@ -396,34 +397,34 @@ The object type for the example is `movie`.
 
 ### Query Objects
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie?title=Hello%20World&year=1998"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie?title=Hello%20World&year=1998"
+~~~ 
 
-```javascript
-	var query = {
-		title : "Hello World",
-		year : 1998
-	}
+~~~ javascript
+  var query = {
+    title : "Hello World",
+    year : 1998
+  }
 
-	Stamplay.Object("movie").get(query)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.Object("movie").get(query)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	var query = {
-		title : "Hello World",
-		year : 1998
-	}
+~~~ nodejs
+  var query = {
+    title : "Hello World",
+    year : 1998
+  }
 
-	Stamplay.Object("movie").get(query, function(err, res) {
-			// response
-	})
-```
+  Stamplay.Object("movie").get(query, function(err, res) {
+      // response
+  })
+~~~ 
 
 To fetch all objects that match a certain parameters, send a `GET` request to the Object resource with any parameters to match in the request body.
 
@@ -431,26 +432,26 @@ The object type for the example is `movie`.
 
 ### Find By Current User
 
-```shell
-	curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/{attributes}"
-```
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/{attributes}"
+~~~ 
 
-```javascript
-	var attrs = ["owner", "contributor"];
+~~~ javascript
+  var attrs = ["owner", "contributor"];
 
-	// default attribute is owner is no arguments are passed to method
+  // default attribute is owner is no arguments are passed to method
 
-	Stamplay.Object("movie").findByCurrentUser(attrs)
-		.then(function(res) {
-			// Success
-		}, function(err) {
-			// Error
-		}))
-```
+  Stamplay.Object("movie").findByCurrentUser(attrs)
+    .then(function(res) {
+      // Success
+    }, function(err) {
+      // Error
+    }))
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 To find all objects with attributes that match the current user's `_id`. Specify the attributes to match against with a comma delimited list.
 
@@ -465,34 +466,34 @@ To update an object record partially, or completely overwrite the existing recor
 
 ### Partial Update
 
-```shell
-	curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
-		-H "Content-Type: application/json" \
-		-d "{\"title\":\"Goodbye World\"}"
-```
+~~~ shell
+  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+    -H "Content-Type: application/json" \
+    -d "{\"title\":\"Goodbye World\"}"
+~~~ 
 
-```javascript
-	var data = {
-		"title" : "Goodbye World"
-	}
+~~~ javascript
+  var data = {
+    "title" : "Goodbye World"
+  }
 
-	Stamplay.Object("movie").patch("object_id", data)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.Object("movie").patch("object_id", data)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	var data = {
-		"title" : "Goodbye World"
-	}
+~~~ nodejs
+  var data = {
+    "title" : "Goodbye World"
+  }
 
-	Stamplay.Object("movie").patch("object_id", data, function(err, res) {
-		// response
-	})
-```
+  Stamplay.Object("movie").patch("object_id", data, function(err, res) {
+    // response
+  })
+~~~ 
 
 To make a partial update to an object record, perform a `PATCH` request to the Object API resource with any fields to update on the stored record in the request body.
 
@@ -500,34 +501,34 @@ The object type for the example is `movie`.
 
 ### Complete Update
 
-```shell
-	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
-		-H "Content-Type: application/json" \
-		-d "{\"title\":\"Goodbye World\",\"year\":\"2001\"}"
-```
+~~~ shell
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+    -H "Content-Type: application/json" \
+    -d "{\"title\":\"Goodbye World\",\"year\":\"2001\"}"
+~~~ 
 
-```javascript
-	var data = {
-		"title" : "Goodbye World"
-	}
+~~~ javascript
+  var data = {
+    "title" : "Goodbye World"
+  }
 
-	Stamplay.Object("movie").update("object_id", data)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.Object("movie").update("object_id", data)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	var data = {
-		"title" : "Goodbye World"
-	}
+~~~ nodejs
+  var data = {
+    "title" : "Goodbye World"
+  }
 
-	Stamplay.Object("movie").update("object_id", data, function(err, res) {
-		// response
-	})
-```
+  Stamplay.Object("movie").update("object_id", data, function(err, res) {
+    // response
+  })
+~~~ 
 
 To over write an object record, perform a `PUT` request to the Object API resource with a complete represenation to write over the stored record in the request body.
 
@@ -535,32 +536,32 @@ To over write an object record, perform a `PUT` request to the Object API resour
 
 To remove an object record, send a `DELETE` request with the `_id` of the record to remove in the Object API resource URI.
 
-```shell
-	curl -X "DELETE" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"
-```
+~~~ shell
+  curl -X "DELETE" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"
+~~~ 
 
-```javascript
-	var data = {
-		"title" : "Goodbye World"
-	}
+~~~ javascript
+  var data = {
+    "title" : "Goodbye World"
+  }
 
-	Stamplay.Object("movie").remove("object_id")
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.Object("movie").remove("object_id")
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	var data = {
-		"title" : "Goodbye World"
-	}
+~~~ nodejs
+  var data = {
+    "title" : "Goodbye World"
+  }
 
-	Stamplay.Object("movie").remove("object_id", function(err, res) {
-		// response
-	})
-```
+  Stamplay.Object("movie").remove("object_id", function(err, res) {
+    // response
+  })
+~~~ 
 
 ## Relationships
 
@@ -568,26 +569,26 @@ Data relationships are pointers from one record to another.
 
 ### User Relationship
 
-```shell
-	curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
-		-H "Content-Type: application/json" \
-		-d "{\"director\":\"56cf08e362641ca813b1ae6c\"}"
-```
+~~~ shell
+  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+    -H "Content-Type: application/json" \
+    -d "{\"director\":\"56cf08e362641ca813b1ae6c\"}"
+~~~ 
 
-```javascript
-	Stamplay.Object("movie").patch("object_id", { director: "56cf08e362641ca813b1ae6c" })
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.Object("movie").patch("object_id", { director: "56cf08e362641ca813b1ae6c" })
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	Stamplay.Object("movie").patch("object_id", { director: "56cf08e362641ca813b1ae6c" }, function(err, res) {
-		// response
-	})
-```
+~~~ nodejs
+  Stamplay.Object("movie").patch("object_id", { director: "56cf08e362641ca813b1ae6c" }, function(err, res) {
+    // response
+  })
+~~~ 
 
 A **User** relationship is a pointer to a user record. This field type is to be set only as an `_id` of a user record.
 
@@ -601,27 +602,27 @@ In this example, `movie` is the object type, and the `director` field is a User 
 
 ### Object Relationships
 
-```shell
-	curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
-		-H "Content-Type: application/json" \
-		-d "{\"characters\":[\"57cf08e362641ca813b1ae6c\",\"56cf09e362641sa813b1ae6d\",\"54cfdae662641ca813b1ae6c\"]}"
-```
+~~~ shell
+  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+    -H "Content-Type: application/json" \
+    -d "{\"characters\":[\"57cf08e362641ca813b1ae6c\",\"56cf09e362641sa813b1ae6d\",\"54cfdae662641ca813b1ae6c\"]}"
+~~~ 
 
-```javascript
-	Stamplay.Object("movie").push("object_id", "characters", "57cf08e362641ca813b1ae6c")
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.Object("movie").push("object_id", "characters", "57cf08e362641ca813b1ae6c")
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	var movieChars = ["57cf08e362641ca813b1ae6c", "56cf09e362641sa813b1ae6d", "54cfdae662641ca813b1ae6c"]
-	Stamplay.Object("movie").patch("object_id", movieChars, function(err, res) {
-		// response
-	})
-```
+~~~ nodejs
+  var movieChars = ["57cf08e362641ca813b1ae6c", "56cf09e362641sa813b1ae6d", "54cfdae662641ca813b1ae6c"]
+  Stamplay.Object("movie").patch("object_id", movieChars, function(err, res) {
+    // response
+  })
+~~~ 
 An **Object** relationship is a pointer to another record; specifically a certain type of record as specified when defining the schema.
 
 This field type is to contain only an array of the property `_id` of a each related record of the relationship type.
@@ -643,63 +644,63 @@ Each Stamplay Object is able to be voted upon, out of the box without any additi
 The data for voting is stored on a `actions` object on each Object.
 The following data is stored :
 
-```json
+~~~ json
 {
-	"actions" : {
-		"votes" : {
-			"users_downvote" : ["user_id"],
-			"users_upvote" : ["another_user_id"],
-			"users" : ["user_id", "another_user_id"],
-			"total" : 2
-		}
-	}
+  "actions" : {
+    "votes" : {
+      "users_downvote" : ["user_id"],
+      "users_upvote" : ["another_user_id"],
+      "users" : ["user_id", "another_user_id"],
+      "total" : 2
+    }
+  }
 }
-```
+~~~ 
 
 
 ### Downvoting
 
-```shell
-	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote" \
-		-H "Content-Type: application/json" \
-		-d "{\"type\":\"downvote\"}"
-```
+~~~ shell
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote" \
+    -H "Content-Type: application/json" \
+    -d "{\"type\":\"downvote\"}"
+~~~ 
 
-```javascript
-	Stamplay.Object("movie").downVote("object_id")
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.Object("movie").downVote("object_id")
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 To downvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `downvote`.
 
 ### Upvoting
 
-```shell
-	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote" \
-		-H "Content-Type: application/json" \
-		-d "{\"type\":\"upvote\"}"
-```
+~~~ shell
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote" \
+    -H "Content-Type: application/json" \
+    -d "{\"type\":\"upvote\"}"
+~~~ 
 
-```javascript
-	Stamplay.Object("movie").upVote("object_id")
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.Object("movie").upVote("object_id")
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 To upvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `upvote`.
 
@@ -707,26 +708,26 @@ To upvote an object send a `PUT` request to the Object resource with the object 
 
 ## Commenting
 
-```shell
-	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/comment" \
-		-H "Content-Type: application/json" \
-		-d "{\"text\":\"comment text goes here\"}"
-```
+~~~ shell
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/comment" \
+    -H "Content-Type: application/json" \
+    -d "{\"text\":\"comment text goes here\"}"
+~~~ 
 
-```javascript
-	var txt = "comment text goes here";
+~~~ javascript
+  var txt = "comment text goes here";
 
-	Stamplay.Object("movie").comment("object_id", txt)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.Object("movie").comment("object_id", txt)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 The Stamplay API provides a comment mechansim for managing a comment system.
 
@@ -738,44 +739,44 @@ The data for comments is stored on a `actions` object on each Object.
 
 For each comment, a comment object is stored in the `comments` array.
 
-```json
+~~~ json
 {
-	"actions" : {
-		"comments" : [
-			{
-				"picture": "user_image_url",
-				"displayName": "user_displayName",
-				"userId": "user_id",
-				"text": "comment text",
-				"_id": "comment_id",
-				"dt_create": "date commented"
-			}
-		]
-	}
+  "actions" : {
+    "comments" : [
+      {
+        "picture": "user_image_url",
+        "displayName": "user_displayName",
+        "userId": "user_id",
+        "text": "comment text",
+        "_id": "comment_id",
+        "dt_create": "date commented"
+      }
+    ]
+  }
 }
-```
+~~~ 
 
 ## Rating
 
-```shell
-	curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/rate" \
-		-H "Content-Type: application/json" \
-		-d "{\"rate\": 5}"
-```
+~~~ shell
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/rate" \
+    -H "Content-Type: application/json" \
+    -d "{\"rate\": 5}"
+~~~ 
 
-```javascript
+~~~ javascript
 
-	Stamplay.Object("movie").rate("object_id", 5)
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.Object("movie").rate("object_id", 5)
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 The Stamplay API provides a rate mechansim for managing a rating system.
 
@@ -786,14 +787,14 @@ To rate an object send a `PUT` request to the Object resource with the object `_
 The data for `ratings` is stored on a `actions` object on each Object.
 
 
-```json
+~~~ json
 {
-	"actions" : {
-		"ratings" : {
-			"users": ["user_id", "another_user_id", "third_user"],
-			"avg": 4,
-			"total": 3
-		}
-	}
+  "actions" : {
+    "ratings" : {
+      "users": ["user_id", "another_user_id", "third_user"],
+      "avg": 4,
+      "total": 3
+    }
+  }
 }
 

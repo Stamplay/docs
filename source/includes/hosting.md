@@ -19,34 +19,35 @@ The Stamplay CLI requires Node.js and NPM, which can both be installed by follow
 
 Once you have Node.js and NPM installed, you can install the Stamplay command line tools via NPM.
 
-```shell-always
-	npm install -g stamplay-cli
-	// sudo may be required depending on your system permissions
-	// sudo npm install -g stamplay-cli
-```
+~~~ shell-always
+  npm install -g stamplay-cli
+  // sudo may be required depending on your system permissions
+  // sudo npm install -g stamplay-cli
+~~~ 
+
 
 This installs `stamplay` as a globally available command interface.
 
 ### stamplay.json
 
-```shell
-	stamplay init
-```
+~~~ shell
+  stamplay init
+~~~ 
 
 The `stamplay.json` file, when create is typically in the root of your project's directory.
 
-```json
-	{
-		"appId": "yourAppId",
-		"apiKey": "yourAppApiKey",
-		"public": "./",
-		"ignore": [
-			"stamplay.json",
-			"**/.*",
-			"**/node_modules/**"
-		]
-	}
-```
+~~~ json
+  {
+    "appId": "yourAppId",
+    "apiKey": "yourAppApiKey",
+    "public": "./",
+    "ignore": [
+      "stamplay.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+~~~ 
 
 This required file is used to configure which files are published upon deployment, set customer headers, etc.
 
@@ -61,18 +62,18 @@ An optional `headers` property is available to define browser side caching of st
 Caching removes the need to load static libraries every time. This is helpful in a production enviornment to help speed up load times, and even reduce server load. See below for more details.
 
 #### appId and apiKey
-```json
-	"appId": "yourAppId",
-	"apiKey": "yourAppApiKey"
-```
+~~~ json
+  "appId": "yourAppId",
+  "apiKey": "yourAppApiKey"
+~~~ 
 
 The `appId` and `apiKey` are used by the command line tool as authentication parameters.
 
 #### public
 
-```json
-	"public" : "./" 
-```
+~~~ json
+  "public" : "./" 
+~~~ 
 
 The `public` property tells the command line which directory to upload to Stamplay. This directory must be inside the project directory and must exist.
 
@@ -80,39 +81,39 @@ The default value is the root directory or your project. This directory is also 
 
 #### ignore
 
-```json
-	"ignore" : [
-		"stamplay.json",
+~~~ json
+  "ignore" : [
+    "stamplay.json",
         "**/.*",
         "**/node_modules/**"
-	] 
-```
+  ] 
+~~~ 
 The `ignore` specifies which files to ignore on deploy. It can take glob definitions in the same way git handles `.gitignore`.
 
 #### headers
 
-```json
-	"headers": [
-		{
-			"source" : "**/*.@(jpg|jpeg|gif|png)",
-			"headers" : [
-				{
-					"key" : "Cache-Control",
-					"value" : "max-age=7200"
-				}
-			]
-		},
-		{
-			"source" : "404.html",
-			"headers" : [
-				{
-					"key" : "Expires",
-					"value" : "1y"
-				}
-			]
-		}
-	]
-```
+~~~ json
+  "headers": [
+    {
+      "source" : "**/*.@(jpg|jpeg|gif|png)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "max-age=7200"
+        }
+      ]
+    },
+    {
+      "source" : "404.html",
+      "headers" : [
+        {
+          "key" : "Expires",
+          "value" : "1y"
+        }
+      ]
+    }
+  ]
+~~~ 
 
 The `headers` is an optional parameter in the `stamplay.json` file.
 
@@ -164,9 +165,9 @@ For example, `3600` is **3600 seconds**.
 
 ### App Deploy
 
-```shell-always
-	stamplay deploy
-```
+~~~ shell-always
+  stamplay deploy
+~~~ 
 
 To deploy a new release, run the `deploy` with the CLI.
 
@@ -176,17 +177,17 @@ This pushes the `public` directory as defined with the `stamplay.json` to Stampl
 
 To rollback to a previous deploy, run the `rollback` CLI command.
 
-```shell-always
-	stamplay rollback
-```
+~~~ shell-always
+  stamplay rollback
+~~~ 
         
 You'll be prompted to pick one of your previous deploys from a list and your app will be restored.
 
 ### App Development
 
-```shell-always
-	stamplay start
-```
+~~~ shell-always
+  stamplay start
+~~~ 
 
 You can run the Stamplay command line tool to build your app in development mode on your local environment. This will make the tool initialize a local server that will serve your app on [http://localhost:8080](http://localhost:8080).
 
@@ -202,17 +203,17 @@ The `index.html` will be served when serving the application locally on [localho
 
 To launch the live version of your application, run the `open` CLI command.
 
-```shell-always
-	stamplay open
-```
+~~~ shell-always
+  stamplay open
+~~~ 
 
 ### CLI Updates
 
 You can update the Stamplay CLI by running `npm install` for the `stamplay-cli` npm package with the `-g` global option.
     
-```shell-always
-	npm install -g stamplay-cli
-```
+~~~ shell-always
+  npm install -g stamplay-cli
+~~~ 
         
 Thi will update your Stamplay command line tool to the latest version.
 
@@ -227,7 +228,7 @@ To setup a custom domain, open the Stamplay Editor.
 In the Stamplay Editor, in the **Hosting** section. Select **Use A Custom Domain** and add the value [www.mybeautifulwebsite.com](www.mybeautifulwebsite.com) to the **App Domain** field.
 
 <aside class="notice">
-	Application must be on a paid plan to use a custom domain.
+  Application must be on a paid plan to use a custom domain.
 </aside>
 
 [![Pretty URL Configuration](/images/prettyurls_config.png)](/images/prettyurls_config.png)
@@ -269,4 +270,4 @@ Stamplay will handle provisioning an SSL certificate for your domain and serving
 The entries will be available via email once you begin the process of adding a custom domain. Depending on your domain name server host, this verification step may be instant or it may take an hour or more.
 
 Once domain ownership is verified, we will provision an SSL certficate for your domain and deploy it across our global CDN. This process can take up to 48 hours, and you will receive an email when it is complete.
-	
+  

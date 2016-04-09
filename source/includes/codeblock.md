@@ -29,16 +29,16 @@ There are three ways of writing custom server side code based on your needs:
 * [Full Control](#full-control-model): when you need access to the raw request and response.
 
 <aside class="warning">
-	All your code <strong>MUST</strong> be inside the main function, everything written outside will break your Code Block.
+  All your code <strong>MUST</strong> be inside the main function, everything written outside will break your Code Block.
 </aside>
 
 ### Simple Model
 
-```nodejs-always
-	module.exports = function(cb) {
-		cb(null, { i_am: 'done'});
-    }
-```   
+~~~ nodejs-always
+  module.exports = function(cb) {
+    cb(null, { i_am: 'done'});
+  }
+~~~    
 
 Within the **Simple** programming model, you must provide JavaScript code that returns a function which accepts a single argument: a callback.
 
@@ -50,11 +50,11 @@ When the callback is invoked, the result value or an error will be serialized as
 
 ### Contextual Model
 
-```nodejs-always
-    module.exports = function(context, cb) {
-	    cb(null, { hello: context.data.name });
-    }
-```
+~~~ nodejs-always
+  module.exports = function(context, cb) {
+    cb(null, { hello: context.data.name });
+  }
+~~~ 
 A more advanced version of the programming model allows you to return a function that accepts two arguments: a `context` and a `callback`.
       
 The `context` parameter is a JavaScript object with data and optionally body properties.
@@ -65,16 +65,15 @@ The `context.data` is a JavaScript object that combines parameters passed to the
 * The key value pairs passed in the request body.
 
 The request can be parsed correctly only if `application/json` or `application/x-www-form-urlencoded` is used as `content-type`.
-
 ### Full Control Model
 
-```nodejs-always
-	module.exports = function(context, req, res) {
-		res.writeHead(200, { 'Content-Type': 'application/json'});
-		var result = { "hello" : context.body };
-		res.end(JSON.stringify(result));
-	};
-```
+~~~ nodejs-always
+  module.exports = function(context, req, res) {
+    res.writeHead(200, { 'Content-Type': 'application/json'});
+    var result = { "hello" : context.body };
+    res.end(JSON.stringify(result));
+  };
+~~~ 
 
 The most flexible programming model allows you to take full control over the HTTP `request` and `response`.
 
@@ -88,33 +87,33 @@ To execute a Code Block send a `POST` request to the Code Block API resource wit
 
 Include any data to pass into the Code block within the body of the request, and any query params within the URI itself.
 
-```shell
-	curl -X "POST" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?page=2&per_page=30" \
-	-H "Content-Type: application/json" \
-	-d "{\"message\":\"Hello\"}"
-```
+~~~ shell
+  curl -X "POST" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?page=2&per_page=30" \
+  -H "Content-Type: application/json" \
+  -d "{\"message\":\"Hello\"}"
+~~~ 
 
-```javascript
-	var data = {
-		message : "Hello"
-	}
+~~~ javascript
+  var data = {
+    message : "Hello"
+  }
 
-	var params = {
-		page : 2,
-		per_page : 30
-	}
+  var params = {
+    page : 2,
+    per_page : 30
+  }
 
-	Stamplay.Codeblock("codeblock_name").run(data, params)
-		.then(function(err) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+  Stamplay.Codeblock("codeblock_name").run(data, params)
+    .then(function(err) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	// no method
-```
+~~~ nodejs
+  // no method
+~~~ 
 
 ## App Secrets
 
@@ -145,11 +144,11 @@ Now your secret has been added and is ready for use with the Code Block.
 
 ### Accessing Secrets
 
-```nodejs-always
-    module.exports = function(context, cb) {
-	    cb(null, { pass_this_secret : context.secrets.name });
-    }
-```
+~~~ nodejs-always
+  module.exports = function(context, cb) {
+    cb(null, { pass_this_secret : context.secrets.name });
+  }
+~~~ 
 
 In order to access secrets you need to use the [Contextual](#contextual-model) or the [Full Control](#full-control-model) programming model.
 
@@ -159,28 +158,28 @@ Example shown uses the **Contextual** programming model.
 
 ## NPM Modules
 
-```nodejs-always
-	var stamplay = require("stamplay");
-	var Stamplay = new Stamplay("APPID", "APIKEY");
-	var request = require("request");
-	var	_ = require("underscore");
+~~~ nodejs-always
+module.exports = function(context, cb) {
 
-    module.exports = function(context, cb) {
+  var stamplay = require("stamplay");
+  var Stamplay = new Stamplay("APPID", "APIKEY");
+  var request = require("request");
+  var  _ = require("underscore");
 
-    	request("req_url", function(req, res, body) {
+  request("req_url", function(req, res, body) {
 
-    		var result = JSON.parse(body);
+    var result = JSON.parse(body);
 
-    		var movieFound = _.where(result, { director : "John Doe" })
+    var movieFound = _.where(result, { director : "John Doe" })
 
-    		Stamplay.Object("movie").save(movieFound, function(err, res) {
-    			cb(null, JSON.parse(res).data);
-    		})
+    Stamplay.Object("movie").save(movieFound, function(err, res) {
+      cb(null, JSON.parse(res).data);
+    })
 
-    	})
+  })
 
-    }
-```
+}
+~~~ 
 
 When using Code Blocks you can rely on over 800 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.
 

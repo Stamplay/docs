@@ -22,29 +22,28 @@ Send an email. -->
 
 ## Pagination
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?page=2&per_page=30"
-```
+~~~ shell
+curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?page=2&per_page=30"
+~~~ 
 
-```javascript
-	Stamplay.Object("movie").get({
-		page : 2,
-		per_page : 30
-	}).then(function(res) {
-		// success
-	}. function(err) {
-		// error
-	})
-```
-
-```nodejs
-	Stamplay.Object("movie").get({
-		page : 2,
-		per_page : 30
-	}, function(err, res) {
-		// response
-	})
-```
+~~~ javascript
+Stamplay.Object("movie").get({
+  page : 2,
+  per_page : 30
+}).then(function(res) {
+  // success
+}. function(err) {
+  // error
+})
+~~~ 
+~~~ nodejs
+Stamplay.Object("movie").get({
+  page : 2,
+  per_page : 30
+}, function(err, res) {
+  // response
+})
+~~~ 
 Responses from the **User** and **Object** resource will also return a `pagination` object.
 
 Pagination can be managed by using the `page` and `per_page` query parameters.
@@ -52,17 +51,17 @@ Pagination can be managed by using the `page` and `per_page` query parameters.
 Pagination details are included using the Link header introduced by RFC 5988.
 The Link header returns a set of ready-made links so the API consumer does not have to construct the links themselves.
 
-```json
-	{
-		"data": [],
-		"pagination": {
-			"page": 1,
-			"per_page": 20,
-			"total_pages": 4,
-			"total_elements": 71
-		}
-	}
-```
+~~~ json
+{
+  "data": [],
+  "pagination": {
+    "page": 1,
+    "per_page": 20,
+    "total_pages": 4,
+    "total_elements": 71
+  }
+}
+~~~ 
 
 ---
 
@@ -77,26 +76,26 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 ## Filtering
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/picture?status=published"
-```
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/picture?status=published"
+~~~ 
 
-```javascript
-	Stamplay.Object("picture")
-		.get({ status : "published" })
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+Stamplay.Object("picture")
+  .get({ status : "published" })
+  .then(function(res) {
+    // success
+  }, function(err) {
+    // error
+  })
+~~~ 
 
-```nodejs
-	Stamplay.Object('picture')
-		.get({ status : "published" }, function(err, res) {
-		  // response
-		})
-```
+~~~ nodejs
+Stamplay.Object('picture')
+  .get({ status : "published" }, function(err, res) {
+    // response
+  })
+~~~ 
 
 To filter a response based on a value of a field, set the field and value as a parameter in the request. To filter by more than one field, add each filterable field to the request as a paramter.
 
@@ -114,26 +113,25 @@ Any property on a data structure is filterable, the above only contain the absol
 
 ## Sorting
 
-```shell
+~~~ shell
 	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?sort=-dt_create"
-```
+~~~ 
 
-```javascript
-	Stamplay.Object("movie")
-		.get({ sort : "-dt_create" })
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+Stamplay.Object("movie").get({ sort : "-dt_create" })
+  .then(function(res) {
+    // success
+  }, function(err) {
+    // error
+  })
+~~~ 
 
-```nodejs
-	Stamplay.Object('movie')
-		.get({ sort : "-dt_create" }, function(err, res) {
-		  // response
-		})
-```
+~~~ nodejs
+Stamplay.Object('movie')
+  .get({ sort : "-dt_create" }, function(err, res) {
+    // response
+  })
+~~~ 
 
 To sort the response, set a `sort` parameter as a comma delimited list to sort by in order of importance.
 
@@ -150,26 +148,25 @@ If a field name is appened to an `-` character then that field will be sorted in
 
 ## Selecting
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?select=-dt_create,owner,title"
-```
+~~~ shell
+curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?select=-dt_create,owner,title"
+~~~ 
 
-```javascript
-	Stamplay.Object("movie")
-		.get({ select : "dt_create,owner,title" })
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+Stamplay.Object("movie").get({ select : "dt_create,owner,title" })
+  .then(function(res) {
+	  // success
+	}, function(err) {
+	  // error
+  })
+~~~ 
 
-```nodejs
-	Stamplay.Object('movie')
-		.get({ sort : "dt_create,owner,title" }, function(err, res) {
-		  // response
-		})
-```
+~~~ nodejs
+Stamplay.Object('movie')
+  .get({ sort : "dt_create,owner,title" }, function(err, res) {
+    // response
+  })
+~~~ 
 
 Selecting is the response projection for each object returned. This allows for a lighter data transfer between requests, and simplifies response objects.
 
@@ -191,27 +188,27 @@ To Do
 
 ## Advanced Queries
 
-```shell
-	curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=%7B%20rating'%20:%20%7B%20$gt%20:%205%20%7D%20%7D"
+~~~ shell
+curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=%7B%20rating'%20:%20%7B%20$gt%20:%205%20%7D%20%7D"
 
-```
+~~~ 
 
-```javascript
-	Stamplay.Object("movie")
-		.get({ where : JSON.stringify({ rating : { $gt : 5 } }) })
-		.then(function(res) {
-			// success
-		}, function(err) {
-			// error
-		})
-```
+~~~ javascript
+  Stamplay.Object("movie")
+    .get({ where : JSON.stringify({ rating : { $gt : 5 } }) })
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
 
-```nodejs
-	Stamplay.Object('movie')
-		.get({ where : JSON.stringify({ rating : { $gt : 5 } }) }, function(err, res) {
-		  // response
-		})
-```
+~~~ nodejs
+Stamplay.Object('movie')
+  .get({ where : JSON.stringify({ rating : { $gt : 5 } }) }, function(err, res) {
+    // response
+  })
+~~~ 
 
 For more advanced methods of queries, Stamplay supports an array of MongoDB's conditional operators.
 
@@ -239,14 +236,14 @@ By setting a JSON query string to the `where` parameter you can use the operator
           
 ## Authentication
 
-```shell-always
+~~~ shell-always
 	
-	"Authorization" : "Basic c3RhbXBsYXlrYjo5MTRhMmUzMaMwZWRlMDdmZThhNjYzMzkxMWQyYWQyOTNkNjJkNTQ3OGFiYmViNjEyNzhhYjFjYzE2MDhiZaRi"
-```
+  "Authorization" : "Basic c3RhbXBsYXlrYjo5MTRhMmUzMaMwZWRlMDdmZThhNjYzMzkxMWQyYWQyOTNkNjJkNTQ3OGFiYmViNjEyNzhhYjFjYzE2MDhiZaRi"
+~~~ 
 
-```shell-always
-	"x-stamplay-jwt" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"
-```
+~~~ shell-always
+  "x-stamplay-jwt" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"
+~~~ 
 
 Depending on the origin enviornment of a request to Stamplay, the method of authenticating the request differs.
 
@@ -261,16 +258,19 @@ Stamplay uses a selective cross-origin resource sharing (CORS) policy, meaning t
 This is made to govern which origins are authorized and which are not. By default only the base URL ending with `.stamplayapp.com` is the one allowed to send requests.
 
 To enabled other CORS enabled domains, visit the **Hosting** section with the Stamplay editor.
+
 ## Allowed HTTP Requests
+
 | Method   |    Summary                          |
 |----------|-------------------------------------|
 | GET      | Get a resource or list of resources |
 | POST     | Create a resource                   |
-| PUT	   | pdate a resource                    |
+| PUT	     | Update a resource                    |
 | PATCH    | Update a resource partially         |
 | DELETE   | Delete a resource                   |
 
 ## Error Codes
+
 | Status Code | Status Text           | Summary
 |-------------|-----------------------|--------------------------------|
 |    200      | OK                    | The request was successful. |

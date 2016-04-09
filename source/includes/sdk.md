@@ -1,13 +1,14 @@
 # SDK and Client Libraries
+
 ## Javascript SDK
 
-```shell-always
-	bower install stamplay-js-sdk
-```
+~~~ shell-always
+  bower install stamplay-js-sdk
+~~~ 
 
-```javascript-always
-	Stamplay.init("APP ID");
-```
+~~~ javascript-always
+  Stamplay.init("APP ID");
+~~~ 
 
 The JavaScript SDK is a client side library to help simplify interacting with the Stamplay API.
 
@@ -21,15 +22,15 @@ Our [JavaScript SDK is open source on Github](https://github.com/Stamplay/stampl
 
 ## NodeJS SDK
 
-```shell-always
-	npm install stamplay
-```
+~~~ shell-always
+  npm install stamplay
+~~~ 
 
-```javascript-always
-	var stamplay = require("stamplay"),
-		Stamplay = new stamplay("APP ID", "API KEY")
+~~~ javascript-always
+  var stamplay = require("stamplay"),
+  Stamplay = new stamplay("APP ID", "API KEY")
 
-```
+~~~ 
 
 The Node.js SDK is a server side library to help simplify admin interaction with the Stamplay API.
 

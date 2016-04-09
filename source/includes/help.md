@@ -1,5 +1,6 @@
 
 # Getting Help
+
 ## Technical Questions
 
 For questions related to our API, SDKs, or general technical help, use the [Stamplay tag on Stackoverflow](https://stackoverflow.com/tags/stamplay).

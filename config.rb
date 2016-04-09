@@ -2,15 +2,10 @@ require File.expand_path('../custom_lexers', __FILE__)
 
 
 # Markdown
-set :markdown_engine, :redcarpet
-set :markdown,
-    fenced_code_blocks: true,
-    smartypants: true,
-    disable_indented_code_blocks: true,
-    prettify: true,
-    tables: true,
-    with_toc_data: true,
-    no_intra_emphasis: true
+set :markdown_engine, :kramdown
+set :kramdown,
+    parse_block_html: true,
+    parse_span_html: true
 
 # Assets
 set :css_dir, 'stylesheets'
