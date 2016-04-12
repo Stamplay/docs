@@ -3,7 +3,7 @@ require File.expand_path('../custom_lexers', __FILE__)
 
 # Markdown
 set :markdown_engine, :kramdown
-set :kramdown,
+set :markdown,
     parse_block_html: true,
     parse_span_html: true
 

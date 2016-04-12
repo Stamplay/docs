@@ -10,22 +10,23 @@ Below is an example schema of a **Restaurant** with every possible data type ava
 
 There are 3 properties that are included by default:
 
-* `dt_create` - The date the record was create
-* `dt_update` - The date the record was last updated
-* `owner` - The `_id` of the user who created this object.
+| Attribute   |         |
+|-------------|---------|
+| `dt_create` | The date the record was created |
+| `dt_update` | The date the record was last updated |
+| `owner`     | The `_id` of the user who created this object. |
 
-<aside class="warning">
-  The <code>owner</code> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.
+<aside class="notice">
+  The **owner** field is only set automatically when using the **JavaScript SDK**. For all other requests, you must set this field manually.
 </aside>
 
 ## Data Types
 
 The types and formats of each field type is listed below:
 
-~~~ json
+> In the example schema object below, each key-value pair is a possible schema property type, and a valid value for that property type.
 
-  // Schema property equals type
-  // Property value equals valid type
+~~~ json
 
 {
   "boolean" : true,
@@ -66,44 +67,6 @@ The types and formats of each field type is listed below:
 | [Geolocation](#geolocation) | GeoJSON object. |
 | [Object Relation - Array](#object-relation) | An arrays of pointers to an specific object type. |
 | [User Relation - String](#user-relation)| A pointer to a user object. |
-
-#### Example Schema
-
-**Restaurant Schema**
-
-[![Schema Overview](/images/schema-overview.png)](/images/schema-overview.png)
-
-~~~ json
-// Example Object From Restaurant Schema
-
-{
-  "owner" : "4df62bb24e007983c67c8ee9",
-  "name" : "Hello World",
-  "employee_count" : 12,
-  "average_price" : 9.75,
-  "hours" : {
-    "Monday_Friday" : "10:00am - 6:00pm",
-    "Saturday" : "8:00am - 8:00pm",
-    "Sunday" : "10:00am - 4:00pm"
-  },
-  "ratings" : [4, 3, 4, 5, 1],
-  "cuisine_types" : ["Mediterranean", "Italian"],
-  "vegan_options" : true,
-  "menu" : "https://file-upload.stamplayapp.com/upload/cobject/image/1458238116389_men.png",
-  "_geolocation" : {
-    "type" : "Point",
-    "coordinates ": [
-      12.4608,
-      41.9015
-    ]
-  },
-  "supply_vendors" : [ "562c45af4c0f20367d7ca4be", "562ec06e77589e2e0f86c207"],
-  "manager" : "562bb24e007983c67c8ee9df",
-  "dt_opened" : "2014-05-15T14:51:28.625Z",
-  "dt_create" : "2014-03-04T12:56:08.625Z",
-  "dt_update" : "2016-01-23T02:05:58.625Z"
-}
-~~~ 
 
 ### Boolean
 
@@ -344,10 +307,10 @@ To create new object data for a particular model, send the data in the body of a
 
 Retrieve an individual object, all objects, or any matching specific criteria of a particular model type.
 
-### Individual Object
+### Fetch Object By Id
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id"
 ~~~ 
 
 ~~~ javascript
@@ -368,6 +331,10 @@ Retrieve an individual object, all objects, or any matching specific criteria of
 To fetch a single object, send a `GET` request to the Object resource with the object's `_id` in the URI.
 
 The object type for the example is `movie`.
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to retrieve | <i class="unchecked"></i> |
 
 
 ### All Objects
@@ -433,7 +400,7 @@ The object type for the example is `movie`.
 ### Find By Current User
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/{attributes}"
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/:attributes"
 ~~~ 
 
 ~~~ javascript
@@ -459,7 +426,6 @@ Make a `GET` request to the Object resource for the object model. Specifying the
 
 The object type for the example is `movie`.
 
-
 ## Update Objects
 
 To update an object record partially, or completely overwrite the existing record.
@@ -467,7 +433,7 @@ To update an object record partially, or completely overwrite the existing recor
 ### Partial Update
 
 ~~~ shell
-  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"title\":\"Goodbye World\"}"
 ~~~ 
@@ -497,12 +463,17 @@ To update an object record partially, or completely overwrite the existing recor
 
 To make a partial update to an object record, perform a `PATCH` request to the Object API resource with any fields to update on the stored record in the request body.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to update | <i class="unchecked"></i> |
+
+
 The object type for the example is `movie`.
 
 ### Complete Update
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"title\":\"Goodbye World\",\"year\":\"2001\"}"
 ~~~ 
@@ -530,21 +501,21 @@ The object type for the example is `movie`.
   })
 ~~~ 
 
-To over write an object record, perform a `PUT` request to the Object API resource with a complete represenation to write over the stored record in the request body.
+To overwrite an object record, perform a `PUT` request to the Object API resource with a complete represenation to write over the stored record in the request body.
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to update | <i class="unchecked"></i> |
 
 ## Remove Objects
 
 To remove an object record, send a `DELETE` request with the `_id` of the record to remove in the Object API resource URI.
 
 ~~~ shell
-  curl -X "DELETE" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}"
+  curl -X "DELETE" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id"
 ~~~ 
 
 ~~~ javascript
-  var data = {
-    "title" : "Goodbye World"
-  }
-
   Stamplay.Object("movie").remove("object_id")
     .then(function(res) {
       // success
@@ -554,14 +525,14 @@ To remove an object record, send a `DELETE` request with the `_id` of the record
 ~~~ 
 
 ~~~ nodejs
-  var data = {
-    "title" : "Goodbye World"
-  }
-
   Stamplay.Object("movie").remove("object_id", function(err, res) {
     // response
   })
 ~~~ 
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to remove | <i class="unchecked"></i> |
 
 ## Relationships
 
@@ -570,7 +541,7 @@ Data relationships are pointers from one record to another.
 ### User Relationship
 
 ~~~ shell
-  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"director\":\"56cf08e362641ca813b1ae6c\"}"
 ~~~ 
@@ -598,12 +569,16 @@ The `owner` property is a default User relationship, but others can be added thr
 
 To manage these relationships, just update this field to the "_id" of the User to reference in the relationship.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to update | <i class="unchecked"></i> |
+
 In this example, `movie` is the object type, and the `director` field is a User Relationship field.
 
 ### Object Relationships
 
 ~~~ shell
-  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}" \
+  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"characters\":[\"57cf08e362641ca813b1ae6c\",\"56cf09e362641sa813b1ae6d\",\"54cfdae662641ca813b1ae6c\"]}"
 ~~~ 
@@ -633,6 +608,10 @@ To manage this relationship field, update the field to represent the collection 
 
 The **JavaScript SDK** has a `push` method to allow an easier method for pushing new relationships onto the array field. See the example in the `JavaScript` tab, otherwise you will need to manage this manually by sending a complete copy of the field in the request.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to add a relationship to | <i class="unchecked"></i> |
+
 In this example, `movie` is the object type, and the `characters` field is a **Object Relationship** field.
 
 ## Voting
@@ -661,7 +640,7 @@ The following data is stored :
 ### Downvoting
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote" \
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
     -H "Content-Type: application/json" \
     -d "{\"type\":\"downvote\"}"
 ~~~ 
@@ -681,10 +660,15 @@ The following data is stored :
 
 To downvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `downvote`.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to downvote | <i class="unchecked"></i> |
+| `type` | `"upvote"` or `"downvote"` | <i class="unchecked"></i> |
+
 ### Upvoting
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/vote" \
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
     -H "Content-Type: application/json" \
     -d "{\"type\":\"upvote\"}"
 ~~~ 
@@ -704,12 +688,16 @@ To downvote an object send a `PUT` request to the Object resource with the objec
 
 To upvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `upvote`.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to downvote | <i class="unchecked"></i> |
+| `type` | `"upvote"` or `"downvote"` | <i class="unchecked"></i> |
 
 
 ## Commenting
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/comment" \
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id/comment" \
     -H "Content-Type: application/json" \
     -d "{\"text\":\"comment text goes here\"}"
 ~~~ 
@@ -735,6 +723,12 @@ Each Stamplay Object is able to be commented upon, out of the box without any ad
 
 To comment on an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `text` property in the body specifying the comment text.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to add a comment to | <i class="unchecked"></i> |
+| `texd` | the content of the comment | <i class="unchecked"></i> |
+
+
 The data for comments is stored on a `actions` object on each Object.
 
 For each comment, a comment object is stored in the `comments` array.
@@ -759,7 +753,7 @@ For each comment, a comment object is stored in the `comments` array.
 ## Rating
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/{object_id}/rate" \
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id/rate" \
     -H "Content-Type: application/json" \
     -d "{\"rate\": 5}"
 ~~~ 
@@ -783,6 +777,12 @@ The Stamplay API provides a rate mechansim for managing a rating system.
 Each Stamplay Object is able to be be rated, out of the box without any additional setup.
 
 To rate an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `rate` property in the body specifying the rating as an integer.
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `object_id` | the Stamplay `_id` of the object to rate | <i class="unchecked"></i> |
+| `rate` | an integer rating | <i class="unchecked"></i> |
+
 
 The data for `ratings` is stored on a `actions` object on each Object.
 

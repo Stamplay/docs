@@ -162,7 +162,7 @@ html, body {
   // unordered lists.  These styles remove the default
   // styling of an unordered list because it is ugly.
   ul, li {
-    list-style: none;
+    // list-style: none;
     margin: 0;
     padding: 0;
     line-height: 28px;
@@ -335,8 +335,15 @@ html, body {
 
   .lang-content {
       display: none;
+      width: 50%;
+      margin-top: 20px;
+      p {
+        padding: 0 28px;
+        width:100% !important;
+        box-sizing:border-box;
+      }
     &.active {
-      display: block !important;
+      display: inline-block !important;
     }
   }
 
@@ -460,8 +467,9 @@ i {
   }
 
   table {
-    width: calc(50% - 20px);
-    margin: 1em 10px;
+    background-color:#f4f4f4;
+    width: calc(50% - 55px);
+    margin: 1em 28px;
     overflow: auto;
     th,td {
       text-align: left;
@@ -471,25 +479,30 @@ i {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #eee;
       vertical-align: bottom;
     }
 
     td {
+      background-color:#fbfbfb !important;
       padding: 10px;
+      code {
+        word-break:normal;
+        background-color:#eee;
+      }
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #eee;
     }
 
     tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
+      background-color: lighten(#f2f2f2,4.2%) !important;
     }
 
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
-    }
+    // tr:nth-child(even)>td {
+    //   background-color: lighten(#f2f2f2,2.4%) !important;
+    // }
   }
 
   dt {
@@ -549,27 +562,30 @@ i {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
-    color:#F2F2F2;
+    color:#f2f2f2;
+    font-weight: bold;
     &.warning {
-      background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
+      background-color: lighten($aside-warning-bg, 9%);
     }
 
     &.success {
-      background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
+      background-color: lighten($aside-success-bg, 9%);
+    }
+    p, div {
+      width: 90%;
     }
   }
 
   aside:before {
-    vertical-align: middle;
+    vertical-align: top;
     padding-right: 0.5em;
     font-size: 14px;
+    top: 3px;
+    position: relative;
   }
 
   aside.notice:before {
@@ -631,13 +647,9 @@ i {
   }
 
   blockquote {
+    background-color: rgba(255, 255, 255, 0.1);
     &>p {
-      background-color: $code-annotation-bg;
-      border-radius: 5px;
-      padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      width:100%;
     }
   }
 
@@ -673,6 +685,13 @@ i {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
   }
+
+  .content {
+    & > h1, > h2, > h3, > h4, > h5, > h6, > p, > code, > pre {
+      width: 100% !important;
+    }
+  }
+
 }
 
 @media (max-width: $phone-width) {
@@ -699,6 +718,13 @@ i {
 
   %right-col + %left-col {
     margin-top: $main-padding;
+  }
+
+  .content {
+    & > h1, > h2, > h3, > h4, > h5, > h6, > p, > code, > pre {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
   }
 }
 

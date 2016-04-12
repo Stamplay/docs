@@ -4,7 +4,7 @@ The base user data structure:
 
 | Property | Summary   |
 |----------|-----------|
-| _id |user unique id |
+| _id | a unique identifier |
 | displayName | the user's displayName |
 | name | the user's name |
 | email | the user's email |
@@ -52,7 +52,14 @@ A local authentication flow for login and signups is baked in to every Stamplay 
   })
 ~~~ 
 
-To signup or add a user for a local account, send an `email` and` password` as object in the body of the request to Stamplay, with any additional data to save to the new user record.
+Sign up a user for a local user account.
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `email`     | a valid email address | <i class="unchecked"></i> |
+| `password`  | user provided secret  | <i class="unchecked"></i> |
+
+
 
 ### Login
 
@@ -80,13 +87,18 @@ To signup or add a user for a local account, send an `email` and` password` as o
   // no method
 ~~~ 
 
-To authenticate a user's credentials for a local account, send an `email` and `password` as an object in the body of the request to Stamplay.
+Login a user to a local account.
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `email`     | a valid email address | <i class="unchecked"></i> |
+| `password`  | user provided secret  | <i class="unchecked"></i> |
 
 ## Social Authentication
 
 
 ~~~ shell
-  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/{provider}/connect"
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/:provider/connect"
 ~~~ 
 
 ~~~ javascript
@@ -99,9 +111,30 @@ To authenticate a user's credentials for a local account, send an `email` and `p
 
 Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `provider`  | the slug identifier of the social provider | <i class="unchecked"></i> |
+
+
 ###Ionic Integration
 
-To Do
+~~~ javascript-always
+  Stamplay.init("APP-ID", {
+    isMobile: true,
+    absoluteUrl : true,
+    autorefreshSocialLogin : false
+  })
+~~~
+
+Login users with social accounts inside an Ionic mobile application.
+
+To use a social provider within an Ionic application, you must pass in an additonal options object in the `Stamplay.init` method when intializing the SDK.
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `isMobile` |manages the login/signup behavior for hybrid environments like Ionic, if true opens auth dialog in new window. | <i class="unchecked"></i> |
+| `absoluteUrl`| force the path to be absolute | <i class="unchecked"></i> |
+| `autorefreshSocialLogin` | refresh application after a successful socialLogin | <i class="checked"></i> |
 
 ### Facebook
 
@@ -115,7 +148,9 @@ To Do
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
+
+Login a user with a Facebook account.
 
 ---
 
@@ -173,7 +208,9 @@ We store data from `public_profile` and `email`. Refer to the Facebook documenta
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
+
+Login a user with a Google+ account.
 
 ---
 
@@ -231,6 +268,8 @@ Refer to the Google documentation for more information.
   // no method
 ~~~ 
 
+Login a user with a Twitter account.
+
 ---
 
 **Create a Twitter app**
@@ -277,6 +316,8 @@ Please refer to the Twitter documentation for more information.
   // no method
 ~~~ 
 
+Login a user with a Dropbox account.
+
 ---
 
 **Create a Drop API App**
@@ -321,7 +362,9 @@ Refer to the Dropbox documentation for more information.
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
+
+Login a user with a LinkedIn account.
 
 ---
 
@@ -360,6 +403,8 @@ We store only data from `r_basicprofile and r_emailaddress`.
 Refer to the Linkedin documentation for more information.
 
 ### Instagram
+
+Login a user with a Instagram account.
 
 ~~~ shell
   curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/instagram/connect"
@@ -411,6 +456,8 @@ Refer to the Instagram documentation for more information.
 
 ### Github
 
+Login a user with a Github account.
+
 ~~~ shell
   curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/github/connect"
 ~~~ 
@@ -456,6 +503,8 @@ Stamplay requests access to public information. We store all public data.
 Refer to the Github documentation for more information.
 
 ### Angellist
+
+Login a user with an Angellist account.
 
 ~~~ shell
   curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/angellist/connect"
@@ -533,7 +582,33 @@ To check whether or not the token is expired you can do the following:
 
 ## Reset Password
 
-To Do
+~~~ shell
+  curl -X "POST" "https://APP-ID.stamplayapp.com/api/user/v1/users/resetpassword " \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"user@stamplay.com\", \"newPassword\" : \"stamplay_rocks!\"}"
+~~~
+
+~~~ javascript
+  var emailAndNewPass = {
+    email: "user@stamplay.com",
+    newPassword: "stamplay_rocks!"
+  }
+  Stamplay.User.resetPassword()
+    .then(function(res){
+      // success
+    }, function(err) {
+      // error
+    })
+~~~
+
+Reset a local user's account password.
+
+Successful submission of a password reset request will send an email to the account holder's email address with a confirmation link that will set the password reset into affect.
+
+| Attribute |         | Optional                  |
+|-----------|---------|:-------------------------:|
+| `email`   | valid email address associated with the account | <i class="unchecked"></i> |
+| `newPassword` | new password for the account being reset | <i class="unchecked"></i> |
 
 ## User to User Permissions
 
@@ -589,10 +664,10 @@ Retrieve an individual user, all users, or the current session user, or any user
 
 To fetch the user that is currently logged in, send a request to the `getStatus` endpoint, on the user API resource.
 
-### Individual User
+### Fetch User By Id
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"
+  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id"
 ~~~ 
 
 ~~~ javascript
@@ -611,6 +686,11 @@ To fetch the user that is currently logged in, send a request to the `getStatus`
 ~~~ 
 
 To fetch an single user, send the `_id` of the user to fetch in the request body to the user API resource.
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `user_id`       | the Stamplay `_id` of the user to fetch | <i class="unchecked"></i> |
+
 
 ### All Users
 
@@ -677,7 +757,7 @@ To update a user record partially, or completely overwrite the existing record.
 ### Partial User Update
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}" \
+  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id" \
   -H "Content-Type: application/json" \
   -d "{\"name\":\"John\",\"age\":\"30\"}"
 ~~~ 
@@ -709,10 +789,16 @@ To update a user record partially, or completely overwrite the existing record.
 
 To partially update a User record, send a `PATCH` request with an properties to update in the request body, to the User API resource with the `_id` of the user to update.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `user_id`       | the Stamplay `_id` of the user to update | <i class="unchecked"></i> |
+
+
+
 ### Complete User Update
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users" \
+  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id" \
   -H "Content-Type: application/json" \
   -d "{\"name\":\"John\",\"address\":\"111 Market St. San Francisco, CA\",\"age\":\"30\",\"_id\":\"56fb116e5ab65a4446dd3b2d\"}"
 ~~~ 
@@ -749,10 +835,14 @@ To completely update a user record, send a `PUT` request with a complete represe
 
 Include this representation in the request body, in the request to the User API resource with the `_id` of the user to update.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `user_id`       | the Stamplay `_id` of the user to update | <i class="unchecked"></i> |
+
 ## Remove User
 
 ~~~ shell
-  curl -X "DELETE" "https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"
+  curl -X "DELETE" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id"
 ~~~ 
 
 ~~~ javascript
@@ -772,6 +862,9 @@ Include this representation in the request body, in the request to the User API 
 
 To remove a user record from the database, send a `DELETE` request to the user resource with the user `_id` to the User API resource.
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `user_id`       | the Stamplay `_id` of the user to delete | <i class="unchecked"></i> |
 
 <!-- ## Activity -->
 

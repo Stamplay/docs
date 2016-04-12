@@ -30,20 +30,38 @@ You will be prompted to enter an `APP ID` and `API KEY` for a Stamplay applicati
 
 To run our application locally, run the `start` command from the `stamplay` CLI.
 
-## JavaScript SDK Setup
-The [Stamplay JavaScript SDK](https://github.com/Stamplay/stamplay-js-sdk) is a client-side library for interacting with Stamplay.
+## Setup
 
-~~~ shell-always
+~~~ javascript
   bower install stamplay-js-sdk
 ~~~ 
 
+~~~ javascript
+  Stamplay.init("APP ID")
+~~~
+
+<div class="lang-content javascript">
+
+The [Stamplay JavaScript SDK](https://github.com/Stamplay/stamplay-js-sdk) is a client-side library for interacting with Stamplay.
+
+
 Run `bower install` for the `stamplay-js-sdk` package to download from `bower` into your local project directory.
 
-~~~ javascript-always
-  Stamplay.init("APP ID")
-~~~ 
-
 To initialize the library, run the `init` method from the `Stamplay` SDK.
+
+</div>
+
+<div class="lang-content shell">
+  
+For REST API Quickstart proceed to the next step, otherwise select the **JavaScript** tab for the SDK quickstart instructions for this step.
+
+</div>
+
+
+
+
+
+
 
 ## Define Schema
 
@@ -53,11 +71,13 @@ Inside the **Object** section, add a name and data type for each property on the
 
 ## Write Data
 
-To write data to Stamplay, model an object after the schema just created.
+~~~ shell
+  curl -X "POST" "https://APP-ID.stamplayapp.com/api/cobject/v1/car" \
+    -H "Content-Type: application/json" \
+    -d "{\"make\":\"Volkswagen\",\"model\":\"Jetta\",\"year\":2013,\"color\":\"silver\",\"top_speed\":140}"
+~~~
 
-Pass the object into the `save` method on the `Stamplay.Object` class.
-
-~~~ javascript-always
+~~~ javascript
 var car = {
   make : "Volkswagen",
   model : "Jetta",
@@ -72,32 +92,59 @@ Stamplay.Object("car").save(car)
   }, function(err) {
     // error
   })
-~~~ 
+~~~
+
+<div class="lang-content javascript">
+
+To write data to Stamplay, model an object after the schema just created. 
+
+Pass the object into the `save` method on the `Stamplay.Object` class.
 
 Most every SDK method returns a promise, or you can pass a callback in as the last method argument.
 
+</div>
+
+<div class="lang-content shell">
+  
+To write data, send a JSON object modeled after the schema in a `POST` request body to the API [Object](#objects) resource.
+
+</div>
+
 ## Read Data
 
-To fetch **Object** data from  Stamplay, use the `get` method on the `Stamplay.Object` class.
-
-The `get` method takes an options object. The object is matched against all records, and returns only those that match.
-
-~~~ javascript-always
+~~~ javascript
   Stamplay.Object("car").get({})
     .then(function(res) {
       // success
     }, function(err) {
       // error
     })
-~~~ 
+~~~
+
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/car"
+~~~
+
+<div class="lang-content javascript">
+
+To fetch **Object** data from  Stamplay, use the `get` method on the `Stamplay.Object` class.
+
+The `get` method takes an options object. The object is matched against all records, and returns only those that match.
+
+</div>
+
+<div class="lang-content shell">
+
+To read object data, send a `GET` request to the API Object resource.
+
+</div>
+
+
+
 
 ## Register Users
 
-To register a user with a local account, no additional setup within the Stamplay editor is required.
-
-Use the `signup` method on the the `Stamplay.User` class, and pass in an object with at least an `email` and `password` property.
-
-~~~ javascript-always
+~~~ javascript
 
 var credentials = {
   email : "user@provider.com",
@@ -110,13 +157,47 @@ Stamplay.User.signup(credentials)
   }, function(err) {
     // error
   })
-~~~ 
+
+~~~
+
+~~~ shell
+
+ curl -X "POST" "https://APP-ID.stamplayapp.com/api/user/v1/users" \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"user@stamplay.com\",\"password\":\"my_password\"}"
+
+~~~
+
+To register a user with a local account, no additional setup within the Stamplay editor is required.
+
+<div class="lang-content javascript">
+
+Use the `signup` method on the the `Stamplay.User` class, and pass in an object with at least an `email` and `password` property.
+
+</div>
+
+<div class="lang-content shell">
+
+To register, send a `POST` request to the API [User](#users) resource, with a JSON object that has an `email` and `password` property, in the request body.
+
+</div>
+
 
 ## Login Users
 
+<div class="lang-content javascript">
+  
 To login a user to a local account, use the `login` method on the `Stamplay.User` class.
 
-~~~ javascript-always
+</div>
+
+<div class="lang-content shell">
+  
+To login a user to a local account, send a `POST` request with JSON object in the body, that contains an `email` and `password` of a registered account.
+
+</div>
+
+~~~ javascript
 var credentials = {
   email : "user@provider.com",
   password : "123123"
@@ -128,7 +209,15 @@ Stamplay.User.login(credentials)
   }, function(err) {
     // error
   })
-~~~ 
+~~~
+
+~~~ shell
+
+ curl -X "POST" "https://APP-ID.stamplayapp.com/auth/v1/local/login" \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"user@stamplay.com\",\"password\":\"my_password\"}"
+
+~~~
 
 ## Deploy
 

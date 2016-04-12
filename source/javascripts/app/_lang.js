@@ -31,7 +31,7 @@ under the License.
     $(".lang-selector a[data-language-name='" + language + "']").addClass('active');
 
     $(".lang-content").removeClass('active');
-    $(".lang-content[data-language-name='" + language + "']").addClass('active');
+    $(".lang-content." + language).addClass('active');
     
     for (var i=0; i < languages.length; i++) {
       $(".highlight." + languages[i]).hide();

@@ -36,7 +36,7 @@ Stamplay.User.getRoles()
 To fetch a single role, send a `GET` request to the Roles API resource, with the `_id` as part of the request URI.
 
 ~~~shell
-curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/roles/{role_id}"
+curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/roles/:role_id"
 ~~~
 
 ~~~javascript
@@ -52,17 +52,21 @@ Stamplay.User.getRole("role_Id")
 // no method
 ~~~
 
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `role_id`       | the Stamplay `_id` of the role to fetch | <i class="checked"></i> |
+
 ## Assign Role
 
 ~~~shell
-curl -X "PATCH" "https://APPID.stamplayapp.com/api/user/v1/users/" \
+curl -X "PATCH" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id" \
 -H "Content-Type: application/json" \
 -d "{\"givenRole\":\"role_id\"}"
 
 ~~~
 
 ~~~javascript
-Stamplay.User.patch("user_id", { givenRole : "role_id" })
+Stamplay.User.setRole("userId", "role_id")
   .then(function(res) {
     // success
   }, function(err) {
@@ -78,3 +82,9 @@ Stamplay.User.patch("user_id", { givenRole : "role_id" }, function(err, res) {
 
 
 To assign a new role to a user, send a `PATCH` request with the `givenRole` property as the unique `_id` of the role to assign in the request body, to the User API resource with the user's `_id` as part of the URI.
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `user_id` | the Stamplay `_id` of the user to assign a role | <i class="checked"></i> |
+| `role_id` | the Stamplay `_id` of the role to assign to the user | <i class="checked"></i> |
+

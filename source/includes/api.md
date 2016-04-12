@@ -67,7 +67,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 *Default pagination attribute values:*
 
-|    Property    |   Data Type  |    Default   |
+|    Property    |   Type  |    Default   |
 |----------------|--------------|--------------|
 | page     	     |   Number     |      1       |
 | per_page       |   Number     |      20      |
@@ -103,7 +103,7 @@ To filter a response based on a value of a field, set the field and value as a p
 
 *Default properties available to filter by:*
 
-|  Property | Data Type |
+|  Property | Type |
 |-----------|-----------|
 | dt_create | Date      |
 | dt_update | Date      |
@@ -215,7 +215,7 @@ For more advanced methods of queries, Stamplay supports an array of MongoDB's co
 By setting a JSON query string to the `where` parameter you can use the operators to perform advanced queries.
 
 | Operator   | Summary |
-|:------------|:--------------------------------------------------------------------------------------------------------|
+|------------|---------|
 | $gt        |Matches values that are greater than the value specified in the query. |
 | $gte       | Matches values that are greater than or equal to the value specified in the query. |
 | $in        | Matches any of the values that exist in an array specified in the query. |
@@ -265,7 +265,7 @@ To enabled other CORS enabled domains, visit the **Hosting** section with the St
 |----------|-------------------------------------|
 | GET      | Get a resource or list of resources |
 | POST     | Create a resource                   |
-| PUT	     | Update a resource                    |
+| PUT	     | Update a resource                   |
 | PATCH    | Update a resource partially         |
 | DELETE   | Delete a resource                   |
 
