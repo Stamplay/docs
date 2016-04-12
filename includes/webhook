@@ -1,2 +1,20 @@
 <h1 id="webhooks">Webhooks</h1>
-<p>To Do</p>
+<p>Webhooks are "user defined HTTP callbacks".</p>
+
+<p>With Stamplay, Webhooks can be used as custom event triggers for 3rd-Party Integrations, Code Blocks, or Core Services.</p>
+
+<h2 id="creating-webhooks">Creating Webhooks</h2>
+
+<p>To create a webhook, visit the Stamplay Editor for the application you would like to add a webhook for.</p>
+
+<p>Navigate to the <strong>Webhooks</strong> section, enter a name for your Webhook and <strong>Create</strong>.</p>
+
+<p><img alt="Create A Webhook" src="/images/webhook_create.png" /></p>
+
+<p>Any Webhook created is is available at:</p>
+
+<ul>
+  <li><a href="https://APP-ID.stamplayapp.com/api/webhook/v1/:webhookId/catch">https://APP-ID.stamplayapp.com/api/webhook/v1/:webhookId/catch</a></li>
+</ul>
+
+<h2 id="using-webhooks">Using Webhooks</h2>

@@ -12,7 +12,7 @@
   <tbody>
     <tr>
       <td>_id</td>
-      <td>user unique id</td>
+      <td>a unique identifier</td>
     </tr>
     <tr>
       <td>displayName</td>
@@ -81,7 +81,29 @@
   <span class="p">})</span>
 </code></pre>
 
-<p>To signup or add a user for a local account, send an <code>email</code> and<code> password</code> as object in the body of the request to Stamplay, with any additional data to save to the new user record.</p>
+<p>Sign up a user for a local user account.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>email</code></td>
+      <td>a valid email address</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>password</code></td>
+      <td>user provided secret</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="login">Login</h3>
 
@@ -106,11 +128,33 @@
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
-<p>To authenticate a user's credentials for a local account, send an <code>email</code> and <code>password</code> as an object in the body of the request to Stamplay.</p>
+<p>Login a user to a local account.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>email</code></td>
+      <td>a valid email address</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>password</code></td>
+      <td>user provided secret</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="social-authentication">Social Authentication</h2>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/{provider}/connect"</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/:provider/connect"</span>
 </code></pre>
 
 <pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"provider"</span><span class="p">)</span>
@@ -121,9 +165,62 @@
 
 <p>Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.</p>
 
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>provider</code></td>
+      <td>the slug identifier of the social provider</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="ionic-integration">Ionic Integration</h3>
 
-<p>To Do</p>
+<pre class="highlight shell-always"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP-ID"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">isMobile</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">absoluteUrl</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">autorefreshSocialLogin</span> <span class="p">:</span> <span class="kc">false</span>
+  <span class="p">})</span>
+</code></pre>
+
+<p>Login users with social accounts inside an Ionic mobile application.</p>
+
+<p>To use a social provider within an Ionic application, you must pass in an additonal options object in the <code>Stamplay.init</code> method when intializing the SDK.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>isMobile</code></td>
+      <td>manages the login/signup behavior for hybrid environments like Ionic, if true opens auth dialog in new window.</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>absoluteUrl</code></td>
+      <td>force the path to be absolute</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>autorefreshSocialLogin</code></td>
+      <td>refresh application after a successful socialLogin</td>
+      <td style="text-align: center"><i class="checked"></i></td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="facebook">Facebook</h3>
 
@@ -135,6 +232,8 @@
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<p>Login a user with a Facebook account.</p>
 
 <hr />
 
@@ -193,6 +292,8 @@
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
+<p>Login a user with a Google+ account.</p>
+
 <hr />
 
 <p><strong>Create a Google Client Id</strong></p>
@@ -248,6 +349,8 @@
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
+<p>Login a user with a Twitter account.</p>
+
 <hr />
 
 <p><strong>Create a Twitter app</strong></p>
@@ -290,6 +393,8 @@
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<p>Login a user with a Dropbox account.</p>
 
 <hr />
 
@@ -336,6 +441,8 @@
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
+<p>Login a user with a LinkedIn account.</p>
+
 <hr />
 
 <p><strong>Create a LinkedIn app</strong></p>
@@ -375,6 +482,8 @@
 <p>Refer to the Linkedin documentation for more information.</p>
 
 <h3 id="instagram">Instagram</h3>
+
+<p>Login a user with a Instagram account.</p>
 
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/instagram/connect"</span>
 </code></pre>
@@ -425,6 +534,8 @@
 
 <h3 id="github">Github</h3>
 
+<p>Login a user with a Github account.</p>
+
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/github/connect"</span>
 </code></pre>
 
@@ -467,6 +578,8 @@
 <p>Refer to the Github documentation for more information.</p>
 
 <h3 id="angellist">Angellist</h3>
+
+<p>Login a user with an Angellist account.</p>
 
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/angellist/connect"</span>
 </code></pre>
@@ -543,7 +656,48 @@
 
 <h2 id="reset-password">Reset Password</h2>
 
-<p>To Do</p>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/user/v1/users/resetpassword "</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">email</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">user@stamplay.com</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">newPassword</span><span class="se">\"</span><span class="s2"> : </span><span class="se">\"</span><span class="s2">stamplay_rocks!</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">emailAndNewPass</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">email</span><span class="p">:</span> <span class="s2">"user@stamplay.com"</span><span class="p">,</span>
+    <span class="na">newPassword</span><span class="p">:</span> <span class="s2">"stamplay_rocks!"</span>
+  <span class="p">}</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">resetPassword</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>Reset a local user's account password.</p>
+
+<p>Successful submission of a password reset request will send an email to the account holder's email address with a confirmation link that will set the password reset into affect.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>email</code></td>
+      <td>valid email address associated with the account</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>newPassword</code></td>
+      <td>new password for the account being reset</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="user-to-user-permissions">User to User Permissions</h2>
 
@@ -593,9 +747,9 @@
 
 <p>To fetch the user that is currently logged in, send a request to the <code>getStatus</code> endpoint, on the user API resource.</p>
 
-<h3 id="individual-user">Individual User</h3>
+<h3 id="fetch-user-by-id">Fetch User By Id</h3>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/:user_id"</span>
 </code></pre>
 
 <pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">_id</span> <span class="p">:</span> <span class="s2">"user_id"</span> <span class="p">})</span>
@@ -612,6 +766,23 @@
 </code></pre>
 
 <p>To fetch an single user, send the <code>_id</code> of the user to fetch in the request body to the user API resource.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>user_id</code></td>
+      <td>the Stamplay <code>_id</code> of the user to fetch</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="all-users">All Users</h3>
 
@@ -671,7 +842,7 @@
 
 <h3 id="partial-user-update">Partial User Update</h3>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/:user_id"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">30</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
@@ -701,9 +872,26 @@
 
 <p>To partially update a User record, send a <code>PATCH</code> request with an properties to update in the request body, to the User API resource with the <code>_id</code> of the user to update.</p>
 
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>user_id</code></td>
+      <td>the Stamplay <code>_id</code> of the user to update</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="complete-user-update">Complete User Update</h3>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/:user_id"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">111 Market St. San Francisco, CA</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">30</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">_id</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">56fb116e5ab65a4446dd3b2d</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
@@ -738,9 +926,26 @@
 
 <p>Include this representation in the request body, in the request to the User API resource with the <code>_id</code> of the user to update.</p>
 
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>user_id</code></td>
+      <td>the Stamplay <code>_id</code> of the user to update</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="remove-user">Remove User</h2>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/{user_id}"</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/:user_id"</span>
 </code></pre>
 
 <pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">)</span>
@@ -757,6 +962,23 @@
 </code></pre>
 
 <p>To remove a user record from the database, send a <code>DELETE</code> request to the user resource with the user <code>_id</code> to the User API resource.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>user_id</code></td>
+      <td>the Stamplay <code>_id</code> of the user to delete</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- ## Activity -->
 

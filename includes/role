@@ -32,7 +32,7 @@
 
 <p>To fetch a single role, send a <code>GET</code> request to the Roles API resource, with the <code>_id</code> as part of the request URI.</p>
 
-<pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/roles/{role_id}"</span>
+<pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/roles/:role_id"</span>
 </code></pre>
 
 <pre class="highlight javascript"><code><span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">getRole</span><span class="p">(</span><span class="s2">"role_Id"</span><span class="p">)</span>
@@ -46,15 +46,32 @@
 <pre class="highlight nodejs"><code><span class="c1">// no method</span>
 </code></pre>
 
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>role_id</code></td>
+      <td>the Stamplay <code>_id</code> of the role to fetch</td>
+      <td style="text-align: center"><i class="checked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="assign-role">Assign Role</h2>
 
-<pre class="highlight shell"><code>curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/:user_id"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">givenRole</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">role_id</span><span class="se">\"</span><span class="s2">}"</span>
 
 </code></pre>
 
-<pre class="highlight javascript"><code><span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="p">{</span> <span class="na">givenRole</span> <span class="p">:</span> <span class="s2">"role_id"</span> <span class="p">})</span>
+<pre class="highlight javascript"><code><span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">setRole</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"role_id"</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// success</span>
   <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -68,3 +85,26 @@
 </code></pre>
 
 <p>To assign a new role to a user, send a <code>PATCH</code> request with the <code>givenRole</code> property as the unique <code>_id</code> of the role to assign in the request body, to the User API resource with the user's <code>_id</code> as part of the URI.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>user_id</code></td>
+      <td>the Stamplay <code>_id</code> of the user to assign a role</td>
+      <td style="text-align: center"><i class="checked"></i></td>
+    </tr>
+    <tr>
+      <td><code>role_id</code></td>
+      <td>the Stamplay <code>_id</code> of the role to assign to the user</td>
+      <td style="text-align: center"><i class="checked"></i></td>
+    </tr>
+  </tbody>
+</table>
+

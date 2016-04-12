@@ -228,7 +228,7 @@
 <p>In the Stamplay Editor, in the <strong>Hosting</strong> section. Select <strong>Use A Custom Domain</strong> and add the value <a href="www.mybeautifulwebsite.com">www.mybeautifulwebsite.com</a> to the <strong>App Domain</strong> field.</p>
 
 <aside class="notice">
-  Application must be on a paid plan to use a custom domain.
+  <p>Application must be on a paid plan to use a custom domain.</p>
 </aside>
 
 <p><a href="../images/prettyurls_config.png"><img alt="Pretty URL Configuration" src="/images/prettyurls_config.png" /></a></p>

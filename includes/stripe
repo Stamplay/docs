@@ -1,2 +1,426 @@
 <h1 id="stripe">Stripe</h1>
-<p>To Do</p>
+
+<p>A first class API layer for integrating Stripe into a Stamplay application.</p>
+
+<h2 id="customers">Customers</h2>
+
+<p>Stripe customers allow you to perform recurring charges and track multiple charges that are associated with the same customer.</p>
+
+<h3 id="add-customer">Add Customer</h3>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">userId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">546dc9f188104fee05000006</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createCustomer</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<p>Add a new customer on Stripe.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the  user to add as a Stripe Customer</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="subscriptions">Subscriptions</h2>
+
+<p>Subscriptions allow you to charge a customer's card on a recurring basis. A subscription ties a customer to a particular plan you've created.</p>
+
+<h3 id="fetch-user-subscription">Fetch User Subscription</h3>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/:userId/subscriptions/:subscriptionId"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">getSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"subscriptionId"</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="c1">// error</span>
+      <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<p>Retrieve a user subscription by a subscription ID.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of a user with a subscription</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>subscriptionId</code></td>
+      <td>the Stripe identifier of the subscription to fetch</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="fetch-users-subscriptions">Fetch User's Subscriptions</h3>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/:userId/subscriptions"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">getSubscriptions</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="c1">// error</span>
+      <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<p>Retrieve a user's subscriptions.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the user to fetch subscriptions for</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="add-a-subscription">Add A Subscription</h3>
+
+<p>Add a new subscription to a Stripe customer.</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">planId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">stripePlanId</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"planId"</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="c1">// error</span>
+      <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the user to add a subscriptions for</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>planId</code></td>
+      <td>the Stripe identifier of the subscription to add</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="update-subscription">Update Subscription</h3>
+
+<p>Update a subscription for a Stripe customer.</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">options</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{}</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"planId"</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="c1">// error</span>
+      <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the user to update a subscriptions for</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>options</code></td>
+      <td>a set of options for updating a subscription, see <a href="https://stripe.com/docs/api/node#update_subscription">Stripe Documentation</a> for details</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="remove-subscription">Remove Subscription</h3>
+
+<p>Remove a subscription from a Stripe customer.</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">options</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{}</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">deleteSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"planId"</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// success</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="c1">// error</span>
+      <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the user to remove a subscriptions for</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="cards">Cards</h2>
+
+<p>You can store multiple cards on a customer in order to charge the customer later.</p>
+
+<h3 id="fetch-users-cards">Fetch User's Cards</h3>
+
+<p>Retrieve a Stripe customer's cards.</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/cards"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">getCreditCard</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the user to fetch cards for</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="add-a-card">Add A Card</h3>
+
+<p>Add a new card to a Stripe customer.</p>
+
+<p>Obtain a token using <a href="https://stripe.com/docs/stripe.js?#card-createToken">Stripe.js</a>.</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/cards"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">token</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">card_token</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createCreditCard</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"token"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the user to add a new card for</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>token</code></td>
+      <td>a token obtained from <a href="https://stripe.com/docs/stripe.js?#card-createToken">Stripe.js</a></td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="update-a-card">Update A Card</h3>
+
+<p>Update a card for a Stripe customer.</p>
+
+<p>Obtain a token using <a href="https://stripe.com/docs/stripe.js?#card-createToken">Stripe.js</a>.</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/cards"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">token</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">card_token</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">updateCreditCard</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"token"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the user to update a card for</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>token</code></td>
+      <td>a token obtained from <a href="https://stripe.com/docs/stripe.js?#card-createToken">Stripe.js</a></td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="charges">Charges</h2>
+
+<h3 id="create-charge">Create Charge</h3>
+
+<p>Charge a Stripe customer's card.</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/charges"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">userId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">51e554184d88a4452c002233</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">token</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">card_id</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">:500,</span><span class="se">\"</span><span class="s2">currency</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">USD</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">charge</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"token"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">,</span> <span class="s2">"currency"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="c1">// Handle Error</span>
+    <span class="p">});</span>
+      
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the user to charge</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>token</code></td>
+      <td>the Stripe identifier for the customer card to charge</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>amount</code></td>
+      <td>the amount in cents to charge</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>currency</code></td>
+      <td>a 3-letter ISO code for currency, default <code>USD</code></td>
+      <td style="text-align: center"><i class="checked"></i></td>
+    </tr>
+  </tbody>
+</table>

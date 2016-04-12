@@ -37,7 +37,7 @@
 </ul>
 
 <aside class="warning">
-  All your code <strong>MUST</strong> be inside the main function, everything written outside will break your Code Block.
+  <p>All your code <strong>MUST</strong> be inside the main function, everything written outside will break your Code Block.</p>
 </aside>
 
 <h3 id="simple-model">Simple Model</h3>
