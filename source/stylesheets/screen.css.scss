@@ -337,10 +337,13 @@ html, body {
       display: none;
       width: 50%;
       margin-top: 20px;
+      table {
+        width:calc(100% - 56px) !important;
+      }
       p {
-        padding: 0 28px;
-        width:100% !important;
         box-sizing:border-box;
+        width:100% !important;
+        padding: 0 28px;
       }
     &.active {
       display: inline-block !important;

@@ -1,14 +1,18 @@
 # Roles
 
-Stamplay supports role based access control for a fine grained authorization layer if needed.
-
-Roles provide a logical way of grouping users with common access privileges to your data and how a user is able to perform CRUD operations on a resource.
-
-Roles can be created and deleted only inside Stamplay but you can assign them to your users via APIs.
+Stamplay supports role based access control for a fine grained authorization layer.
 
 ## How Roles Work
 
-To Do
+Roles provide a logical way of grouping users with common access privileges.
+
+Any permission granted to a role is implicitly granted to its users and to the users in any roles it contains.
+
+By default, any Stamplay app has two pre-defined roles: `guest` and `registered`.
+
+You can add as many roles as you need and define hierarchies to grant a user with role `X` the permission to change the role of another user with role `Y`.
+
+Roles and permissions each has are defined within the Stamplay editor entirely, the API resource if for reading and assiging the roles you define only.
 
 ## Fetch All Roles
 

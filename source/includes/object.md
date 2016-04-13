@@ -1,5 +1,11 @@
 # Objects
 
+The Object API resource is based of the user defined Schemas in the Stamplay Editor.
+
+For each Schema, and API endpoint is generated, and new database collection is added.
+
+Out of the box, the Object API resource supports user relationships, object relationships, geolocation data, file uploads, and role based interaction for each schema type.
+
 ## Schemas
 
 Schemas are defined data structures that enfore type validation.
@@ -395,20 +401,21 @@ The object type for the example is `movie`.
 
 To fetch all objects that match a certain parameters, send a `GET` request to the Object resource with any parameters to match in the request body.
 
+For more advanced queries, visit the [Advanced Queries](#advanced-queries) section for more information.
+
 The object type for the example is `movie`.
 
 ### Find By Current User
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/:attributes"
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/author"
 ~~~ 
 
 ~~~ javascript
-  var attrs = ["owner", "contributor"];
 
   // default attribute is owner is no arguments are passed to method
 
-  Stamplay.Object("movie").findByCurrentUser(attrs)
+  Stamplay.Object("movie").findByCurrentUser('author')
     .then(function(res) {
       // Success
     }, function(err) {
@@ -420,9 +427,11 @@ The object type for the example is `movie`.
   // no method
 ~~~ 
 
-To find all objects with attributes that match the current user's `_id`. Specify the attributes to match against with a comma delimited list.
+To find any records whose field value is equal to the current user's `_id`, you can use the find by owner resource to simplify querying through different fields.
 
-Make a `GET` request to the Object resource for the object model. Specifying the attributes in the resource URI.
+
+
+Make a `GET` request to the Object resource for the object model. Specifying the attribute in the resource URI.
 
 The object type for the example is `movie`.
 
@@ -565,7 +574,9 @@ A **User** relationship is a pointer to a user record. This field type is to be 
 
 This is so it may be populated with the parent object, eliminating the need for a subsequent request to fetch the relationship data. To populate the `owner` field, include the query parameter `populate_owner` as `true` in your request.
 
-The `owner` property is a default User relationship, but others can be added through the Stamplay editor.
+The `owner` property is a default User relationship field on an Object record.
+
+When using the SDK, this field is set if a current user session is in progress, otherwise it is left blank. To add owner's to your Object records when using the REST API or Node.js SDK, set this field as the owner of the record.
 
 To manage these relationships, just update this field to the "_id" of the User to reference in the relationship.
 
@@ -613,6 +624,644 @@ The **JavaScript SDK** has a `push` method to allow an easier method for pushing
 | `object_id` | the Stamplay `_id` of the object to add a relationship to | <i class="unchecked"></i> |
 
 In this example, `movie` is the object type, and the `characters` field is a **Object Relationship** field.
+
+### Retrieving Related Records
+
+To retrieve related records, use the `populate` parameter in any `GET` request, and any populable fields will be filled with their respective objects in place of their `_id`.
+
+~~~ shell
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie?populate=true"
+~~~ 
+
+~~~ javascript
+  Stamplay.Object("movie").get({ populate : true })
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
+
+~~~ nodejs
+  Stamplay.Object("movie").get({ populate : true }, function(err, res) {
+    // response
+  })
+~~~
+
+## Advanced Queries
+
+In some cases, retrieving objects by an `_id` or by simple filter methods aren't powerful enough to specify which objects you want to retrieve from the back-end.
+
+Queries offer a different way to retrieve a list of objects, or users.
+
+### Introduction
+
+<div class="lang-content shell">
+  Advanced query methods use a `where` parameter set to a JSON query string.
+</div>
+
+<div class="lang-content javascript nodejs">
+  The `Stamplay.Query` class uses use a `where` url parameter set to a JSON query string under the hood.
+
+</div>
+
+~~~ shell
+  ?where={ field : { $query_operator : field_value }
+~~~
+
+~~~ javascript
+// Querying Users
+  `Stamplay.Query("user", "users").someQueryMethod()`
+
+// Querying Objects
+  `Stamplay.Query("object", "cobject_id").someQueryMethod()`
+
+~~~
+
+~~~ nodejs
+// Querying Users
+  `Stamplay.Query("user", "users").someQueryMethod()`
+
+// Querying Objects
+  `Stamplay.Query("object", "cobject_id").someQueryMethod()`
+
+~~~
+
+The advanced filter methods used are just MongoDB query operators, that Stamplay allow's to be set inside query string on the client side.
+
+The exhaustive list of MongoDB operators available can be found in the API Overview Section under [Advanced Queries](#advanced-queries).
+
+### Comparing Integer Values
+
+When filtering through integer type fields, we often need the ability to run an expression to evaulate whether a value is more than just simply equal to, but one or more of the following:
+
+<div class="lang-content javascript nodejs">
+
+  | Method               |         |
+  |----------------------|---------|
+  | `greaterThan`        | check if a value is greater than a given value | 
+  | `greaterThanOrEqual` | check if a value is less than a given value  |
+  | `lessThan`           | check if a value is greater than a given value or equal to |
+  | `lessThanOrEqual`    | check if a value is less than a given value or equal to |
+
+</div>
+
+<div class="lang-content shell">
+  
+  | Operator             |         |
+  |----------------------|---------|
+  | `$gt`  | check if a value is greater than a given value | 
+  | `$gte` | check if a value is less than a given value  |
+  | `$lt`  | check if a value is greater than a given value or equal to |
+  | `$lte` | check if a value is less than a given value or equal to |
+
+</div>
+
+
+#### Greater Than
+
+~~~ shell
+
+curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$gt":4\}\}'
+
+~~~
+
+~~~ javascript
+
+  Stamplay.Query('object','movie')
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~
+
+~~~ nodejs
+
+  Stamplay.Query('object','movie')
+    .greaterThan('actions.ratings.total', 4)
+    .exec(function(err, res){
+      // response
+    })
+
+~~~
+
+<div class="lang-content shell">
+  To retrieve all records where the field value specified is greater than a value, use the `$gt` mongo operator.
+</div>
+
+<div class="lang-content javascript nodejs">
+  To retrieve all records where the field value specified is greater than a value, use the `greaterThan` SDK method.
+</div>
+
+#### Greater Than Or Equal To
+
+~~~ shell
+
+curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$gte":4\}\}'
+
+~~~
+
+~~~ javascript
+
+  Stamplay.Query('object','movie')
+    .greaterThanOrEqual('actions.ratings.total', 4)
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+
+~~~
+
+~~~ nodejs
+
+  Stamplay.Query('object','movie')
+    .greaterThanOrEqual('actions.ratings.total', 4)
+    .exec(function(err, res){
+      // response
+    })
+
+~~~
+
+<div class="lang-content shell">
+  To retrieve all records where the field value specified is greater than or equal to a value, use the `$gte` mongo operator.
+</div>
+
+<div class="lang-content javascript nodejs">
+  To retrieve all records where the field value specified is greater than or equal to a value, use the `greaterThanOrEqual` SDK method.
+</div>
+
+
+#### Less Than
+
+~~~ shell
+
+curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lt":4\}\}'
+
+~~~
+
+~~~ javascript
+
+  Stamplay.Query('object','movie')
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+
+~~~
+
+~~~ nodejs
+
+  Stamplay.Query('object','movie')
+    .lessThan('actions.ratings.total', 4)
+    .exec(function(err, res){
+      // response
+    })
+
+~~~
+
+<div class="lang-content shell">
+  To retrieve all records where the field value specified is less than a value, use the `$lt` mongo operator.
+</div>
+
+<div class="lang-content javascript nodejs">
+  To retrieve all records where the field value specified is less than a value, use the `lessThan` SDK method.
+</div>
+
+
+#### Less Than Or Equal To
+
+~~~ shell
+
+curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lte":4\}\}'
+
+~~~
+
+~~~ javascript
+
+  Stamplay.Query('object','movie')
+    .lessThanOrEqual('actions.ratings.total', 4)
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~
+
+~~~ nodejs
+
+  Stamplay.Query('object','movie')
+    .lessThanOrEqual('actions.ratings.total', 4)
+    .exec(function(err, res){
+      // response
+    })
+
+~~~
+
+<div class="lang-content shell">
+  To retrieve all record where the field value specified is less than or equal to a value, use the `$lte` mongo operator.
+</div>
+
+<div class="lang-content javascript nodejs">
+  To retrieve all record where the field value specified is less than or equal to a value, use the `lessThanOrEqual` SDK method.
+</div>
+
+
+
+### Selection and Sorting
+
+Stamplay provides an easy to use interface for selecing what data from an object is returned, and in what order the records are returned.
+
+#### Selecting Return Fields
+
+~~~ shell
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?select=title,actions.ratings.total'
+~~~
+
+~~~ javascript
+
+  Stamplay.Query("object", "cobject_id")
+    .select("title", "actions.ratings.total")
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+
+~~~
+
+~~~ nodejs
+
+  Stamplay.Query("object", "cobject_id")
+    .select("title", "actions.ratings.total")
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+
+~~~
+
+<div class="lang-content shell">
+  To select fields of return for query, add the `select` query parameter the request URI, and add the attributes to return as a comma delimited list assigned to `select`.
+
+  To return only certain properties of a field, set them as a dot notated attribute in the comma delimited list. In the example `actions.ratings.total`, is set a return field.
+
+  The object structure is maintained, however any other properties not specified will not be returned.
+
+</div>
+
+<div class="lang-content javascript nodejs">
+  To select fields of return for query, use the `select` query method on the `Stamplay.Query`, and add the attributes to return as method arguments.
+
+  To return only certain properties of a field, pass them in as a dot notated attribute as seen in the example with `actions.ratings.total`.
+</div>
+
+
+#### Sorting Query Results
+
+~~~ shell
+  // sort by title in ascending order
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?sort=title'
+
+  // sort by title in descending order (note the hyphen preceding the sort param value)
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?sort=-title'
+~~~
+
+~~~ javascript
+
+  // sort by title in ascending order
+  Stamplay.Query("object", "cobject_id")
+    .sortAscending("title")
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+
+  // sort by title in descending order
+  Stamplay.Query("object", "cobject_id")
+    .sortDescending("title")
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+
+~~~
+
+~~~ nodejs
+
+  // sort by title in ascending order
+  Stamplay.Query("object", "cobject_id")
+    .sortAscending("title")
+    .exec()
+    .exec(function(err, res){
+      if(err) return console.log(err);
+      console.log(res);
+    })
+
+  // sort by title in descending order
+  Stamplay.Query("object", "cobject_id")
+    .sortDescending("title")
+    .exec(function(err, res){
+      if(err) return console.log(err);
+      console.log(res);
+    })
+
+~~~
+
+By default, Stamplay returns results in ascending order of the `dt_create` property, or the date created.
+
+<div class="lang-content shell">
+  To change the order in which the records are sorted in the response, pass in a `sort` parameter and set the value as the attribute to sort by. An attribute preceded by an `-`(hyphen) is sorted in descending order.
+</div>
+
+<div class="lang-content javascript nodejs">
+  To change the order in which the records are sorted in the response, call the `sortAscending` or `sortDescending` method on your query, and pass in the attribute to sort by.
+</div>
+
+### Regular Expressions
+
+~~~ shell
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"title":\{"$regex":"^Star","$options":"i"\}\}'
+~~~
+
+~~~ javascript
+  Stamplay.Query('object','question')
+    .regex('title','^Star', 'i')
+    .exec()
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~
+
+~~~ nodejs
+  Stamplay.Query('object','question')
+    .regex('title','^Star', 'i')
+    .exec(function(err, res){
+      // response
+    })
+~~~
+
+Regular Expressions allow pattern matching for strings in queries. For a full list of options available, and more on pattern matching see the [MongoDB Documentation on $regex](https://docs.mongodb.org/manual/reference/operator/query/regex/).
+
+The example returns records where the `title` starts with `Star`, with option `i` (disables case sensitivity).
+
+### Compound Queries
+
+~~~ shell
+  curl -X "GET" 'https://stamplaykb.stamplayapp.com/api/cobject/v1/question?where=\{"$or":\[\{"actions.rating.total":\{"$gt":4\}\},\{"title":"Star Wars"\}\]\}'
+~~~
+
+~~~ javascript
+  var ratedFourOrMore = Stamplay.Query("object", "movie");
+  var titleIsStarWars = Stamplay.Query("object", "movie");
+
+  ratedFourOrMore.greaterThanOrEqual("actions.ratings.total", 4);
+  titleIsStarWars.equalTo("title", "Star Wars");
+
+  var combinedQuery = Stamplay.Query.or(ratedFourOrMore, titleIsStarWars)
+
+  combinedQuery.exec()
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~
+
+~~~ nodejs
+  var ratedFourOrMore = Stamplay.Query("object", "movie");
+  var titleIsStarWars = Stamplay.Query("object", "movie");
+
+  ratedFourOrMore.greaterThanOrEqual("actions.ratings.total", 4);
+  titleIsStarWars.equalTo("title", “Star Wars”);
+
+  var combinedQuery = Stamplay.Query.or(ratedFourOrMore, titleIsStarWars)
+
+  combinedQuery.exec(function(err, res) {
+    // response
+  })
+~~~
+
+When performing a query, you might want to find records that match one of two or more sets of criteria, instead of a strict match for each attribute.
+
+Being able to make compound queries eliminates making several requests, simplifying application development.
+
+<div class="lang-content shell">
+
+To build a compound query, use the `$or` operator, and set an array of regular query objects. Any records matching at least one of the criteria objects will be returned.
+
+</div>
+
+<div class="lang-content javascript nodejs">
+  
+To build a compound query, use the `or()` method, and pass in the query objects are arguments. Any records matching at least one of the criteria objects will be returned.
+
+</div>
+
+### Geolocation Queries
+
+
+Geolocation queries allow you to find records whose geo data match a set of geo parameters specified in the query.
+
+
+
+<div class="lang-content shell">
+
+Stamplay supports the follow MongoDB operators for querying geolocation data:
+
+| Operator         |         |
+|------------------|---------|
+| `$geoWithin`     |  Returns records within the bounds GeoJSON geometry. |
+| `$geoIntersects` |  Returns records that intersect with a GeoJSON geometry |
+| `$near`          |  Return records within a specified proximity to a point |
+| `$nearSphere`    |  Return records within a specified proximity to a point on a sphere |
+
+</div>
+
+<div class="lang-content javascript nodejs">
+
+The following SDK methods are available for querying geolocation data:
+
+  
+| Method           |         |
+|------------------|---------|
+| `geoWithinGeometry` |  Returns records within a geometric boundary. |
+| `geoIntersects`     |  Returns records that intersect with a GeoJSON geometry |
+| `near`              |  Return records within a specified proximity to a point |
+| `nearSphere`        |  Return records within a specified proximity to a point on a sphere |
+
+</div>
+
+
+#### Within a Geometric Boundary
+
+~~~ shell
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"_geolocation":\{"$geoWithin":\{"$geometry":\{"type":"Polygon","coordinates":\[\[\[-70,40\],\[-72,40\],\[-72,50\],\[-70,50\],\[-70,40\]\]\]\}\}\}\}'
+~~~
+
+~~~ javascript
+ Stamplay.Query("object", "movie")
+  .geoWithinGeometry('Polygon',  
+  [
+    [ [-70,40], [-72,40], [-72,50], [-70, 50], [-70, 40] ]
+  ]).exec()
+  .then(function(res) {
+    // success
+  }, function(err) {
+    // error
+  })
+~~~
+
+~~~ nodejs
+
+ Stamplay.Query("object", "movie")
+  .geoWithinGeometry('Polygon',  
+  [
+    [ [-70,40], [-72,40], [-72,50], [-70, 50], [-70, 40] ]
+  ]).exec(function(err,res) {
+    // response
+  })
+~~~
+
+Find and return records that are within a specified polygon.
+
+
+<div class="lang-content shell">
+The `$geoWithin` MongoDB operator accepts a GeoJSON [Polygon](https://docs.mongodb.org/manual/reference/geojson/#geojson-polygon) or a [MultiPolygon](https://docs.mongodb.org/manual/reference/geojson/#geojson-multipolygon).
+</div>
+
+<div class="lang-content javascript nodejs">
+The `geoWithinGeometry` SDK method accepts a GeoJSON [Polygon](https://docs.mongodb.org/manual/reference/geojson/#geojson-polygon) or a [MultiPolygon](https://docs.mongodb.org/manual/reference/geojson/#geojson-multipolygon).
+</div>
+
+For more information about finding records within a geometric boundray, see the MongoDB documention for [$geoWithin](https://docs.mongodb.org/manual/reference/operator/query/geoWithin/#op._S_geoWithin).
+
+#### Intersects a Geometric Boundary
+
+~~~ shell
+  curl -X "GET" 'https://stamplaykb.stamplayapp.com/api/cobject/v1/question?where=\{"_geolocation":\{"$geoIntersects":\{"$geometry":\{"type":"Point","coordinates":\[74.0059,40.7127\]\}\}\}\}'
+~~~
+
+~~~ javascript
+  Stamplay.Query("object", "movie")
+    .geoIntersects('Point',  [ 74.0059, 40.7127 ])
+    .exec()
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~
+
+~~~ nodejs
+  Stamplay.Query("object", "movie")
+    .geoIntersects('Point',  [ 74.0059, 40.7127 ])
+    .exec(function(err,res) {
+      // response
+    })
+~~~
+
+Find and return records that intersect on the specified coordinates.
+
+<div class="lang-content shell">
+The `$geoIntersects` MongoDB operator accepts a [GeoJSON object](https://docs.mongodb.org/manual/reference/geojson/#geospatial-indexes-store-geojson).
+</div>
+
+<div class="lang-content javascript nodejs">
+The `geoIntersects` SDK method accepts a [GeoJSON object](https://docs.mongodb.org/manual/reference/geojson/#geospatial-indexes-store-geojson).
+</div>
+
+For more information about finding records within a geometric boundray, see the MongoDB documention for [$geoIntersects](https://docs.mongodb.org/manual/reference/operator/query/geoIntersects/#op._S_geoIntersects).
+
+#### Within Proximity To A Point
+
+~~~ shell
+ curl -X "GET" 'https://stamplaykb.stamplayapp.com/api/cobject/v1/question?where=\{"_geolocation":\{"$near":\{"$geometry":\{"type":"Point","coordinates":\[74.0059,40.7127\]\}\}\}\}'
+~~~
+
+~~~ javascript
+  Stamplay.Query("object", "dinners")
+  .near('Point',  [ 74.0059, 40.7127 ], 500 )
+  .exec()
+  .then(function(res) {
+    // success
+  }, function(err) {
+    // error
+  })
+~~~
+
+~~~ nodejs
+  Stamplay.Query("object", "dinners")
+  .near('Point',  [ 81.0039, 70.4127 ], 500, 100 )
+  .exec(function(err,res) {
+    // response
+  })
+~~~
+
+<div class="lang-content shell">
+
+To Do
+
+</div>
+
+<div class="lang-content javascript nodejs">
+
+To Do
+
+</div>
+
+#### Within Proximity To A Point (Near Sphere)
+
+~~~ shell
+ curl -X "GET" 'https://stamplaykb.stamplayapp.com/api/cobject/v1/question?where=\{"_geolocation":\{"$near":\{"$geometry":\{"type":"Point","coordinates":\[74.0059,40.7127\]\}\}\}\}'
+~~~
+
+~~~ javascript
+  Stamplay.Query("object", "dinners")
+  .nearSphere('Point',  [ 74.0059, 40.7127 ], 1000 )
+  .exec()
+  .then(function(res) {
+    // success
+  }, function(err) {
+    // error
+  })
+~~~
+
+~~~ nodejs
+  Stamplay.Query("object", "dinners")
+  .nearSphere('Point',  [ 74.0059, 40.7127 ], 500 )
+  .exec(function(err,res) {
+    // response
+  })
+~~~
+
+<div class="lang-content shell">
+
+To Do
+
+</div>
+
+<div class="lang-content javascript nodejs">
+
+To Do
+
+</div>
+
 
 ## Voting
 

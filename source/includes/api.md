@@ -182,15 +182,41 @@ By default all properties are returned.
 
 ## Populating References
 
-To Do
+~~~ shell
+curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?populate=true"
 
+~~~ 
+
+~~~ javascript
+  Stamplay.Object("movie")
+    .get({ populate : true })
+    .then(function(res) {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~ 
+
+~~~ nodejs
+Stamplay.Object('movie')
+  .get({ populate : true }, function(err, res) {
+    // response
+  })
+~~~ 
+
+<div class="lang-content shell">
+  To populate reference fields in the response, add the `populate` parameter to the request URI as `true`.
+</div>
+
+<div class="lang-content javascript nodejs">
+  To populate reference fields in the response, add the `populate` property to the `get` SDK method options object.
+</div>
 
 
 ## Advanced Queries
 
 ~~~ shell
-curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=%7B%20rating'%20:%20%7B%20$gt%20:%205%20%7D%20%7D"
-
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"rating":\{"$gt":5\}\}'
 ~~~ 
 
 ~~~ javascript
