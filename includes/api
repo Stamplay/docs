@@ -253,12 +253,36 @@ The Link header returns a set of ready-made links so the API consumer does not h
 
 <h2 id="populating-references">Populating References</h2>
 
-<p>To Do</p>
+<pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/movie?populate=true"</span>
+
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">populate</span> <span class="p">:</span> <span class="kc">true</span> <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code><span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'movie'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">populate</span> <span class="p">:</span> <span class="kc">true</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
+
+<div class="lang-content shell">
+  <p>To populate reference fields in the response, add the <code>populate</code> parameter to the request URI as <code>true</code>.</p>
+</div>
+
+<div class="lang-content javascript nodejs">
+  <p>To populate reference fields in the response, add the <code>populate</code> property to the <code>get</code> SDK method options object.</p>
+</div>
 
 <h2 id="advanced-queries">Advanced Queries</h2>
 
-<pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=%7B%20rating'%20:%20%7B%20</span><span class="nv">$gt</span><span class="s2">%20:%205%20%7D%20%7D"</span>
-
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"rating":\{"$gt":5\}\}'</span>
 </code></pre>
 
 <pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">)</span>
