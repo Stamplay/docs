@@ -65,6 +65,7 @@ The `context.data` is a JavaScript object that combines parameters passed to the
 * The key value pairs passed in the request body.
 
 The request can be parsed correctly only if `application/json` or `application/x-www-form-urlencoded` is used as `content-type`.
+
 ### Full Control Model
 
 ~~~ nodejs-always

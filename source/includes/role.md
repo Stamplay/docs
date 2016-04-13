@@ -16,7 +16,6 @@ Roles and permissions each has are defined within the Stamplay editor entirely, 
 
 ## Fetch All Roles
 
-To retrieve all roles within your application, send a `GET` request to the Roles API resource.
 
 ~~~shell
 curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/roles"
@@ -35,9 +34,9 @@ Stamplay.User.getRoles()
 // no method
 ~~~
 
-## Fetch Individual Role
+To retrieve all roles within your application, send a `GET` request to the Roles API resource.
 
-To fetch a single role, send a `GET` request to the Roles API resource, with the `_id` as part of the request URI.
+## Fetch Individual Role
 
 ~~~shell
 curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/roles/:role_id"
@@ -55,6 +54,9 @@ Stamplay.User.getRole("role_Id")
 ~~~nodejs
 // no method
 ~~~
+
+To fetch a single role, send a `GET` request to the Roles API resource, with the `_id` as part of the request URI.
+
 
 | Attribute   |         | Optional                  |
 |-------------|---------|:-------------------------:|

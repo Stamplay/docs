@@ -340,9 +340,12 @@ html, body {
 
 
   .lang-content {
-      display: none;
-      width: 50%;
-      margin-top: 20px;
+        line-height: 1.6;
+        margin-top: 0;
+        width: 50%;
+        margin-right: 0;
+        display: none;
+
       table {
         width:calc(100% - 56px) !important;
       }
@@ -352,7 +355,7 @@ html, body {
         padding: 0 28px;
       }
     &.active {
-      display: inline-block !important;
+      display: block !important;
     }
   }
 
@@ -384,7 +387,7 @@ html, body {
   }
 
   // the div is the tocify hidden div for placeholding stuff
-  &>h1, &>h2, &>div {
+  &>h1, &>h2 {
     clear:both;
   }
 
@@ -431,6 +434,7 @@ html, body {
     margin-bottom: 0.8em;
     padding: 1em 2em;
     color: #ffffff;
+    clear:right;
     background-color: #3D3F4D;
   }
 
@@ -531,7 +535,7 @@ i {
     margin-top: 0;
     width:50%;
     margin-right: 0;
-    display: inline-block;
+    display: block;
   }
 
   dt, dd {
@@ -631,7 +635,7 @@ i {
     margin: 0;
     margin-top:5px;
     width: $examples-width;
-
+    white-space: pre-wrap;
     float:right;
     clear:right;
     max-width: 50%;

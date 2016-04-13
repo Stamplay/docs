@@ -730,32 +730,6 @@ When querying a date field, pass in an data `ISO` string as the value to compare
 
 #### Greater Than
 
-~~~ shell
-
-curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$gt":4\}\}'
-
-~~~
-
-~~~ javascript
-
-  Stamplay.Query('object','movie')
-    .exec()
-    .then(function() {
-      // success
-    }, function(err) {
-      // error
-    })
-~~~
-
-~~~ nodejs
-
-  Stamplay.Query('object','movie')
-    .greaterThan('actions.ratings.total', 4)
-    .exec(function(err, res){
-      // response
-    })
-
-~~~
 
 <div class="lang-content shell">
   To retrieve all records where an integer specified is **greater than** another, or where a date is **after** another date, use the `$gt` mongo operator.
@@ -765,18 +739,19 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
   To retrieve all records where an integer specified is **greater than** another, or where a date is **after** another date, use the `greaterThan` SDK method.
 </div>
 
-#### Greater Than Or Equal To
-
 ~~~ shell
+// returns records where the rating is greater than 4
+curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$gt":4\}\}'
 
-curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$gte":4\}\}'
-
+// returns records that were created after January 15, 2015
+curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_create":\{"$gt":"2015-01-15T08:00:00.000Z"\}\}'
 ~~~
 
 ~~~ javascript
-
+  
+  // returns records where the rating is greater than 4
   Stamplay.Query('object','movie')
-    .greaterThanOrEqual('actions.ratings.total', 4)
+    .greaterThan('actions.ratings.total', 4)
     .exec()
     .then(function() {
       // success
@@ -784,17 +759,37 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
       // error
     })
 
+  // returns records that were created after January 15, 2015
+  Stamplay.Query('object','movie')
+    .greaterThan('dt_create', "2015-01-15T08:00:00.000Z")
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
 ~~~
 
 ~~~ nodejs
-
+  
+  // returns records where the rating is greater than 4
   Stamplay.Query('object','movie')
-    .greaterThanOrEqual('actions.ratings.total', 4)
+    .greaterThan('actions.ratings.total', 4)
+    .exec(function(err, res){
+      // response
+    })
+
+  // returns records that were created after January 15, 2015
+  Stamplay.Query('object','movie')
+    .greaterThan('dt_create', "2015-01-15T08:00:00.000Z")
     .exec(function(err, res){
       // response
     })
 
 ~~~
+
+
+#### Greater Than Or Equal To
 
 <div class="lang-content shell">
   To retrieve all records where an integer specified is **greater than or equal** to another, or where a date is **on or after** another date, use the `$gte` mongo operator.
@@ -804,18 +799,29 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
   To retrieve all records where an integer specified is **greater than or equal to** another, or where a date is **on or after** another date, use the `greaterThanOrEqual` SDK method.
 </div>
 
-
-#### Less Than
-
 ~~~ shell
+  // returns records with a rating of 4 or greater
+curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$gte":4\}\}'
 
-curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lt":4\}\}'
+// returns records that were last updated on or after April 11, 2012
+curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_update":\{"$gte":"2012-04-11T07:00:00.000Z"\}\}'
 
 ~~~
 
 ~~~ javascript
-
+  // returns records with a rating of 4 or greater
   Stamplay.Query('object','movie')
+    .greaterThanOrEqual('actions.ratings.total', 4)
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+
+  // returns records that were last updated on or after April 11, 2012
+  Stamplay.Query('object','movie')
+    .greaterThanOrEqual('dt_update', "2012-04-11T07:00:00.000Z")
     .exec()
     .then(function() {
       // success
@@ -827,13 +833,23 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
 
 ~~~ nodejs
 
+  // returns records with a rating of 4 or greater
   Stamplay.Query('object','movie')
-    .lessThan('actions.ratings.total', 4)
+    .greaterThanOrEqual('actions.ratings.total', 4)
+    .exec(function(err, res){
+      // response
+    })
+
+  // returns records that were last updated on or after April 11, 2012
+  Stamplay.Query('object','movie')
+    .greaterThanOrEqual('dt_update', "2012-04-11T07:00:00.000Z")
     .exec(function(err, res){
       // response
     })
 
 ~~~
+
+#### Less Than
 
 <div class="lang-content shell">
   To retrieve all records where an integer specified is **less** than another, or where a date is **before** another date, use the `$lt` mongo operator.
@@ -844,36 +860,60 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
 </div>
 
 
-
-#### Less Than Or Equal To
-
 ~~~ shell
 
-curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lte":4\}\}'
+  // returns records with a rating of less than 4
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lt":4\}\}'
+  
+  // returns records that were created before January 15, 2015
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_create":\{"$lt":"2015-01-15T08:00:00.000Z\}\}'
 
 ~~~
 
 ~~~ javascript
 
+  // returns records with a rating of less than 4
   Stamplay.Query('object','movie')
-    .lessThanOrEqual('actions.ratings.total', 4)
+    .lessThan('actions.ratings.total', 4)
     .exec()
     .then(function() {
       // success
     }, function(err) {
       // error
     })
+
+  // returns records that were created before January 15, 2015
+  Stamplay.Query('object','movie')
+    .lessThan('actions.ratings.total', 4)
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+
 ~~~
 
 ~~~ nodejs
 
+  // returns records with a rating of less than 4
   Stamplay.Query('object','movie')
-    .lessThanOrEqual('actions.ratings.total', 4)
+    .lessThan('actions.ratings.total', 4)
+    .exec(function(err, res){
+      // response
+    })
+
+  // returns records that were created before January 15, 2015
+  Stamplay.Query('object','movie')
+    .lessThan('actions.ratings.total', 4)
     .exec(function(err, res){
       // response
     })
 
 ~~~
+
+
+#### Less Than Or Equal To
 
 <div class="lang-content shell">
   To retrieve all records where an integer specified is **less than or equal to** another, or where a date is **on or before** another date, use the `$lte` mongo operator.
@@ -883,7 +923,56 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
   To retrieve all records where an integer specified is **less than or equal to** another, or where a date is **on or before** another date, use the `lessThanOrEqual` SDK method.
 </div>
 
+~~~ shell
 
+  // returns records with a rating of 4 or less
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lte":4\}\}'
+
+  // returns records that were last updated on or before April 11, 2012
+  curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_update":\{"$lte":"2012-04-11T07:00:00.000Z"\}\}'
+
+~~~
+
+~~~ javascript
+
+  // returns records with a rating of 4 or less
+  Stamplay.Query('object','movie')
+    .lessThanOrEqual('actions.ratings.total', 4)
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+
+  // returns records that were last updated on or before April 11, 2012
+  Stamplay.Query('object','movie')
+    .lessThanOrEqual('dt_update', "2012-04-11T07:00:00.000Z")
+    .exec()
+    .then(function() {
+      // success
+    }, function(err) {
+      // error
+    })
+~~~
+
+~~~ nodejs
+  
+  // returns records with a rating of 4 or les
+  Stamplay.Query('object','movie')
+    .lessThanOrEqual('actions.ratings.total', 4)
+    .exec(function(err, res){
+      // response
+    })
+
+  // returns records that were last updated on or before April 11, 2012
+  Stamplay.Query('object','movie')
+    .lessThanOrEqual('dt_update', "2012-04-11T07:00:00.000Z")
+    .exec(function(err, res){
+      // response
+    })
+
+~~~
 
 ### Selection and Sorting
 
@@ -940,10 +1029,10 @@ Stamplay provides an easy to use interface for selecing what data from an object
 #### Sorting Query Results
 
 ~~~ shell
-  // sort by title in ascending order
+  // sort by title - ascending order
   curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?sort=title'
 
-  // sort by title in descending order (note the hyphen preceding the sort param value)
+  // sort by title by descending order (note the hyphen preceding the sort param value)
   curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?sort=-title'
 ~~~
 
@@ -1457,4 +1546,4 @@ The data for `ratings` is stored on a `actions` object on each Object.
     }
   }
 }
-
+~~~
