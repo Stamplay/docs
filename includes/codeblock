@@ -72,8 +72,9 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
   <li>The key value pairs passed in the request body.</li>
 </ul>
 
-<p>The request can be parsed correctly only if <code>application/json</code> or <code>application/x-www-form-urlencoded</code> is used as <code>content-type</code>.
-### Full Control Model</p>
+<p>The request can be parsed correctly only if <code>application/json</code> or <code>application/x-www-form-urlencoded</code> is used as <code>content-type</code>.</p>
+
+<h3 id="full-control-model">Full Control Model</h3>
 
 <pre class="highlight nodejs-always"><code>  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">});</span>

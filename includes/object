@@ -809,11 +809,19 @@
 
 <p>The exhaustive list of MongoDB operators available can be found in the API Overview Section under <a href="#advanced-queries">Advanced Queries</a>.</p>
 
-<h3 id="comparing-integer-values">Comparing Integer Values</h3>
+<h3 id="comparing-values">Comparing Values</h3>
 
-<p>When filtering through integer type fields, we often need the ability to run an expression to evaulate whether a value is more than just simply equal to, but one or more of the following:</p>
+<p>When filtering through certain field types, we often need the ability to check if a value falls within a certain range, versus strictly matching.</p>
+
+<p>This often applies to integer value type fields where one might want to return all records where a value is greater than one value but less than or equal to another.</p>
+
+<p>Another scenario, within date fields. We can use the same comparator expressions to see if a date value if before or after, or on another.</p>
+
+<p>When querying a date field, pass in an data <code>ISO</code> string as the value to compare against, or unix timestamp.</p>
 
 <div class="lang-content javascript nodejs">
+
+  <p>The following methods are useful for doing such comparisons within a query:</p>
 
   <table>
     <thead>
@@ -846,6 +854,8 @@
 
 <div class="lang-content shell">
 
+  <p>The following operators are useful for doing such comparisons within a query:</p>
+
   <table>
     <thead>
       <tr>
@@ -877,13 +887,35 @@
 
 <h4 id="greater-than">Greater Than</h4>
 
-<pre class="highlight shell"><code>
+<div class="lang-content shell">
+  <p>To retrieve all records where an integer specified is <strong>greater than</strong> another, or where a date is <strong>after</strong> another date, use the <code>$gt</code> mongo operator.</p>
+</div>
+
+<div class="lang-content javascript nodejs">
+  <p>To retrieve all records where an integer specified is <strong>greater than</strong> another, or where a date is <strong>after</strong> another date, use the <code>greaterThan</code> SDK method.</p>
+</div>
+
+<pre class="highlight shell"><code>// returns records where the rating is greater than 4
 curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$gt":4\}\}'</span>
 
+// returns records that were created after January 15, 2015
+curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_create":\{"$gt":"2015-01-15T08:00:00.000Z"\}\}'</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>
+<pre class="highlight javascript"><code>  
+  <span class="c1">// returns records where the rating is greater than 4</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">greaterThan</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+
+  <span class="c1">// returns records that were created after January 15, 2015</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">greaterThan</span><span class="p">(</span><span class="s1">'dt_create'</span><span class="p">,</span> <span class="s2">"2015-01-15T08:00:00.000Z"</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="c1">// success</span>
@@ -892,68 +924,54 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
     <span class="p">})</span>
 </code></pre>
 
-<pre class="highlight nodejs"><code>
+<pre class="highlight nodejs"><code>  
+  <span class="c1">// returns records where the rating is greater than 4</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">greaterThan</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
       <span class="c1">// response</span>
     <span class="p">})</span>
 
-</code></pre>
-
-<div class="lang-content shell">
-  <p>To retrieve all records where the field value specified is greater than a value, use the <code>$gt</code> mongo operator.</p>
-</div>
-
-<div class="lang-content javascript nodejs">
-  <p>To retrieve all records where the field value specified is greater than a value, use the <code>greaterThan</code> SDK method.</p>
-</div>
-
-<h4 id="greater-than-or-equal-to">Greater Than Or Equal To</h4>
-
-<pre class="highlight shell"><code>
-curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$gte":4\}\}'</span>
-
-</code></pre>
-
-<pre class="highlight javascript"><code>
+  <span class="c1">// returns records that were created after January 15, 2015</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">greaterThanOrEqual</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="c1">// success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// error</span>
-    <span class="p">})</span>
-
-</code></pre>
-
-<pre class="highlight nodejs"><code>
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">greaterThanOrEqual</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">greaterThan</span><span class="p">(</span><span class="s1">'dt_create'</span><span class="p">,</span> <span class="s2">"2015-01-15T08:00:00.000Z"</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
       <span class="c1">// response</span>
     <span class="p">})</span>
 
 </code></pre>
 
+<h4 id="greater-than-or-equal-to">Greater Than Or Equal To</h4>
+
 <div class="lang-content shell">
-  <p>To retrieve all records where the field value specified is greater than or equal to a value, use the <code>$gte</code> mongo operator.</p>
+  <p>To retrieve all records where an integer specified is <strong>greater than or equal</strong> to another, or where a date is <strong>on or after</strong> another date, use the <code>$gte</code> mongo operator.</p>
 </div>
 
 <div class="lang-content javascript nodejs">
-  <p>To retrieve all records where the field value specified is greater than or equal to a value, use the <code>greaterThanOrEqual</code> SDK method.</p>
+  <p>To retrieve all records where an integer specified is <strong>greater than or equal to</strong> another, or where a date is <strong>on or after</strong> another date, use the <code>greaterThanOrEqual</code> SDK method.</p>
 </div>
 
-<h4 id="less-than">Less Than</h4>
+<pre class="highlight shell"><code>  // returns records with a rating of 4 or greater
+curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$gte":4\}\}'</span>
 
-<pre class="highlight shell"><code>
-curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lt":4\}\}'</span>
+// returns records that were last updated on or after April 11, 2012
+curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_update":\{"$gte":"2012-04-11T07:00:00.000Z"\}\}'</span>
 
 </code></pre>
 
-<pre class="highlight javascript"><code>
+<pre class="highlight javascript"><code>  <span class="c1">// returns records with a rating of 4 or greater</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">greaterThanOrEqual</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+
+  <span class="c1">// returns records that were last updated on or after April 11, 2012</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">greaterThanOrEqual</span><span class="p">(</span><span class="s1">'dt_update'</span><span class="p">,</span> <span class="s2">"2012-04-11T07:00:00.000Z"</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="c1">// success</span>
@@ -964,6 +982,73 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
 </code></pre>
 
 <pre class="highlight nodejs"><code>
+  <span class="c1">// returns records with a rating of 4 or greater</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">greaterThanOrEqual</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+      <span class="c1">// response</span>
+    <span class="p">})</span>
+
+  <span class="c1">// returns records that were last updated on or after April 11, 2012</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">greaterThanOrEqual</span><span class="p">(</span><span class="s1">'dt_update'</span><span class="p">,</span> <span class="s2">"2012-04-11T07:00:00.000Z"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+      <span class="c1">// response</span>
+    <span class="p">})</span>
+
+</code></pre>
+
+<h4 id="less-than">Less Than</h4>
+
+<div class="lang-content shell">
+  <p>To retrieve all records where an integer specified is <strong>less</strong> than another, or where a date is <strong>before</strong> another date, use the <code>$lt</code> mongo operator.</p>
+</div>
+
+<div class="lang-content javascript nodejs">
+  <p>To retrieve all records where an integer specified is <strong>less than</strong> another, or where a date is <strong>before</strong> another date, use the <code>lessThan</code> SDK method.</p>
+</div>
+
+<pre class="highlight shell"><code>
+  // returns records with a rating of less than 4
+  curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lt":4\}\}'</span>
+  
+  // returns records that were created before January 15, 2015
+  curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_create":\{"$lt":"2015-01-15T08:00:00.000Z\}\}'</span>
+
+</code></pre>
+
+<pre class="highlight javascript"><code>
+  <span class="c1">// returns records with a rating of less than 4</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">lessThan</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+
+  <span class="c1">// returns records that were created before January 15, 2015</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">lessThan</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+
+</code></pre>
+
+<pre class="highlight nodejs"><code>
+  <span class="c1">// returns records with a rating of less than 4</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">lessThan</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+      <span class="c1">// response</span>
+    <span class="p">})</span>
+
+  <span class="c1">// returns records that were created before January 15, 2015</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">lessThan</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
@@ -972,22 +1057,27 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
 
 </code></pre>
 
+<h4 id="less-than-or-equal-to">Less Than Or Equal To</h4>
+
 <div class="lang-content shell">
-  <p>To retrieve all records where the field value specified is less than a value, use the <code>$lt</code> mongo operator.</p>
+  <p>To retrieve all records where an integer specified is <strong>less than or equal to</strong> another, or where a date is <strong>on or before</strong> another date, use the <code>$lte</code> mongo operator.</p>
 </div>
 
 <div class="lang-content javascript nodejs">
-  <p>To retrieve all records where the field value specified is less than a value, use the <code>lessThan</code> SDK method.</p>
+  <p>To retrieve all records where an integer specified is <strong>less than or equal to</strong> another, or where a date is <strong>on or before</strong> another date, use the <code>lessThanOrEqual</code> SDK method.</p>
 </div>
 
-<h4 id="less-than-or-equal-to">Less Than Or Equal To</h4>
-
 <pre class="highlight shell"><code>
-curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lte":4\}\}'</span>
+  // returns records with a rating of 4 or less
+  curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lte":4\}\}'</span>
+
+  // returns records that were last updated on or before April 11, 2012
+  curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_update":\{"$lte":"2012-04-11T07:00:00.000Z"\}\}'</span>
 
 </code></pre>
 
 <pre class="highlight javascript"><code>
+  <span class="c1">// returns records with a rating of 4 or less</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">lessThanOrEqual</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
@@ -996,24 +1086,34 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
     <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// error</span>
     <span class="p">})</span>
+
+  <span class="c1">// returns records that were last updated on or before April 11, 2012</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">lessThanOrEqual</span><span class="p">(</span><span class="s1">'dt_update'</span><span class="p">,</span> <span class="s2">"2012-04-11T07:00:00.000Z"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
 </code></pre>
 
-<pre class="highlight nodejs"><code>
+<pre class="highlight nodejs"><code>  
+  <span class="c1">// returns records with a rating of 4 or les</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">lessThanOrEqual</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
       <span class="c1">// response</span>
     <span class="p">})</span>
 
+  <span class="c1">// returns records that were last updated on or before April 11, 2012</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">lessThanOrEqual</span><span class="p">(</span><span class="s1">'dt_update'</span><span class="p">,</span> <span class="s2">"2012-04-11T07:00:00.000Z"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+      <span class="c1">// response</span>
+    <span class="p">})</span>
+
 </code></pre>
-
-<div class="lang-content shell">
-  <p>To retrieve all record where the field value specified is less than or equal to a value, use the <code>$lte</code> mongo operator.</p>
-</div>
-
-<div class="lang-content javascript nodejs">
-  <p>To retrieve all record where the field value specified is less than or equal to a value, use the <code>lessThanOrEqual</code> SDK method.</p>
-</div>
 
 <h3 id="selection-and-sorting">Selection and Sorting</h3>
 
@@ -1065,10 +1165,10 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
 
 <h4 id="sorting-query-results">Sorting Query Results</h4>
 
-<pre class="highlight shell"><code>  // sort by title <span class="k">in </span>ascending order
+<pre class="highlight shell"><code>  // sort by title - ascending order
   curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?sort=title'</span>
 
-  // sort by title <span class="k">in </span>descending order <span class="o">(</span>note the hyphen preceding the sort param value<span class="o">)</span>
+  // sort by title by descending order <span class="o">(</span>note the hyphen preceding the sort param value<span class="o">)</span>
   curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?sort=-title'</span>
 </code></pre>
 
@@ -1634,14 +1734,13 @@ The following data is stored :</p>
 
 <p>The data for <code>ratings</code> is stored on a <code>actions</code> object on each Object.</p>
 
-<p>~~~ json
-{
-  "actions" : {
-    "ratings" : {
-      "users": ["user_id", "another_user_id", "third_user"],
-      "avg": 4,
-      "total": 3
-    }
-  }
-}</p>
-
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"actions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ratings"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">,</span><span class="w"> </span><span class="s2">"another_user_id"</span><span class="p">,</span><span class="w"> </span><span class="s2">"third_user"</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"avg"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>

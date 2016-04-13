@@ -16,8 +16,6 @@
 
 <h2 id="fetch-all-roles">Fetch All Roles</h2>
 
-<p>To retrieve all roles within your application, send a <code>GET</code> request to the Roles API resource.</p>
-
 <pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/roles"</span>
 </code></pre>
 
@@ -32,9 +30,9 @@
 <pre class="highlight nodejs"><code><span class="c1">// no method</span>
 </code></pre>
 
-<h2 id="fetch-individual-role">Fetch Individual Role</h2>
+<p>To retrieve all roles within your application, send a <code>GET</code> request to the Roles API resource.</p>
 
-<p>To fetch a single role, send a <code>GET</code> request to the Roles API resource, with the <code>_id</code> as part of the request URI.</p>
+<h2 id="fetch-individual-role">Fetch Individual Role</h2>
 
 <pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/roles/:role_id"</span>
 </code></pre>
@@ -49,6 +47,8 @@
 
 <pre class="highlight nodejs"><code><span class="c1">// no method</span>
 </code></pre>
+
+<p>To fetch a single role, send a <code>GET</code> request to the Roles API resource, with the <code>_id</code> as part of the request URI.</p>
 
 <table>
   <thead>
