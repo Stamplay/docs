@@ -57,7 +57,7 @@ The types and formats of each field type is listed below:
   "object_relation_array" : [ "562c45af4c0f20367d7ca4be", "562ec06e77589e2e0f86c207"],
   "user_relation_string" : "562bb24e007983c67c8ee9df"
 }  
-~~~ 
+~~~
 
 | Type                    | Summary                                                 |
 |-------------------------|---------------------------------------------------------|
