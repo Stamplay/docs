@@ -691,11 +691,19 @@ The advanced filter methods used are just MongoDB query operators, that Stamplay
 
 The exhaustive list of MongoDB operators available can be found in the API Overview Section under [Advanced Queries](#advanced-queries).
 
-### Comparing Integer Values
+### Comparing Values
 
-When filtering through integer type fields, we often need the ability to run an expression to evaulate whether a value is more than just simply equal to, but one or more of the following:
+When filtering through certain field types, we often need the ability to check if a value falls within a certain range, versus strictly matching.
+
+This often applies to integer value type fields where one might want to return all records where a value is greater than one value but less than or equal to another.
+
+Another scenario, within date fields. We can use the same comparator expressions to see if a date value if before or after, or on another.
+
+When querying a date field, pass in an data `ISO` string as the value to compare against, or unix timestamp.
 
 <div class="lang-content javascript nodejs">
+
+  The following methods are useful for doing such comparisons within a query:
 
   | Method               |         |
   |----------------------|---------|
@@ -707,6 +715,8 @@ When filtering through integer type fields, we often need the ability to run an 
 </div>
 
 <div class="lang-content shell">
+
+  The following operators are useful for doing such comparisons within a query:
   
   | Operator             |         |
   |----------------------|---------|
@@ -748,11 +758,11 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
 ~~~
 
 <div class="lang-content shell">
-  To retrieve all records where the field value specified is greater than a value, use the `$gt` mongo operator.
+  To retrieve all records where an integer specified is **greater than** another, or where a date is **after** another date, use the `$gt` mongo operator.
 </div>
 
 <div class="lang-content javascript nodejs">
-  To retrieve all records where the field value specified is greater than a value, use the `greaterThan` SDK method.
+  To retrieve all records where an integer specified is **greater than** another, or where a date is **after** another date, use the `greaterThan` SDK method.
 </div>
 
 #### Greater Than Or Equal To
@@ -787,11 +797,11 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
 ~~~
 
 <div class="lang-content shell">
-  To retrieve all records where the field value specified is greater than or equal to a value, use the `$gte` mongo operator.
+  To retrieve all records where an integer specified is **greater than or equal** to another, or where a date is **on or after** another date, use the `$gte` mongo operator.
 </div>
 
 <div class="lang-content javascript nodejs">
-  To retrieve all records where the field value specified is greater than or equal to a value, use the `greaterThanOrEqual` SDK method.
+  To retrieve all records where an integer specified is **greater than or equal to** another, or where a date is **on or after** another date, use the `greaterThanOrEqual` SDK method.
 </div>
 
 
@@ -826,12 +836,13 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
 ~~~
 
 <div class="lang-content shell">
-  To retrieve all records where the field value specified is less than a value, use the `$lt` mongo operator.
+  To retrieve all records where an integer specified is **less** than another, or where a date is **before** another date, use the `$lt` mongo operator.
 </div>
 
 <div class="lang-content javascript nodejs">
-  To retrieve all records where the field value specified is less than a value, use the `lessThan` SDK method.
+  To retrieve all records where an integer specified is **less than** another, or where a date is **before** another date, use the `lessThan` SDK method.
 </div>
+
 
 
 #### Less Than Or Equal To
@@ -865,11 +876,11 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"acti
 ~~~
 
 <div class="lang-content shell">
-  To retrieve all record where the field value specified is less than or equal to a value, use the `$lte` mongo operator.
+  To retrieve all records where an integer specified is **less than or equal to** another, or where a date is **on or before** another date, use the `$lte` mongo operator.
 </div>
 
 <div class="lang-content javascript nodejs">
-  To retrieve all record where the field value specified is less than or equal to a value, use the `lessThanOrEqual` SDK method.
+  To retrieve all records where an integer specified is **less than or equal to** another, or where a date is **on or before** another date, use the `lessThanOrEqual` SDK method.
 </div>
 
 
