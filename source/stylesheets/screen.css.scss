@@ -120,32 +120,38 @@ html, body {
 
   .search-results {
     margin-top: 0;
+    list-style: none;
     box-sizing: border-box;
     height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    transition-property: height, margin;
+    transition-property: height, margin, border;
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
     &.visible {
       height: 30%;
       margin-bottom: 1em;
+      border-bottom:6px solid #3D3F4D;
     }
 
     @include embossed-bg;
 
     li {
-      margin: 1em $nav-padding;
       line-height: 1;
+      transition:none;
+      &:hover {
+        background-color: #f9f9f9;
+      }
+      & a:active {
+        background-color: #fdfdfd;
+      }
     }
 
     a {
       color: $nav-text;
       text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
+      padding:1em;
+      display: block;
     }
   }
 
@@ -604,12 +610,10 @@ i {
   }
 
   .search-highlight {
-    padding: 2px;
+    padding: 1px;
     margin: -2px;
     border-radius: 4px;
-    border: 1px solid #F7E633;
-    text-shadow: 1px 1px 0 #666;
-    background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
+    border: 1px solid #f1c40f;
   }
 }
 
