@@ -30,6 +30,34 @@
 <pre class="highlight nodejs"><code><span class="c1">// no method</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"561c001ce57bdca90ee4482a"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"guest"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"561c001ce57bdca90ee4482b"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"registered"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56f8d353e252697a51cce376"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_elements"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>To retrieve all roles within your application, send a <code>GET</code> request to the Roles API resource.</p>
 
 <h2 id="fetch-individual-role">Fetch Individual Role</h2>
@@ -48,6 +76,18 @@
 <pre class="highlight nodejs"><code><span class="c1">// no method</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"56f8d353e252697a51cce376"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
 <p>To fetch a single role, send a <code>GET</code> request to the Roles API resource, with the <code>_id</code> as part of the request URI.</p>
 
 <table>
@@ -62,7 +102,7 @@
     <tr>
       <td><code>role_id</code></td>
       <td>the Stamplay <code>_id</code> of the role to fetch</td>
-      <td style="text-align: center"><i class="checked"></i></td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
     </tr>
   </tbody>
 </table>
@@ -88,6 +128,30 @@
 <span class="p">})</span>
 </code></pre>
 
+<blockquote>
+
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">  
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570eb000c0d4b16b26a4bbdd"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"user@stamplay.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"$2a$12$lv9lbkAiwyvfT13oosMefuWHCp87NC/azMlwYwxsSUVVpw.YI0ZfO"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"570ec91fb7581ccd707c4d48"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplaykb"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"displayName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T22:33:54.595Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T20:45:52.498Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"65d1b991bd0010536416"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570eb000c0d4b16b26a4bbdd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
 <p>To assign a new role to a user, send a <code>PATCH</code> request with the <code>givenRole</code> property as the unique <code>_id</code> of the role to assign in the request body, to the User API resource with the user's <code>_id</code> as part of the URI.</p>
 
 <table>
@@ -102,12 +166,12 @@
     <tr>
       <td><code>user_id</code></td>
       <td>the Stamplay <code>_id</code> of the user to assign a role</td>
-      <td style="text-align: center"><i class="checked"></i></td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
     </tr>
     <tr>
       <td><code>role_id</code></td>
       <td>the Stamplay <code>_id</code> of the role to assign to the user</td>
-      <td style="text-align: center"><i class="checked"></i></td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
     </tr>
   </tbody>
 </table>

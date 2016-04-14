@@ -40,7 +40,9 @@
 </table>
 
 <aside class="notice">
-  <p>The <strong>owner</strong> field is only set automatically when using the <strong>JavaScript SDK</strong>. For all other requests, you must set this field manually.</p>
+  <p>The <strong>owner</strong> field is set when an active user session is in place, and the session <strong>JSON Web Token</strong>, is in the request as the <strong>x-stamplay-jwt</strong> header.</p>
+
+  <p>The JavaScript SDK manages this header for you, so only via an API request via REST will need you to set this header for the owner property to be set to the current user session.</p>
 </aside>
 
 <h2 id="data-types">Data Types</h2>
@@ -380,6 +382,39 @@
   <span class="p">})</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">2016</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"comments"</span><span class="p">:[],</span><span class="w">
+      </span><span class="nt">"ratings"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"users"</span><span class="p">:[],</span><span class="w">
+         </span><span class="nt">"avg"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"total"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"votes"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"users_downvote"</span><span class="p">:[],</span><span class="w">
+         </span><span class="nt">"users_upvote"</span><span class="p">:[],</span><span class="w">
+         </span><span class="nt">"users"</span><span class="p">:[],</span><span class="w">
+         </span><span class="nt">"total"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
 <p>To create new object data for a particular model, send the data in the body of a<code>POST</code> request to the Object resource, specifying the object type in the URI.</p>
 
 <aside class="notice">
@@ -407,6 +442,49 @@
       <span class="c1">// response</span>
   <span class="p">})</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">2016</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"comments"</span><span class="p">:[],</span><span class="w">
+            </span><span class="nt">"ratings"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"users"</span><span class="p">:[],</span><span class="w">
+               </span><span class="nt">"avg"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"total"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"votes"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"users_downvote"</span><span class="p">:[],</span><span class="w">
+               </span><span class="nt">"users_upvote"</span><span class="p">:[],</span><span class="w">
+               </span><span class="nt">"users"</span><span class="p">:[],</span><span class="w">
+               </span><span class="nt">"total"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"pagination"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"per_page"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_elements"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <p>To fetch a single object, send a <code>GET</code> request to the Object resource with the object's <code>_id</code> in the URI.</p>
 
@@ -447,17 +525,61 @@
   <span class="p">})</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">  
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">2016</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edcc7fc24091627e82087"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Goodbye World"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">2014</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:56:55.060Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:56:55.060Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edcc7fc24091627e82087"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+      </span><span class="err">...</span><span class="mi">12</span><span class="w"> </span><span class="err">more</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"pagination"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"per_page"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_elements"</span><span class="p">:</span><span class="mi">14</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
 <p>To fetch all objects, send a <code>GET</code> request to the Object resource.</p>
 
 <p>The object type for the example is <code>movie</code>.</p>
 
 <h3 id="query-objects">Query Objects</h3>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie?title=Hello%20World&amp;year=1998"</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie?year=1998"</span>
 </code></pre>
 
 <pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
     <span class="na">year</span> <span class="p">:</span> <span class="mi">1998</span>
   <span class="p">}</span>
 
@@ -470,7 +592,6 @@
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">title</span> <span class="p">:</span> <span class="s2">"Hello World"</span><span class="p">,</span>
     <span class="na">year</span> <span class="p">:</span> <span class="mi">1998</span>
   <span class="p">}</span>
 
@@ -478,6 +599,48 @@
       <span class="c1">// response</span>
   <span class="p">})</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">  
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Goodbye 90's"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">1998</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edcc7fc24091627e82087"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Again not again."</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">1998</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:56:55.060Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:56:55.060Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edcc7fc24091627e82087"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"pagination"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"per_page"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_elements"</span><span class="p">:</span><span class="mi">2</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <p>To fetch all objects that match a certain parameters, send a <code>GET</code> request to the Object resource with any parameters to match in the request body.</p>
 
@@ -487,13 +650,13 @@
 
 <h3 id="find-by-current-user">Find By Current User</h3>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/find/author"</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/cobject/v1/movie/find/director"</span>
 </code></pre>
 
 <pre class="highlight javascript"><code>
   <span class="c1">// default attribute is owner is no arguments are passed to method</span>
 
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">findByCurrentUser</span><span class="p">(</span><span class="s1">'author'</span><span class="p">)</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">findByCurrentUser</span><span class="p">(</span><span class="s1">'director'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Success</span>
     <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -503,6 +666,50 @@
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">  
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">2016</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"director"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5503de76fc24091627e82568"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edcc7fc24091627e82087"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Goodbye World"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">2014</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"director"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5503de76fc24091627e82568"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:56:55.060Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:56:55.060Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edcc7fc24091627e82087"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"pagination"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"per_page"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_elements"</span><span class="p">:</span><span class="mi">2</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <p>To find any records whose field value is equal to the current user's <code>_id</code>, you can use the find by owner resource to simplify querying through different fields.</p>
 
@@ -541,6 +748,27 @@
     <span class="c1">// response</span>
   <span class="p">})</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">  
+   </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goodbye World"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">2016</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"director"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5503de76fc24091627e82568"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+      
+</span></code></pre>
 
 <p>To make a partial update to an object record, perform a <code>PATCH</code> request to the Object API resource with any fields to update on the stored record in the request body.</p>
 
@@ -591,6 +819,27 @@
   <span class="p">})</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">  
+   </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goodbye World"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">2016</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"director"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5503de76fc24091627e82568"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+      
+</span></code></pre>
+
 <p>To overwrite an object record, perform a <code>PUT</code> request to the Object API resource with a complete represenation to write over the stored record in the request body.</p>
 
 <table>
@@ -629,6 +878,28 @@
     <span class="c1">// response</span>
   <span class="p">})</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response will look like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"year"</span><span class="p">:</span><span class="mi">2016</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-docs"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cobjectId"</span><span class="p">:</span><span class="s2">"movie"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"actions"</span><span class="p">:{</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T23:51:18.170Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <table>
   <thead>
@@ -1466,17 +1737,17 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
   <span class="p">})</span>
 </code></pre>
 
+<p>Find records within proximity to a geographic point.</p>
+
 <div class="lang-content shell">
-
-  <p>To Do</p>
-
+  <p>The <code>$near</code> MongoDB operator accepts a <a href="https://docs.mongodb.org/manual/reference/geojson/#point">GeoJSON Point</a>.</p>
 </div>
 
 <div class="lang-content javascript nodejs">
-
-  <p>To Do</p>
-
+  <p>The <code>near</code> SDK method accepts a <a href="https://docs.mongodb.org/manual/reference/geojson/#point">GeoJSON Point</a>.</p>
 </div>
+
+<p>More details about <a href="https://docs.mongodb.org/manual/reference/operator/query/near/">$near on MongoDB docs</a>.</p>
 
 <h4 id="within-proximity-to-a-point-near-sphere">Within Proximity To A Point (Near Sphere)</h4>
 
@@ -1500,17 +1771,17 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
   <span class="p">})</span>
 </code></pre>
 
+<p>Find records within proximity to a geographic point, calculating distances using spherical geometry.</p>
+
 <div class="lang-content shell">
-
-  <p>To Do</p>
-
+  <p>The <code>$nearSphere</code> MongoDB operator accepts a <a href="https://docs.mongodb.org/manual/reference/geojson/#point">GeoJSON Point</a>.</p>
 </div>
 
 <div class="lang-content javascript nodejs">
-
-  <p>To Do</p>
-
+  <p>The <code>nearSphere</code> SDK method accepts a <a href="https://docs.mongodb.org/manual/reference/geojson/#point">GeoJSON Point</a>.</p>
 </div>
+
+<p>More details about <a href="https://docs.mongodb.org/manual/reference/operator/query/nearSphere/">$nearSphere on MongoDB docs</a>.</p>
 
 <h2 id="voting">Voting</h2>
 
@@ -1518,8 +1789,11 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
 
 <p>Each Stamplay Object is able to be voted upon, out of the box without any additional setup.</p>
 
-<p>The data for voting is stored on a <code>actions</code> object on each Object.
-The following data is stored :</p>
+<p>The data for voting is stored on a <code>actions</code> object on each Object.</p>
+
+<blockquote>
+  <p>The following data is stored for votes.</p>
+</blockquote>
 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"actions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1669,6 +1943,10 @@ The following data is stored :</p>
 
 <p>For each comment, a comment object is stored in the <code>comments</code> array.</p>
 
+<blockquote>
+  <p>The following data is stored for comments.</p>
+</blockquote>
+
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"actions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"comments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1733,6 +2011,10 @@ The following data is stored :</p>
 </table>
 
 <p>The data for <code>ratings</code> is stored on a <code>actions</code> object on each Object.</p>
+
+<blockquote>
+  <p>The following data is stored for ratings.</p>
+</blockquote>
 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"actions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">

@@ -18,3 +18,31 @@
 </ul>
 
 <h2 id="using-webhooks">Using Webhooks</h2>
+
+<p>Webhooks can be used to capture events and used to pass data along to that event.</p>
+
+<div class="lang-content shell">
+  <p>To post data to a Webhook, make a <code>POST</code> request to a webhook url you have made in the Stamplay editor, including any data to pass into the Webhook as the request body.</p>
+</div>
+
+<div class="lang-content javascript">
+  <p>To post data to a Webhook, use the <code>post</code> method on <code>Stamplay.Webhook("webhook_id")</code>, include any data to pass into the Webhook as the first method argument.</p>
+</div>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/webhook/v1/:webhook_id/catch"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Webhook</span><span class="p">(</span><span class="s2">"webhook_id"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">post</span><span class="p">({</span> <span class="na">name</span> <span class="p">:</span> <span class="s2">"Johne"</span> <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// success</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// error</span>
+    <span class="p">})</span>
+
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>

@@ -81,6 +81,28 @@
   <span class="p">})</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"user@stamplay.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"$2a$12$ERoo1bSRttQm9zLRkJIpnO9tgjtTnFRUt/57R.gLhnJor1RYkzUBS"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"561c001ce57bdca90ee4482b"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplaykb"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570eca8ec0d4b16b26a4bbe0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T22:39:10.621Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T22:39:10.621Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"98175bf31b80f59e2956"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570eca8ec0d4b16b26a4bbe0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
 <p>Sign up a user for a local user account.</p>
 
 <table>
@@ -128,6 +150,28 @@
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570eca8ec0d4b16b26a4bbe0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"user@stamplay.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"$2a$12$ERoo1bSRttQm9zLRkJIpnO9tgjtTnFRUt/57R.gLhnJor1RYkzUBS"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"561c001ce57bdca90ee4482b"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplaykb"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"displayName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T22:39:10.893Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T22:39:10.621Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"98175bf31b80f59e2956"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570eca8ec0d4b16b26a4bbe0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>Login a user to a local account.</p>
 
 <table>
@@ -162,6 +206,10 @@
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>Response is a redirect, as specified in the Authentication section, on social login success.</p>
+</blockquote>
 
 <p>Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.</p>
 
@@ -665,13 +713,22 @@
     <span class="na">email</span><span class="p">:</span> <span class="s2">"user@stamplay.com"</span><span class="p">,</span>
     <span class="na">newPassword</span><span class="p">:</span> <span class="s2">"stamplay_rocks!"</span>
   <span class="p">}</span>
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">resetPassword</span><span class="p">()</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">resetPassword</span><span class="p">(</span><span class="nx">emailAndNewPass</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
       <span class="c1">// success</span>
     <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <p>Reset a local user's account password.</p>
 
@@ -720,6 +777,10 @@
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
+<blockquote>
+  <p>Response is a redirect, as specified in the Authentication section in Stamplay.</p>
+</blockquote>
+
 <p>To logout, and end a user session, send a request to the logout endpoint. The <code>x-stamplay-jwt</code> header must be included otherwise the session will not be ended.</p>
 
 <p>The request response will redirect the application by default to the root of your application. This can be managed within the Stamplay editor in the <strong>User</strong> -&gt; <strong>Authentication</strong> section by select the settings icon.</p>
@@ -734,7 +795,7 @@
   -H <span class="s2">"x-stamplay-jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">current</span><span class="p">()</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">currentUser</span><span class="p">()</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// success</span>
     <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -744,6 +805,29 @@
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"5685876dcb19408f345a4890"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"isaiahgrey@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"56838ed5948583ff7dcd7c9f"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-angular-seed"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"salt"</span><span class="p">:</span><span class="s2">"875be8da8da96d5a2c16"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"$2a$12$bAV9Wxl8LmgY.BazFi.o.OsTPrJS9tc2Ih3po6GxGh8SNW0BiIDiq"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2015-12-31T19:52:13.576Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2015-12-31T19:52:13.576Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"359472b0e1f115fc5006"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"5685876dcb19408f345a4890"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <p>To fetch the user that is currently logged in, send a request to the <code>getStatus</code> endpoint, on the user API resource.</p>
 
@@ -764,6 +848,37 @@
     <span class="c1">// success</span>
   <span class="p">})</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"5685876dcb19408f345a4890"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"isaiahgrey@gmail.com"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"56838ed5948583ff7dcd7c9f"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"appId"</span><span class="p">:</span><span class="s2">"stamplay-angular-seed"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"salt"</span><span class="p">:</span><span class="s2">"875be8da8da96d5a2c16"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"$2a$12$bAV9Wxl8LmgY.BazFi.o.OsTPrJS9tc2Ih3po6GxGh8SNW0BiIDiq"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2015-12-31T19:52:13.576Z"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2015-12-31T19:52:13.576Z"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"359472b0e1f115fc5006"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"5685876dcb19408f345a4890"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"pagination"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_elements"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <p>To fetch an single user, send the <code>_id</code> of the user to fetch in the request body to the user API resource.</p>
 
@@ -802,6 +917,47 @@
   <span class="p">})</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"568463adcb19408f345a4870"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"56838ed5948583ff7dcd7c9f"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2015-12-30T23:07:25.730Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2015-12-30T23:07:25.730Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"c4b0263a8cb5bea890ca"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"568463adcb19408f345a4870"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"5685876dcb19408f345a4890"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"56838ed5948583ff7dcd7c9f"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2015-12-31T19:52:13.576Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2015-12-31T19:52:13.576Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"c4b0263a8cb5bea890ca"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"5685876dcb19408f345a4890"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+      </span><span class="err">...</span><span class="mi">18</span><span class="w"> </span><span class="err">More</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"pagination"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"per_page"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_elements"</span><span class="p">:</span><span class="mi">19</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
 <p>To retrieve all users, send a request without any parameters to match in the body, to the user API resource.</p>
 
 <h3 id="query-users">Query Users</h3>
@@ -834,15 +990,40 @@
   <span class="p">})</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"568463adcb19408f345a4870"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"age"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"56838ed5948583ff7dcd7c9f"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2015-12-30T23:07:25.730Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2015-12-30T23:07:25.730Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"c4b0263a8cb5bea890ca"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"568463adcb19408f345a4870"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"pagination"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"per_page"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_elements"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
 <p>To retrieve all users that match a certain set of parameters, send a request with any parameters to match in the body, to the user API resource.</p>
 
 <h2 id="update-user">Update User</h2>
 
-<p>To update a user record partially, or completely overwrite the existing record.</p>
-
-<h3 id="partial-user-update">Partial User Update</h3>
-
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/:user_id"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/:user_id"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">30</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
@@ -852,7 +1033,7 @@
     <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
   <span class="p">}</span>
 
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">)</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// success</span>
     <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -865,66 +1046,35 @@
     <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
   <span class="p">}</span>
 
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// success</span>
   <span class="p">})</span>
 </code></pre>
 
-<p>To partially update a User record, send a <code>PATCH</code> request with an properties to update in the request body, to the User API resource with the <code>_id</code> of the user to update.</p>
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
 
-<table>
-  <thead>
-    <tr>
-      <th>Attribute</th>
-      <th> </th>
-      <th style="text-align: center">Optional</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>user_id</code></td>
-      <td>the Stamplay <code>_id</code> of the user to update</td>
-      <td style="text-align: center"><i class="unchecked"></i></td>
-    </tr>
-  </tbody>
-</table>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570eab5bc0d4b16b26a4bbdc"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"displayName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"57059a25d229692c639df406"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"age"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:16:30.366Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T20:26:03.677Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"6f11f44ad0ec8bd0fa27"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570eab5bc0d4b16b26a4bbdc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<h3 id="complete-user-update">Complete User Update</h3>
+</span></code></pre>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/:user_id"</span> <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">111 Market St. San Francisco, CA</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">30</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">_id</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">56fb116e5ab65a4446dd3b2d</span><span class="se">\"</span><span class="s2">}"</span>
-</code></pre>
+<p>To update a user record, send a <code>PUT</code> request with a with updated data.</p>
 
-<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">_id</span> <span class="p">:</span> <span class="s2">"56fb116e5ab65a4446dd3b2d"</span><span class="p">,</span>
-    <span class="na">address</span> <span class="p">:</span> <span class="s2">"111 Market St. San Francisco, CA"</span>
-    <span class="na">name</span> <span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
-  <span class="p">}</span>
-
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">_id</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// error</span>
-    <span class="p">})</span>
-</code></pre>
-
-<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">_id</span> <span class="p">:</span> <span class="s2">"56fb116e5ab65a4446dd3b2d"</span><span class="p">,</span>
-    <span class="na">address</span> <span class="p">:</span> <span class="s2">"111 Market St. San Francisco, CA"</span>
-    <span class="na">name</span> <span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span>
-  <span class="p">}</span>
-
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">_id</span><span class="p">,</span> <span class="nx">updatedInfo</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// success</span>
-  <span class="p">})</span>
-</code></pre>
-<p>To completely update a user record, send a <code>PUT</code> request with a complete representation of the data to overwrite the existing record with.</p>
-
-<p>Include this representation in the request body, in the request to the User API resource with the <code>_id</code> of the user to update.</p>
+<p>Include this data in the request body, in the request to the User API resource with the <code>_id</code> of the user to update.</p>
 
 <table>
   <thead>
@@ -960,6 +1110,27 @@
     <span class="c1">// success</span>
   <span class="p">})</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"570eab5bc0d4b16b26a4bbdc"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"displayName"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"givenRole"</span><span class="p">:</span><span class="s2">"57059a25d229692c639df406"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"age"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_update"</span><span class="p">:</span><span class="s2">"2016-04-13T23:16:30.366Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_create"</span><span class="p">:</span><span class="s2">"2016-04-13T20:26:03.677Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"emailVerified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"verificationCode"</span><span class="p">:</span><span class="s2">"6f11f44ad0ec8bd0fa27"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"profileImg"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570eab5bc0d4b16b26a4bbdc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <p>To remove a user record from the database, send a <code>DELETE</code> request to the user resource with the user <code>_id</code> to the User API resource.</p>
 
