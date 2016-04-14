@@ -301,7 +301,39 @@ If the predefined security policies are not flexible enough for your app and you
   Stamplay.Object("movie").save(data, function(err, res) {
       // response
   })
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+
+{
+   "__v":0,
+   "title":"Hello World",
+   "year":2016,
+   "appId":"stamplay-docs",
+   "cobjectId":"movie",
+   "_id":"570edb76fc24091627e82086",
+   "actions":{
+      "comments":[],
+      "ratings":{
+         "users":[],
+         "avg":0,
+         "total":0
+      },
+      "votes":{
+         "users_downvote":[],
+         "users_upvote":[],
+         "users":[],
+         "total":0
+      }
+   },
+   "dt_update":"2016-04-13T23:51:18.170Z",
+   "dt_create":"2016-04-13T23:51:18.170Z",
+   "id":"570edb76fc24091627e82086"
+}
+
+~~~
 
 To create new object data for a particular model, send the data in the body of a`POST` request to the Object resource, specifying the object type in the URI.
 
@@ -332,7 +364,49 @@ Retrieve an individual object, all objects, or any matching specific criteria of
   Stamplay.Object("movie").get({ _id : "object_id"}, function(err, res) {
       // response
   })
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+
+{
+   "data":[
+      {
+         "_id":"570edb76fc24091627e82086",
+         "title":"Hello World",
+         "year":2016,
+         "appId":"stamplay-docs",
+         "cobjectId":"movie",
+         "actions":{
+            "comments":[],
+            "ratings":{
+               "users":[],
+               "avg":0,
+               "total":0
+            },
+            "votes":{
+               "users_downvote":[],
+               "users_upvote":[],
+               "users":[],
+               "total":0
+            }
+         },
+         "dt_update":"2016-04-13T23:51:18.170Z",
+         "dt_create":"2016-04-13T23:51:18.170Z",
+         "__v":0,
+         "id":"570edb76fc24091627e82086"
+      }
+   ],
+   "pagination":{
+      "page":1,
+      "per_page":20,
+      "total_pages":1,
+      "total_elements":1
+   }
+}
+
+~~~
 
 To fetch a single object, send a `GET` request to the Object resource with the object's `_id` in the URI.
 
@@ -362,7 +436,51 @@ The object type for the example is `movie`.
   Stamplay.Object("movie").get({}, function(err, res) {
       // response
   })
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+
+{  
+   "data":[  
+      {  
+         "_id":"570edb76fc24091627e82086",
+         "title":"Hello World",
+         "year":2016,
+         "appId":"stamplay-docs",
+         "cobjectId":"movie",
+         "actions":{ ... },
+         "dt_update":"2016-04-13T23:51:18.170Z",
+         "dt_create":"2016-04-13T23:51:18.170Z",
+         "__v":0,
+         "id":"570edb76fc24091627e82086"
+      },
+      {  
+         "_id":"570edcc7fc24091627e82087",
+         "title":"Goodbye World",
+         "year":2014,
+         "appId":"stamplay-docs",
+         "cobjectId":"movie",
+         "actions":{ ... },
+         "dt_update":"2016-04-13T23:56:55.060Z",
+         "dt_create":"2016-04-13T23:56:55.060Z",
+         "__v":0,
+         "id":"570edcc7fc24091627e82087"
+      }
+      ...
+      ...12 more
+      ...
+   ],
+   "pagination":{  
+      "page":1,
+      "per_page":20,
+      "total_pages":1,
+      "total_elements":14
+   }
+}
+
+~~~
 
 To fetch all objects, send a `GET` request to the Object resource.
 
@@ -371,12 +489,11 @@ The object type for the example is `movie`.
 ### Query Objects
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie?title=Hello%20World&year=1998"
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie?year=1998"
 ~~~ 
 
 ~~~ javascript
   var query = {
-    title : "Hello World",
     year : 1998
   }
 
@@ -390,14 +507,54 @@ The object type for the example is `movie`.
 
 ~~~ nodejs
   var query = {
-    title : "Hello World",
     year : 1998
   }
 
   Stamplay.Object("movie").get(query, function(err, res) {
       // response
   })
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+
+{  
+   "data":[  
+      {  
+         "_id":"570edb76fc24091627e82086",
+         "title":"Goodbye 90's",
+         "year":1998,
+         "appId":"stamplay-docs",
+         "cobjectId":"movie",
+         "actions":{ ... },
+         "dt_update":"2016-04-13T23:51:18.170Z",
+         "dt_create":"2016-04-13T23:51:18.170Z",
+         "__v":0,
+         "id":"570edb76fc24091627e82086"
+      },
+      {  
+         "_id":"570edcc7fc24091627e82087",
+         "title":"Again not again.",
+         "year":1998,
+         "appId":"stamplay-docs",
+         "cobjectId":"movie",
+         "actions":{ ... },
+         "dt_update":"2016-04-13T23:56:55.060Z",
+         "dt_create":"2016-04-13T23:56:55.060Z",
+         "__v":0,
+         "id":"570edcc7fc24091627e82087"
+      }
+   ],
+   "pagination":{  
+      "page":1,
+      "per_page":20,
+      "total_pages":1,
+      "total_elements":2
+   }
+}
+
+~~~
 
 To fetch all objects that match a certain parameters, send a `GET` request to the Object resource with any parameters to match in the request body.
 
@@ -408,14 +565,14 @@ The object type for the example is `movie`.
 ### Find By Current User
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/author"
+  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/director"
 ~~~ 
 
 ~~~ javascript
 
   // default attribute is owner is no arguments are passed to method
 
-  Stamplay.Object("movie").findByCurrentUser('author')
+  Stamplay.Object("movie").findByCurrentUser('director')
     .then(function(res) {
       // Success
     }, function(err) {
@@ -425,7 +582,50 @@ The object type for the example is `movie`.
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+
+{  
+   "data":[  
+      {  
+         "_id":"570edb76fc24091627e82086",
+         "title":"Hello World",
+         "year":2016,
+         "director" : "5503de76fc24091627e82568",
+         "appId":"stamplay-docs",
+         "cobjectId":"movie",
+         "actions":{ ... },
+         "dt_update":"2016-04-13T23:51:18.170Z",
+         "dt_create":"2016-04-13T23:51:18.170Z",
+         "__v":0,
+         "id":"570edb76fc24091627e82086"
+      },
+      {  
+         "_id":"570edcc7fc24091627e82087",
+         "title":"Goodbye World",
+         "year":2014,
+         "director" : "5503de76fc24091627e82568",
+         "appId":"stamplay-docs",
+         "cobjectId":"movie",
+         "actions":{ ... },
+         "dt_update":"2016-04-13T23:56:55.060Z",
+         "dt_create":"2016-04-13T23:56:55.060Z",
+         "__v":0,
+         "id":"570edcc7fc24091627e82087"
+      }
+   ],
+   "pagination":{  
+      "page":1,
+      "per_page":20,
+      "total_pages":1,
+      "total_elements":2
+   }
+}
+
+~~~
 
 To find any records whose field value is equal to the current user's `_id`, you can use the find by owner resource to simplify querying through different fields.
 
@@ -468,7 +668,27 @@ To update an object record partially, or completely overwrite the existing recor
   Stamplay.Object("movie").patch("object_id", data, function(err, res) {
     // response
   })
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+
+{  
+   "_id":"570edb76fc24091627e82086",
+   "title": "Goodbye World",
+   "year":2016,
+   "director" : "5503de76fc24091627e82568",
+   "appId":"stamplay-docs",
+   "cobjectId":"movie",
+   "actions":{ ... },
+   "dt_update":"2016-04-13T23:51:18.170Z",
+   "dt_create":"2016-04-13T23:51:18.170Z",
+   "__v":0,
+   "id":"570edb76fc24091627e82086"
+}
+      
+~~~
 
 To make a partial update to an object record, perform a `PATCH` request to the Object API resource with any fields to update on the stored record in the request body.
 
@@ -510,6 +730,26 @@ The object type for the example is `movie`.
   })
 ~~~ 
 
+> The JSON response looks like this.
+
+~~~ json
+
+{  
+   "_id":"570edb76fc24091627e82086",
+   "title": "Goodbye World",
+   "year":2016,
+   "director" : "5503de76fc24091627e82568",
+   "appId":"stamplay-docs",
+   "cobjectId":"movie",
+   "actions":{ ... },
+   "dt_update":"2016-04-13T23:51:18.170Z",
+   "dt_create":"2016-04-13T23:51:18.170Z",
+   "__v":0,
+   "id":"570edb76fc24091627e82086"
+}
+      
+~~~
+
 To overwrite an object record, perform a `PUT` request to the Object API resource with a complete represenation to write over the stored record in the request body.
 
 | Attribute   |         | Optional                  |
@@ -538,6 +778,27 @@ To remove an object record, send a `DELETE` request with the `_id` of the record
     // response
   })
 ~~~ 
+
+> The JSON response will look like this.
+
+~~~ json
+
+{
+   "_id":"570edb76fc24091627e82086",
+   "title":"Hello World",
+   "year":2016,
+   "appId":"stamplay-docs",
+   "cobjectId":"movie",
+   "__v":0,
+   "actions":{
+      ...
+   },
+   "dt_update":"2016-04-13T23:51:18.170Z",
+   "dt_create":"2016-04-13T23:51:18.170Z",
+   "id":"570edb76fc24091627e82086"
+}
+
+~~~
 
 | Attribute   |         | Optional                  |
 |-------------|---------|:-------------------------:|
@@ -568,7 +829,7 @@ Data relationships are pointers from one record to another.
   Stamplay.Object("movie").patch("object_id", { director: "56cf08e362641ca813b1ae6c" }, function(err, res) {
     // response
   })
-~~~ 
+~~~
 
 A **User** relationship is a pointer to a user record. This field type is to be set only as an `_id` of a user record.
 

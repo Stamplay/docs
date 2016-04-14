@@ -15,4 +15,6 @@ For account related questions, submit a ticket to [support@stamplay.com](mailto:
 
 ## Contributing
 
-To Do
+Our documentation is open source! This means if you would like to contribute to our community, tidy up or add a better example/explanation for a problem you've solved, suggest new content sections or just fix a typo, you can.
+
+To contribute, checkout the repo to find out how get things setup in your local enviornment, and learn about our [contribution guidelines](https://github.com/Stamplay/docs/blob/master/CONTRIBUTING.md), see our [Github](https://github.com/Stamplay/docs).

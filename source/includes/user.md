@@ -50,7 +50,28 @@ A local authentication flow for login and signups is baked in to every Stamplay 
   Stamplay.User.save(credentials, function(err, res) {
     // response
   })
-~~~ 
+~~~
+
+> The JSON response looks like.
+
+~~~ json
+
+{
+  "__v":0,
+  "email":"user@stamplay.com",
+  "password":"$2a$12$ERoo1bSRttQm9zLRkJIpnO9tgjtTnFRUt/57R.gLhnJor1RYkzUBS",
+  "givenRole":"561c001ce57bdca90ee4482b",
+  "appId":"stamplaykb",
+  "_id":"570eca8ec0d4b16b26a4bbe0",
+  "dt_update":"2016-04-13T22:39:10.621Z",
+  "dt_create":"2016-04-13T22:39:10.621Z",
+  "emailVerified":true,
+  "verificationCode":"98175bf31b80f59e2956",
+  "profileImg":"",
+  "id":"570eca8ec0d4b16b26a4bbe0"
+}
+
+~~~
 
 Sign up a user for a local user account.
 
@@ -87,6 +108,27 @@ Sign up a user for a local user account.
   // no method
 ~~~ 
 
+> The JSON response looks like.
+
+~~~ json
+{
+  "_id":"570eca8ec0d4b16b26a4bbe0",
+  "email":"user@stamplay.com",
+  "password":"$2a$12$ERoo1bSRttQm9zLRkJIpnO9tgjtTnFRUt/57R.gLhnJor1RYkzUBS",
+  "givenRole":"561c001ce57bdca90ee4482b",
+  "appId":"stamplaykb",
+  "__v":0,
+  "username":"",
+  "displayName":"",
+  "dt_update":"2016-04-13T22:39:10.893Z",
+  "dt_create":"2016-04-13T22:39:10.621Z",
+  "emailVerified":true,
+  "verificationCode":"98175bf31b80f59e2956",
+  "profileImg":"",
+  "id":"570eca8ec0d4b16b26a4bbe0"
+}
+~~~
+
 Login a user to a local account.
 
 | Attribute   |         | Optional                  |
@@ -107,7 +149,9 @@ Login a user to a local account.
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
+
+> Response is a redirect, as specified in the Authentication section, on social login success.
 
 Authentication via an array of different social provider is possibled by some minor configuration with the Stamplay editor, and a simple request to the Stamplay API.
 
@@ -116,7 +160,7 @@ Authentication via an array of different social provider is possibled by some mi
 | `provider`  | the slug identifier of the social provider | <i class="unchecked"></i> |
 
 
-###Ionic Integration
+### Ionic Integration
 
 ~~~ javascript-always
   Stamplay.init("APP-ID", {
@@ -593,12 +637,20 @@ To check whether or not the token is expired you can do the following:
     email: "user@stamplay.com",
     newPassword: "stamplay_rocks!"
   }
-  Stamplay.User.resetPassword()
+  Stamplay.User.resetPassword(emailAndNewPass)
     .then(function(res){
       // success
     }, function(err) {
       // error
     })
+~~~
+
+> The JSON response looks like.
+
+~~~ json
+{
+  "status": "ok"
+}
 ~~~
 
 Reset a local user's account password.
@@ -632,7 +684,9 @@ For further detail, view the [Roles documetation](#roles).
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
+
+> Response is a redirect, as specified in the Authentication section in Stamplay.
 
 To logout, and end a user session, send a request to the logout endpoint. The `x-stamplay-jwt` header must be included otherwise the session will not be ended.
 
@@ -650,7 +704,7 @@ Retrieve an individual user, all users, or the current session user, or any user
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.current()
+  Stamplay.User.currentUser()
     .then(function(res) {
       // success
     }, function(err) {
@@ -660,7 +714,29 @@ Retrieve an individual user, all users, or the current session user, or any user
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+{
+  "user":{
+    "_id":"5685876dcb19408f345a4890",
+    "email":"isaiahgrey@gmail.com",
+    "givenRole":"56838ed5948583ff7dcd7c9f",
+    "appId":"stamplay-angular-seed",
+    "salt":"875be8da8da96d5a2c16",
+    "__v":0,
+    "password":"$2a$12$bAV9Wxl8LmgY.BazFi.o.OsTPrJS9tc2Ih3po6GxGh8SNW0BiIDiq",
+    "dt_update":"2015-12-31T19:52:13.576Z",
+    "dt_create":"2015-12-31T19:52:13.576Z",
+    "emailVerified":true,
+    "verificationCode":"359472b0e1f115fc5006",
+    "profileImg":"",
+    "id":"5685876dcb19408f345a4890"
+  }
+}
+~~~
 
 To fetch the user that is currently logged in, send a request to the `getStatus` endpoint, on the user API resource.
 
@@ -683,7 +759,37 @@ To fetch the user that is currently logged in, send a request to the `getStatus`
   Stamplay.User.get({ _id : "user_id" }, function(err, res) {
     // success
   })
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+{
+  "data":[
+    {
+       "_id":"5685876dcb19408f345a4890",
+       "email":"isaiahgrey@gmail.com",
+       "givenRole":"56838ed5948583ff7dcd7c9f",
+       "appId":"stamplay-angular-seed",
+       "salt":"875be8da8da96d5a2c16",
+       "__v":0,
+       "password":"$2a$12$bAV9Wxl8LmgY.BazFi.o.OsTPrJS9tc2Ih3po6GxGh8SNW0BiIDiq",
+       "dt_update":"2015-12-31T19:52:13.576Z",
+       "dt_create":"2015-12-31T19:52:13.576Z",
+       "emailVerified":true,
+       "verificationCode":"359472b0e1f115fc5006",
+       "profileImg":"",
+       "id":"5685876dcb19408f345a4890"
+    }
+  ],
+  "pagination":{
+    "page":1,
+    "per_page":20,
+    "total_pages":1,
+    "total_elements":1
+  }
+}
+~~~
 
 To fetch an single user, send the `_id` of the user to fetch in the request body to the user API resource.
 
@@ -711,7 +817,47 @@ To fetch an single user, send the `_id` of the user to fetch in the request body
   Stamplay.User.get({}, function(err, res) {
     // success
   })
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+
+{
+   "data":[
+      {
+         "_id":"568463adcb19408f345a4870",
+         "givenRole":"56838ed5948583ff7dcd7c9f",
+         "dt_update":"2015-12-30T23:07:25.730Z",
+         "dt_create":"2015-12-30T23:07:25.730Z",
+         "emailVerified":true,
+         "verificationCode":"c4b0263a8cb5bea890ca",
+         "profileImg":"",
+         "id":"568463adcb19408f345a4870"
+      },
+      {
+         "_id":"5685876dcb19408f345a4890",
+         "givenRole":"56838ed5948583ff7dcd7c9f",
+         "dt_update":"2015-12-31T19:52:13.576Z",
+         "dt_create":"2015-12-31T19:52:13.576Z",
+         "emailVerified":true,
+         "verificationCode":"c4b0263a8cb5bea890ca",
+         "profileImg":"",
+         "id":"5685876dcb19408f345a4890"
+      },
+      ...
+      ...18 More
+      ...
+   ],
+   "pagination":{
+      "page":1,
+      "per_page":20,
+      "total_pages":1,
+      "total_elements":19
+   }
+}
+
+~~~
 
 To retrieve all users, send a request without any parameters to match in the body, to the user API resource.
 
@@ -748,16 +894,40 @@ To retrieve all users, send a request without any parameters to match in the bod
   })
 ~~~ 
 
+> The JSON response looks like this.
+
+~~~ json
+{
+   "data":[
+      {
+         "_id":"568463adcb19408f345a4870",
+         "name" : "John",
+         "age" : 30,
+         "givenRole":"56838ed5948583ff7dcd7c9f",
+         "dt_update":"2015-12-30T23:07:25.730Z",
+         "dt_create":"2015-12-30T23:07:25.730Z",
+         "emailVerified":true,
+         "verificationCode":"c4b0263a8cb5bea890ca",
+         "profileImg":"",
+         "id":"568463adcb19408f345a4870"
+      }
+   ],
+   "pagination":{
+      "page":1,
+      "per_page":20,
+      "total_pages":1,
+      "total_elements":1
+   }
+}
+
+~~~
+
 To retrieve all users that match a certain set of parameters, send a request with any parameters to match in the body, to the user API resource.
 
 ## Update User
 
-To update a user record partially, or completely overwrite the existing record.
-
-### Partial User Update
-
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id" \
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id" \
   -H "Content-Type: application/json" \
   -d "{\"name\":\"John\",\"age\":\"30\"}"
 ~~~ 
@@ -768,7 +938,7 @@ To update a user record partially, or completely overwrite the existing record.
     age : 30
   }
 
-  Stamplay.User.get("user_id", updatedInfo)
+  Stamplay.User.update("user_id", updatedInfo)
     .then(function(res) {
       // success
     }, function(err) {
@@ -782,58 +952,34 @@ To update a user record partially, or completely overwrite the existing record.
     age : 30
   }
 
-  Stamplay.User.get("user_id", updatedInfo, function(err, res) {
+  Stamplay.User.update("user_id", updatedInfo, function(err, res) {
     // success
   })
-~~~ 
+~~~
 
-To partially update a User record, send a `PATCH` request with an properties to update in the request body, to the User API resource with the `_id` of the user to update.
+> The JSON response looks like this.
 
-| Attribute   |         | Optional                  |
-|-------------|---------|:-------------------------:|
-| `user_id`       | the Stamplay `_id` of the user to update | <i class="unchecked"></i> |
+~~~ json
 
+{
+  "_id":"570eab5bc0d4b16b26a4bbdc",
+  "displayName":"",
+  "givenRole":"57059a25d229692c639df406",
+  "age":30,
+  "name":"John",
+  "dt_update":"2016-04-13T23:16:30.366Z",
+  "dt_create":"2016-04-13T20:26:03.677Z",
+  "emailVerified":true,
+  "verificationCode":"6f11f44ad0ec8bd0fa27",
+  "profileImg":"",
+  "id":"570eab5bc0d4b16b26a4bbdc"
+}
 
+~~~
 
-### Complete User Update
+To update a user record, send a `PUT` request with a with updated data.
 
-~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id" \
-  -H "Content-Type: application/json" \
-  -d "{\"name\":\"John\",\"address\":\"111 Market St. San Francisco, CA\",\"age\":\"30\",\"_id\":\"56fb116e5ab65a4446dd3b2d\"}"
-~~~ 
-
-~~~ javascript
-  var user = {
-    _id : "56fb116e5ab65a4446dd3b2d",
-    address : "111 Market St. San Francisco, CA"
-    name : "John",
-    age : 30
-  }
-
-  Stamplay.User.get(user._id, updatedInfo)
-    .then(function(res) {
-      // success
-    }, function(err) {
-      // error
-    })
-~~~ 
-
-~~~ nodejs
-  var user = {
-    _id : "56fb116e5ab65a4446dd3b2d",
-    address : "111 Market St. San Francisco, CA"
-    name : "John",
-    age : 30
-  }
-
-  Stamplay.User.get(user._id, updatedInfo, function(err, res) {
-    // success
-  })
-~~~ 
-To completely update a user record, send a `PUT` request with a complete representation of the data to overwrite the existing record with.
-
-Include this representation in the request body, in the request to the User API resource with the `_id` of the user to update.
+Include this data in the request body, in the request to the User API resource with the `_id` of the user to update.
 
 | Attribute   |         | Optional                  |
 |-------------|---------|:-------------------------:|
@@ -858,7 +1004,28 @@ Include this representation in the request body, in the request to the User API 
   Stamplay.User.remove("user_id", function(err, res) {
     // success
   })
-~~~ 
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+
+{
+  "_id":"570eab5bc0d4b16b26a4bbdc",
+  "displayName":"John",
+  "givenRole":"57059a25d229692c639df406",
+  "age":30,
+  "name":"John",
+  "dt_update":"2016-04-13T23:16:30.366Z",
+  "dt_create":"2016-04-13T20:26:03.677Z",
+  "emailVerified":true,
+  "verificationCode":"6f11f44ad0ec8bd0fa27",
+  "profileImg":"",
+  "id":"570eab5bc0d4b16b26a4bbdc"
+}
+
+~~~
+
 
 To remove a user record from the database, send a `DELETE` request to the user resource with the user `_id` to the User API resource.
 
