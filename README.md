@@ -1,4 +1,6 @@
-# Stamplay's Open Source Documentation
+## Stamplay Documentation
+
+This is the repository for Stamplay's open source documentation, where the community can help improve and extend existing documentation to better the community.
 
 Contributing
 ------------------------------
@@ -16,7 +18,7 @@ You're going to need:
 ### Getting Set Up
 
 1. Fork this repository on Github.
-2. Clone *your forked repository* (not ours) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
+2. Clone *your forked repository* (not ours) to your hard drive with `git clone https://github.com/YOURUSERNAME/docs.git`
 3. `cd docs`
 4. Initialize and start. You can either do this locally, or with Vagrant:
 
