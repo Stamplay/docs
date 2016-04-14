@@ -143,6 +143,11 @@ Now your secret has been added and is ready for use with the Code Block.
 [![Enter A New Secret](/images/cb_sec_save_4.png)](/images/cb_sec_save_4.png)
 
 
+### User Context Data
+
+When executing a Code Block, you are able to pass in data, which is set to the `context.data` property. If an active user session is in place from the origininating request, the user of the current session will be placed inside `context` on `context.data.user`.
+
+
 ### Accessing Secrets
 
 ~~~ nodejs-always

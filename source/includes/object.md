@@ -23,7 +23,9 @@ There are 3 properties that are included by default:
 | `owner`     | The `_id` of the user who created this object. |
 
 <aside class="notice">
-  The **owner** field is only set automatically when using the **JavaScript SDK**. For all other requests, you must set this field manually.
+The **owner** field is set when an active user session is in place, and the session **JSON Web Token**, is in the request as the **x-stamplay-jwt** header.
+
+The JavaScript SDK manages this header for you, so only via an API request via REST will need you to set this header for the owner property to be set to the current user session.
 </aside>
 
 ## Data Types
@@ -1574,17 +1576,17 @@ For more information about finding records within a geometric boundray, see the 
   })
 ~~~
 
+Find records within proximity to a geographic point.
+
 <div class="lang-content shell">
-
-To Do
-
+  The `$near` MongoDB operator accepts a [GeoJSON Point](https://docs.mongodb.org/manual/reference/geojson/#point).
 </div>
 
 <div class="lang-content javascript nodejs">
-
-To Do
-
+  The `near` SDK method accepts a [GeoJSON Point](https://docs.mongodb.org/manual/reference/geojson/#point).
 </div>
+
+More details about [$near on MongoDB docs](https://docs.mongodb.org/manual/reference/operator/query/near/).
 
 #### Within Proximity To A Point (Near Sphere)
 
@@ -1611,18 +1613,17 @@ To Do
   })
 ~~~
 
+Find records within proximity to a geographic point, calculating distances using spherical geometry.
+
 <div class="lang-content shell">
-
-To Do
-
+  The `$nearSphere` MongoDB operator accepts a [GeoJSON Point](https://docs.mongodb.org/manual/reference/geojson/#point).
 </div>
 
 <div class="lang-content javascript nodejs">
-
-To Do
-
+  The `nearSphere` SDK method accepts a [GeoJSON Point](https://docs.mongodb.org/manual/reference/geojson/#point).
 </div>
 
+More details about [$nearSphere on MongoDB docs](https://docs.mongodb.org/manual/reference/operator/query/nearSphere/).
 
 ## Voting
 
@@ -1631,7 +1632,8 @@ The Stamplay API provides a voting mechansim for managing a vote system, trackin
 Each Stamplay Object is able to be voted upon, out of the box without any additional setup.
 
 The data for voting is stored on a `actions` object on each Object.
-The following data is stored :
+
+> The following data is stored for votes.
 
 ~~~ json
 {
@@ -1743,6 +1745,8 @@ The data for comments is stored on a `actions` object on each Object.
 
 For each comment, a comment object is stored in the `comments` array.
 
+> The following data is stored for comments.
+
 ~~~ json
 {
   "actions" : {
@@ -1796,6 +1800,7 @@ To rate an object send a `PUT` request to the Object resource with the object `_
 
 The data for `ratings` is stored on a `actions` object on each Object.
 
+> The following data is stored for ratings.
 
 ~~~ json
 {
