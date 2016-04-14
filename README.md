@@ -5,7 +5,7 @@ This is the repository for Stamplay's open source documentation, where the commu
 Contributing
 ------------------------------
 
-If you'd like to contribute to our documentation follow the steps below to setup the repo locally. Then checkout or [guidelines for contributing](https://github.com/Stamplay/docs/blob/master/CONTRIBUTING.md).
+If you'd like to contribute to our documentation follow the steps below to setup the repo locally. Then checkout or [guidelines for contributing](https://github.com/Stamplay/docs/wiki).
 
 ### Prerequisites
 
