@@ -1,4 +1,5 @@
 require File.expand_path('../custom_lexers', __FILE__)
+require "uglifier"
 
 
 # Markdown
@@ -30,8 +31,21 @@ set :relative_links, true
 configure :build do
   # If you're having trouble with Middleman hanging, commenting
   # out the following two lines has been known to help
+  activate :minify_html
   activate :minify_css
-  activate :minify_javascript
+  activate :minify_javascript, compressor: proc {
+    ::Uglifier.new(
+      :mangle => {
+        :toplevel => true
+      },
+      :compress => {
+        :unsafe => false
+      },
+      :output => {
+        :comments => :none
+      }
+    )
+  }
   # activate :relative_assets
   # activate :asset_hash
   # activate :gzip
