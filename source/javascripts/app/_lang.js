@@ -60,7 +60,6 @@ under the License.
   // MIT licensed
   // https://github.com/sindresorhus/query-string/blob/7bee64c16f2da1a326579e96977b9227bf6da9e6/license
   function parseURL(str) {
-    console.log(str)
     if (typeof str !== 'string') {
       return {};
     }
@@ -97,7 +96,6 @@ under the License.
   };
 
   function stringifyURL(obj) {
-    console.log(obj)
     return obj ? Object.keys(obj).sort().map(function (key) {
       var val = obj[key];
 
