@@ -18,7 +18,7 @@ Roles and permissions each has are defined within the Stamplay editor entirely, 
 
 
 ~~~shell
-curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/roles"
+curl -X "GET" "https://APP-ID.stamplayapp.com/api/user/v1/roles"
 ~~~
 
 ~~~javascript
@@ -66,7 +66,7 @@ To retrieve all roles within your application, send a `GET` request to the Roles
 ## Fetch Individual Role
 
 ~~~shell
-curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/roles/:role_id"
+curl -X "GET" "https://APP-ID.stamplayapp.com/api/user/v1/roles/:role_id"
 ~~~
 
 ~~~javascript
@@ -103,7 +103,7 @@ To fetch a single role, send a `GET` request to the Roles API resource, with the
 ## Assign Role
 
 ~~~shell
-curl -X "PATCH" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id" \
+curl -X "PATCH" "https://APP-ID.stamplayapp.com/api/user/v1/users/:user_id" \
 -H "Content-Type: application/json" \
 -d "{\"givenRole\":\"role_id\"}"
 

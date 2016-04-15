@@ -186,7 +186,7 @@ The property `end_date` is a Date type in **RFC-1123** format in the last exampl
 ~~~ javascript-always
   {
     _id : "56cf08e362641ca813b1ae6c",
-    profile_image : "https://[APPID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"
+    profile_image : "https://[APP-ID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"
   }
 ~~~ 
 
@@ -274,7 +274,7 @@ If the predefined security policies are not flexible enough for your app and you
 
 ## Create
 ~~~ shell
-  curl -X "POST" "https://APPID.stamplayapp.com/api/cobject/v1/object" \
+  curl -X "POST" "https://APP-ID.stamplayapp.com/api/cobject/v1/object" \
     -H "Content-Type: application/json" \
     -d "{\"title\":\"\\\"Hello World\\\"\",\"year\":\"2016\"}"
 ~~~ 
@@ -350,7 +350,7 @@ Retrieve an individual object, all objects, or any matching specific criteria of
 ### Fetch Object By Id
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id"
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id"
 ~~~ 
 
 ~~~ javascript
@@ -422,7 +422,7 @@ The object type for the example is `movie`.
 ### All Objects
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie"
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie"
 ~~~ 
 
 ~~~ javascript
@@ -491,7 +491,7 @@ The object type for the example is `movie`.
 ### Query Objects
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie?year=1998"
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?year=1998"
 ~~~ 
 
 ~~~ javascript
@@ -567,7 +567,7 @@ The object type for the example is `movie`.
 ### Find By Current User
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie/find/director"
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/find/director"
 ~~~ 
 
 ~~~ javascript
@@ -644,7 +644,7 @@ To update an object record partially, or completely overwrite the existing recor
 ### Partial Update
 
 ~~~ shell
-  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
+  curl -X "PATCH" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"title\":\"Goodbye World\"}"
 ~~~ 
@@ -704,7 +704,7 @@ The object type for the example is `movie`.
 ### Complete Update
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
+  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"title\":\"Goodbye World\",\"year\":\"2001\"}"
 ~~~ 
@@ -763,7 +763,7 @@ To overwrite an object record, perform a `PUT` request to the Object API resourc
 To remove an object record, send a `DELETE` request with the `_id` of the record to remove in the Object API resource URI.
 
 ~~~ shell
-  curl -X "DELETE" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id"
+  curl -X "DELETE" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id"
 ~~~ 
 
 ~~~ javascript
@@ -813,7 +813,7 @@ Data relationships are pointers from one record to another.
 ### User Relationship
 
 ~~~ shell
-  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
+  curl -X "PATCH" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"director\":\"56cf08e362641ca813b1ae6c\"}"
 ~~~ 
@@ -852,7 +852,7 @@ In this example, `movie` is the object type, and the `director` field is a User 
 ### Object Relationships
 
 ~~~ shell
-  curl -X "PATCH" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
+  curl -X "PATCH" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"characters\":[\"57cf08e362641ca813b1ae6c\",\"56cf09e362641sa813b1ae6d\",\"54cfdae662641ca813b1ae6c\"]}"
 ~~~ 
@@ -893,7 +893,7 @@ In this example, `movie` is the object type, and the `characters` field is a **O
 To retrieve related records, use the `populate` parameter in any `GET` request, and any populable fields will be filled with their respective objects in place of their `_id`.
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/cobject/v1/movie?populate=true"
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?populate=true"
 ~~~ 
 
 ~~~ javascript
@@ -1652,7 +1652,7 @@ The data for voting is stored on a `actions` object on each Object.
 ### Downvoting
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
+  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
     -H "Content-Type: application/json" \
     -d "{\"type\":\"downvote\"}"
 ~~~ 
@@ -1680,7 +1680,7 @@ To downvote an object send a `PUT` request to the Object resource with the objec
 ### Upvoting
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
+  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
     -H "Content-Type: application/json" \
     -d "{\"type\":\"upvote\"}"
 ~~~ 
@@ -1709,7 +1709,7 @@ To upvote an object send a `PUT` request to the Object resource with the object 
 ## Commenting
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id/comment" \
+  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/comment" \
     -H "Content-Type: application/json" \
     -d "{\"text\":\"comment text goes here\"}"
 ~~~ 
@@ -1767,7 +1767,7 @@ For each comment, a comment object is stored in the `comments` array.
 ## Rating
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/cobject/v1/movie/:object_id/rate" \
+  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/rate" \
     -H "Content-Type: application/json" \
     -d "{\"rate\": 5}"
 ~~~ 

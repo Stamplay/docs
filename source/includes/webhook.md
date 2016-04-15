@@ -28,7 +28,7 @@ Webhooks can be used to capture events and used to pass data along to that event
 </div>
 
 ~~~ shell
-  curl -X "POST" "https://APPID.stamplayapp.com/api/webhook/v1/:webhook_id/catch" \
+  curl -X "POST" "https://APP-ID.stamplayapp.com/api/webhook/v1/:webhook_id/catch" \
     -H "Content-Type: application/json" \
     -d "{\"name\":\"John\"}"
 ~~~

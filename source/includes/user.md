@@ -699,7 +699,7 @@ Retrieve an individual user, all users, or the current session user, or any user
 ### Current User
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/getstatus" \
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/user/v1/getstatus" \
   -H "x-stamplay-jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoidXNlciIsImFwcERvbWFpbiI6InN0YW1wbGF5a2Iuc3RhbXBsYXlscHAuY29tIiwiYXBwSWQiOiJzdGFtcGxheWtiIiwidXNlciI6IjU2ZjAyZDY0NjFkNWI0MTA1ZDFhMjY4NCIsImlhdCI6MTQ1ODU4MTQwNiwiZXhwIjoxNDU5MTg2Mjc4fQ.UDFUe0Zb2ZHx3HXdiUXWnHSyKghVI_harpkkyC3BU8A"
 ~~~ 
 
@@ -743,7 +743,7 @@ To fetch the user that is currently logged in, send a request to the `getStatus`
 ### Fetch User By Id
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id"
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/user/v1/users/:user_id"
 ~~~ 
 
 ~~~ javascript
@@ -801,7 +801,7 @@ To fetch an single user, send the `_id` of the user to fetch in the request body
 ### All Users
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users"
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/user/v1/users"
 ~~~ 
 
 ~~~ javascript
@@ -864,7 +864,7 @@ To retrieve all users, send a request without any parameters to match in the bod
 ### Query Users
 
 ~~~ shell
-  curl -X "GET" "https://APPID.stamplayapp.com/api/user/v1/users" \
+  curl -X "GET" "https://APP-ID.stamplayapp.com/api/user/v1/users" \
   -H "Content-Type: application/json" \
   -d "{\"name\":\"John\",\"age\":\"30\"}"
 ~~~ 
@@ -927,7 +927,7 @@ To retrieve all users that match a certain set of parameters, send a request wit
 ## Update User
 
 ~~~ shell
-  curl -X "PUT" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id" \
+  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/user/v1/users/:user_id" \
   -H "Content-Type: application/json" \
   -d "{\"name\":\"John\",\"age\":\"30\"}"
 ~~~ 
@@ -988,7 +988,7 @@ Include this data in the request body, in the request to the User API resource w
 ## Remove User
 
 ~~~ shell
-  curl -X "DELETE" "https://APPID.stamplayapp.com/api/user/v1/users/:user_id"
+  curl -X "DELETE" "https://APP-ID.stamplayapp.com/api/user/v1/users/:user_id"
 ~~~ 
 
 ~~~ javascript
