@@ -16,7 +16,7 @@
 
 <h2 id="fetch-all-roles">Fetch All Roles</h2>
 
-<pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/roles"</span>
+<pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/user/v1/roles"</span>
 </code></pre>
 
 <pre class="highlight javascript"><code><span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">getRoles</span><span class="p">()</span>
@@ -62,7 +62,7 @@
 
 <h2 id="fetch-individual-role">Fetch Individual Role</h2>
 
-<pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/roles/:role_id"</span>
+<pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/user/v1/roles/:role_id"</span>
 </code></pre>
 
 <pre class="highlight javascript"><code><span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">getRole</span><span class="p">(</span><span class="s2">"role_Id"</span><span class="p">)</span>
@@ -109,7 +109,7 @@
 
 <h2 id="assign-role">Assign Role</h2>
 
-<pre class="highlight shell"><code>curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/user/v1/users/:user_id"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/user/v1/users/:user_id"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">givenRole</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">role_id</span><span class="se">\"</span><span class="s2">}"</span>
 

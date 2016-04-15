@@ -29,7 +29,7 @@
   <p>To post data to a Webhook, use the <code>post</code> method on <code>Stamplay.Webhook("webhook_id")</code>, include any data to pass into the Webhook as the first method argument.</p>
 </div>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/webhook/v1/:webhook_id/catch"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/webhook/v1/:webhook_id/catch"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">John</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
