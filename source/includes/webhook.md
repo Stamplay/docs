@@ -9,7 +9,7 @@ To create a webhook, visit the Stamplay Editor for the application you would lik
 
 Navigate to the **Webhooks** section, enter a name for your Webhook and **Create**.
 
-![Create A Webhook](/images/webhook_create.png)
+<img src="blank.gif" data-src="images/webhook.create.png" />
 
 Any Webhook created is is available at:
 
