@@ -7,7 +7,7 @@ You can upload arbitrary static web content or create dynamic web apps, using th
 This guide shows you how to easily deploy and host your app’s static assets (HTML, CSS, JavaScript, etc.) with our production-grade hosting service.
 
 
-## Stamplay Command line Tool
+## Stamplay Command Line Tool
 
 The [Stamplay Command Line (CLI) Tool](https://github.com/Stamplay/stamplay-cli) can be used to:
 
