@@ -9,7 +9,7 @@
 
 <p>Navigate to the <strong>Webhooks</strong> section, enter a name for your Webhook and <strong>Create</strong>.</p>
 
-<p><img src="blank.gif" data-src="images/webhook.create.png" /></p>
+<p>!(Web Hook Create)[images/webhook.create.png]</p>
 
 <p>Any Webhook created is is available at:</p>
 
