@@ -231,7 +231,7 @@
   <p>Application must be on a paid plan to use a custom domain.</p>
 </aside>
 
-<p><a href="../images/prettyurls_config-9dbd18f8.png"><img alt="Pretty URL Configuration" src="/images/prettyurls_config-9dbd18f8.png" /></a></p>
+<p><a href="../images/prettyurls_config.png"><img alt="Pretty URL Configuration" src="/images/prettyurls_config.png" /></a></p>
 
 <p>On your DNS provider, add a <strong>CNAME</strong> record from <a href="www.mybeautifulwebsite.com">www.mybeautifulwebsite.com</a> to <a href="">mydemoapp.stamplayapp.com</a> to begin sending traffic to your hosted app.</p>
 
@@ -249,7 +249,7 @@
 
 <p>To enable the url rewrite on the server side for single page applications, all you need to do is navigate to the <strong>Hosting</strong> section inside the Stamplay Editor, and check the box in the middle of the configuration under the <strong>URL Rewriting</strong> heading to enable all entry points to your domain, to point to the <code>index.html</code> page.</p>
 
-<p><a href="../images/prettyurls_config-9dbd18f8.png"><img alt="Pretty URL Configuration" src="/images/prettyurls_config-9dbd18f8.png" /></a></p>
+<p><a href="../images/prettyurls_config.png"><img alt="Pretty URL Configuration" src="/images/prettyurls_config.png" /></a></p>
 
 <p>Other steps still need to be taken to setup Pretty Urls, and differ among frameworks and libraries.</p>
 
@@ -261,7 +261,7 @@
 
 <p>The isf field is under the <strong>CORS enabled domains</strong> heading. You can add the wildcard <code>*</code> to allow all origins. This is however not recommended.</p>
 
-<p><a href="../images/cors_config-e244e0ce.png"><img alt="Pretty URL Configuration" src="/images/cors_config-e244e0ce.png" /></a></p>
+<p><a href="../images/cors_config.png"><img alt="Pretty URL Configuration" src="/images/cors_config.png" /></a></p>
 
 <h3 id="domain-ownership--ssl">Domain Ownership &amp; SSL</h3>
 

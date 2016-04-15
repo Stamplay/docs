@@ -14,11 +14,11 @@
   <li>Insert a name for your code and press <strong>Enter</strong>.</li>
 </ul>
 
-<p><a href="../images/codeblock_new-b926fcb0.png"><img alt="New Code Block" src="/images/codeblock_new-b926fcb0.png" /></a></p>
+<p><a href="../images/codeblock_new.png"><img alt="New Code Block" src="/images/codeblock_new.png" /></a></p>
 
 <p>Stamplay generates a RESTful endpoint, whenever you create a Code Block.</p>
 
-<p><a href="../images/codeblock_landing-b464c813.png"><img alt="New Code Block" src="/images/codeblock_landing-b464c813.png" /></a></p>
+<p><a href="../images/codeblock_landing.png"><img alt="New Code Block" src="/images/codeblock_landing.png" /></a></p>
 
 <h2 id="programming-models">Programming Models</h2>
 
@@ -136,7 +136,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
   </li>
 </ul>
 
-<p><a href="../images/cb_sec_save_1-bb88cc9f.png"><img alt="Navigate To Secrets Area" src="/images/cb_sec_save_1-bb88cc9f.png" /></a></p>
+<p><a href="../images/cb_sec_save_1.png"><img alt="Navigate To Secrets Area" src="/images/cb_sec_save_1.png" /></a></p>
 
 <ul>
   <li>
@@ -146,7 +146,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
   </li>
 </ul>
 
-<p><a href="../images/cb_sec_save_2-b2017462.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_2-b2017462.png" /></a></p>
+<p><a href="../images/cb_sec_save_2.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_2.png" /></a></p>
 
 <ul>
   <li>
@@ -156,11 +156,11 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
   </li>
 </ul>
 
-<p><a href="../images/cb_sec_save_3-5a85270a.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_3-5a85270a.png" /></a></p>
+<p><a href="../images/cb_sec_save_3.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_3.png" /></a></p>
 
 <p>Now your secret has been added and is ready for use with the Code Block.</p>
 
-<p><a href="../images/cb_sec_save_4-fb2884f7.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_4-fb2884f7.png" /></a></p>
+<p><a href="../images/cb_sec_save_4.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_4.png" /></a></p>
 
 <h3 id="user-context-data">User Context Data</h3>
 
