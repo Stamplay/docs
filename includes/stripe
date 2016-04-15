@@ -16,13 +16,34 @@
 <pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createCustomer</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">},</span>
+       <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"livemode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customer_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"cus_8GrAxVnGSGHKxv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"userId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"571021095743954537b8c0cd"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"appId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"APP-ID"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"57102131da5d4db251c71c76"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dt_create"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-14T23:01:05.995Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"billingHistory"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"57102131da5d4db251c71c76"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <p>Add a new customer on Stripe.</p>
 
@@ -49,13 +70,15 @@
 
 <h3 id="fetch-user-subscription">Fetch User Subscription</h3>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/:userId/subscriptions/:subscriptionId"</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://stripe-docs.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions/:subscriptionId"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">getSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"subscriptionId"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">getSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span>
+     <span class="s2">"subscriptionId"</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// success</span>
-      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="p">},</span>
+         <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
         <span class="c1">// error</span>
       <span class="p">})</span>
 </code></pre>
@@ -63,6 +86,45 @@
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"sub_8GrYtVQuzArBMy"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"subscription"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_fee_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cancel_at_period_end"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"canceled_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_period_end"</span><span class="p">:</span><span class="mi">1463268296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_period_start"</span><span class="p">:</span><span class="mi">1460676296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="p">:</span><span class="s2">"cus_8GrAxVnGSGHKxv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ended_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"plan"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"subscription_one"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"plan"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">999</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="mi">1460675091</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interval"</span><span class="p">:</span><span class="s2">"month"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interval_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"livemode"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Subscription One"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statement_descriptor"</span><span class="p">:</span><span class="s2">"Sub One"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trial_period_days"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statement_description"</span><span class="p">:</span><span class="s2">"Sub One"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"quantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start"</span><span class="p">:</span><span class="mi">1460676296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tax_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"trial_end"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"trial_start"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Retrieve a user subscription by a subscription ID.</p>
 
 <table>
@@ -89,19 +151,70 @@
 
 <h3 id="fetch-users-subscriptions">Fetch User's Subscriptions</h3>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/:userId/subscriptions"</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">getSubscriptions</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">getSubscriptions</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span>
+     <span class="nx">options</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// success</span>
-      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="p">},</span>
+         <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
         <span class="c1">// error</span>
       <span class="p">})</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"sub_8GrYtVQuzArBMy"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"subscription"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"application_fee_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"cancel_at_period_end"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"canceled_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"current_period_end"</span><span class="p">:</span><span class="mi">1463268296</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"current_period_start"</span><span class="p">:</span><span class="mi">1460676296</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="s2">"cus_8GrAxVnGSGHKxv"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ended_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+      </span><span class="nt">"plan"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"subscription_one"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"plan"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">999</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created"</span><span class="p">:</span><span class="mi">1460675091</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"interval"</span><span class="p">:</span><span class="s2">"month"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"interval_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"livemode"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Subscription One"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"statement_descriptor"</span><span class="p">:</span><span class="s2">"Sub One"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"trial_period_days"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"statement_description"</span><span class="p">:</span><span class="s2">"Sub One"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"start"</span><span class="p">:</span><span class="mi">1460676296</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tax_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"trial_end"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"trial_start"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"has_more"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"/v1/customers/cus_8GrAxVnGSGHKxv/subscriptions"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <p>Retrieve a user's subscriptions.</p>
 
@@ -131,16 +244,58 @@
     -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">planId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">stripePlanId</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"planId"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span>
+     <span class="s2">"planId"</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// success</span>
-      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="p">},</span>
+         <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
         <span class="c1">// error</span>
       <span class="p">})</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"sub_8GrYtVQuzArBMy"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"subscription"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_fee_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cancel_at_period_end"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"canceled_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_period_end"</span><span class="p">:</span><span class="mi">1463268296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_period_start"</span><span class="p">:</span><span class="mi">1460676296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="p">:</span><span class="s2">"cus_8GrAxVnGSGHKxv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ended_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"plan"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"subscription_one"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"plan"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">999</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="mi">1460675091</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interval"</span><span class="p">:</span><span class="s2">"month"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interval_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"livemode"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Subscription One"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statement_descriptor"</span><span class="p">:</span><span class="s2">"Sub One"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trial_period_days"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statement_description"</span><span class="p">:</span><span class="s2">"Sub One"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"quantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start"</span><span class="p">:</span><span class="mi">1460676296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tax_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"trial_end"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"trial_start"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <table>
   <thead>
@@ -168,21 +323,64 @@
 
 <p>Update a subscription for a Stripe customer.</p>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions/:subscriptionId"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">options</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{}</span><span class="se">\"</span><span class="s2">}"</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">options</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{ </span><span class="se">\"</span><span class="s2">plan</span><span class="se">\"</span><span class="s2"> : </span><span class="se">\"</span><span class="s2">subscription_one</span><span class="se">\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"planId"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">updateSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"planId"</span><span class="p">,</span>
+     <span class="p">{</span> <span class="s2">"plan : subscription_one"</span> <span class="p">})</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// success</span>
-      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="p">},</span>
+         <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
         <span class="c1">// error</span>
       <span class="p">})</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"sub_8GrYtVQuzArBMy"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"subscription"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_fee_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cancel_at_period_end"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"canceled_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_period_end"</span><span class="p">:</span><span class="mi">1463268296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_period_start"</span><span class="p">:</span><span class="mi">1460676296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="p">:</span><span class="s2">"cus_8GrAxVnGSGHKxv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ended_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"plan"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"subscription_two"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"plan"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">1999</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="mi">1460676804</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interval"</span><span class="p">:</span><span class="s2">"month"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interval_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"livemode"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Subscription Two"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statement_descriptor"</span><span class="p">:</span><span class="s2">"Sub Two"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trial_period_days"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statement_description"</span><span class="p">:</span><span class="s2">"Sub Two"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"quantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start"</span><span class="p">:</span><span class="mi">1460695662</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tax_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"trial_end"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"trial_start"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <table>
   <thead>
@@ -196,6 +394,11 @@
     <tr>
       <td><code>userId</code></td>
       <td>the Stamplay <code>_id</code> of the user to update a subscriptions for</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>subscriptionId</code></td>
+      <td>the Stripe <code>_id</code> of the subscription to update</td>
       <td style="text-align: center"><i class="unchecked"></i></td>
     </tr>
     <tr>
@@ -215,16 +418,60 @@
     -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">options</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{}</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">deleteSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"planId"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">deleteSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span>
+     <span class="s2">"planId"</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// success</span>
-      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="p">},</span>
+         <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
         <span class="c1">// error</span>
       <span class="p">})</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"sub_8GrYtVQuzArBMy"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"subscription"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_fee_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cancel_at_period_end"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"canceled_at"</span><span class="p">:</span><span class="mi">1460695945</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_period_end"</span><span class="p">:</span><span class="mi">1463268296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_period_start"</span><span class="p">:</span><span class="mi">1460676296</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="p">:</span><span class="s2">"cus_8GrAxVnGSGHKxv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ended_at"</span><span class="p">:</span><span class="mi">1460695945</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"plan"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"subscription_two"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"plan"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">1999</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="mi">1460676804</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interval"</span><span class="p">:</span><span class="s2">"month"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interval_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"livemode"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Subscription Two"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statement_descriptor"</span><span class="p">:</span><span class="s2">"Sub Two"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trial_period_days"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statement_description"</span><span class="p">:</span><span class="s2">"Sub Two"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"quantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start"</span><span class="p">:</span><span class="mi">1460695662</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tax_percent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"trial_end"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"trial_start"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <table>
   <thead>
@@ -247,9 +494,9 @@
 
 <p>You can store multiple cards on a customer in order to charge the customer later.</p>
 
-<h3 id="fetch-users-cards">Fetch User's Cards</h3>
+<h3 id="fetch-a-users-card">Fetch A User's Card</h3>
 
-<p>Retrieve a Stripe customer's cards.</p>
+<p>Retrieve a Stripe customer's card.</p>
 
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/cards"</span>
 </code></pre>
@@ -257,13 +504,32 @@
 <pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">getCreditCard</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+    <span class="p">},</span>
+       <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
       <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"last4"</span><span class="p">:</span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fingerprint"</span><span class="p">:</span><span class="s2">"0YBm29b7kpk2tbQe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"exp_year"</span><span class="p">:</span><span class="s2">"2017"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"exp_month"</span><span class="p">:</span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cvc_check"</span><span class="p">:</span><span class="s2">"pass"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"card_id"</span><span class="p">:</span><span class="s2">"card_180Jb6JGp443qx8tOrIZ89PM"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"brand"</span><span class="p">:</span><span class="s2">"Visa"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <table>
   <thead>
@@ -293,16 +559,36 @@
     -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">token</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">card_token</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createCreditCard</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"token"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">createCreditCard</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span>
+     <span class="s2">"token"</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+    <span class="p">},</span>
+       <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
       <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"card_id"</span><span class="p">:</span><span class="s2">"card_180Jb6JGp443qx8tOrIZ89PM"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last4"</span><span class="p">:</span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"brand"</span><span class="p">:</span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"exp_month"</span><span class="p">:</span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"exp_year"</span><span class="p">:</span><span class="s2">"2017"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fingerprint"</span><span class="p">:</span><span class="s2">"0YBm29b7kpk2tbQe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cvc_check"</span><span class="p">:</span><span class="s2">"pass"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <table>
   <thead>
@@ -337,16 +623,36 @@
     -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">token</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">card_token</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">updateCreditCard</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"token"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">updateCreditCard</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span>
+     <span class="s2">"token"</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+    <span class="p">},</span>
+       <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
       <span class="c1">// error</span>
     <span class="p">})</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"last4"</span><span class="p">:</span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fingerprint"</span><span class="p">:</span><span class="s2">"0YBm29b7kpk2tbQe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"exp_year"</span><span class="p">:</span><span class="s2">"2017"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"exp_month"</span><span class="p">:</span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cvc_check"</span><span class="p">:</span><span class="s2">"pass"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"card_id"</span><span class="p">:</span><span class="s2">"card_180Jb6JGp443qx8tOrIZ89PM"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"brand"</span><span class="p">:</span><span class="s2">"Visa"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 
 <table>
   <thead>
@@ -378,13 +684,20 @@
 
 <pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/charges"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">userId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">51e554184d88a4452c002233</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">token</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">card_id</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">:500,</span><span class="se">\"</span><span class="s2">currency</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">USD</span><span class="se">\"</span><span class="s2">}"</span>
+    -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">userId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">51e554184d88a4452c002233</span><span class="se">\"</span><span class="s2">,
+      </span><span class="se">\"</span><span class="s2">token</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">card_id</span><span class="se">\"</span><span class="s2">,
+      </span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">:500,
+      </span><span class="se">\"</span><span class="s2">currency</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">USD</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">charge</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"token"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">,</span> <span class="s2">"currency"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">charge</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span>
+     <span class="s2">"token"</span><span class="p">,</span>
+     <span class="s2">"amount"</span><span class="p">,</span>
+     <span class="s2">"currency"</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+    <span class="p">},</span>
+       <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
       <span class="c1">// Handle Error</span>
     <span class="p">});</span>
       
@@ -392,6 +705,100 @@
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"ch_180P6uJGp443qx8tho9DlZ5c"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">1699</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount_refunded"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_fee"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"balance_transaction"</span><span class="p">:</span><span class="s2">"txn_180P6vJGp443qx8twAGVDTIl"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"captured"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"card"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"card_180Jb6JGp443qx8tOrIZ89PM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_city"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_country"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_line1"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_line1_check"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_line2"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_state"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_zip"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_zip_check"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="s2">"cus_8GrAxVnGSGHKxv"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cvc_check"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dynamic_last4"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_month"</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_year"</span><span class="p">:</span><span class="mi">2017</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"fingerprint"</span><span class="p">:</span><span class="s2">"0YBm29b7kpk2tbQe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"funding"</span><span class="p">:</span><span class="s2">"credit"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last4"</span><span class="p">:</span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tokenization_method"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:</span><span class="mi">1460696596</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="p">:</span><span class="s2">"cus_8GrAxVnGSGHKxv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"destination"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dispute"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"failure_code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"failure_message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fraud_details"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"invoice"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"livemode"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"order"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"paid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"receipt_email"</span><span class="p">:</span><span class="s2">"isaiahgrey@gmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"receipt_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"refunded"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"refunds"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:[],</span><span class="w">
+    </span><span class="nt">"has_more"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"/v1/charges/ch_180P6uJGp443qx8tho9DlZ5c/refunds"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"shipping"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"card_180Jb6JGp443qx8tOrIZ89PM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"object"</span><span class="p">:</span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_city"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_country"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_line1"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_line1_check"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_line2"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_state"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_zip"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address_zip_check"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="s2">"cus_8GrAxVnGSGHKxv"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cvc_check"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dynamic_last4"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_month"</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_year"</span><span class="p">:</span><span class="mi">2017</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"fingerprint"</span><span class="p">:</span><span class="s2">"0YBm29b7kpk2tbQe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"funding"</span><span class="p">:</span><span class="s2">"credit"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last4"</span><span class="p">:</span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tokenization_method"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"source_transfer"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"statement_descriptor"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"paid"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"statement_description"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <table>
   <thead>

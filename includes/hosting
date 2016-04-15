@@ -6,7 +6,7 @@
 
 <p>This guide shows you how to easily deploy and host your app’s static assets (HTML, CSS, JavaScript, etc.) with our production-grade hosting service.</p>
 
-<h2 id="stamplay-command-line-tool">Stamplay Command line Tool</h2>
+<h2 id="stamplay-command-line-tool">Stamplay Command Line Tool</h2>
 
 <p>The <a href="https://github.com/Stamplay/stamplay-cli">Stamplay Command Line (CLI) Tool</a> can be used to:</p>
 
