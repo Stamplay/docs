@@ -22,7 +22,7 @@ under the License.
 
   global.setupLanguages = setupLanguages;
   global.activateLanguage = activateLanguage;
-
+  global.appID = appID
   function activateLanguage(language) {
     if (!language) return;
     if (language === "") return;
@@ -48,10 +48,19 @@ under the License.
     }
   }
 
+  function appID(id) {
+    var cbs = document.querySelectorAll("pre.highlight code");
+    for(var i = 0; i < cbs.length; i += 1) {
+      var html = cbs[i].innerHTML;
+      cbs[i].innerHTML = html.replace("APP-ID", "<span style='color:#f92672; font-weight:bold'>" + id + "</span>")
+    }
+  }
+
   // parseURL and stringifyURL are from https://github.com/sindresorhus/query-string
   // MIT licensed
   // https://github.com/sindresorhus/query-string/blob/7bee64c16f2da1a326579e96977b9227bf6da9e6/license
   function parseURL(str) {
+    console.log(str)
     if (typeof str !== 'string') {
       return {};
     }
@@ -66,8 +75,12 @@ under the License.
       var parts = param.replace(/\+/g, ' ').split('=');
       var key = parts[0];
       var val = parts[1];
-
       key = decodeURIComponent(key);
+      if(key === "app" && val.length > 3) {
+        appID(val)
+      } else {
+        appID("APP-ID")
+      }
       // missing `=` should be `null`:
       // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
       val = val === undefined ? null : decodeURIComponent(val);
@@ -79,12 +92,12 @@ under the License.
       } else {
         ret[key] = [ret[key], val];
       }
-
       return ret;
     }, {});
   };
 
   function stringifyURL(obj) {
+    console.log(obj)
     return obj ? Object.keys(obj).sort().map(function (key) {
       var val = obj[key];
 
@@ -115,8 +128,8 @@ under the License.
   // returns a new query string with the new language in it
   function generateNewQueryString(language) {
     var url = parseURL(location.search);
-    if (url.language) {
-      url.language = language;
+    if (url.lang) {
+      url.lang = language;
       return stringifyURL(url);
     }
     return language;
@@ -128,14 +141,16 @@ under the License.
     var hash = window.location.hash;
     if (hash) {
       hash = hash.replace(/^#+/, '');
+      hash = '#' + hash;
     }
-    history.pushState({}, '', '?' + generateNewQueryString(language) + '#' + hash);
+    history.pushState({}, '', '?' + generateNewQueryString(language) + hash);
 
     // save language as next default
     localStorage.setItem("language", language);
   }
 
   function setupLanguages(l) {
+
     var defaultLanguage = localStorage.getItem("language");
 
     languages = l;
@@ -144,15 +159,19 @@ under the License.
     if (presetLanguage) {
       // the language is in the URL, so use that language!
       activateLanguage(presetLanguage);
-
+      pushURL(presetLanguage);
       localStorage.setItem("language", presetLanguage);
     } else if ((defaultLanguage !== null) && (jQuery.inArray(defaultLanguage, languages) != -1)) {
       // the language was the last selected one saved in localstorage, so use that language!
       activateLanguage(defaultLanguage);
+      pushURL(defaultLanguage);
+
     } else {
       // no language selected, so use the default
       activateLanguage(languages[0]);
+      pushURL(languages[0]);
     }
+
   }
 
   // if we click on a language tab, activate that language
