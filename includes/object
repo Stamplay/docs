@@ -331,7 +331,7 @@
 
 <p>With permissions at an Object level, you define who can perform operations on your data. You can do that by choosing a preset or creating your own permission model.</p>
 
-<p><img alt="Permissions Overview" src="/images/object-permissions-overview.png" /></p>
+<p><img alt="Permissions Overview" src="/images/object-permissions-overview-1a8aa69b.png" /></p>
 
 <p>We’ve identified some commonly used permission patterns (we refer to them as "policies"). Stamplay provides an easy way to use these patterns on the data your app manages. These policies offer a convenient mechanism for supporting very common security scenarios without having to manage complex settings:</p>
 
