@@ -218,9 +218,9 @@ Login a user with a Facebook account.
 
   **2.2.** Click on **+ Add Platform**.
 
-  **2.3.** Fill the **Site Url** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.3.** Fill the **Site Url** field with your Stamplay domain: [https://APP-ID.stamplayapp.com](https://APP-ID.stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
-  **2.4.** From the **Settings** view click on the **Advanced** tab and type in the **OAuth Redirect URIs** the following: [https://[APP-ID].stamplayapp.com/auth/v1/facebook/callback](https://[APP-ID].stamplayapp.com/auth/v1/facebook/callback) and [https://localhost:8080/auth/v1/facebook/callback](https://localhost:8080/auth/v1/facebook/callback) so that you can also test the signup flow locally when using Stamplay Command Line.
+  **2.4.** From the **Settings** view click on the **Advanced** tab and type in the **OAuth Redirect URIs** the following: [https://APP-ID.stamplayapp.com/auth/v1/facebook/callback](https://APP-ID.stamplayapp.com/auth/v1/facebook/callback) and [https://localhost:8080/auth/v1/facebook/callback](https://localhost:8080/auth/v1/facebook/callback) so that you can also test the signup flow locally when using Stamplay Command Line.
  
  ---
 
@@ -228,7 +228,7 @@ Login a user with a Facebook account.
 
   **3.1.** Copy the `App Id` and `App Secret` from the Facebook App and add the values to the corresponding field inside the Stamplay editor in the **Users** - **Authentication** section.
   
-  **3.2.** To test the social login integration, copy and paste this link with your `APP ID` into a browser: [https://[APP-ID].stamplayapp.com/auth/v1/facebook/connect](https://[APP-ID].stamplayapp.com/auth/v1/facebook/connect). After connecting your account, check the **DATA** section to inspect the new User record created.
+  **3.2.** To test the social login integration, copy and paste this link with your `APP ID` into a browser: [https://APP-ID.stamplayapp.com/auth/v1/facebook/connect](https://APP-ID.stamplayapp.com/auth/v1/facebook/connect). After connecting your account, check the **DATA** section to inspect the new User record created.
   
   **3.3.** The steps covered in this guide are not enough to have a Facebook app approved for production. You need to provide other information and submit the app for review; the process can take many days to complete. Refer to Facebook documentation for more information.
 
@@ -275,9 +275,9 @@ Login a user with a Google+ account.
   **2.2.** Add the required information to the consent screen and save.
 
   **2.3.** Fill in the **Authorized Javascripts Origins** field with your Stamplay 
-  domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  domain: [https://APP-ID.stamplayapp.com](https://APP-ID.stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
-  **2.4.** Fill in the **Authorized Redirect URIs** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/google/callback](https://[APP-ID].stamplayapp.com/auth/v1/google/callback).
+  **2.4.** Fill in the **Authorized Redirect URIs** field with the following value: [https://APP-ID.stamplayapp.com/auth/v1/google/callback](https://APP-ID.stamplayapp.com/auth/v1/google/callback).
 
   **2.5.** Click on **Create client ID**
 
@@ -287,7 +287,7 @@ Login a user with a Google+ account.
 
   **3.1.** Copy the **Client Id** and **Client Secret** from the Google App and add the values to the Stamplay app.
 
-  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/google/connect](https://[APP-ID].stamplayapp.com/auth/v1/google/connect).
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://APP-ID.stamplayapp.com/auth/v1/google/connect](https://APP-ID.stamplayapp.com/auth/v1/google/connect).
 
   **3.3.** Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
@@ -326,9 +326,9 @@ Login a user with a Twitter account.
 
   **2.1.** Fill in name and description.
   
-  **2.2.** Fill in the Website field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.2.** Fill in the Website field with your Stamplay domain: [https://APP-ID.stamplayapp.com](https://APP-ID.stamplayapp.com) (and/or your custom domain if you have a paid plan).
   
-  **2.3.** Fill in the Authorized Redirect URIs field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/twitter/callback](https://[APP-ID].stamplayapp.com/auth/v1/twitter/callback). Create the Twitter application.
+  **2.3.** Fill in the Authorized Redirect URIs field with the following value: [https://APP-ID.stamplayapp.com/auth/v1/twitter/callback](https://APP-ID.stamplayapp.com/auth/v1/twitter/callback). Create the Twitter application.
 
 ---
 
@@ -338,7 +338,7 @@ Login a user with a Twitter account.
 
   **3.2.** Copy the **Consumer Key** (API Key) and **Consumer Secret** (API Secret) from the Twitter app and add the values to the Stamplay app.
 
-  **3.3.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/twitter/connect](https://[APP-ID].stamplayapp.com/auth/v1/twitter/connect). Then click on **Users** in the left menu of the editor to browse the data fetched.
+  **3.3.** To quickly test the integration, copy and paste this link into your browser: [https://APP-ID.stamplayapp.com/auth/v1/twitter/connect](https://APP-ID.stamplayapp.com/auth/v1/twitter/connect). Then click on **Users** in the left menu of the editor to browse the data fetched.
 
 Stamplay collects all profile data provided.
 
@@ -376,7 +376,7 @@ Login a user with a Dropbox account.
 
 **Configure The Dropbox App**
 
-  **2.1.** Fill in the **Redirect URIs** field in the **Oauth2** section with the following value: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.1.** Fill in the **Redirect URIs** field in the **Oauth2** section with the following value: [https://APP-ID.stamplayapp.com](https://APP-ID.stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
 ---
 
@@ -384,7 +384,7 @@ Login a user with a Dropbox account.
 
   **3.1.** Copy the **App Key** and **App Secret** from the Dropbox app and add the values to the Stamplay app.
 
-  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/dropbox/connect](https://[APP-ID].stamplayapp.com/auth/v1/dropbox/connect). Then click on “Users” in the left menu of the Editor to browse the data fetched.
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://APP-ID.stamplayapp.com/auth/v1/dropbox/connect](https://APP-ID.stamplayapp.com/auth/v1/dropbox/connect). Then click on “Users” in the left menu of the Editor to browse the data fetched.
 
   **3.3.** You have added Dropbox login to your Stamplay app, but be aware that you must provide Dropbox with a lot of other information to get their approval. Refer to the Dropbox documentation to learn how to have your Dropbox app approved for production. In the mean time, you can continue to develop and test the integration.
 
@@ -422,7 +422,7 @@ Login a user with a LinkedIn account.
 
   **2.1.** Fill in all the required data.
 
-  **2.2.** Fill in the OAuth **redirect_uri** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/linkedin/callback](https://[APP-ID].stamplayapp.com/auth/v1/linkedin/callback).
+  **2.2.** Fill in the OAuth **redirect_uri** field with the following value: [https://APP-ID.stamplayapp.com/auth/v1/linkedin/callback](https://APP-ID.stamplayapp.com/auth/v1/linkedin/callback).
 
   **2.3.** Click the “Add application” button.
 
@@ -434,7 +434,7 @@ Login a user with a LinkedIn account.
 
   **3.2.** Click on the “End” button.
 
-  **3.3.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/linkedin/connect](https://[APP-ID].stamplayapp.com/auth/v1/linkedin/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+  **3.3.** To quickly test the integration, copy and paste this link into your browser: [https://APP-ID.stamplayapp.com/auth/v1/linkedin/connect](https://APP-ID.stamplayapp.com/auth/v1/linkedin/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
 Stamplay asks for the following permissions:
 
@@ -478,9 +478,9 @@ Login a user with a Instagram account.
 
   **2.1.** Fill in the required fields.
 
-  **2.2.** Fill in the **Website** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.2.** Fill in the **Website** field with your Stamplay domain: [https://APP-ID.stamplayapp.com](https://APP-ID.stamplayapp.com) (and/or your custom domain if you have a paid plan).
   
-  **2.3.** Fill in the OAuth **redirect_uri** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/instagram/callback](https://[APP-ID].stamplayapp.com/auth/v1/instagram/callback).
+  **2.3.** Fill in the OAuth **redirect_uri** field with the following value: [https://APP-ID.stamplayapp.com/auth/v1/instagram/callback](https://APP-ID.stamplayapp.com/auth/v1/instagram/callback).
 
 ---
 
@@ -488,7 +488,7 @@ Login a user with a Instagram account.
 
   **3.1.** Copy the **Client Id** and **Client Secret** from the Instagram client and add the values to the Stamplay app.
 
-  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/instagram/connect](https://[APP-ID].stamplayapp.com/auth/v1/instagram/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://APP-ID.stamplayapp.com/auth/v1/instagram/connect](https://APP-ID.stamplayapp.com/auth/v1/instagram/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
 Stamplay asks for the following permissions:
 
@@ -530,9 +530,9 @@ Login a user with a Github account.
 
   **2.1.** Fill in all the required fields.
 
-  **2.2.** Fill in the **Homepage URL** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.2.** Fill in the **Homepage URL** field with your Stamplay domain: [https://APP-ID.stamplayapp.com](https://APP-ID.stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
-  **2.3.** Fill the **Authorization Callback URL** field with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/github/callback](https://[APP-ID].stamplayapp.com/auth/v1/github/callback).
+  **2.3.** Fill the **Authorization Callback URL** field with the following value: [https://APP-ID.stamplayapp.com/auth/v1/github/callback](https://APP-ID.stamplayapp.com/auth/v1/github/callback).
 
 ---
 
@@ -540,7 +540,7 @@ Login a user with a Github account.
 
   **3.1.** Copy the **Client ID** and **Client Secret** from the Github app and add the values to the Stamplay app.
 
-  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/github/connect](https://[APP-ID].stamplayapp.com/auth/v1/github/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://APP-ID.stamplayapp.com/auth/v1/github/connect](https://APP-ID.stamplayapp.com/auth/v1/github/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
 Stamplay requests access to public information. We store all public data.
 
@@ -574,9 +574,9 @@ Login a user with an Angellist account.
 
   **2.1.** Name your app.
 
-  **2.2.** Fill in the **Main URL** field with your Stamplay domain: [https://[APP-ID].stamplayapp.com](https://[APP-ID].stamplayapp.com) (and/or your custom domain if you have a paid plan).
+  **2.2.** Fill in the **Main URL** field with your Stamplay domain: [https://APP-ID.stamplayapp.com](https://APP-ID.stamplayapp.com) (and/or your custom domain if you have a paid plan).
 
-  **2.3.** Fill in the field Callback URL with the following value: [https://[APP-ID].stamplayapp.com/auth/v1/angellist/callback](https://[APP-ID].stamplayapp.com/auth/v1/angellist/callback).
+  **2.3.** Fill in the field Callback URL with the following value: [https://APP-ID.stamplayapp.com/auth/v1/angellist/callback](https://APP-ID.stamplayapp.com/auth/v1/angellist/callback).
 
 ---
 
@@ -584,7 +584,7 @@ Login a user with an Angellist account.
 
   **3.1.** Angel List will send you an email with the **Client ID** and **Client Secret**. Add these values to the Stamplay app.
 
-  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://[APP-ID].stamplayapp.com/auth/v1/angellist/connect](https://[APP-ID].stamplayapp.com/auth/v1/angellist/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://APP-ID.stamplayapp.com/auth/v1/angellist/connect](https://APP-ID.stamplayapp.com/auth/v1/angellist/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
 
 Stamplay requests permission to access the following:
 
@@ -627,9 +627,9 @@ To check whether or not the token is expired you can do the following:
 ## Reset Password
 
 ~~~ shell
-  curl -X "POST" "https://APP-ID.stamplayapp.com/api/user/v1/users/resetpassword " \
-    -H "Content-Type: application/json" \
-    -d "{\"email\":\"user@stamplay.com\", \"newPassword\" : \"stamplay_rocks!\"}"
+  curl -X "POST" "https://stamplaykb.stamplayapp.com/api/user/v1/users/resetpassword" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"user@stamplay.com", "newPassword" : "stamplay_rocks!"}'
 ~~~
 
 ~~~ javascript

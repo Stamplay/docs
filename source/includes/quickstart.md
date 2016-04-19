@@ -37,7 +37,7 @@ To run our application locally, run the `start` command from the `stamplay` CLI.
 ~~~ 
 
 ~~~ javascript
-  Stamplay.init("APP ID")
+  Stamplay.init("APP-ID")
 ~~~
 
 <div class="lang-content javascript">

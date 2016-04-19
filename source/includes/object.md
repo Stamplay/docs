@@ -186,7 +186,7 @@ The property `end_date` is a Date type in **RFC-1123** format in the last exampl
 ~~~ javascript-always
   {
     _id : "56cf08e362641ca813b1ae6c",
-    profile_image : "https://[APP-ID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"
+    profile_image : "https://APP-ID.stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"
   }
 ~~~ 
 
