@@ -236,7 +236,7 @@
 
 <pre class="highlight shell-always"><code>  <span class="p">{</span>
     <span class="nl">_id</span> <span class="p">:</span> <span class="s2">"56cf08e362641ca813b1ae6c"</span><span class="p">,</span>
-    <span class="nx">profile_image</span> <span class="err">:</span> <span class="s2">"https://[APP-ID].stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"</span>
+    <span class="nx">profile_image</span> <span class="err">:</span> <span class="s2">"https://APP-ID.stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"</span>
   <span class="p">}</span>
 </code></pre>
 

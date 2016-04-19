@@ -18,6 +18,348 @@
 
 <p>Our <a href="https://github.com/Stamplay/stamplay-js-sdk">JavaScript SDK is open source on Github</a>!</p>
 
+<h3 id="javascript-api-reference">JavaScript API Reference</h3>
+
+<p>The JavaScript SDK exposes the following components and methods:</p>
+
+<h4 id="users">Users</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#users">User</a></th>
+      <th><code>Stamplay.User</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>save</td>
+      <td><strong>save(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>get</td>
+      <td><strong>get(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>getById</td>
+      <td><strong>getById(id, data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>remove</td>
+      <td><strong>remove(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>update</td>
+      <td><strong>update(id, data, [callback] )</strong></td>
+    </tr>
+    <tr>
+      <td>currentUser</td>
+      <td><strong>currentUser([callback])</strong></td>
+    </tr>
+    <tr>
+      <td>login</td>
+      <td><strong>login(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>socialLogin</td>
+      <td><strong>socialLogin(provider)</strong></td>
+    </tr>
+    <tr>
+      <td>signup</td>
+      <td><strong>signup(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>logout</td>
+      <td><strong>logout()</strong></td>
+    </tr>
+    <tr>
+      <td>resetPassword</td>
+      <td><strong>resetPassword(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>getRoles</td>
+      <td><strong>getRoles([callback])</strong></td>
+    </tr>
+    <tr>
+      <td>getRole</td>
+      <td><strong>getRole(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>setRole</td>
+      <td><strong>setRole(id, roleId, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>follow</td>
+      <td><strong>follow(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>unfollow</td>
+      <td><strong>unfollow(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>followedBy</td>
+      <td><strong>followedBy(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>following</td>
+      <td><strong>following(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>activities</td>
+      <td><strong>activities(id, [callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="objects">Objects</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#objects">Object</a></th>
+      <th><code>Stamplay.Object("cobject")</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>save</td>
+      <td><strong>save(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>get</td>
+      <td><strong>get(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>getById</td>
+      <td><strong>getById(id, data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>remove</td>
+      <td><strong>remove(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>update</td>
+      <td><strong>update(id, data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>patch</td>
+      <td><strong>patch(id, data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>findByCurrentUser</td>
+      <td><strong>findByCurrentUser([attr], [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>upVote</td>
+      <td><strong>upVote(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>downVote</td>
+      <td><strong>downVote(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>rate</td>
+      <td><strong>rate(id, rate, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>comment</td>
+      <td><strong>comment(id, text, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>push</td>
+      <td><strong>push(id, attribute, data, [callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="code-blocks">Code Blocks</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#code-blocks">Code Block</a></th>
+      <th><code>Stamplay.Codeblock("codeblock")</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>run</td>
+      <td><strong>run(data, queryParams, [callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="webhooks">Webhooks</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#webhooks">Webhook</a></th>
+      <th><code>Stamplay.Webhook("webhook")</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>post</td>
+      <td><strong>post(data, [callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="stripe">Stripe</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#stripe">Stripe</a></th>
+      <th><code>Stamplay.Stripe</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>charge</td>
+      <td><strong>charge(userId, token, amount, currency, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>createCreditCard</td>
+      <td><strong>createCreditCard(userId, token, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>createCustomer</td>
+      <td><strong>createCustomer(userId, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>createSubscriptionuserId</td>
+      <td><strong>createSubscriptionuserId, planId, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>deleteSubscription</td>
+      <td><strong>deleteSubscription(userId, subscriptionId, options, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>getCreditCard</td>
+      <td><strong>getCreditCard(userId, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>getSubscription</td>
+      <td><strong>getSubscription(userId, subscriptionId, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>getSubscriptions</td>
+      <td><strong>getSubscriptions(userId, options, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>updateCreditCard</td>
+      <td><strong>updateCreditCard(userId, token, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>updateSubscription</td>
+      <td><strong>updateSubscription(userId, subscriptionId, options, [callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="queries">Queries</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#query">Query</a></th>
+      <th><code>Stamplay.Query("type", "resource")</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>greaterThan</td>
+      <td><strong>greaterThan(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>greaterThanOrEqual</td>
+      <td><strong>greaterThanOrEqual(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>lessThan</td>
+      <td><strong>lessThan(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>lessThanOrEqual</td>
+      <td><strong>lessThanOrEqual(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>pagination</td>
+      <td><strong>pagination(page, per_page)</strong></td>
+    </tr>
+    <tr>
+      <td>between</td>
+      <td><strong>between(attr, value1, value2)</strong></td>
+    </tr>
+    <tr>
+      <td>equalTo</td>
+      <td><strong>equalTo(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>exists</td>
+      <td><strong>exists(attr)</strong></td>
+    </tr>
+    <tr>
+      <td>notExists</td>
+      <td><strong>notExists(attr)</strong></td>
+    </tr>
+    <tr>
+      <td>sortAscending</td>
+      <td><strong>sortAscending(attr)</strong></td>
+    </tr>
+    <tr>
+      <td>sortDescending</td>
+      <td><strong>sortDescending(attr)</strong></td>
+    </tr>
+    <tr>
+      <td>populate</td>
+      <td><strong>populate()</strong></td>
+    </tr>
+    <tr>
+      <td>populateOwner</td>
+      <td><strong>populateOwner()</strong></td>
+    </tr>
+    <tr>
+      <td>select</td>
+      <td><strong>select(attr,…)</strong></td>
+    </tr>
+    <tr>
+      <td>regex</td>
+      <td><strong>regex(attr, regex, options)</strong></td>
+    </tr>
+    <tr>
+      <td>near</td>
+      <td><strong>near(type, coordinates, maxDistance, minDistance)</strong></td>
+    </tr>
+    <tr>
+      <td>nearSphere</td>
+      <td><strong>nearSphere(type, coordinates, maxDistance, minDistance)</strong></td>
+    </tr>
+    <tr>
+      <td>geoIntersects</td>
+      <td><strong>geoIntersects(type, coordinates)</strong></td>
+    </tr>
+    <tr>
+      <td>geoWithinGeometry</td>
+      <td><strong>geoWithinGeometry(type, coordinates)</strong></td>
+    </tr>
+    <tr>
+      <td>geoWithinCenterSphere</td>
+      <td><strong>geoWithinCenterSphere(coordinates, radius)</strong></td>
+    </tr>
+    <tr>
+      <td>or</td>
+      <td><strong>or(query,..)</strong></td>
+    </tr>
+    <tr>
+      <td>exec</td>
+      <td><strong>exec([callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="nodejs-sdk">NodeJS SDK</h2>
 
 <pre class="highlight shell-always"><code>  <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">stamplay</span>
@@ -35,4 +377,258 @@
 <p>To initialize the SDK within your server side enviornment, first <code>require</code> the module, then create a new instance of the module require and pass in your <code>APP ID</code> and <code>API KEY</code> credentials as seperate arguments.</p>
 
 <p>Our <a href="https://github.com/Stamplay/stamplay-nodejs-sdk">Node.js SDK is open source on Github</a>!</p>
+
+<h3 id="nodejs-api-reference">Node.js API Reference</h3>
+
+<p>The JavaScript SDK exposes the following components and methods:</p>
+
+<h4 id="users-1">Users</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#users">User</a></th>
+      <th><code>Stamplay.User</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>save</td>
+      <td><strong>save(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>get</td>
+      <td><strong>get(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>remove</td>
+      <td><strong>remove(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>update</td>
+      <td><strong>update(id, data, [callback] )</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="objects-1">Objects</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#objects">Object</a></th>
+      <th><code>Stamplay.Object("cobject")</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>save</td>
+      <td><strong>save(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>get</td>
+      <td><strong>get(data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>remove</td>
+      <td><strong>remove(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>update</td>
+      <td><strong>update(id, data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>patch</td>
+      <td><strong>patch(id, data, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>upVote</td>
+      <td><strong>upVote(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>downVote</td>
+      <td><strong>downVote(id, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>rate</td>
+      <td><strong>rate(id, rate, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>comment</td>
+      <td><strong>comment(id, text, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>push</td>
+      <td><strong>push(id, attribute, data, [callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="code-blocks-1">Code Blocks</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#code-blocks">Code Block</a></th>
+      <th><code>Stamplay.Codeblock("codeblock")</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>run</td>
+      <td><strong>run(data, queryParams, [callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="webhooks-1">Webhooks</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#webhooks">Webhook</a></th>
+      <th><code>Stamplay.Webhook("webhook")</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>post</td>
+      <td><strong>post(data, [callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="stripe-1">Stripe</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#stripe">Stripe</a></th>
+      <th><code>Stamplay.Stripe</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>createSubscriptionuserId</td>
+      <td><strong>createSubscriptionuserId, planId, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>deleteSubscription</td>
+      <td><strong>deleteSubscription(userId, subscriptionId, options, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>getSubscription</td>
+      <td><strong>getSubscription(userId, subscriptionId, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>getSubscriptions</td>
+      <td><strong>getSubscriptions(userId, options, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>updateSubscription</td>
+      <td><strong>updateSubscription(userId, subscriptionId, options, [callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="queries-1">Queries</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#advanced-queries">Query</a></th>
+      <th><code>Stamplay.Query("type", "resource")</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>greaterThan</td>
+      <td><strong>greaterThan(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>greaterThanOrEqual</td>
+      <td><strong>greaterThanOrEqual(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>lessThan</td>
+      <td><strong>lessThan(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>lessThanOrEqual</td>
+      <td><strong>lessThanOrEqual(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>pagination</td>
+      <td><strong>pagination(page, per_page)</strong></td>
+    </tr>
+    <tr>
+      <td>between</td>
+      <td><strong>between(attr, value1, value2)</strong></td>
+    </tr>
+    <tr>
+      <td>equalTo</td>
+      <td><strong>equalTo(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>exists</td>
+      <td><strong>exists(attr)</strong></td>
+    </tr>
+    <tr>
+      <td>notExists</td>
+      <td><strong>notExists(attr)</strong></td>
+    </tr>
+    <tr>
+      <td>sortAscending</td>
+      <td><strong>sortAscending(attr)</strong></td>
+    </tr>
+    <tr>
+      <td>sortDescending</td>
+      <td><strong>sortDescending(attr)</strong></td>
+    </tr>
+    <tr>
+      <td>populate</td>
+      <td><strong>populate()</strong></td>
+    </tr>
+    <tr>
+      <td>populateOwner</td>
+      <td><strong>populateOwner()</strong></td>
+    </tr>
+    <tr>
+      <td>select</td>
+      <td><strong>select(attr,…)</strong></td>
+    </tr>
+    <tr>
+      <td>regex</td>
+      <td><strong>regex(attr, regex, options)</strong></td>
+    </tr>
+    <tr>
+      <td>near</td>
+      <td><strong>near(type, coordinates, maxDistance, minDistance)</strong></td>
+    </tr>
+    <tr>
+      <td>nearSphere</td>
+      <td><strong>nearSphere(type, coordinates, maxDistance, minDistance)</strong></td>
+    </tr>
+    <tr>
+      <td>geoIntersects</td>
+      <td><strong>geoIntersects(type, coordinates)</strong></td>
+    </tr>
+    <tr>
+      <td>geoWithinGeometry</td>
+      <td><strong>geoWithinGeometry(type, coordinates)</strong></td>
+    </tr>
+    <tr>
+      <td>geoWithinCenterSphere</td>
+      <td><strong>geoWithinCenterSphere(coordinates, radius)</strong></td>
+    </tr>
+    <tr>
+      <td>or</td>
+      <td><strong>or(query,..)</strong></td>
+    </tr>
+    <tr>
+      <td>exec</td>
+      <td><strong>exec([callback])</strong></td>
+    </tr>
+  </tbody>
+</table>
 

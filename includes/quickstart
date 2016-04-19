@@ -32,7 +32,7 @@
 <pre class="highlight javascript"><code>  <span class="nx">bower</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP-ID"</span><span class="p">)</span>
 </code></pre>
 
 <div class="lang-content javascript">
