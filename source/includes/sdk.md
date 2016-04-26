@@ -103,6 +103,7 @@ The JavaScript SDK exposes the following components and methods:
 | pagination | **pagination(page, per_page)** |
 | between | **between(attr, value1, value2)** |
 | equalTo | **equalTo(attr, value)** | 
+| notEqualTo | **notEqualTo(attr, value)** | 
 | exists | **exists(attr)** | 
 | notExists | **notExists(attr)** | 
 | sortAscending | **sortAscending(attr)** | 
@@ -199,7 +200,8 @@ The JavaScript SDK exposes the following components and methods:
 | lessThanOrEqual | **lessThanOrEqual(attr, value)** |
 | pagination | **pagination(page, per_page)** |
 | between | **between(attr, value1, value2)** | 
-| equalTo | **equalTo(attr, value)** |  
+| equalTo | **equalTo(attr, value)** |
+| notEqualTo | **notEqualTo(attr, value)** | 
 | exists | **exists(attr)** |  
 | notExists | **notExists(attr)** | 
 | sortAscending | **sortAscending(attr)** | 
