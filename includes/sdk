@@ -298,6 +298,10 @@
       <td><strong>equalTo(attr, value)</strong></td>
     </tr>
     <tr>
+      <td>notEqualTo</td>
+      <td><strong>notEqualTo(attr, value)</strong></td>
+    </tr>
+    <tr>
       <td>exists</td>
       <td><strong>exists(attr)</strong></td>
     </tr>
@@ -568,6 +572,10 @@
     <tr>
       <td>equalTo</td>
       <td><strong>equalTo(attr, value)</strong></td>
+    </tr>
+    <tr>
+      <td>notEqualTo</td>
+      <td><strong>notEqualTo(attr, value)</strong></td>
     </tr>
     <tr>
       <td>exists</td>
