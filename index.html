@@ -1821,7 +1821,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/:provider/connect"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"provider"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"provider"</span><span class="p">)</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
@@ -1895,7 +1895,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/facebook/connect"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"facebook"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"facebook"</span><span class="p">)</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
@@ -1954,7 +1954,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/google/connect"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"google"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"google"</span><span class="p">)</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
@@ -2011,7 +2011,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/twitter/connect"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"twitter"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"twitter"</span><span class="p">)</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
@@ -2056,7 +2056,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/dropbox/connect"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"dropbox"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"dropbox"</span><span class="p">)</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
@@ -2103,7 +2103,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/linkedin/connect"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"linkedin"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"linkedin"</span><span class="p">)</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
@@ -2156,7 +2156,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/instagram/connect"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"instagram"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"instagram"</span><span class="p">)</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
@@ -2207,7 +2207,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/github/connect"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"github"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"github"</span><span class="p">)</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
@@ -2252,7 +2252,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
 <pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/angellist/connect"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s2">"angellist"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"angellist"</span><span class="p">)</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
