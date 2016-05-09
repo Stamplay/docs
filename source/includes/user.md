@@ -144,7 +144,7 @@ Login a user to a local account.
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.login("provider")
+  Stamplay.User.socialLogin("provider")
 ~~~ 
 
 ~~~ nodejs
@@ -187,7 +187,7 @@ To use a social provider within an Ionic application, you must pass in an addito
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.login("facebook")
+  Stamplay.User.socialLogin("facebook")
 ~~~ 
 
 ~~~ nodejs
@@ -247,7 +247,7 @@ We store data from `public_profile` and `email`. Refer to the Facebook documenta
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.login("google")
+  Stamplay.User.socialLogin("google")
 ~~~ 
 
 ~~~ nodejs
@@ -305,7 +305,7 @@ Refer to the Google documentation for more information.
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.login("twitter")
+  Stamplay.User.socialLogin("twitter")
 ~~~ 
 
 ~~~ nodejs
@@ -353,7 +353,7 @@ Please refer to the Twitter documentation for more information.
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.login("dropbox")
+  Stamplay.User.socialLogin("dropbox")
 ~~~ 
 
 ~~~ nodejs
@@ -401,7 +401,7 @@ Refer to the Dropbox documentation for more information.
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.login("linkedin")
+  Stamplay.User.socialLogin("linkedin")
 ~~~ 
 
 ~~~ nodejs
@@ -455,7 +455,7 @@ Login a user with a Instagram account.
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.login("instagram")
+  Stamplay.User.socialLogin("instagram")
 ~~~ 
 
 ~~~ nodejs
@@ -507,7 +507,7 @@ Login a user with a Github account.
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.login("github")
+  Stamplay.User.socialLogin("github")
 ~~~ 
 
 ~~~ nodejs
@@ -555,7 +555,7 @@ Login a user with an Angellist account.
 ~~~ 
 
 ~~~ javascript
-  Stamplay.User.login("angellist")
+  Stamplay.User.socialLogin("angellist")
 ~~~ 
 
 ~~~ nodejs
