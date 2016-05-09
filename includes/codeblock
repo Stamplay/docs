@@ -120,7 +120,11 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 <pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
 </code></pre>
 
-<h2 id="app-secrets">App Secrets</h2>
+<h3 id="user-context-data">User Context Data</h3>
+
+<p>When executing a Code Block, you are able to pass in data, which is set to the <code>context.data</code> property. If an active user session is in place from the origininating request, the user of the current session will be placed inside <code>context</code> on <code>context.data.user</code>.</p>
+
+<h2 id="managing-secret-parameters">Managing Secret Parameters</h2>
 
 <p>In order to develop a full-featured application you'll need to communicate with external services using secret credentials. Stamplay allows you to securely store these parameters within the Secrets area.</p>
 
@@ -161,10 +165,6 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 <p>Now your secret has been added and is ready for use with the Code Block.</p>
 
 <p><a href="../images/cb_sec_save_4.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_4.png" /></a></p>
-
-<h3 id="user-context-data">User Context Data</h3>
-
-<p>When executing a Code Block, you are able to pass in data, which is set to the <code>context.data</code> property. If an active user session is in place from the origininating request, the user of the current session will be placed inside <code>context</code> on <code>context.data.user</code>.</p>
 
 <h3 id="accessing-secrets">Accessing Secrets</h3>
 
