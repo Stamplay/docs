@@ -673,6 +673,99 @@
 
 <p>Refer to the Angel List documentation for more information.</p>
 
+<h3 id="slack">Slack</h3>
+
+<p>Login a user with a Slack account.</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/slack/connect"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"slack"</span><span class="p">)</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<hr />
+
+<p><strong>Create an Slack App</strong></p>
+
+<p><strong>1.1.</strong> Go to <a href="https://api.slack.com">https://api.slack.com</a>.</p>
+
+<hr />
+
+<p><strong>Configure the App</strong></p>
+
+<p><strong>2.1.</strong> Name your app.</p>
+
+<p><strong>2.2.</strong> Fill in the field Redirect URL with the following value: <a href="https://APP-ID.stamplayapp.com/auth/v1/slack/callback">https://APP-ID.stamplayapp.com/auth/v1/slack/callback</a>.</p>
+
+<p><strong>2.3</strong> Click on App Credentials to get your Client Id and Client Secret.</p>
+
+<hr />
+
+<p><strong>Add the Slack Integration to Stamplay</strong></p>
+
+<p><strong>3.1</strong> Go to <strong>Users</strong> &gt; <strong>Authentication</strong> &gt; <strong>Slack</strong>. Enter your app credentials and click <strong>Save</strong>.</p>
+
+<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://APP-ID.stamplayapp.com/auth/v1/slack/connect">https://APP-ID.stamplayapp.com/auth/v1/slack/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
+
+<p>Stamplay requests permission to access the following:</p>
+
+<ul>
+  <li><code>access your team's profile information</code></li>
+</ul>
+
+<p>We store the default information data and email.</p>
+
+<p>Refer to the Slack API documentation for more information.</p>
+
+<h3 id="auth0">Auth0</h3>
+
+<p>Login a user with Auth0.</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APP-ID.stamplayapp.com/auth/v1/auth0/connect"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">socialLogin</span><span class="p">(</span><span class="s2">"auth0"</span><span class="p">)</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<hr />
+
+<p><strong>Create an Slack App</strong></p>
+
+<p><strong>1.1.</strong> Go to <a href="https://manage.auth0.com">https://manage.auth0.com</a>.</p>
+
+<hr />
+
+<p><strong>Configure the App</strong></p>
+
+<p><strong>2.1.</strong> Go to <strong>Client</strong> &gt; <strong>+ New Client</strong>.</p>
+
+<p><strong>2.2.</strong> Fill in the field Allowed Callback URLs with the following value: <a href="https://APP-ID.stamplayapp.com/auth/v1/auth0/callback">https://APP-ID.stamplayapp.com/auth/v1/auth0/callback</a>.</p>
+
+<hr />
+
+<p><strong>Add the Auth0 Integration to Stamplay</strong></p>
+
+<p><strong>3.1</strong> Go to <strong>Users</strong> &gt; <strong>Authentication</strong> &gt; <strong>Auth0</strong>. Enter your app credentials and click <strong>Save</strong>.</p>
+
+<p><strong>3.2.</strong> To quickly test the integration, copy and paste this link into your browser: <a href="https://APP-ID.stamplayapp.com/auth/v1/auth0/connect">https://APP-ID.stamplayapp.com/auth/v1/auth0/connect</a>. Then click on <strong>Users</strong> in the left menu of the Editor to browse the data fetched.</p>
+
+<p>Stamplay requests permission to access the following:</p>
+
+<ul>
+  <li><code>username</code></li>
+  <li><code>password</code></li>
+</ul>
+
+<p>We store the default information data and email.</p>
+
+<p>Refer to the Auth0 documentation for more information.</p>
+
 <h2 id="sessions">Sessions</h2>
 
 <pre class="highlight shell-always"><code>  
