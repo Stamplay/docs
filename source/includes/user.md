@@ -595,6 +595,103 @@ We store the default information data and email.
 
 Refer to the Angel List documentation for more information.
 
+### Slack
+
+
+Login a user with a Slack account.
+
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/slack/connect"
+~~~ 
+
+~~~ javascript
+  Stamplay.User.socialLogin("slack")
+~~~ 
+
+~~~ nodejs
+  // no method
+~~~ 
+
+---
+
+**Create an Slack App**
+
+  **1.1.** Go to [https://api.slack.com](https://api.slack.com).
+
+---
+
+**Configure the App**
+
+  **2.1.** Name your app.
+
+  **2.2.** Fill in the field Redirect URL with the following value: [https://APP-ID.stamplayapp.com/auth/v1/slack/callback](https://APP-ID.stamplayapp.com/auth/v1/slack/callback).
+
+  **2.3** Click on App Credentials to get your Client Id and Client Secret.
+
+---
+
+**Add the Slack Integration to Stamplay**
+  
+  **3.1** Go to **Users** > **Authentication** > **Slack**. Enter your app credentials and click **Save**.
+
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://APP-ID.stamplayapp.com/auth/v1/slack/connect](https://APP-ID.stamplayapp.com/auth/v1/slack/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+
+Stamplay requests permission to access the following:
+
+* `access your team's profile information`
+
+We store the default information data and email.
+
+Refer to the Slack API documentation for more information.
+
+### Auth0
+
+
+Login a user with Auth0.
+
+~~~ shell
+  curl -X "GET" "https://APP-ID.stamplayapp.com/auth/v1/auth0/connect"
+~~~ 
+
+~~~ javascript
+  Stamplay.User.socialLogin("auth0")
+~~~ 
+
+~~~ nodejs
+  // no method
+~~~ 
+
+---
+
+**Create an Slack App**
+
+  **1.1.** Go to [https://manage.auth0.com](https://manage.auth0.com).
+
+---
+
+**Configure the App**
+
+  **2.1.** Go to **Client** > **+ New Client**.
+
+  **2.2.** Fill in the field Allowed Callback URLs with the following value: [https://APP-ID.stamplayapp.com/auth/v1/auth0/callback](https://APP-ID.stamplayapp.com/auth/v1/auth0/callback).
+
+---
+
+**Add the Auth0 Integration to Stamplay**
+  
+  **3.1** Go to **Users** > **Authentication** > **Auth0**. Enter your app credentials and click **Save**.
+
+  **3.2.** To quickly test the integration, copy and paste this link into your browser: [https://APP-ID.stamplayapp.com/auth/v1/auth0/connect](https://APP-ID.stamplayapp.com/auth/v1/auth0/connect). Then click on **Users** in the left menu of the Editor to browse the data fetched.
+
+Stamplay requests permission to access the following:
+
+* `username`
+* `password`
+
+We store the default information data and email.
+
+Refer to the Auth0 documentation for more information.
+
 ## Sessions
 
 ~~~ shell-always
