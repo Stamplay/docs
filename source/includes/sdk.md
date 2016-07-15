@@ -4,15 +4,19 @@
 
 ~~~ shell-always
   bower install stamplay-js-sdk
+
+  or
+
+  npm install stamplay-sdk
 ~~~ 
 
 ~~~ javascript-always
   Stamplay.init("APP ID");
 ~~~ 
 
-The JavaScript SDK is a client side library to help simplify interacting with the Stamplay API.
+The JavaScript SDK is a client side library to help simplify interacting with the Stamplay API. It is available both on `npm` and `bower`.
 
-To install the JavasScript SDK, run `bower install` for the `stamplay-js-sdk`.
+To install the JavaScript SDK, run `bower install` for the `stamplay-js-sdk`.
 
 To initialize the SDK within your client side enviornment, run the `init` method on the `Stamplay` global object. Ensure the module has been included before running the method, and pass in your `APP ID` as the sole method argument.
 

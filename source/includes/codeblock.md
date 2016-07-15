@@ -166,8 +166,8 @@ Example shown uses the **Contextual** programming model.
 ~~~ nodejs-always
 module.exports = function(context, cb) {
 
-  var stamplay = require("stamplay");
-  var Stamplay = new Stamplay("APPID", "APIKEY");
+  var Stamplay = require("stamplay");
+  var stamplay = new Stamplay("APPID", "APIKEY");
   var request = require("request");
   var  _ = require("underscore");
 
