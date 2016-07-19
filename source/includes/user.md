@@ -776,7 +776,13 @@ For further detail, view the [Roles documetation](#roles).
 ~~~ 
 
 ~~~ javascript
+  //sync
   Stamplay.User.logout();
+
+  //async
+  Stamplay.User.logout(true, function(err, res){
+  ……
+  })
 ~~~ 
 
 ~~~ nodejs
@@ -785,7 +791,7 @@ For further detail, view the [Roles documetation](#roles).
 
 > Response is a redirect, as specified in the Authentication section in Stamplay.
 
-To logout, and end a user session, send a request to the logout endpoint. The `x-stamplay-jwt` header must be included otherwise the session will not be ended.
+To logout and end a user session, send a request to the logout endpoint. The `x-stamplay-jwt` header must be included otherwise the session will not be ended.
 
 The request response will redirect the application by default to the root of your application. This can be managed within the Stamplay editor in the **User** -> **Authentication** section by select the settings icon.
 
