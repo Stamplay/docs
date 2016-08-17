@@ -8,11 +8,11 @@
   or
 
   npm install stamplay-sdk
-~~~ 
+~~~
 
 ~~~ javascript-always
   Stamplay.init("APP ID");
-~~~ 
+~~~
 
 The JavaScript SDK is a client side library to help simplify interacting with the Stamplay API. It is available both on `npm` and `bower`.
 
@@ -46,11 +46,6 @@ The JavaScript SDK exposes the following components and methods:
 | getRoles | **getRoles([callback])** |
 | getRole | **getRole(id, [callback])** |
 | setRole | **setRole(id, roleId, [callback])** |
-| follow | **follow(id, [callback])** |
-| unfollow | **unfollow(id, [callback])** |
-| followedBy | **followedBy(id, [callback])** |
-| following | **following(id, [callback])** |
-| activities | **activities(id, [callback])**
 
 #### Objects
 
@@ -85,32 +80,32 @@ The JavaScript SDK exposes the following components and methods:
 
 | [Stripe](#stripe) | `Stamplay.Stripe` |
 |-------------------|------|
-| charge | **charge(userId, token, amount, currency, [callback])** | 
-| createCreditCard | **createCreditCard(userId, token, [callback])** | 
-| createCustomer | **createCustomer(userId, [callback])** | 
-| createSubscriptionuserId | **createSubscriptionuserId, planId, [callback])** | 
-| deleteSubscription | **deleteSubscription(userId, subscriptionId, options, [callback])** | 
-| getCreditCard | **getCreditCard(userId, [callback])** | 
-| getSubscription | **getSubscription(userId, subscriptionId, [callback])** | 
-| getSubscriptions | **getSubscriptions(userId, options, [callback])** | 
-| updateCreditCard | **updateCreditCard(userId, token, [callback])** | 
+| charge | **charge(userId, token, amount, currency, [callback])** |
+| createCreditCard | **createCreditCard(userId, token, [callback])** |
+| createCustomer | **createCustomer(userId, [callback])** |
+| createSubscriptionuserId | **createSubscriptionuserId, planId, [callback])** |
+| deleteSubscription | **deleteSubscription(userId, subscriptionId, options, [callback])** |
+| getCreditCard | **getCreditCard(userId, [callback])** |
+| getSubscription | **getSubscription(userId, subscriptionId, [callback])** |
+| getSubscriptions | **getSubscriptions(userId, options, [callback])** |
+| updateCreditCard | **updateCreditCard(userId, token, [callback])** |
 | updateSubscription | **updateSubscription(userId, subscriptionId, options, [callback])** |
 
 #### Queries
 
 | [Query](#query) | `Stamplay.Query("type", "resource")` |
 |-----------------|------|
-| greaterThan | **greaterThan(attr, value)** | 
-| greaterThanOrEqual | **greaterThanOrEqual(attr, value)** | 
-| lessThan | **lessThan(attr, value)** | 
-| lessThanOrEqual | **lessThanOrEqual(attr, value)** | 
+| greaterThan | **greaterThan(attr, value)** |
+| greaterThanOrEqual | **greaterThanOrEqual(attr, value)** |
+| lessThan | **lessThan(attr, value)** |
+| lessThanOrEqual | **lessThanOrEqual(attr, value)** |
 | pagination | **pagination(page, per_page)** |
 | between | **between(attr, value1, value2)** |
-| equalTo | **equalTo(attr, value)** | 
-| notEqualTo | **notEqualTo(attr, value)** | 
-| exists | **exists(attr)** | 
-| notExists | **notExists(attr)** | 
-| sortAscending | **sortAscending(attr)** | 
+| equalTo | **equalTo(attr, value)** |
+| notEqualTo | **notEqualTo(attr, value)** |
+| exists | **exists(attr)** |
+| notExists | **notExists(attr)** |
+| sortAscending | **sortAscending(attr)** |
 | sortDescending | **sortDescending(attr)** |
 | populate | **populate()** |
 | populateOwner | **populateOwner()** |
@@ -121,20 +116,20 @@ The JavaScript SDK exposes the following components and methods:
 | geoIntersects | **geoIntersects(type, coordinates)** |
 | geoWithinGeometry | **geoWithinGeometry(type, coordinates)** |
 | geoWithinCenterSphere | **geoWithinCenterSphere(coordinates, radius)** |
-| or | **or(query,..)** | 
-| exec | **exec([callback])** | 
+| or | **or(query,..)** |
+| exec | **exec([callback])** |
 
 ## NodeJS SDK
 
 ~~~ shell-always
   npm install stamplay
-~~~ 
+~~~
 
 ~~~ javascript-always
   var stamplay = require("stamplay"),
   Stamplay = new stamplay("APP ID", "API KEY")
 
-~~~ 
+~~~
 
 The Node.js SDK is a server side library to help simplify admin interaction with the Stamplay API.
 
@@ -153,24 +148,24 @@ The JavaScript SDK exposes the following components and methods:
 | [User](#users) | `Stamplay.User` |
 |----------|-------------|
 | save | **save(data, [callback])** |
-| get | **get(data, [callback])** | 
+| get | **get(data, [callback])** |
 | remove | **remove(id, [callback])** |
-| update | **update(id, data, [callback] )** | 
+| update | **update(id, data, [callback] )** |
 
 #### Objects
 
 | [Object](#objects) | `Stamplay.Object("cobject")` |
 |----------|-------------|
 | save | **save(data, [callback])** |
-| get | **get(data, [callback])** | 
+| get | **get(data, [callback])** |
 | remove | **remove(id, [callback])** |
 | update | **update(id, data, [callback])** |
-| patch | **patch(id, data, [callback])** | 
+| patch | **patch(id, data, [callback])** |
 | upVote | **upVote(id, [callback])** |
 | downVote | **downVote(id, [callback])** |
 | rate | **rate(id, rate, [callback])** |
-| comment | **comment(id, text, [callback])** | 
-| push | **push(id, attribute, data, [callback])** | 
+| comment | **comment(id, text, [callback])** |
+| push | **push(id, attribute, data, [callback])** |
 
 #### Code Blocks
 
@@ -188,37 +183,36 @@ The JavaScript SDK exposes the following components and methods:
 
 | [Stripe](#stripe) | `Stamplay.Stripe` |
 |----------|-------------|
-| createSubscriptionuserId | **createSubscriptionuserId, planId, [callback])** | 
-| deleteSubscription | **deleteSubscription(userId, subscriptionId, options, [callback])** | 
-| getSubscription | **getSubscription(userId, subscriptionId, [callback])** | 
-| getSubscriptions | **getSubscriptions(userId, options, [callback])** | 
-| updateSubscription | **updateSubscription(userId, subscriptionId, options, [callback])** | 
+| createSubscriptionuserId | **createSubscriptionuserId, planId, [callback])** |
+| deleteSubscription | **deleteSubscription(userId, subscriptionId, options, [callback])** |
+| getSubscription | **getSubscription(userId, subscriptionId, [callback])** |
+| getSubscriptions | **getSubscriptions(userId, options, [callback])** |
+| updateSubscription | **updateSubscription(userId, subscriptionId, options, [callback])** |
 
 #### Queries
 
 |[Query](#advanced-queries)| `Stamplay.Query("type", "resource")` |
 |--|--------------------------|
 | greaterThan | **greaterThan(attr, value)** |  
-| greaterThanOrEqual | **greaterThanOrEqual(attr, value)** | 
-| lessThan | **lessThan(attr, value)** | 
+| greaterThanOrEqual | **greaterThanOrEqual(attr, value)** |
+| lessThan | **lessThan(attr, value)** |
 | lessThanOrEqual | **lessThanOrEqual(attr, value)** |
 | pagination | **pagination(page, per_page)** |
-| between | **between(attr, value1, value2)** | 
+| between | **between(attr, value1, value2)** |
 | equalTo | **equalTo(attr, value)** |
-| notEqualTo | **notEqualTo(attr, value)** | 
+| notEqualTo | **notEqualTo(attr, value)** |
 | exists | **exists(attr)** |  
-| notExists | **notExists(attr)** | 
-| sortAscending | **sortAscending(attr)** | 
+| notExists | **notExists(attr)** |
+| sortAscending | **sortAscending(attr)** |
 | sortDescending | **sortDescending(attr)** |
 | populate | **populate()** |
-| populateOwner | **populateOwner()** | 
+| populateOwner | **populateOwner()** |
 | select | **select(attr,...)** |
-| regex | **regex(attr, regex, options)** | 
-| near | **near(type, coordinates, maxDistance, minDistance)** | 
-| nearSphere | **nearSphere(type, coordinates, maxDistance, minDistance)** | 
+| regex | **regex(attr, regex, options)** |
+| near | **near(type, coordinates, maxDistance, minDistance)** |
+| nearSphere | **nearSphere(type, coordinates, maxDistance, minDistance)** |
 | geoIntersects | **geoIntersects(type, coordinates)** |
 | geoWithinGeometry | **geoWithinGeometry(type, coordinates)** |
 | geoWithinCenterSphere | **geoWithinCenterSphere(coordinates, radius)** |  
 | or | **or(query,..)** |  
 | exec | **exec([callback])** |  
-
