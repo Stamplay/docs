@@ -541,7 +541,7 @@ Send an email. -->
 </code></pre>
 <p>Responses from the <strong>User</strong> and <strong>Object</strong> resource will also return a <code>pagination</code> object.</p>
 
-<p>Pagination can be managed by using the <code>page</code> and <code>per_page</code> query parameters.</p>
+<p>Pagination can be managed by using the <code>page</code> and <code>per_page</code> query parameters. The maximum <code>per_page</code> value allowed is capped at <code>250</code>. This means that any <code>per_page</code> value beyond that will always return <code>250</code> results.</p>
 
 <p>Pagination details are included using the Link header introduced by RFC 5988.
 The Link header returns a set of ready-made links so the API consumer does not have to construct the links themselves.</p>
@@ -6490,7 +6490,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <p>Take a look at app here at <a href="https://stamplaykb.stamplayapp.com">https://stamplaykb.stamplayapp.com</a>.</p>
 
-<p>See how it was built it, and build one yourself [here](https://blog.stamplay.com/build-a-community-platform-with-angular-and-stamplay.</p>
+<p>See how it was built it, and build one yourself <a href="https://blog.stamplay.com/build-a-community-platform-with-angular-and-stamplay">here</a>.</p>
 
 <h2 id="stackclone">Stackclone</h2>
 
