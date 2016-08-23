@@ -1,14 +1,14 @@
 # Demo Applications
 
 ## Stamplay Community
-    
+
 Stamplay Community is a Q&amp;A based application made specifically for our users. You can ask questions, and get help from the Stamplay community, or the Stamplay team themselves. We built our community app using Stamplay as the backend, with an AngularJS frontend.
 
 ![Stamplay Community](/images/stamplay_community.png)
 
 Take a look at app here at [https://stamplaykb.stamplayapp.com](https://stamplaykb.stamplayapp.com).
 
-See how it was built it, and build one yourself [here](https://blog.stamplay.com/build-a-community-platform-with-angular-and-stamplay.
+See how it was built it, and build one yourself [here](https://blog.stamplay.com/build-a-community-platform-with-angular-and-stamplay).
 
 
 
@@ -26,7 +26,7 @@ See how we built it, and build one yourself [here](https://blog.stamplay.com/cre
 
 
 ## Stamplay News
-        
+
 Stamplay News is a clone of the iconic [Hacker News](https://news.ycombinator.com/) application. It is a link aggregator to discuss and vote on the best links, and resource on the web.
 
 Stamplay News was built with Stamplay as the server solution, with jQuery on the clientside.
@@ -36,7 +36,7 @@ Stamplay News was built with Stamplay as the server solution, with jQuery on the
 See the app in action here at: [https://hackernews.stamplayapp.com](https://hackernews.stamplayapp.com).
 
 See how we built it, and build one yourself [here](http://stackshare.io/stamplay/building-a-hacker-news-clone-without-writing-any-backend-code).
-   
+
 
 ## Shop City
 
