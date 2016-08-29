@@ -1143,8 +1143,24 @@ The Link header returns a set of ready-made links so the API consumer does not h
   </thead>
   <tbody>
     <tr>
-      <td>run</td>
-      <td><strong>run(data, queryParams, [callback])</strong></td>
+      <td>post</td>
+      <td><strong>post( data, queryParams, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>put</td>
+      <td><strong>put( data, queryParams, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>patch</td>
+      <td><strong>patch( data, queryParams, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>get</td>
+      <td><strong>get( queryParams, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>delete</td>
+      <td><strong>delete( queryParams, [callback])</strong></td>
     </tr>
   </tbody>
 </table>
@@ -5077,11 +5093,9 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
 </span></code></pre>
 
           <h1 id="code-blocks">Code Blocks</h1>
-<p>Our vision is to empower developers to build applications without having to deal with server side development.</p>
+<p>When it comes to handle complex logic application, Flows may not be enough, and the need for a bit of custom logic becomes greater.</p>
 
-<p>For more complex applications, Tasks are not always enough, and the need for a bit of custom logic becomes greater.</p>
-
-<p>Code Blocks make this possible. With Code Blocks, you can add custom server side logic when neccessary, and let us do the heavily lifting when it's not.</p>
+<p>Code Blocks make this possible. With Code Blocks, you can add custom NodeJS server side logic when necessary, and let us do the heavily lifting when it's not.</p>
 
 <h2 id="setup">Setup</h2>
 
@@ -5169,9 +5183,11 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <h2 id="running-code-blocks">Running Code Blocks</h2>
 
-<p>To execute a Code Block send a <code>POST</code> request to the Code Block API resource with the identifier of the Code block to run in the URI.</p>
+<p>Code Blocks can be used to implement custom logic and have it available as an API endpoint, for this reason they support any HTTP method.</p>
 
-<p>Include any data to pass into the Code block within the body of the request, and any query params within the URI itself.</p>
+<p>To execute a Code Block all you need to do is to send a HTTP request to the Code Block API endpoint that you can see in the Snippets.</p>
+
+<p>Depending from the HTTP method, you can pass data to the Code block within the body of the request or via query params.</p>
 
 <pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?page=2&amp;per_page=30"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -5187,7 +5203,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
     <span class="na">per_page</span> <span class="p">:</span> <span class="mi">30</span>
   <span class="p">}</span>
 
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">run</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">post</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// success</span>
     <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>

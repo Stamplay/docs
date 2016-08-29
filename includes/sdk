@@ -167,8 +167,24 @@
   </thead>
   <tbody>
     <tr>
-      <td>run</td>
-      <td><strong>run(data, queryParams, [callback])</strong></td>
+      <td>post</td>
+      <td><strong>post( data, queryParams, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>put</td>
+      <td><strong>put( data, queryParams, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>patch</td>
+      <td><strong>patch( data, queryParams, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>get</td>
+      <td><strong>get( queryParams, [callback])</strong></td>
+    </tr>
+    <tr>
+      <td>delete</td>
+      <td><strong>delete( queryParams, [callback])</strong></td>
     </tr>
   </tbody>
 </table>
