@@ -1,9 +1,7 @@
 # Code Blocks
-Our vision is to empower developers to build applications without having to deal with server side development.
+When it comes to handle complex logic application, Flows may not be enough, and the need for a bit of custom logic becomes greater.
 
-For more complex applications, Tasks are not always enough, and the need for a bit of custom logic becomes greater. 
-
-Code Blocks make this possible. With Code Blocks, you can add custom server side logic when neccessary, and let us do the heavily lifting when it's not.
+Code Blocks make this possible. With Code Blocks, you can add custom NodeJS server side logic when necessary, and let us do the heavily lifting when it's not.
 
 ## Setup
 
@@ -54,9 +52,9 @@ When the callback is invoked, the result value or an error will be serialized as
   module.exports = function(context, cb) {
     cb(null, { hello: context.data.name });
   }
-~~~ 
+~~~
 A more advanced version of the programming model allows you to return a function that accepts two arguments: a `context` and a `callback`.
-      
+
 The `context` parameter is a JavaScript object with data and optionally body properties.
 The `context.data` is a JavaScript object that combines parameters passed to the code using one of several mechanisms:
 
@@ -74,7 +72,7 @@ The request can be parsed correctly only if `application/json` or `application/x
     var result = { "hello" : context.body };
     res.end(JSON.stringify(result));
   };
-~~~ 
+~~~
 
 The most flexible programming model allows you to take full control over the HTTP `request` and `response`.
 
@@ -84,15 +82,17 @@ Note that this programming model does not have a concept of a callback. [Ending 
 
 ## Running Code Blocks
 
-To execute a Code Block send a `POST` request to the Code Block API resource with the identifier of the Code block to run in the URI.
+Code Blocks can be used to implement custom logic and have it available as an API endpoint, for this reason they support any HTTP method.
 
-Include any data to pass into the Code block within the body of the request, and any query params within the URI itself.
+To execute a Code Block all you need to do is to send a HTTP request to the Code Block API endpoint that you can see in the Snippets.
+
+Depending from the HTTP method, you can pass data to the Code block within the body of the request or via query params.
 
 ~~~ shell
   curl -X "POST" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?page=2&per_page=30" \
   -H "Content-Type: application/json" \
   -d "{\"message\":\"Hello\"}"
-~~~ 
+~~~
 
 ~~~ javascript
   var data = {
@@ -104,13 +104,13 @@ Include any data to pass into the Code block within the body of the request, and
     per_page : 30
   }
 
-  Stamplay.Codeblock("codeblock_name").run(data, params)
+  Stamplay.Codeblock("codeblock_name").post(data, params)
     .then(function(err) {
       // success
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   // no method
@@ -153,7 +153,7 @@ Now your secret has been added and is ready for use with the Code Block.
   module.exports = function(context, cb) {
     cb(null, { pass_this_secret : context.secrets.name });
   }
-~~~ 
+~~~
 
 In order to access secrets you need to use the [Contextual](#contextual-model) or the [Full Control](#full-control-model) programming model.
 
@@ -184,7 +184,7 @@ module.exports = function(context, cb) {
   })
 
 }
-~~~ 
+~~~
 
 When using Code Blocks you can rely on over 800 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.
 
