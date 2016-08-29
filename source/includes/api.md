@@ -46,7 +46,7 @@ Stamplay.Object("movie").get({
 ~~~ 
 Responses from the **User** and **Object** resource will also return a `pagination` object.
 
-Pagination can be managed by using the `page` and `per_page` query parameters.
+Pagination can be managed by using the `page` and `per_page` query parameters. The maximum `per_page` value allowed is capped at `250`. This means that any `per_page` value beyond that will always return `250` results.
 
 Pagination details are included using the Link header introduced by RFC 5988.
 The Link header returns a set of ready-made links so the API consumer does not have to construct the links themselves.
