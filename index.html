@@ -5181,46 +5181,192 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <p>Note that this programming model does not have a concept of a callback. <a href="https://nodejs.org/api/http.html">Ending the HTTP response</a> indicates completion.</p>
 
-<h2 id="running-code-blocks">Running Code Blocks</h2>
+<h2 id="executing-code-blocks">Executing Code Blocks</h2>
 
-<p>Code Blocks can be used to implement custom logic and have it available as an API endpoint, for this reason they support any HTTP method.</p>
+<p>Code Blocks can be used to implement custom logic and have it available as an API endpoint, for this reason they support any HTTP method. In a nutshell you can execute custom Node.js code with a HTTP call.</p>
 
 <p>To execute a Code Block all you need to do is to send a HTTP request to the Code Block API endpoint that you can see in the Snippets.</p>
 
-<p>Depending from the HTTP method, you can pass data to the Code block within the body of the request or via query params.</p>
+<p>Depending from the HTTP method, you can pass data to the Code block within the body of the request or via query params (see below).</p>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?page=2&amp;per_page=30"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay&amp;bar=foo"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">message</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Hello</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">message</span> <span class="p">:</span> <span class="s2">"Hello"</span>
-  <span class="p">}</span>
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">message</span> <span class="p">:</span> <span class="s2">"Hello"</span><span class="p">}</span>
+  <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span> <span class="p">:</span> <span class="s2">"Stamplay"</span><span class="p">,</span> <span class="na">bar</span> <span class="p">:</span> <span class="s2">"foo"</span><span class="p">}</span>
 
-  <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">page</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="na">per_page</span> <span class="p">:</span> <span class="mi">30</span>
-  <span class="p">}</span>
+  <span class="c1">//Stamplay.Codeblock("codeblock_name").run() sends a POST request by default</span>
 
-  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">post</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// success</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// error</span>
-    <span class="p">})</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">run</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// success</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// error</span>
+  <span class="p">})</span>
 </code></pre>
 
-<pre class="highlight nodejs"><code>  <span class="c1">// no method</span>
+<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">message</span> <span class="p">:</span> <span class="s2">"Hello"</span><span class="p">}</span>
+  <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span> <span class="p">:</span> <span class="s2">"Stamplay"</span><span class="p">}</span>
+
+  <span class="c1">//Stamplay.Codeblock("codeblock_name").run() sends a POST request by default</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">run</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// manage the response and the error</span>
+  <span class="p">})</span>
+</code></pre>
+
+<h3 id="passing-query-parameters-to-code-blocks">Passing query parameters to Code Blocks</h3>
+
+<p>You can pass paramaters to the Code Block using URL query string of the Code Block request. All URL query parameters except the reserved ones (e.g. <code>user</code>) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the <code>context</code> and the callback <code>cb</code>.</p>
+
+<p>All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of <code>context.data</code> JavaScript object.</p>
+
+<pre class="highlight shell"><code>Switch to Javascript or NodeJS view to see the Code Block sample
+</code></pre>
+
+<pre class="highlight javascript"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s2">"Hello, "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s2">"Hello, "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+
+<h4 id="try-it-out">Try it out</h4>
+
+<p>You can try it out with <code>curl</code> or with our SDKs. Usually query parameters are passed when using <code>GET</code> requests so the examples show how to execute a Code Block with a GET request:</p>
+
+<pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span> <span class="p">:</span> <span class="s2">"Stamplay"</span><span class="p">}</span>
+  <span class="c1">//GET</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// manage the response and the error</span>
+  <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="c1">//GET</span>
+  <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span> <span class="p">:</span> <span class="s2">"Stamplay"</span><span class="p">}</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// manage the response and the error</span>
+  <span class="p">})</span>
+</code></pre>
+
+<h3 id="passing-body-parameters-to-code-blocks">Passing body parameters to Code Blocks</h3>
+
+<p>Parameters can be passed the Code Block also using <code>body</code> parameters of a <code>POST</code>, <code>PATCH</code> or <code>PUT</code> request. All the request<code>body</code> except the reserved ones (e.g. <code>user</code>) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the <code>context</code> and the callback <code>cb</code>.</p>
+
+<p>All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of <code>context.data</code> JavaScript object.</p>
+
+<pre class="highlight shell"><code>Switch to Javascript or NodeJS view to see the Code Block sample
+</code></pre>
+
+<pre class="highlight javascript"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s2">"Just received this, "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">bodyparam</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s2">"Just received this, "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">bodyparam</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+
+<h4 id="try-it-out-1">Try it out</h4>
+
+<p>You can try it out with <code>curl</code> or with our SDKs. Usually query parameters are passed when using <code>GET</code> requests so the examples show how to execute a Code Block with a <code>POST</code>, <code>PATCH</code> or <code>PUT</code> request:</p>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">message</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Hello</span><span class="se">\"</span><span class="s2">}"</span>
+
+
+  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay&amp;bar=foo"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="c1">//POST</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">bodyparam</span> <span class="p">:</span> <span class="s2">"Stamplay"</span><span class="p">}</span>
+
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">post</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// success</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// error</span>
+  <span class="p">})</span>
+  
+  <span class="c1">//PUT</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">put</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// success</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// error</span>
+  <span class="p">})</span>
+
+  <span class="c1">//PATCH</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// success</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// error</span>
+  <span class="p">})</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">bodyparam</span> <span class="p">:</span> <span class="s2">"Stamplay"</span><span class="p">}</span>
+  
+  <span class="c1">//POST</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">post</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// manage the response and the error</span>
+  <span class="p">})</span>
+
+  <span class="c1">//PUT</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">put</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// manage the response and the error</span>
+  <span class="p">})</span>
+  
+  <span class="c1">//PATCH</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Codeblock</span><span class="p">(</span><span class="s2">"codeblock_name"</span><span class="p">).</span><span class="nx">patch</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// manage the response and the error</span>
+  <span class="p">})</span>
 </code></pre>
 
 <h3 id="user-context-data">User Context Data</h3>
 
 <p>When executing a Code Block, you are able to pass in data, which is set to the <code>context.data</code> property. If an active user session is in place from the origininating request, the user of the current session will be placed inside <code>context</code> on <code>context.data.user</code>.</p>
 
+<pre class="highlight javascript"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span><span class="err"> </span>
+  <span class="c1">//context.data contain the request body parameters </span>
+  <span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="s2">"Hello, "</span><span class="p">;</span><span class="err"> </span> <span class="err"> </span>
+  <span class="c1">//Show data about logged user </span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"User with Id"</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">_id</span> <span class="o">+</span> <span class="s2">" is logged"</span><span class="p">);</span><span class="err"> </span>
+  <span class="c1">//Return a JSON response that includes logged User attribute </span>
+  <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span> <span class="p">:</span> <span class="nx">greet</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">displayName</span> <span class="o">+</span> <span class="s2">"!"</span>  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre>
+<pre class="highlight shell"><code>// switch to javascript or nodejs to <span class="nb">read </span>Code Block sample
+</code></pre>
+<pre class="highlight nodejs"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span><span class="err"> </span>
+  <span class="c1">//context.data contain the request body parameters </span>
+  <span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="s2">"Hello, "</span><span class="p">;</span><span class="err"> </span> <span class="err"> </span>
+  <span class="c1">//Show data about logged user </span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"User with Id"</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">_id</span> <span class="o">+</span> <span class="s2">" is logged"</span><span class="p">);</span><span class="err"> </span>
+  <span class="c1">//Return a JSON response that includes logged User attribute </span>
+  <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span> <span class="p">:</span> <span class="nx">greet</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">displayName</span> <span class="o">+</span> <span class="s2">"!"</span>  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre>
+
 <h2 id="managing-secret-parameters">Managing Secret Parameters</h2>
 
-<p>In order to develop a full-featured application you'll need to communicate with external services using secret credentials. Stamplay allows you to securely store these parameters within the Secrets area.</p>
+<p>You can create a Code Block that includes public or secret parameters. These parameters are made available to the Code Block code when it runs. This mechanism provides a convenient way to equip your Code Block with secret credentials necessary to communicate with external systems while preventing disclosure of these credentials to third parties.</p>
+
+<p>For example, you could write a Code Block that sends an HTTP request to your private API and you need to use a secret token to authorize this request. The secret token to call your API can then be stored encrypted in the Code Block as a <code>secret</code>, only to be decrypted and provided to your Code Block code when it runs.</p>
+
+<p>Code Blocks allow you to securely store these parameters within the Secrets area.</p>
 
 <h3 id="adding-secrets">Adding Secrets</h3>
 
