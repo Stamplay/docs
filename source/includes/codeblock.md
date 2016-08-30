@@ -1,9 +1,7 @@
 # Code Blocks
-Our vision is to empower developers to build applications without having to deal with server side development.
+When it comes to handle complex logic application, Flows may not be enough, and the need for a bit of custom logic becomes greater.
 
-For more complex applications, Tasks are not always enough, and the need for a bit of custom logic becomes greater. 
-
-Code Blocks make this possible. With Code Blocks, you can add custom server side logic when neccessary, and let us do the heavily lifting when it's not.
+Code Blocks make this possible. With Code Blocks, you can add custom NodeJS server side logic when necessary, and let us do the heavily lifting when it's not.
 
 ## Setup
 
@@ -54,9 +52,9 @@ When the callback is invoked, the result value or an error will be serialized as
   module.exports = function(context, cb) {
     cb(null, { hello: context.data.name });
   }
-~~~ 
+~~~
 A more advanced version of the programming model allows you to return a function that accepts two arguments: a `context` and a `callback`.
-      
+
 The `context` parameter is a JavaScript object with data and optionally body properties.
 The `context.data` is a JavaScript object that combines parameters passed to the code using one of several mechanisms:
 
@@ -74,7 +72,7 @@ The request can be parsed correctly only if `application/json` or `application/x
     var result = { "hello" : context.body };
     res.end(JSON.stringify(result));
   };
-~~~ 
+~~~
 
 The most flexible programming model allows you to take full control over the HTTP `request` and `response`.
 
@@ -82,48 +80,215 @@ The `context` argument behaves the same way as in the two simpler programming mo
 
 Note that this programming model does not have a concept of a callback. [Ending the HTTP response](https://nodejs.org/api/http.html) indicates completion.
 
-## Running Code Blocks
+## Executing Code Blocks
 
-To execute a Code Block send a `POST` request to the Code Block API resource with the identifier of the Code block to run in the URI.
+Code Blocks can be used to implement custom logic and have it available as an API endpoint, for this reason they support any HTTP method. In a nutshell you can execute custom Node.js code with a HTTP call.
 
-Include any data to pass into the Code block within the body of the request, and any query params within the URI itself.
+To execute a Code Block all you need to do is to send a HTTP request to the Code Block API endpoint that you can see in the Snippets.
+
+Depending from the HTTP method, you can pass data to the Code block within the body of the request or via query params (see below). 
 
 ~~~ shell
-  curl -X "POST" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?page=2&per_page=30" \
+  curl -X "POST" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay&bar=foo" \
   -H "Content-Type: application/json" \
   -d "{\"message\":\"Hello\"}"
-~~~ 
+~~~
 
 ~~~ javascript
-  var data = {
-    message : "Hello"
-  }
+  var data = { message : "Hello"}
+  var params = { name : "Stamplay", bar : "foo"}
 
-  var params = {
-    page : 2,
-    per_page : 30
-  }
+  //Stamplay.Codeblock("codeblock_name").run() sends a POST request by default
 
   Stamplay.Codeblock("codeblock_name").run(data, params)
-    .then(function(err) {
-      // success
-    }, function(err) {
-      // error
-    })
-~~~ 
+  .then(function(err) {
+    // success
+  }, function(err) {
+    // error
+  })
+~~~
 
 ~~~ nodejs
-  // no method
+  var data = { message : "Hello"}
+  var params = { name : "Stamplay"}
+
+  //Stamplay.Codeblock("codeblock_name").run() sends a POST request by default
+
+  Stamplay.Codeblock("codeblock_name").run(data, params, function(err, res) {
+    // manage the response and the error
+  })
 ~~~
+
+
+### Passing query parameters to Code Blocks
+
+You can pass paramaters to the Code Block using URL query string of the Code Block request. All URL query parameters except the reserved ones (e.g. `user`) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the `context` and the callback `cb`.
+
+All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of `context.data` JavaScript object.
+
+~~~ shell
+Switch to Javascript or NodeJS view to see the Code Block sample
+~~~
+
+~~~ javascript
+module.exports = function(context, cb) {
+  cb(null, "Hello, " + context.data.name);
+}
+~~~
+
+~~~ nodejs
+module.exports = function(context, cb) {
+  cb(null, "Hello, " + context.data.name);
+}
+~~~
+
+#### Try it out
+
+You can try it out with `curl` or with our SDKs. Usually query parameters are passed when using `GET` requests so the examples show how to execute a Code Block with a GET request:
+
+~~~ shell
+curl -X "GET" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay" \
+  -H "Content-Type: application/json" \
+~~~~
+
+~~~ javascript
+  var params = { name : "Stamplay"}
+  //GET
+  Stamplay.Codeblock("codeblock_name").get(params, function(err, res) {
+    // manage the response and the error
+  })
+~~~
+
+~~~ nodejs
+  //GET
+  var params = { name : "Stamplay"}
+  Stamplay.Codeblock("codeblock_name").get(params, function(err, res) {
+    // manage the response and the error
+  })
+~~~
+
+### Passing body parameters to Code Blocks
+
+Parameters can be passed the Code Block also using `body` parameters of a `POST`, `PATCH` or `PUT` request. All the request`body` except the reserved ones (e.g. `user`) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the `context` and the callback `cb`.
+
+All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of `context.data` JavaScript object.
+
+~~~ shell
+Switch to Javascript or NodeJS view to see the Code Block sample
+~~~
+
+~~~ javascript
+module.exports = function(context, cb) {
+  cb(null, "Just received this, " + context.data.bodyparam);
+}
+~~~
+
+~~~ nodejs
+module.exports = function(context, cb) {
+  cb(null, "Just received this, " + context.data.bodyparam);
+}
+~~~
+
+#### Try it out
+
+You can try it out with `curl` or with our SDKs. Usually query parameters are passed when using `GET` requests so the examples show how to execute a Code Block with a `POST`, `PATCH` or `PUT` request:
+
+~~~ shell
+  curl -X "PATCH" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}" \
+  -H "Content-Type: application/json" \
+  -d "{\"message\":\"Hello\"}"
+
+
+  curl -X "GET" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay&bar=foo" \
+  -H "Content-Type: application/json" \
+~~~
+
+~~~ javascript
+  //POST
+  var data = { bodyparam : "Stamplay"}
+
+  Stamplay.Codeblock("codeblock_name").post(data)
+  .then(function(err) {
+    // success
+  }, function(err) {
+    // error
+  })
+  
+  //PUT
+  Stamplay.Codeblock("codeblock_name").put(data)
+  .then(function(err) {
+    // success
+  }, function(err) {
+    // error
+  })
+
+  //PATCH
+  Stamplay.Codeblock("codeblock_name").patch(data)
+  .then(function(err) {
+    // success
+  }, function(err) {
+    // error
+  })
+~~~
+
+~~~ nodejs
+  var data = { bodyparam : "Stamplay"}
+  
+  //POST
+  Stamplay.Codeblock("codeblock_name").post(data, null, function(err, res) {
+    // manage the response and the error
+  })
+
+  //PUT
+  Stamplay.Codeblock("codeblock_name").put(data, null, function(err, res) {
+    // manage the response and the error
+  })
+  
+  //PATCH
+  Stamplay.Codeblock("codeblock_name").patch(data, null, function(err, res) {
+    // manage the response and the error
+  })
+~~~
+
+
 
 ### User Context Data
 
 When executing a Code Block, you are able to pass in data, which is set to the `context.data` property. If an active user session is in place from the origininating request, the user of the current session will be placed inside `context` on `context.data.user`.
 
+~~~ javascript
+module.exports = function(context, cb) { 
+  //context.data contain the request body parameters 
+  var greet = "Hello, ";   
+  //Show data about logged user 
+  console.log("User with Id" + context.data.user._id + " is logged"); 
+  //Return a JSON response that includes logged User attribute 
+  cb(null, { message : greet + " " + context.data.user.displayName + "!"  });
+};
+~~~
+~~~ shell
+// switch to javascript or nodejs to read Code Block sample
+~~~
+~~~ nodejs
+module.exports = function(context, cb) { 
+  //context.data contain the request body parameters 
+  var greet = "Hello, ";   
+  //Show data about logged user 
+  console.log("User with Id" + context.data.user._id + " is logged"); 
+  //Return a JSON response that includes logged User attribute 
+  cb(null, { message : greet + " " + context.data.user.displayName + "!"  });
+};
+~~~
+
 
 ## Managing Secret Parameters
 
-In order to develop a full-featured application you'll need to communicate with external services using secret credentials. Stamplay allows you to securely store these parameters within the Secrets area.
+
+You can create a Code Block that includes public or secret parameters. These parameters are made available to the Code Block code when it runs. This mechanism provides a convenient way to equip your Code Block with secret credentials necessary to communicate with external systems while preventing disclosure of these credentials to third parties.
+
+For example, you could write a Code Block that sends an HTTP request to your private API and you need to use a secret token to authorize this request. The secret token to call your API can then be stored encrypted in the Code Block as a `secret`, only to be decrypted and provided to your Code Block code when it runs. 
+
+Code Blocks allow you to securely store these parameters within the Secrets area.
 
 ### Adding Secrets
 
@@ -153,7 +318,7 @@ Now your secret has been added and is ready for use with the Code Block.
   module.exports = function(context, cb) {
     cb(null, { pass_this_secret : context.secrets.name });
   }
-~~~ 
+~~~
 
 In order to access secrets you need to use the [Contextual](#contextual-model) or the [Full Control](#full-control-model) programming model.
 
@@ -184,7 +349,7 @@ module.exports = function(context, cb) {
   })
 
 }
-~~~ 
+~~~
 
 When using Code Blocks you can rely on over 800 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.
 

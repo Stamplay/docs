@@ -68,7 +68,11 @@ The JavaScript SDK exposes the following components and methods:
 
 | [Code Block](#code-blocks) | `Stamplay.Codeblock("codeblock")` |
 |--------------------------|------|
-| run | **run(data, queryParams, [callback])** |
+| post | **post( data, queryParams, [callback])** |
+| put | **put( data, queryParams, [callback])** |
+| patch | **patch( data, queryParams, [callback])** |
+| get | **get( queryParams, [callback])** |
+| delete | **delete( queryParams, [callback])** |
 
 #### Webhooks
 
