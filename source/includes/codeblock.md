@@ -89,36 +89,101 @@ To execute a Code Block all you need to do is to send a HTTP request to the Code
 Depending from the HTTP method, you can pass data to the Code block within the body of the request or via query params.
 
 ~~~ shell
-  curl -X "POST" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?page=2&per_page=30" \
+  curl -X "POST" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay&bar=foo" \
   -H "Content-Type: application/json" \
   -d "{\"message\":\"Hello\"}"
 ~~~
 
 ~~~ javascript
-  var data = {
-    message : "Hello"
-  }
-
-  var params = {
-    page : 2,
-    per_page : 30
-  }
-
-  Stamplay.Codeblock("codeblock_name").post(data, params)
-    .then(function(err) {
-      // success
-    }, function(err) {
-      // error
-    })
+  var data = { message : "Hello"}
+  var params = { name : "Stamplay", bar : "foo"}
+  Stamplay.Codeblock("codeblock_name").run(data, params)
+  .then(function(err) {
+    // success
+  }, function(err) {
+    // error
+  })
 ~~~
 
 ~~~ nodejs
-  // no method
+  var data = { message : "Hello"}
+  var params = { name : "Stamplay", bar : "foo"}
+  Stamplay.Codeblock("codeblock_name").run(data, params, function(err, res) {
+    // manage the response and the error
+  })
 ~~~
+
+
+### Examples
+
+
+~~~ shell
+  curl -X "PATCH" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}" \
+  -H "Content-Type: application/json" \
+  -d "{\"message\":\"Hello\"}"
+
+
+  curl -X "GET" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay&bar=foo" \
+  -H "Content-Type: application/json" \
+~~~
+
+~~~ javascript
+  //PATCH
+  Stamplay.Codeblock("codeblock_name").patch(data)
+  .then(function(err) {
+    // success
+  }, function(err) {
+    // error
+  })
+  //GET
+  Stamplay.Codeblock("codeblock_name").get(params)
+  .then(function(err) {
+    // success
+  }, function(err) {
+    // error
+  })
+~~~
+
+~~~ nodejs
+  //PATCH
+  Stamplay.Codeblock("codeblock_name").patch(data, null, function(err, res) {
+    // manage the response and the error
+  })
+  //GET
+  Stamplay.Codeblock("codeblock_name").get(params, function(err, res) {
+    // manage the response and the error
+  })
+~~~
+
+
 
 ### User Context Data
 
 When executing a Code Block, you are able to pass in data, which is set to the `context.data` property. If an active user session is in place from the origininating request, the user of the current session will be placed inside `context` on `context.data.user`.
+
+~~~ javascript
+module.exports = function(context, cb) { 
+  //context.data contain the request body parameters 
+  var greet = "Hello, ";   
+  //Show data about logged user 
+  console.log("User with Id" + context.data.user._id + " is logged"); 
+  //Return a JSON response that includes logged User attribute 
+  cb(null, { message : greet + " " + context.data.user.displayName + "!"  });
+};
+~~~
+~~~ shell
+// switch to javascript or nodejs to read Code Block sample
+~~~
+~~~ nodejs
+module.exports = function(context, cb) { 
+  //context.data contain the request body parameters 
+  var greet = "Hello, ";   
+  //Show data about logged user 
+  console.log("User with Id" + context.data.user._id + " is logged"); 
+  //Return a JSON response that includes logged User attribute 
+  cb(null, { message : greet + " " + context.data.user.displayName + "!"  });
+};
+~~~
 
 
 ## Managing Secret Parameters
