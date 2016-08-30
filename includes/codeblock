@@ -187,13 +187,17 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <p>You can try it out with <code>curl</code> or with our SDKs. Usually query parameters are passed when using <code>GET</code> requests so the examples show how to execute a Code Block with a <code>POST</code>, <code>PATCH</code> or <code>PUT</code> request:</p>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">message</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Hello</span><span class="se">\"</span><span class="s2">}"</span>
+  -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">bodyparam</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Stamplay</span><span class="se">\"</span><span class="s2">}"</span>
 
-
-  curl -X <span class="s2">"GET"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay&amp;bar=foo"</span> <span class="se">\</span>
+  curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">bodyparam</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Stamplay</span><span class="se">\"</span><span class="s2">}"</span>
+
+  curl -X <span class="s2">"PUT"</span> <span class="s2">"https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">bodyparam</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Stamplay</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
 <pre class="highlight javascript"><code>  <span class="c1">//POST</span>
