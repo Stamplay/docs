@@ -194,13 +194,17 @@ module.exports = function(context, cb) {
 You can try it out with `curl` or with our SDKs. Usually query parameters are passed when using `GET` requests so the examples show how to execute a Code Block with a `POST`, `PATCH` or `PUT` request:
 
 ~~~ shell
+  curl -X "POST" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}" \
+  -H "Content-Type: application/json" \
+  -d "{\"bodyparam\":\"Stamplay\"}"
+
   curl -X "PATCH" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}" \
   -H "Content-Type: application/json" \
-  -d "{\"message\":\"Hello\"}"
+  -d "{\"bodyparam\":\"Stamplay\"}"
 
-
-  curl -X "GET" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay&bar=foo" \
+  curl -X "PUT" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}" \
   -H "Content-Type: application/json" \
+  -d "{\"bodyparam\":\"Stamplay\"}"
 ~~~
 
 ~~~ javascript
