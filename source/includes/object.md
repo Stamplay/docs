@@ -1396,7 +1396,8 @@ The example returns records where the `title` starts with `Star`, with option `i
   ratedFourOrMore.greaterThanOrEqual("actions.ratings.total", 4);
   titleIsStarWars.equalTo("title", "Star Wars");
 
-  var combinedQuery = Stamplay.Query.or(ratedFourOrMore, titleIsStarWars)
+  var combinedQuery = Stamplay.Query("object", "movie");
+  combinedQuery.or(ratedFourOrMore, titleIsStarWars);
 
   combinedQuery.exec()
     .then(function(res) {
@@ -1411,9 +1412,10 @@ The example returns records where the `title` starts with `Star`, with option `i
   var titleIsStarWars = Stamplay.Query("object", "movie");
 
   ratedFourOrMore.greaterThanOrEqual("actions.ratings.total", 4);
-  titleIsStarWars.equalTo("title", “Star Wars”);
+  titleIsStarWars.equalTo("title", "Star Wars");
 
-  var combinedQuery = Stamplay.Query.or(ratedFourOrMore, titleIsStarWars)
+  var combinedQuery = Stamplay.Query("object", "movie");
+  combinedQuery.or(ratedFourOrMore, titleIsStarWars);
 
   combinedQuery.exec(function(err, res) {
     // response
