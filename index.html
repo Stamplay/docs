@@ -4598,7 +4598,8 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
   <span class="nx">ratedFourOrMore</span><span class="p">.</span><span class="nx">greaterThanOrEqual</span><span class="p">(</span><span class="s2">"actions.ratings.total"</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
   <span class="nx">titleIsStarWars</span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s2">"title"</span><span class="p">,</span> <span class="s2">"Star Wars"</span><span class="p">);</span>
 
-  <span class="kd">var</span> <span class="nx">combinedQuery</span> <span class="o">=</span> <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">.</span><span class="nx">or</span><span class="p">(</span><span class="nx">ratedFourOrMore</span><span class="p">,</span> <span class="nx">titleIsStarWars</span><span class="p">)</span>
+  <span class="kd">var</span> <span class="nx">combinedQuery</span> <span class="o">=</span> <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s2">"object"</span><span class="p">,</span> <span class="s2">"movie"</span><span class="p">);</span>
+  <span class="nx">combinedQuery</span><span class="p">.</span><span class="nx">or</span><span class="p">(</span><span class="nx">ratedFourOrMore</span><span class="p">,</span> <span class="nx">titleIsStarWars</span><span class="p">);</span>
 
   <span class="nx">combinedQuery</span><span class="p">.</span><span class="nx">exec</span><span class="p">()</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -4612,9 +4613,10 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
   <span class="kd">var</span> <span class="nx">titleIsStarWars</span> <span class="o">=</span> <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s2">"object"</span><span class="p">,</span> <span class="s2">"movie"</span><span class="p">);</span>
 
   <span class="nx">ratedFourOrMore</span><span class="p">.</span><span class="nx">greaterThanOrEqual</span><span class="p">(</span><span class="s2">"actions.ratings.total"</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-  <span class="nx">titleIsStarWars</span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s2">"title"</span><span class="p">,</span> <span class="err">“</span><span class="nx">Star</span> <span class="nx">Wars</span><span class="err">”</span><span class="p">);</span>
+  <span class="nx">titleIsStarWars</span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s2">"title"</span><span class="p">,</span> <span class="s2">"Star Wars"</span><span class="p">);</span>
 
-  <span class="kd">var</span> <span class="nx">combinedQuery</span> <span class="o">=</span> <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">.</span><span class="nx">or</span><span class="p">(</span><span class="nx">ratedFourOrMore</span><span class="p">,</span> <span class="nx">titleIsStarWars</span><span class="p">)</span>
+  <span class="kd">var</span> <span class="nx">combinedQuery</span> <span class="o">=</span> <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s2">"object"</span><span class="p">,</span> <span class="s2">"movie"</span><span class="p">);</span>
+  <span class="nx">combinedQuery</span><span class="p">.</span><span class="nx">or</span><span class="p">(</span><span class="nx">ratedFourOrMore</span><span class="p">,</span> <span class="nx">titleIsStarWars</span><span class="p">);</span>
 
   <span class="nx">combinedQuery</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// response</span>
