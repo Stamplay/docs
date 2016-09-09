@@ -131,7 +131,7 @@
     </tr>
     <tr>
       <td>findByCurrentUser</td>
-      <td><strong>findByCurrentUser([attr], [callback])</strong></td>
+      <td><strong>findByCurrentUser([attr], [data], [callback])</strong></td>
     </tr>
     <tr>
       <td>upVote</td>
