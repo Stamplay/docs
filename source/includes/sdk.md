@@ -57,7 +57,7 @@ The JavaScript SDK exposes the following components and methods:
 | remove | **remove(id, [callback])** |
 | update | **update(id, data, [callback])** |
 | patch | **patch(id, data, [callback])** |
-| findByCurrentUser | **findByCurrentUser([attr], [callback])** |
+| findByCurrentUser | **findByCurrentUser([attr], [data], [callback])** |
 | upVote | **upVote(id, [callback])** |
 | downVote | **downVote(id, [callback])** |
 | rate | **rate(id, rate, [callback])** |
