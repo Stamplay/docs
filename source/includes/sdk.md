@@ -187,6 +187,7 @@ The JavaScript SDK exposes the following components and methods:
 
 | [Stripe](#stripe) | `Stamplay.Stripe` |
 |----------|-------------|
+| deleteCustomer | **deleteCustomer(userId, [callback])** |
 | createSubscriptionuserId | **createSubscriptionuserId, planId, [callback])** |
 | deleteSubscription | **deleteSubscription(userId, subscriptionId, options, [callback])** |
 | getSubscription | **getSubscription(userId, subscriptionId, [callback])** |
