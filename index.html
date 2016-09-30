@@ -1205,6 +1205,10 @@ The Link header returns a set of ready-made links so the API consumer does not h
       <td><strong>createCustomer(userId, [callback])</strong></td>
     </tr>
     <tr>
+      <td>deleteCustomer</td>
+      <td><strong>deleteCustomer(userId, [callback])</strong></td>
+    </tr>
+    <tr>
       <td>createSubscriptionuserId</td>
       <td><strong>createSubscriptionuserId, planId, [callback])</strong></td>
     </tr>
@@ -5601,6 +5605,49 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
     <tr>
       <td><code>userId</code></td>
       <td>the Stamplay <code>_id</code> of the  user to add as a Stripe Customer</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="delete-customer">Delete Customer</h3>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/546dc9f188104fee05000006"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="c1">// no method</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="kd">var</span> <span class="nx">userId</span> <span class="o">=</span> <span class="s1">'546dc9f188104fee05000006'</span><span class="p">;</span>
+  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">deleteCustomer</span><span class="p">(</span><span class="nx">userId</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// response</span>
+  <span class="p">})</span>
+</code></pre>
+
+<blockquote>
+  <p>The JSON response looks like this.</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cus_9HuvMRmZlnuYg9"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Deletes a customer from Stripe.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th> </th>
+      <th style="text-align: center">Optional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>userId</code></td>
+      <td>the Stamplay <code>_id</code> of the user to delete from Stripe</td>
       <td style="text-align: center"><i class="unchecked"></i></td>
     </tr>
   </tbody>
