@@ -229,10 +229,6 @@
       <td><strong>createCustomer(userId, [callback])</strong></td>
     </tr>
     <tr>
-      <td>deleteCustomer</td>
-      <td><strong>deleteCustomer(userId, [callback])</strong></td>
-    </tr>
-    <tr>
       <td>createSubscriptionuserId</td>
       <td><strong>createSubscriptionuserId, planId, [callback])</strong></td>
     </tr>
@@ -516,6 +512,10 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>deleteCustomer</td>
+      <td><strong>deleteCustomer(userId, [callback])</strong></td>
+    </tr>
     <tr>
       <td>createSubscriptionuserId</td>
       <td><strong>createSubscriptionuserId, planId, [callback])</strong></td>
