@@ -53,7 +53,37 @@ Add a new customer on Stripe.
 |-------------|---------|:-------------------------:|
 | `userId` | the Stamplay `_id` of the  user to add as a Stripe Customer | <i class="unchecked"></i> |
 
+### Delete Customer
 
+~~~ shell
+  curl -X "DELETE" "https://APP-ID.stamplayapp.com/api/stripe/v1/customers/546dc9f188104fee05000006"
+~~~
+
+~~~ javascript
+  // no method
+~~~
+
+~~~ nodejs
+  var userId = '546dc9f188104fee05000006';
+  Stamplay.Stripe.deleteCustomer(userId, function(err, res) {
+      // response
+  })
+~~~
+
+> The JSON response looks like this.
+
+~~~ json
+{
+  "deleted": true,
+  "id": "cus_9HuvMRmZlnuYg9"
+}
+~~~
+
+Deletes a customer from Stripe.
+
+| Attribute   |         | Optional                  |
+|-------------|---------|:-------------------------:|
+| `userId` | the Stamplay `_id` of the user to delete from Stripe| <i class="unchecked"></i> |
 
 
 ## Subscriptions
