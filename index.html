@@ -3836,7 +3836,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
    </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-      
+
 </span></code></pre>
 
 <p>To make a partial update to an object record, perform a <code>PATCH</code> request to the Object API resource with any fields to update on the stored record in the request body.</p>
@@ -3906,7 +3906,7 @@ The Link header returns a set of ready-made links so the API consumer does not h
    </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"570edb76fc24091627e82086"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-      
+
 </span></code></pre>
 
 <p>To overwrite an object record, perform a <code>PUT</code> request to the Object API resource with a complete represenation to write over the stored record in the request body.</p>
@@ -4109,6 +4109,60 @@ The Link header returns a set of ready-made links so the API consumer does not h
   <span class="p">})</span>
 </code></pre>
 
+<h2 id="files">Files</h2>
+
+<pre class="highlight shell"><code>  curl -X <span class="s2">"POST"</span> <span class="se">\</span>
+  -F <span class="s1">'image=@/path/to/pictures/picture.jpg'</span> <span class="se">\</span>
+  -F <span class="s1">'title=Lord of the Rings'</span> <span class="se">\</span>
+  <span class="s2">"https://APP-ID.stamplayapp.com/api/cobject/v1/movie"</span>
+</code></pre>
+
+<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'file-upload'</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">fd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+  <span class="nx">fd</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span> <span class="s1">'file'</span><span class="p">,</span> <span class="nx">input</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+      <span class="na">method</span> <span class="p">:</span> <span class="s1">'POST'</span>
+      <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span>
+      <span class="na">data</span><span class="p">:</span> <span class="nx">fd</span><span class="p">,</span>
+      <span class="na">contentType</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">processData</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">success</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+      <span class="p">},</span>
+      <span class="na">error</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">formData</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">image</span><span class="p">:</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'picture.jpg'</span><span class="p">)),</span>
+  <span class="p">};</span>
+
+  <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie'</span><span class="p">,</span>
+    <span class="na">formData</span><span class="p">:</span> <span class="nx">formData</span>
+  <span class="p">},</span> <span class="kd">function</span> <span class="nx">optionalCallback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">httpResponse</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">'upload failed:'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">httpResponse</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">'upload failed'</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Upload successful!  Server responded with:'</span><span class="p">,</span> <span class="nx">body</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+
+<p>Stamplay objects support file upload as a property type. This let you attach any file to an object record via API. There are no file type restrictions but maximum upload size is 10 MB.</p>
+
+<p>To save an object containing a file type, the request must have content-type <code>multipart/form-data</code>, note that you can send in the same API call other properties that are not a file.</p>
+
 <h2 id="advanced-queries">Advanced Queries</h2>
 
 <p>In some cases, retrieving objects by an <code>_id</code> or by simple filter methods aren't powerful enough to specify which objects you want to retrieve from the back-end.</p>
@@ -4242,7 +4296,7 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
 curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_create":\{"$gt":"2015-01-15T08:00:00.000Z"\}\}'</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  
+<pre class="highlight javascript"><code>
   <span class="c1">// returns records where the rating is greater than 4</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">greaterThan</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -4264,7 +4318,7 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
     <span class="p">})</span>
 </code></pre>
 
-<pre class="highlight nodejs"><code>  
+<pre class="highlight nodejs"><code>
   <span class="c1">// returns records where the rating is greater than 4</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">greaterThan</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -4351,7 +4405,7 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
 <pre class="highlight shell"><code>
   // returns records with a rating of less than 4
   curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lt":4\}\}'</span>
-  
+
   // returns records that were created before January 15, 2015
   curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_create":\{"$lt":"2015-01-15T08:00:00.000Z\}\}'</span>
 
@@ -4438,7 +4492,7 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
     <span class="p">})</span>
 </code></pre>
 
-<pre class="highlight nodejs"><code>  
+<pre class="highlight nodejs"><code>
   <span class="c1">// returns records with a rating of 4 or les</span>
   <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">'object'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">lessThanOrEqual</span><span class="p">(</span><span class="s1">'actions.ratings.total'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
