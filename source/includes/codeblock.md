@@ -374,7 +374,7 @@ A Code Block can currently be executed using `POST`, `GET`, `PUT`, `PATCH` or `D
 
 ## Logs
 
-If you need to debug your Code Block to see how it behaves, check the **Logs** tab and you'll be able to see the body request and response of each execution. Moreover you can check out the `console.log` output from the real time console available just next to your Code.
+If you need to debug your Code Block to see how it behaves, check the **Logs** tab and you'll be able to see the request and response body of each execution. Moreover you can check out the `console.log` output from the real time console that's available just next to your source code.
 
 ## Lost Logs
 
