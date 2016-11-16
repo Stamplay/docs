@@ -5178,7 +5178,7 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
 
 <ul>
   <li>
-    <p><a href="#simple-model">Simple</a> : when you do not need any external parameters, or the use of the incoming request body..</p>
+    <p><a href="#simple-model">Simple</a> : when you do not need any external parameters, or the use of the incoming request body.</p>
   </li>
   <li>
     <p><a href="#contextual-model">Contextual</a>: when you need to access request body, query parameters and/or secrets.</p>
@@ -5187,10 +5187,6 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
     <p><a href="#full-control-model">Full Control</a>: when you need access to the raw request and response.</p>
   </li>
 </ul>
-
-<aside class="warning">
-  <p>All your code <strong>MUST</strong> be inside the main function, everything written outside will break your Code Block.</p>
-</aside>
 
 <h3 id="simple-model">Simple Model</h3>
 
@@ -5277,9 +5273,9 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
   <span class="p">})</span>
 </code></pre>
 
-<h3 id="passing-query-parameters-to-code-blocks">Passing query parameters to Code Blocks</h3>
+<h3 id="query-parameters">Query parameters</h3>
 
-<p>You can pass paramaters to the Code Block using URL query string of the Code Block request. All URL query parameters except the reserved ones (e.g. <code>user</code>) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the <code>context</code> and the callback <code>cb</code>.</p>
+<p>You can pass parameters to the Code Block using URL query string of the Code Block request. All URL query parameters except the reserved ones (e.g. <code>user</code>) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the <code>context</code> and the callback <code>cb</code>.</p>
 
 <p>All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of <code>context.data</code> JavaScript object.</p>
 
@@ -5318,7 +5314,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
   <span class="p">})</span>
 </code></pre>
 
-<h3 id="passing-body-parameters-to-code-blocks">Passing body parameters to Code Blocks</h3>
+<h3 id="body-parameters">Body parameters</h3>
 
 <p>Parameters can be passed the Code Block also using <code>body</code> parameters of a <code>POST</code>, <code>PATCH</code> or <code>PUT</code> request. All the request<code>body</code> except the reserved ones (e.g. <code>user</code>) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the <code>context</code> and the callback <code>cb</code>.</p>
 
@@ -5399,7 +5395,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
   <span class="p">})</span>
 </code></pre>
 
-<h3 id="user-context-data">User Context Data</h3>
+<h3 id="user-context-data">User context data</h3>
 
 <p>When executing a Code Block, you are able to pass in data, which is set to the <code>context.data</code> property. If an active user session is in place from the origininating request, the user of the current session will be placed inside <code>context</code> on <code>context.data.user</code>.</p>
 
@@ -5485,29 +5481,20 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <h2 id="npm-modules">NPM Modules</h2>
 
-<pre class="highlight nodejs-always"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight nodejs-always"><code><span class="kr">const</span> <span class="nx">Stamplay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'stamplay@1.0.6'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">_</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'lodash@4.8.2'</span><span class="p">);</span>
 
-  <span class="kd">var</span> <span class="nx">Stamplay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"stamplay"</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">stamplay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stamplay</span><span class="p">(</span><span class="s2">"APPID"</span><span class="p">,</span> <span class="s2">"APIKEY"</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
-  <span class="kd">var</span>  <span class="nx">_</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"underscore"</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">stamplay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stamplay</span><span class="p">(</span><span class="s1">'appId'</span><span class="p">,</span> <span class="nx">context</span><span class="p">.</span><span class="nx">secrets</span><span class="p">.</span><span class="nx">apiKey</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
 
-  <span class="nx">request</span><span class="p">(</span><span class="s2">"req_url"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">movieFound</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="p">{</span> <span class="na">director</span> <span class="p">:</span> <span class="s2">"John Doe"</span> <span class="p">})</span>
-
-    <span class="nx">Stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s2">"movie"</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">movieFound</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">).</span><span class="nx">data</span><span class="p">);</span>
-    <span class="p">})</span>
-
-  <span class="p">})</span>
-
-<span class="p">}</span>
+  <span class="nx">stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'movie'</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">body</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">).</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">};</span>
 </code></pre>
 
-<p>When using Code Blocks you can rely on over 800 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.</p>
+<p>When using Code Blocks you can rely on over 900 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.</p>
 
 <p>You can browse available modules at <a href="https://canirequire.stamplayapp.com">https://canirequire.stamplayapp.com</a>.</p>
 
@@ -5515,35 +5502,31 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <p>To use the <code>require</code> method, simply pass the name of the desired NPM module to <code>require</code> to include inside your Code Block as you normally may in a Node.js enviornment.</p>
 
-<p>The example <code>require</code>s the <a href="http://underscorejs.org/">underscore</a>, <a href="https://github.com/request/request">request</a>, and <a href="https://github.com/Stamplay/stamplay-nodejs-sdk">Stamplay Node.js SDK</a>.</p>
+<p>The example <code>require</code>s the <a href="https://lodash.com">lodash</a> and <a href="https://github.com/Stamplay/stamplay-nodejs-sdk">Stamplay Node.js SDK</a> node module with a specific version.</p>
 
 <h2 id="common-errors">Common Errors</h2>
 
 <p>These are some of the most common errors that you may encounter when writing Code Blocks:</p>
 
-<h4 id="writing-code-outside-the-method-signature">Writing code outside the method signature.</h4>
-
-<p>No code outside the main <code>module.export</code>, please. It's a tradeoff for using Code Blocks .</p>
-
 <h4 id="async-code-not-handled-properly">Async code not handled properly.</h4>
 
 <p>If you're writing code in Node.js, async code is the way to go. If you're having problems syncronizing your code please consider the use of libraries such as q or async which are available in our modules.</p>
 
-<h4 id="ive-configured-a-task-that-says-on-code-block-run-then--but-its-not-working">I’ve configured a Task that says “On Code Block run then …” but it’s not working.</h4>
+<h4 id="ive-configured-a-flow-that-says-on-code-block-run-then--but-its-not-working">I’ve configured a Flow that says “On Code Block run then …” but it’s not working.</h4>
 
-<p>There are several reason why the Task may not be triggered:</p>
+<p>There are several reason why the Flow may not be triggered:</p>
 
-<p>Tasks work only if the output has as <strong>Content-Type</strong> <code>application/json</code>: if you’re using the <strong>Simple</strong> or <strong>Context</strong> way to write a Code Block you can just pass null as the first argument (which is the error) and an object to the final callback, and Tasks will be triggered in the right way.</p>
+<p>Tasks work only if the output has as <strong>Content-Type</strong> <code>application/json</code>: if you’re using the <strong>Simple</strong> or <strong>Context</strong> way to write a Code Block you can just pass null as the first argument (which is the error) and an object to the final callback, and the Flow will be triggered in the right way.</p>
 
 <p>If you’re using the <strong>Full Control</strong> programming model, make sure to return <code>application/json</code> as Content-Type.</p>
 
-<p>A task is triggered only if the Code Block returns a <code>200</code> status code.</p>
+<p>A flow is triggered only if the Code Block returns a status code between 200 and 299.</p>
 
-<p>A Code Block is currently only executed only using <code>POST</code> request, ensure that you're using the right HTTP verb.</p>
+<p>A Code Block can currently be executed using <code>POST</code>, <code>GET</code>, <code>PUT</code>, <code>PATCH</code> or <code>DELETE</code> method, please ensure that you're using the right HTTP verb.</p>
 
 <h2 id="logs">Logs</h2>
 
-<p>If you need to debug your Code Block to see how it behaves, check the <strong>Logs</strong> tab and you'll be able to see the <code>console.log</code> output, and the output of your Code Block from the callback, or the stack trace.</p>
+<p>If you need to debug your Code Block to see how it behaves, check the <strong>Logs</strong> tab and you'll be able to see the request and response body of each execution. Moreover you can check out the <code>console.log</code> output from the real time console that's available just next to your source code.</p>
 
 <h2 id="lost-logs">Lost Logs</h2>
 
