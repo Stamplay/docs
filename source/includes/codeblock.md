@@ -20,15 +20,11 @@ Stamplay generates a RESTful endpoint, whenever you create a Code Block.
 
 There are three ways of writing custom server side code based on your needs:
 
-* [Simple](#simple-model) : when you do not need any external parameters, or the use of the incoming request body..
+* [Simple](#simple-model) : when you do not need any external parameters, or the use of the incoming request body.
 
 * [Contextual](#contextual-model): when you need to access request body, query parameters and/or secrets.
 
 * [Full Control](#full-control-model): when you need access to the raw request and response.
-
-<aside class="warning">
-  All your code <strong>MUST</strong> be inside the main function, everything written outside will break your Code Block.
-</aside>
 
 ### Simple Model
 
@@ -120,9 +116,9 @@ Depending from the HTTP method, you can pass data to the Code block within the b
 ~~~
 
 
-### Passing query parameters to Code Blocks
+### Query parameters
 
-You can pass paramaters to the Code Block using URL query string of the Code Block request. All URL query parameters except the reserved ones (e.g. `user`) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the `context` and the callback `cb`.
+You can pass parameters to the Code Block using URL query string of the Code Block request. All URL query parameters except the reserved ones (e.g. `user`) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the `context` and the callback `cb`.
 
 All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of `context.data` JavaScript object.
 
@@ -167,7 +163,7 @@ curl -X "GET" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_nam
   })
 ~~~
 
-### Passing body parameters to Code Blocks
+### Body parameters
 
 Parameters can be passed the Code Block also using `body` parameters of a `POST`, `PATCH` or `PUT` request. All the request`body` except the reserved ones (e.g. `user`) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the `context` and the callback `cb`.
 
@@ -256,7 +252,7 @@ You can try it out with `curl` or with our SDKs. Usually query parameters are pa
 
 
 
-### User Context Data
+### User context data
 
 When executing a Code Block, you are able to pass in data, which is set to the `context.data` property. If an active user session is in place from the origininating request, the user of the current session will be placed inside `context` on `context.data.user`.
 
@@ -333,29 +329,20 @@ Example shown uses the **Contextual** programming model.
 ## NPM Modules
 
 ~~~ nodejs-always
-module.exports = function(context, cb) {
+const Stamplay = require('stamplay@1.0.6');
+const _ = require('lodash@4.8.2');
 
-  var Stamplay = require("stamplay");
-  var stamplay = new Stamplay("APPID", "APIKEY");
-  var request = require("request");
-  var  _ = require("underscore");
+module.exports = function (context, cb) {
+  const stamplay = new Stamplay('appId', context.secrets.apiKey);
+  const body = context.data;
 
-  request("req_url", function(req, res, body) {
-
-    var result = JSON.parse(body);
-
-    var movieFound = _.where(result, { director : "John Doe" })
-
-    Stamplay.Object("movie").save(movieFound, function(err, res) {
-      cb(null, JSON.parse(res).data);
-    })
-
-  })
-
-}
+  stamplay.Object('movie').save(body, (err, res) => {
+    cb(null, JSON.parse(res).data);
+  });
+};
 ~~~
 
-When using Code Blocks you can rely on over 800 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.
+When using Code Blocks you can rely on over 900 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.
 
 You can browse available modules at [https://canirequire.stamplayapp.com](https://canirequire.stamplayapp.com).
 
@@ -363,36 +350,31 @@ If there is a module that is not list on the directory that you need, let us kno
 
 To use the `require` method, simply pass the name of the desired NPM module to `require` to include inside your Code Block as you normally may in a Node.js enviornment.
 
-The example `require`s the [underscore](http://underscorejs.org/), [request](https://github.com/request/request), and [Stamplay Node.js SDK](https://github.com/Stamplay/stamplay-nodejs-sdk).
+The example `require`s the [lodash](https://lodash.com) and [Stamplay Node.js SDK](https://github.com/Stamplay/stamplay-nodejs-sdk) node module with a specific version.
 
 ## Common Errors
 
 These are some of the most common errors that you may encounter when writing Code Blocks:
 
-
-#### Writing code outside the method signature.
-
-No code outside the main `module.export`, please. It's a tradeoff for using Code Blocks .
-
 #### Async code not handled properly.
 
 If you're writing code in Node.js, async code is the way to go. If you're having problems syncronizing your code please consider the use of libraries such as q or async which are available in our modules.
 
-#### I’ve configured a Task that says “On Code Block run then ...” but it’s not working.
+#### I’ve configured a Flow that says “On Code Block run then ...” but it’s not working.
 
-There are several reason why the Task may not be triggered:
+There are several reason why the Flow may not be triggered:
 
-Tasks work only if the output has as **Content-Type** `application/json`: if you’re using the **Simple** or **Context** way to write a Code Block you can just pass null as the first argument (which is the error) and an object to the final callback, and Tasks will be triggered in the right way.
+Tasks work only if the output has as **Content-Type** `application/json`: if you’re using the **Simple** or **Context** way to write a Code Block you can just pass null as the first argument (which is the error) and an object to the final callback, and the Flow will be triggered in the right way.
 
 If you’re using the **Full Control** programming model, make sure to return `application/json` as Content-Type.
 
-A task is triggered only if the Code Block returns a `200` status code.
+A flow is triggered only if the Code Block returns a status code between 200 and 299.
 
-A Code Block is currently only executed only using `POST` request, ensure that you're using the right HTTP verb.
+A Code Block can currently be executed using `POST`, `GET`, `PUT`, `PATCH` or `DELETE` method, please ensure that you're using the right HTTP verb.
 
 ## Logs
 
-If you need to debug your Code Block to see how it behaves, check the **Logs** tab and you'll be able to see the `console.log` output, and the output of your Code Block from the callback, or the stack trace.
+If you need to debug your Code Block to see how it behaves, check the **Logs** tab and you'll be able to see the body request and response of each execution. Moreover you can check out the `console.log` output from the real time console available just next to your Code.
 
 ## Lost Logs
 
