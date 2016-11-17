@@ -76,6 +76,10 @@ The `context` argument behaves the same way as in the two simpler programming mo
 
 Note that this programming model does not have a concept of a callback. [Ending the HTTP response](https://nodejs.org/api/http.html) indicates completion.
 
+If the request doesn't have `content-type` `application-json` or `x-www-form-urlencoded` the `Parse body` option must be disabled in order to allow further native processing. 
+
+If the `Parse body` option is disabled the value of `context.data` parameter won't contain the body value. 
+
 ## Executing Code Blocks
 
 Code Blocks can be used to implement custom logic and have it available as an API endpoint, for this reason they support any HTTP method. In a nutshell you can execute custom Node.js code with a HTTP call.
