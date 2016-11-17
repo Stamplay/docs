@@ -5237,6 +5237,10 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <p>Note that this programming model does not have a concept of a callback. <a href="https://nodejs.org/api/http.html">Ending the HTTP response</a> indicates completion.</p>
 
+<p>If the request doesn't have <code>content-type</code> <code>application-json</code> or <code>x-www-form-urlencoded</code> the <code>Parse body</code> option must be disabled in order to allow further Code Block side processing.</p>
+
+<p>If the <code>Parse body</code> option is disabled the value of <code>context.data</code> parameter won't contain the body value.</p>
+
 <h2 id="executing-code-blocks">Executing Code Blocks</h2>
 
 <p>Code Blocks can be used to implement custom logic and have it available as an API endpoint, for this reason they support any HTTP method. In a nutshell you can execute custom Node.js code with a HTTP call.</p>
