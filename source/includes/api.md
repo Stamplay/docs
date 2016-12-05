@@ -283,7 +283,7 @@ Stamplay uses a selective cross-origin resource sharing (CORS) policy, meaning t
 
 This is made to govern which origins are authorized and which are not. By default only the base URL ending with `.stamplayapp.com` is the one allowed to send requests.
 
-To enabled other CORS enabled domains, visit the **Hosting** section with the Stamplay editor.
+To enable other CORS enabled domains, visit the **Dashboard -> Settings** section in the Stamplay Editor.
 
 ## Allowed HTTP Requests
 
