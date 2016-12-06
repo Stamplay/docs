@@ -30,7 +30,7 @@ There are three ways of writing custom server side code based on your needs:
 
 ~~~ nodejs-always
   module.exports = function(cb) {
-    cb(null, { i_am: 'done'});
+    return cb(null, { i_am: 'done'});
   }
 ~~~    
 
@@ -40,13 +40,13 @@ To indicate completion, the function must call the callback with two arguments: 
 
 The result, or the second argument in the callback, will be the response to the originating request, or the destination *(i.e. Execution of a Task after a Code Block executes.)* request body.
 
-When the callback is invoked, the result value or an error will be serialized as JSON and sent back to the caller as `application/json` content type.
+When the callback is invoked, the result value or an error will be serialized as JSON and sent back to the caller as `application/json` Content-type.
 
 ### Contextual Model
 
 ~~~ nodejs-always
   module.exports = function(context, cb) {
-    cb(null, { hello: context.data.name });
+    return cb(null, { hello: context.data.name });
   }
 ~~~
 A more advanced version of the programming model allows you to return a function that accepts two arguments: a `context` and a `callback`.
@@ -66,7 +66,7 @@ The request can be parsed correctly only if `application/json` or `application/x
   module.exports = function(context, req, res) {
     res.writeHead(200, { 'Content-Type': 'application/json'});
     var result = { "hello" : context.body };
-    res.end(JSON.stringify(result));
+    return res.end(JSON.stringify(result));
   };
 ~~~
 
@@ -80,13 +80,39 @@ If the request doesn't have `content-type` `application-json` or `x-www-form-url
 
 If the `Parse body` option is disabled the value of `context.data` parameter won't contain the body value. 
 
+### Express application
+
+~~~ nodejs-always
+const express    = require('express');
+const Webtask    = require('webtask-tools');
+const bodyParser = require('body-parser');
+const app = express();
+
+app.use(bodyParser.json());
+
+app.get('/', function (req, res) {
+  console.log(req.webtaskContext);
+  return res.sendStatus(200);
+});
+
+module.exports = Webtask.fromExpress(app);
+~~~
+
+You can write an Express application in a Code Block by mimicking this code.
+
+Please note that : 
+
+* you MUST uncheck the `Parse body` option in order let the `bodyParser.json()` middleware parse the request body that you'll then find in `req.body`
+* you can access secrets from the `req.webtaskContext` parameter
+
+
 ## Executing Code Blocks
 
 Code Blocks can be used to implement custom logic and have it available as an API endpoint, for this reason they support any HTTP method. In a nutshell you can execute custom Node.js code with a HTTP call.
 
 To execute a Code Block all you need to do is to send a HTTP request to the Code Block API endpoint that you can see in the Snippets.
 
-Depending from the HTTP method, you can pass data to the Code block within the body of the request or via query params (see below). 
+Depending from the HTTP method, you can pass data to the Code Block within the body of the request or via query parameters (see below). 
 
 ~~~ shell
   curl -X "POST" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_name}?name=Stamplay&bar=foo" \
@@ -132,13 +158,13 @@ Switch to Javascript or NodeJS view to see the Code Block sample
 
 ~~~ javascript
 module.exports = function(context, cb) {
-  cb(null, "Hello, " + context.data.name);
+  return cb(null, "Hello, " + context.data.name);
 }
 ~~~
 
 ~~~ nodejs
 module.exports = function(context, cb) {
-  cb(null, "Hello, " + context.data.name);
+  return cb(null, "Hello, " + context.data.name);
 }
 ~~~
 
@@ -258,7 +284,7 @@ You can try it out with `curl` or with our SDKs. Usually query parameters are pa
 
 ### User context data
 
-When executing a Code Block, you are able to pass in data, which is set to the `context.data` property. If an active user session is in place from the origininating request, the user of the current session will be placed inside `context` on `context.data.user`.
+When executing a Code Block, you are able to pass in data, which is set to the `context.data` property. If an active user session is in place from the originating request, the user of the current session will be placed inside `context` on `context.data.user`.
 
 ~~~ javascript
 module.exports = function(context, cb) { 
@@ -267,7 +293,7 @@ module.exports = function(context, cb) { 
   //Show data about logged user 
   console.log("User with Id" + context.data.user._id + " is logged"); 
   //Return a JSON response that includes logged User attribute 
-  cb(null, { message : greet + " " + context.data.user.displayName + "!"  });
+  return cb(null, { message : greet + " " + context.data.user.displayName + "!"  });
 };
 ~~~
 ~~~ shell
@@ -285,7 +311,84 @@ module.exports = function(context, cb) { 
 ~~~
 
 
-## Managing Secret Parameters
+## Storage
+Sometimes your code needs just a little bit of persistent storage, and using a full database feels like too much. Code Blocks code can durably store a single JSON document up to 500KB in size using built-in storage. With simple get/set APIs and basic conflict detection, this is frequently all you need.
+
+### Reading data
+
+~~~ nodejs-always
+module.exports = function(context, cb) {
+    context.storage.get(function (error, data) {
+        if (error) return cb(error);
+        // ...
+    });
+}
+~~~
+
+Use the `context.storage.get` API to retrieve a previously stored document.
+
+In the absence of error, the data will contain your previously stored document, or null if no document was stored.
+
+### Writing data
+
+~~~ nodejs-always
+module.exports = function(context, cb) {
+    context.storage.get(function (error, data) {
+        if (error) return cb(error);
+        data = data || { counter: 1 };
+        context.storage.set(data, function (error) {
+            if (error) return cb(error);
+            // ...
+        });
+    });
+}
+~~~
+
+Use the `context.storage.set` API to save a document.
+
+In the absence of error, the data has been successfuly persisted.
+
+### Resolving conflicts
+
+~~~ nodejs-always
+module.exports = function(context, cb) {
+    context.storage.get(function (error, data) {
+      if (error) return cb(error);
+      data = data || { counter: 1 };
+      var attempts = 3;
+      context.storage.set(data, function set_cb(error) {
+          if (error) {
+            if (error.code === 409 && attempts--) {
+                // resolve conflict and re-attempt set
+                data.counter = Math.max(data.counter, error.conflict.counter) + 1;
+                return context.storage.set(data, set_cb);
+            }
+            return cb(error);
+          }
+          // ...
+      });
+    });
+}
+~~~
+
+When many instances of your Code Block attempt to persist the document simultaneously, conflicts may arise. A conflict occurs when the code calls the `set` operation, and the value of the document in the database is different from the value that was read last by that instance of a webtask. Code Block runtime automatically detects conflicts and allows you to resolve them using an application-specific logic before re-attempting the `set` call.
+
+The absence of error in the callback of `set` indicates there were no conflicts and the operation persisted the data successfully.
+
+### Forcefully writing data
+
+~~~ nodejs-always
+module.exports = function(context, cb) {
+  context.storage.set({ counter: 1 }, { force: 1 }, function (error) {
+      if (error) return cb(error);
+      //...
+  });
+}
+~~~
+
+Sometimes you want to disregard the possibility of a conflict and forcefully override whatever data may already be persisted. This can be done with the `force` option.
+
+## Secret Parameters
 
 
 You can create a Code Block that includes public or secret parameters. These parameters are made available to the Code Block code when it runs. This mechanism provides a convenient way to equip your Code Block with secret credentials necessary to communicate with external systems while preventing disclosure of these credentials to third parties.
@@ -320,7 +423,7 @@ Now your secret has been added and is ready for use with the Code Block.
 
 ~~~ nodejs-always
   module.exports = function(context, cb) {
-    cb(null, { pass_this_secret : context.secrets.name });
+    return cb(null, { pass_this_secret : context.secrets.name });
   }
 ~~~
 
@@ -341,7 +444,7 @@ module.exports = function (context, cb) {
   const body = context.data;
 
   stamplay.Object('movie').save(body, (err, res) => {
-    cb(null, JSON.parse(res).data);
+    return cb(null, JSON.parse(res).data);
   });
 };
 ~~~
@@ -368,7 +471,7 @@ If you're writing code in Node.js, async code is the way to go. If you're having
 
 There are several reason why the Flow may not be triggered:
 
-Tasks work only if the output has as **Content-Type** `application/json`: if you’re using the **Simple** or **Context** way to write a Code Block you can just pass null as the first argument (which is the error) and an object to the final callback, and the Flow will be triggered in the right way.
+Flows work only if the output has as **Content-Type** `application/json`: if you’re using the **Simple** or **Context** way to write a Code Block you can just pass null as the first argument (which is the error) and an object to the final callback, and the Flow will be triggered in the right way.
 
 If you’re using the **Full Control** programming model, make sure to return `application/json` as Content-Type.
 
@@ -378,8 +481,12 @@ A Code Block can currently be executed using `POST`, `GET`, `PUT`, `PATCH` or `D
 
 ## Logs
 
-If you need to debug your Code Block to see how it behaves, check the **Logs** tab and you'll be able to see the request and response body of each execution. Moreover you can check out the `console.log` output from the real time console that's available just next to your source code.
+If you need to debug your Code Block to see how it behaves, check the **Logs** tab and you'll be able to see the request and response body of each execution. 
 
-## Lost Logs
+Moreover you can check out the `console.log` output from the real time console that's available just below your source code.
 
-Logs are automatically deleted after two weeks. If you have different needs, please [let us know](mailto:support@stamplay.com?subject=Logs+Expiration).
+### Retention
+
+Logs are automatically deleted after two weeks. 
+
+If you have different needs, please [let us know](mailto:support@stamplay.com?subject=Logs+Expiration).
