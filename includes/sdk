@@ -2,19 +2,18 @@
 
 <h2 id="javascript-sdk">Javascript SDK</h2>
 
-<pre class="highlight shell-always"><code>  <span class="nx">bower</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">js</span><span class="o">-</span><span class="nx">sdk</span>
-
-  <span class="nx">or</span>
-
-  <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">stamplay</span><span class="o">-</span><span class="nx">sdk</span>
+<pre class="highlight shell"><code>  bower install stamplay-js-sdk
 </code></pre>
 
-<pre class="highlight shell-always"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">);</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s1">'APPID'</span><span class="p">);</span>
+</code></pre>
+
+<pre class="highlight nodejs"><code>  <span class="nx">Refer</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">NodeJS</span> <span class="nx">section</span> <span class="nx">below</span>
 </code></pre>
 
 <p>The JavaScript SDK is a client side library to help simplify interacting with the Stamplay API. It is available both on <code>npm</code> and <code>bower</code>.</p>
 
-<p>To install the JavaScript SDK, run <code>bower install</code> for the <code>stamplay-js-sdk</code>.</p>
+<p>To install the JavaScript SDK, run <code>bower install stamplay-js-sdk</code>.</p>
 
 <p>To initialize the SDK within your client side enviornment, run the <code>init</code> method on the <code>Stamplay</code> global object. Ensure the module has been included before running the method, and pass in your <code>APP ID</code> as the sole method argument.</p>
 
@@ -366,17 +365,19 @@
 
 <h2 id="nodejs-sdk">NodeJS SDK</h2>
 
-<pre class="highlight shell-always"><code>  <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">stamplay</span>
+<pre class="highlight shell"><code>  npm install stamplay
 </code></pre>
 
-<pre class="highlight shell-always"><code>  <span class="kd">var</span> <span class="nx">stamplay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"stamplay"</span><span class="p">),</span>
-  <span class="nx">Stamplay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">stamplay</span><span class="p">(</span><span class="s2">"APP ID"</span><span class="p">,</span> <span class="s2">"API KEY"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Refer</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">Javascript</span> <span class="nx">section</span> <span class="nx">above</span>
+</code></pre>
 
+<pre class="highlight nodejs"><code>  <span class="kr">const</span> <span class="nx">Stamplay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"stamplay"</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">stamplay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stamplay</span><span class="p">(</span><span class="s2">"APPID"</span><span class="p">,</span> <span class="s2">"APIKEY"</span><span class="p">);</span>
 </code></pre>
 
 <p>The Node.js SDK is a server side library to help simplify admin interaction with the Stamplay API.</p>
 
-<p>To install the Node.js SDK, run <code>npm install</code> for the <code>stamplay</code>.</p>
+<p>To install the Node.js SDK, run <code>npm install stamplay</code>.</p>
 
 <p>To initialize the SDK within your server side enviornment, first <code>require</code> the module, then create a new instance of the module require and pass in your <code>APP ID</code> and <code>API KEY</code> credentials as seperate arguments.</p>
 
