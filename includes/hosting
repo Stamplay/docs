@@ -79,7 +79,7 @@
 
 <h4 id="public">public</h4>
 
-<pre class="highlight json"><code><span class="w">  </span><span class="s2">"public"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"./"</span><span class="w"> 
+<pre class="highlight json"><code><span class="w">  </span><span class="s2">"public"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"./"</span><span class="w">
 </span></code></pre>
 
 <p>The <code>public</code> property tells the command line which directory to upload to Stamplay. This directory must be inside the project directory and must exist.</p>
@@ -92,7 +92,7 @@
     </span><span class="s2">"stamplay.json"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"**/.*"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"**/node_modules/**"</span><span class="w">
-  </span><span class="p">]</span><span class="w"> 
+  </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>The <code>ignore</code> specifies which files to ignore on deploy. It can take glob definitions in the same way git handles <code>.gitignore</code>.</p>
 
@@ -225,7 +225,7 @@
 
 <p>To setup a custom domain, open the Stamplay Editor.</p>
 
-<p>In the Stamplay Editor, in the <strong>Hosting</strong> section. Select <strong>Use A Custom Domain</strong> and add the value <a href="www.mybeautifulwebsite.com">www.mybeautifulwebsite.com</a> to the <strong>App Domain</strong> field.</p>
+<p>In the Stamplay Editor, in the <strong>Dashboard</strong> section. Select <strong>Hosting</strong> section, then <strong>Use A Custom Domain</strong> and add the value <a href="www.mybeautifulwebsite.com">www.mybeautifulwebsite.com</a> to the <strong>App Domain</strong> field.</p>
 
 <aside class="notice">
   <p>Application must be on a paid plan to use a custom domain.</p>
@@ -247,7 +247,7 @@
 
 <h3 id="pretty-urls">Pretty URLs</h3>
 
-<p>To enable the url rewrite on the server side for single page applications, all you need to do is navigate to the <strong>Hosting</strong> section inside the Stamplay Editor, and check the box in the middle of the configuration under the <strong>URL Rewriting</strong> heading to enable all entry points to your domain, to point to the <code>index.html</code> page.</p>
+<p>To enable the url rewrite on the server side for single page applications, all you need to do is navigate to the <strong>Dashboard</strong> section then to <strong>Hosting</strong> section inside the Stamplay Editor, and check the box in the middle of the configuration under the <strong>URL Rewriting</strong> heading to enable all entry points to your domain, to point to the <code>index.html</code> page.</p>
 
 <p><a href="../images/prettyurls_config.png"><img alt="Pretty URL Configuration" src="/images/prettyurls_config.png" /></a></p>
 
@@ -259,7 +259,7 @@
 
 <p>To enabled a domain for Cross Origin Requests, add the domain to the list inside the <strong>Dashboard</strong> section of the Stamplay Editor.</p>
 
-<p>The isf field is under the <strong>CORS enabled domains</strong> heading. You can add the wildcard <code>*</code> to allow all origins. This is however not recommended.</p>
+<p>The field is under the <strong>CORS enabled domains</strong> heading. You can add the wildcard <code>*</code> to allow all origins. This is however not recommended.</p>
 
 <p><a href="../images/cors_config.png"><img alt="Pretty URL Configuration" src="/images/cors_config.png" /></a></p>
 
@@ -270,4 +270,3 @@
 <p>The entries will be available via email once you begin the process of adding a custom domain. Depending on your domain name server host, this verification step may be instant or it may take an hour or more.</p>
 
 <p>Once domain ownership is verified, we will provision an SSL certficate for your domain and deploy it across our global CDN. This process can take up to 48 hours, and you will receive an email when it is complete.</p>
-
