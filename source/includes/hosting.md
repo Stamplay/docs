@@ -23,7 +23,7 @@ Once you have Node.js and NPM installed, you can install the Stamplay command li
   npm install -g stamplay-cli
   // sudo may be required depending on your system permissions
   // sudo npm install -g stamplay-cli
-~~~ 
+~~~
 
 
 This installs `stamplay` as a globally available command interface.
@@ -32,7 +32,7 @@ This installs `stamplay` as a globally available command interface.
 
 ~~~ shell
   stamplay init
-~~~ 
+~~~
 
 The `stamplay.json` file, when create is typically in the root of your project's directory.
 
@@ -47,7 +47,7 @@ The `stamplay.json` file, when create is typically in the root of your project's
       "**/node_modules/**"
     ]
   }
-~~~ 
+~~~
 
 This required file is used to configure which files are published upon deployment, set customer headers, etc.
 
@@ -65,15 +65,15 @@ Caching removes the need to load static libraries every time. This is helpful in
 ~~~ json
   "appId": "yourAppId",
   "apiKey": "yourAppApiKey"
-~~~ 
+~~~
 
 The `appId` and `apiKey` are used by the command line tool as authentication parameters.
 
 #### public
 
 ~~~ json
-  "public" : "./" 
-~~~ 
+  "public" : "./"
+~~~
 
 The `public` property tells the command line which directory to upload to Stamplay. This directory must be inside the project directory and must exist.
 
@@ -86,8 +86,8 @@ The default value is the root directory or your project. This directory is also 
     "stamplay.json",
         "**/.*",
         "**/node_modules/**"
-  ] 
-~~~ 
+  ]
+~~~
 The `ignore` specifies which files to ignore on deploy. It can take glob definitions in the same way git handles `.gitignore`.
 
 #### headers
@@ -113,7 +113,7 @@ The `ignore` specifies which files to ignore on deploy. It can take glob definit
       ]
     }
   ]
-~~~ 
+~~~
 
 The `headers` is an optional parameter in the `stamplay.json` file.
 
@@ -167,7 +167,7 @@ For example, `3600` is **3600 seconds**.
 
 ~~~ shell-always
   stamplay deploy
-~~~ 
+~~~
 
 To deploy a new release, run the `deploy` with the CLI.
 
@@ -179,20 +179,20 @@ To rollback to a previous deploy, run the `rollback` CLI command.
 
 ~~~ shell-always
   stamplay rollback
-~~~ 
-        
+~~~
+
 You'll be prompted to pick one of your previous deploys from a list and your app will be restored.
 
 ### App Development
 
 ~~~ shell-always
   stamplay start
-~~~ 
+~~~
 
 You can run the Stamplay command line tool to build your app in development mode on your local environment. This will make the tool initialize a local server that will serve your app on [http://localhost:8080](http://localhost:8080).
 
 To run your application locally, run the `start` CLI command.
-     
+
 Applications built with Stamplay must have an `index.html` file at root level of the `public` property defined in the `stamplay.json`.
 
 By default the root level defined in `stamplay.json` public setting is `"./"`.
@@ -205,16 +205,16 @@ To launch the live version of your application, run the `open` CLI command.
 
 ~~~ shell-always
   stamplay open
-~~~ 
+~~~
 
 ### CLI Updates
 
 You can update the Stamplay CLI by running `npm install` for the `stamplay-cli` npm package with the `-g` global option.
-    
+
 ~~~ shell-always
   npm install -g stamplay-cli
-~~~ 
-        
+~~~
+
 Thi will update your Stamplay command line tool to the latest version.
 
 ## Custom Domains and SSL
@@ -225,7 +225,7 @@ Users on a paid plan can also host content at a custom domain name.
 
 To setup a custom domain, open the Stamplay Editor.
 
-In the Stamplay Editor, in the **Hosting** section. Select **Use A Custom Domain** and add the value [www.mybeautifulwebsite.com](www.mybeautifulwebsite.com) to the **App Domain** field.
+In the Stamplay Editor, in the **Dashboard** section. Select **Hosting** section, then **Use A Custom Domain** and add the value [www.mybeautifulwebsite.com](www.mybeautifulwebsite.com) to the **App Domain** field.
 
 <aside class="notice">
   Application must be on a paid plan to use a custom domain.
@@ -235,7 +235,7 @@ In the Stamplay Editor, in the **Hosting** section. Select **Use A Custom Domain
 
 On your DNS provider, add a **CNAME** record from [www.mybeautifulwebsite.com](www.mybeautifulwebsite.com) to [mydemoapp.stamplayapp.com]() to begin sending traffic to your hosted app.
 
-After completing these steps, [www.mybeautifulwebsite.com](www.mybeautifulwebsite.com) will serve the same content as [mydemoapp.stamplayapp.com](). 
+After completing these steps, [www.mybeautifulwebsite.com](www.mybeautifulwebsite.com) will serve the same content as [mydemoapp.stamplayapp.com]().
 
 If you want to serve content at an apex domain such as [example.com](example.com), you might have trouble with the steps above because root domains generally don't support **CNAME** records. To support this situation, you must configure **ALIAS**, **ANAME** or **A** records with your DNS provider.
 
@@ -247,7 +247,7 @@ Deeper subdomains, such as [my.beautiful.website.com](my.beautiful.website.com),
 
 ### Pretty URLs
 
-To enable the url rewrite on the server side for single page applications, all you need to do is navigate to the **Hosting** section inside the Stamplay Editor, and check the box in the middle of the configuration under the **URL Rewriting** heading to enable all entry points to your domain, to point to the `index.html` page.
+To enable the url rewrite on the server side for single page applications, all you need to do is navigate to the **Dashboard** section then to **Hosting** section inside the Stamplay Editor, and check the box in the middle of the configuration under the **URL Rewriting** heading to enable all entry points to your domain, to point to the `index.html` page.
 
 [![Pretty URL Configuration](/images/prettyurls_config.png)](/images/prettyurls_config.png)
 
@@ -259,7 +259,7 @@ For the best support on this issue, search for solution specific to the framewor
 
 To enabled a domain for Cross Origin Requests, add the domain to the list inside the **Dashboard** section of the Stamplay Editor.
 
-The isf field is under the **CORS enabled domains** heading. You can add the wildcard `*` to allow all origins. This is however not recommended.
+The field is under the **CORS enabled domains** heading. You can add the wildcard `*` to allow all origins. This is however not recommended.
 
 [![Pretty URL Configuration](/images/cors_config.png)](/images/cors_config.png)
 
@@ -270,4 +270,3 @@ Stamplay will handle provisioning an SSL certificate for your domain and serving
 The entries will be available via email once you begin the process of adding a custom domain. Depending on your domain name server host, this verification step may be instant or it may take an hour or more.
 
 Once domain ownership is verified, we will provision an SSL certficate for your domain and deploy it across our global CDN. This process can take up to 48 hours, and you will receive an email when it is complete.
-  

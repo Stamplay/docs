@@ -83,7 +83,7 @@ The types and formats of each field type is listed below:
     _id: "56cf08e362641ca813b1ae6c",
     verified : true
   }
-~~~ 
+~~~
 
 A **Boolean** type is a `true` or `false` value.
 
@@ -94,7 +94,7 @@ A **Boolean** type is a `true` or `false` value.
     _id: "56cf08e362641ca813b1ae6c",
     name : "John"
   }
-~~~ 
+~~~
 
 A **String** type is a series of characters enclosed by single, or double quotes.
 
@@ -105,7 +105,7 @@ A **String** type is a series of characters enclosed by single, or double quotes
     _id: "56cf08e362641ca813b1ae6c",
     age : 29
   }
-~~~ 
+~~~
 
 A **Number** type is an integer value type without a period or exponent notation.
 
@@ -116,7 +116,7 @@ A **Number** type is an integer value type without a period or exponent notation
     _id: "56cf08e362641ca813b1ae6c",
     pie : 3.14
   }
-~~~ 
+~~~
 
 A **Float** type is an integer value type with a period or exponent notation.
 
@@ -131,7 +131,7 @@ A **Float** type is an integer value type with a period or exponent notation.
       automatic : false
     }
   }
-~~~ 
+~~~
 
 A **Plain Object** type is a plain javascript object. The property `car` is a plain object type in the example.
 
@@ -142,7 +142,7 @@ A **Plain Object** type is a plain javascript object. The property `car` is a pl
     _id: "56cf08e362641ca813b1ae6c",
     colors : [12, 43, 235, 66]
   }
-~~~ 
+~~~
 
 An **Array** of **Number** value types:
 
@@ -153,7 +153,7 @@ An **Array** of **Number** value types:
     _id: "56cf08e362641ca813b1ae6c",
     colors : ["yellow", "green", "blue", "red"]
   }
-~~~ 
+~~~
 
 An **Array** of **String** value types:
 
@@ -164,8 +164,8 @@ An **Array** of **String** value types:
       _id : "56cf08e362641ca813b1ae6c",
       start_date : "2016-03-10T14:51:28.625Z"
     }
-~~~ 
-        
+~~~
+
 
 ~~~ javascript-always
   {
@@ -188,7 +188,7 @@ The property `end_date` is a Date type in **RFC-1123** format in the last exampl
     _id : "56cf08e362641ca813b1ae6c",
     profile_image : "https://APP-ID.stamplayapp.com/upload/cobject/[cobject-name]/1457032441927_stamplay.png"
   }
-~~~ 
+~~~
 
 A **File** type is a file upload. Any kind of file is accepted. When a file is uploaded, and saved, the property will be a link to the file upload location.
 
@@ -209,12 +209,12 @@ The `profile_image` is an example of a **File** type in the example.
       ]
     }
   }
-~~~ 
+~~~
 
 A **Geolocation** type is stored as **GeoJSON** object with this coordinate-axis order: `longitude`, `latitude`.
 
 A Point stored on Stamplay will look like the example:
-            
+
 Currently supported data types are:
 
 * - [Point](https://docs.mongodb.org/manual/reference/geojson/#point)
@@ -235,7 +235,7 @@ To make this easier if you want to create a Point you're allowed to send an arra
     _id : "56cf08e362641ca813b1ae6c",
     solutions : ["6c641c8a81e3625f03b1ae6c", "3b1ae6c8a81e3625f06c641c", "825f06c641c3ba81e361ae6c", "f06c641c3b8a81e3625ae6c"]
   }
-~~~ 
+~~~
 
 A **Object Relation** is set of pointers to another object.
 
@@ -250,7 +250,7 @@ The `solutions` property is an example of a **Object Relation** type in the exam
     _id : "56cf08e362641ca813b1ae6c",
     author : "8a81e3625f06c641c3b1ae6c"
   }
-~~~ 
+~~~
 
 A **User Relation** is a pointer to a user object represented by an `_id` of a user. This field can be populated. The `author` property is an example of a `User Relation` in the example.
 
@@ -277,7 +277,7 @@ If the predefined security policies are not flexible enough for your app and you
   curl -X "POST" "https://APP-ID.stamplayapp.com/api/cobject/v1/object" \
     -H "Content-Type: application/json" \
     -d "{\"title\":\"\\\"Hello World\\\"\",\"year\":\"2016\"}"
-~~~ 
+~~~
 
 ~~~ javascript
   var data = {
@@ -292,7 +292,7 @@ If the predefined security policies are not flexible enough for your app and you
       // error
     })
 
-~~~ 
+~~~
 
 ~~~ nodejs
   var data = {
@@ -351,7 +351,7 @@ Retrieve an individual object, all objects, or any matching specific criteria of
 
 ~~~ shell
   curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id"
-~~~ 
+~~~
 
 ~~~ javascript
   Stamplay.Object("movie").get({ _id : "object_id"})
@@ -360,7 +360,7 @@ Retrieve an individual object, all objects, or any matching specific criteria of
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   Stamplay.Object("movie").get({ _id : "object_id"}, function(err, res) {
@@ -423,7 +423,7 @@ The object type for the example is `movie`.
 
 ~~~ shell
   curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie"
-~~~ 
+~~~
 
 ~~~ javascript
   Stamplay.Object("movie").get({})
@@ -432,7 +432,7 @@ The object type for the example is `movie`.
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   Stamplay.Object("movie").get({}, function(err, res) {
@@ -492,7 +492,7 @@ The object type for the example is `movie`.
 
 ~~~ shell
   curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?year=1998"
-~~~ 
+~~~
 
 ~~~ javascript
   var query = {
@@ -505,7 +505,7 @@ The object type for the example is `movie`.
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   var query = {
@@ -568,7 +568,7 @@ The object type for the example is `movie`.
 
 ~~~ shell
   curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/find/director"
-~~~ 
+~~~
 
 ~~~ javascript
 
@@ -580,7 +580,7 @@ The object type for the example is `movie`.
     }, function(err) {
       // Error
     }))
-~~~ 
+~~~
 
 ~~~ nodejs
   // no method
@@ -647,7 +647,7 @@ To update an object record partially, or completely overwrite the existing recor
   curl -X "PATCH" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"title\":\"Goodbye World\"}"
-~~~ 
+~~~
 
 ~~~ javascript
   var data = {
@@ -660,7 +660,7 @@ To update an object record partially, or completely overwrite the existing recor
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   var data = {
@@ -689,7 +689,7 @@ To update an object record partially, or completely overwrite the existing recor
    "__v":0,
    "id":"570edb76fc24091627e82086"
 }
-      
+
 ~~~
 
 To make a partial update to an object record, perform a `PATCH` request to the Object API resource with any fields to update on the stored record in the request body.
@@ -707,7 +707,7 @@ The object type for the example is `movie`.
   curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"title\":\"Goodbye World\",\"year\":\"2001\"}"
-~~~ 
+~~~
 
 ~~~ javascript
   var data = {
@@ -720,7 +720,7 @@ The object type for the example is `movie`.
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   var data = {
@@ -730,7 +730,7 @@ The object type for the example is `movie`.
   Stamplay.Object("movie").update("object_id", data, function(err, res) {
     // response
   })
-~~~ 
+~~~
 
 > The JSON response looks like this.
 
@@ -749,7 +749,7 @@ The object type for the example is `movie`.
    "__v":0,
    "id":"570edb76fc24091627e82086"
 }
-      
+
 ~~~
 
 To overwrite an object record, perform a `PUT` request to the Object API resource with a complete represenation to write over the stored record in the request body.
@@ -764,7 +764,7 @@ To remove an object record, send a `DELETE` request with the `_id` of the record
 
 ~~~ shell
   curl -X "DELETE" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id"
-~~~ 
+~~~
 
 ~~~ javascript
   Stamplay.Object("movie").remove("object_id")
@@ -773,13 +773,13 @@ To remove an object record, send a `DELETE` request with the `_id` of the record
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   Stamplay.Object("movie").remove("object_id", function(err, res) {
     // response
   })
-~~~ 
+~~~
 
 > The JSON response will look like this.
 
@@ -816,7 +816,7 @@ Data relationships are pointers from one record to another.
   curl -X "PATCH" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"director\":\"56cf08e362641ca813b1ae6c\"}"
-~~~ 
+~~~
 
 ~~~ javascript
   Stamplay.Object("movie").patch("object_id", { director: "56cf08e362641ca813b1ae6c" })
@@ -825,7 +825,7 @@ Data relationships are pointers from one record to another.
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   Stamplay.Object("movie").patch("object_id", { director: "56cf08e362641ca813b1ae6c" }, function(err, res) {
@@ -855,7 +855,7 @@ In this example, `movie` is the object type, and the `director` field is a User 
   curl -X "PATCH" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id" \
     -H "Content-Type: application/json" \
     -d "{\"characters\":[\"57cf08e362641ca813b1ae6c\",\"56cf09e362641sa813b1ae6d\",\"54cfdae662641ca813b1ae6c\"]}"
-~~~ 
+~~~
 
 ~~~ javascript
   Stamplay.Object("movie").push("object_id", "characters", "57cf08e362641ca813b1ae6c")
@@ -864,14 +864,14 @@ In this example, `movie` is the object type, and the `director` field is a User 
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   var movieChars = ["57cf08e362641ca813b1ae6c", "56cf09e362641sa813b1ae6d", "54cfdae662641ca813b1ae6c"]
   Stamplay.Object("movie").patch("object_id", movieChars, function(err, res) {
     // response
   })
-~~~ 
+~~~
 An **Object** relationship is a pointer to another record; specifically a certain type of record as specified when defining the schema.
 
 This field type is to contain only an array of the property `_id` of a each related record of the relationship type.
@@ -894,7 +894,7 @@ To retrieve related records, use the `populate` parameter in any `GET` request, 
 
 ~~~ shell
   curl -X "GET" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie?populate=true"
-~~~ 
+~~~
 
 ~~~ javascript
   Stamplay.Object("movie").get({ populate : true })
@@ -903,13 +903,71 @@ To retrieve related records, use the `populate` parameter in any `GET` request, 
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   Stamplay.Object("movie").get({ populate : true }, function(err, res) {
     // response
   })
 ~~~
+
+## Files
+
+~~~ shell
+  curl -X "POST" \
+  -F 'image=@/path/to/pictures/picture.jpg' \
+  -F 'title=Lord of the Rings' \
+  "https://APP-ID.stamplayapp.com/api/cobject/v1/movie"
+~~~
+
+~~~ javascript
+  var url = 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie';
+  var input = document.getElementById('file-upload');
+
+  var fd = new FormData();
+  fd.append( 'file', input.files[0] );
+  $.ajax({
+      method : 'POST'
+      url: url,
+      data: fd,
+      contentType: false,
+      processData: false,
+      success : function(response){
+          console.log(response);
+      },
+      error : function(err){
+          console.log(err.responseText);
+      }
+  });
+~~~
+
+~~~ nodejs
+  const request = require('request');
+  const fs = require('fs');
+  const path = require('path');
+
+  var formData = {
+    image: fs.createReadStream(path.join(__dirname, '/picture.jpg')),
+  };
+
+  request.post({
+    url: 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie',
+    formData: formData
+  }, function optionalCallback(err, httpResponse, body) {
+    if (err) {
+      return console.error('upload failed:', err);
+    }
+    if (httpResponse.statusCode != 200) {
+      return console.error('upload failed', body)
+    }
+    console.log('Upload successful!  Server responded with:', body);
+  });
+~~~
+
+Stamplay objects support file upload as a property type. This let you attach any file to an object record via API. There are no file type restrictions but maximum upload size is 10 MB.
+
+To save an object containing a file type, the request must have content-type `multipart/form-data`, note that you can send in the same API call other properties that are not a file.
+
 
 ## Advanced Queries
 
@@ -970,7 +1028,7 @@ When querying a date field, pass in an data `ISO` string as the value to compare
 
   | Method               |         |
   |----------------------|---------|
-  | `greaterThan`        | check if a value is greater than a given value | 
+  | `greaterThan`        | check if a value is greater than a given value |
   | `greaterThanOrEqual` | check if a value is less than a given value  |
   | `lessThan`           | check if a value is greater than a given value or equal to |
   | `lessThanOrEqual`    | check if a value is less than a given value or equal to |
@@ -980,10 +1038,10 @@ When querying a date field, pass in an data `ISO` string as the value to compare
 <div class="lang-content shell">
 
   The following operators are useful for doing such comparisons within a query:
-  
+
   | Operator             |         |
   |----------------------|---------|
-  | `$gt`  | check if a value is greater than a given value | 
+  | `$gt`  | check if a value is greater than a given value |
   | `$gte` | check if a value is less than a given value  |
   | `$lt`  | check if a value is greater than a given value or equal to |
   | `$lte` | check if a value is less than a given value or equal to |
@@ -1011,7 +1069,7 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_c
 ~~~
 
 ~~~ javascript
-  
+
   // returns records where the rating is greater than 4
   Stamplay.Query('object','movie')
     .greaterThan('actions.ratings.total', 4)
@@ -1034,7 +1092,7 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_c
 ~~~
 
 ~~~ nodejs
-  
+
   // returns records where the rating is greater than 4
   Stamplay.Query('object','movie')
     .greaterThan('actions.ratings.total', 4)
@@ -1127,7 +1185,7 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_u
 
   // returns records with a rating of less than 4
   curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"actions.ratings.total":\{"$lt":4\}\}'
-  
+
   // returns records that were created before January 15, 2015
   curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_create":\{"$lt":"2015-01-15T08:00:00.000Z\}\}'
 
@@ -1220,7 +1278,7 @@ curl -X "GET" 'https://APP-ID.stamplayapp.com/api/cobject/v1/movie?where=\{"dt_u
 ~~~
 
 ~~~ nodejs
-  
+
   // returns records with a rating of 4 or les
   Stamplay.Query('object','movie')
     .lessThanOrEqual('actions.ratings.total', 4)
@@ -1433,7 +1491,7 @@ To build a compound query, use the `$or` operator, and set an array of regular q
 </div>
 
 <div class="lang-content javascript nodejs">
-  
+
 To build a compound query, use the `or()` method, and pass in the query objects are arguments. Any records matching at least one of the criteria objects will be returned.
 
 </div>
@@ -1462,7 +1520,7 @@ Stamplay supports the follow MongoDB operators for querying geolocation data:
 
 The following SDK methods are available for querying geolocation data:
 
-  
+
 | Method           |         |
 |------------------|---------|
 | `geoWithinGeometry` |  Returns records within a geometric boundary. |
@@ -1648,7 +1706,7 @@ The data for voting is stored on a `actions` object on each Object.
     }
   }
 }
-~~~ 
+~~~
 
 
 ### Downvoting
@@ -1657,7 +1715,7 @@ The data for voting is stored on a `actions` object on each Object.
   curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
     -H "Content-Type: application/json" \
     -d "{\"type\":\"downvote\"}"
-~~~ 
+~~~
 
 ~~~ javascript
   Stamplay.Object("movie").downVote("object_id")
@@ -1666,11 +1724,11 @@ The data for voting is stored on a `actions` object on each Object.
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
 
 To downvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `downvote`.
 
@@ -1685,7 +1743,7 @@ To downvote an object send a `PUT` request to the Object resource with the objec
   curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
     -H "Content-Type: application/json" \
     -d "{\"type\":\"upvote\"}"
-~~~ 
+~~~
 
 ~~~ javascript
   Stamplay.Object("movie").upVote("object_id")
@@ -1694,11 +1752,11 @@ To downvote an object send a `PUT` request to the Object resource with the objec
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
 
 To upvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `upvote`.
 
@@ -1714,7 +1772,7 @@ To upvote an object send a `PUT` request to the Object resource with the object 
   curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/comment" \
     -H "Content-Type: application/json" \
     -d "{\"text\":\"comment text goes here\"}"
-~~~ 
+~~~
 
 ~~~ javascript
   var txt = "comment text goes here";
@@ -1725,11 +1783,11 @@ To upvote an object send a `PUT` request to the Object resource with the object 
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
 
 The Stamplay API provides a comment mechansim for managing a comment system.
 
@@ -1764,7 +1822,7 @@ For each comment, a comment object is stored in the `comments` array.
     ]
   }
 }
-~~~ 
+~~~
 
 ## Rating
 
@@ -1772,7 +1830,7 @@ For each comment, a comment object is stored in the `comments` array.
   curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/rate" \
     -H "Content-Type: application/json" \
     -d "{\"rate\": 5}"
-~~~ 
+~~~
 
 ~~~ javascript
 
@@ -1782,11 +1840,11 @@ For each comment, a comment object is stored in the `comments` array.
     }, function(err) {
       // error
     })
-~~~ 
+~~~
 
 ~~~ nodejs
   // no method
-~~~ 
+~~~
 
 The Stamplay API provides a rate mechansim for managing a rating system.
 
