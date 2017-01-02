@@ -109,7 +109,7 @@
 
 <h2 id="assign-role">Assign Role</h2>
 
-<pre class="highlight shell"><code>curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/user/v1/users/:user_id"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X <span class="s2">"PATCH"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/user/v1/users/:user_id/role"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">givenRole</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">role_id</span><span class="se">\"</span><span class="s2">}"</span>
 
