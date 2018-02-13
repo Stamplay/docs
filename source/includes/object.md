@@ -316,20 +316,6 @@ If the predefined security policies are not flexible enough for your app and you
    "appId":"stamplay-docs",
    "cobjectId":"movie",
    "_id":"570edb76fc24091627e82086",
-   "actions":{
-      "comments":[],
-      "ratings":{
-         "users":[],
-         "avg":0,
-         "total":0
-      },
-      "votes":{
-         "users_downvote":[],
-         "users_upvote":[],
-         "users":[],
-         "total":0
-      }
-   },
    "dt_update":"2016-04-13T23:51:18.170Z",
    "dt_create":"2016-04-13T23:51:18.170Z",
    "id":"570edb76fc24091627e82086"
@@ -380,20 +366,6 @@ Retrieve an individual object, all objects, or any matching specific criteria of
          "year":2016,
          "appId":"stamplay-docs",
          "cobjectId":"movie",
-         "actions":{
-            "comments":[],
-            "ratings":{
-               "users":[],
-               "avg":0,
-               "total":0
-            },
-            "votes":{
-               "users_downvote":[],
-               "users_upvote":[],
-               "users":[],
-               "total":0
-            }
-         },
          "dt_update":"2016-04-13T23:51:18.170Z",
          "dt_create":"2016-04-13T23:51:18.170Z",
          "__v":0,
@@ -599,7 +571,6 @@ The object type for the example is `movie`.
          "director" : "5503de76fc24091627e82568",
          "appId":"stamplay-docs",
          "cobjectId":"movie",
-         "actions":{ ... },
          "dt_update":"2016-04-13T23:51:18.170Z",
          "dt_create":"2016-04-13T23:51:18.170Z",
          "__v":0,
@@ -612,7 +583,6 @@ The object type for the example is `movie`.
          "director" : "5503de76fc24091627e82568",
          "appId":"stamplay-docs",
          "cobjectId":"movie",
-         "actions":{ ... },
          "dt_update":"2016-04-13T23:56:55.060Z",
          "dt_create":"2016-04-13T23:56:55.060Z",
          "__v":0,
@@ -683,7 +653,6 @@ To update an object record partially, or completely overwrite the existing recor
    "director" : "5503de76fc24091627e82568",
    "appId":"stamplay-docs",
    "cobjectId":"movie",
-   "actions":{ ... },
    "dt_update":"2016-04-13T23:51:18.170Z",
    "dt_create":"2016-04-13T23:51:18.170Z",
    "__v":0,
@@ -743,7 +712,6 @@ The object type for the example is `movie`.
    "director" : "5503de76fc24091627e82568",
    "appId":"stamplay-docs",
    "cobjectId":"movie",
-   "actions":{ ... },
    "dt_update":"2016-04-13T23:51:18.170Z",
    "dt_create":"2016-04-13T23:51:18.170Z",
    "__v":0,
@@ -792,9 +760,6 @@ To remove an object record, send a `DELETE` request with the `_id` of the record
    "appId":"stamplay-docs",
    "cobjectId":"movie",
    "__v":0,
-   "actions":{
-      ...
-   },
    "dt_update":"2016-04-13T23:51:18.170Z",
    "dt_create":"2016-04-13T23:51:18.170Z",
    "id":"570edb76fc24091627e82086"
@@ -1684,192 +1649,3 @@ Find records within proximity to a geographic point, calculating distances using
 </div>
 
 More details about [$nearSphere on MongoDB docs](https://docs.mongodb.org/manual/reference/operator/query/nearSphere/).
-
-## Voting
-
-The Stamplay API provides a voting mechansim for managing a vote system, tracking users who have voted, how they have voted, and the total vote count.
-
-Each Stamplay Object is able to be voted upon, out of the box without any additional setup.
-
-The data for voting is stored on a `actions` object on each Object.
-
-> The following data is stored for votes.
-
-~~~ json
-{
-  "actions" : {
-    "votes" : {
-      "users_downvote" : ["user_id"],
-      "users_upvote" : ["another_user_id"],
-      "users" : ["user_id", "another_user_id"],
-      "total" : 2
-    }
-  }
-}
-~~~
-
-
-### Downvoting
-
-~~~ shell
-  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
-    -H "Content-Type: application/json" \
-    -d "{\"type\":\"downvote\"}"
-~~~
-
-~~~ javascript
-  Stamplay.Object("movie").downVote("object_id")
-    .then(function(res) {
-      // success
-    }, function(err) {
-      // error
-    })
-~~~
-
-~~~ nodejs
-  // no method
-~~~
-
-To downvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `downvote`.
-
-| Attribute   |         | Optional                  |
-|-------------|---------|:-------------------------:|
-| `object_id` | the Stamplay `_id` of the object to downvote | <i class="unchecked"></i> |
-| `type` | `"upvote"` or `"downvote"` | <i class="unchecked"></i> |
-
-### Upvoting
-
-~~~ shell
-  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/vote" \
-    -H "Content-Type: application/json" \
-    -d "{\"type\":\"upvote\"}"
-~~~
-
-~~~ javascript
-  Stamplay.Object("movie").upVote("object_id")
-    .then(function(res) {
-      // success
-    }, function(err) {
-      // error
-    })
-~~~
-
-~~~ nodejs
-  // no method
-~~~
-
-To upvote an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `type` property in the body specifying `upvote`.
-
-| Attribute   |         | Optional                  |
-|-------------|---------|:-------------------------:|
-| `object_id` | the Stamplay `_id` of the object to downvote | <i class="unchecked"></i> |
-| `type` | `"upvote"` or `"downvote"` | <i class="unchecked"></i> |
-
-
-## Commenting
-
-~~~ shell
-  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/comment" \
-    -H "Content-Type: application/json" \
-    -d "{\"text\":\"comment text goes here\"}"
-~~~
-
-~~~ javascript
-  var txt = "comment text goes here";
-
-  Stamplay.Object("movie").comment("object_id", txt)
-    .then(function(res) {
-      // success
-    }, function(err) {
-      // error
-    })
-~~~
-
-~~~ nodejs
-  // no method
-~~~
-
-The Stamplay API provides a comment mechansim for managing a comment system.
-
-Each Stamplay Object is able to be commented upon, out of the box without any additional setup.
-
-To comment on an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `text` property in the body specifying the comment text.
-
-| Attribute   |         | Optional                  |
-|-------------|---------|:-------------------------:|
-| `object_id` | the Stamplay `_id` of the object to add a comment to | <i class="unchecked"></i> |
-| `texd` | the content of the comment | <i class="unchecked"></i> |
-
-
-The data for comments is stored on a `actions` object on each Object.
-
-For each comment, a comment object is stored in the `comments` array.
-
-> The following data is stored for comments.
-
-~~~ json
-{
-  "actions" : {
-    "comments" : [
-      {
-        "picture": "user_image_url",
-        "displayName": "user_displayName",
-        "userId": "user_id",
-        "text": "comment text",
-        "_id": "comment_id",
-        "dt_create": "date commented"
-      }
-    ]
-  }
-}
-~~~
-
-## Rating
-
-~~~ shell
-  curl -X "PUT" "https://APP-ID.stamplayapp.com/api/cobject/v1/movie/:object_id/rate" \
-    -H "Content-Type: application/json" \
-    -d "{\"rate\": 5}"
-~~~
-
-~~~ javascript
-
-  Stamplay.Object("movie").rate("object_id", 5)
-    .then(function(res) {
-      // success
-    }, function(err) {
-      // error
-    })
-~~~
-
-~~~ nodejs
-  // no method
-~~~
-
-The Stamplay API provides a rate mechansim for managing a rating system.
-
-Each Stamplay Object is able to be be rated, out of the box without any additional setup.
-
-To rate an object send a `PUT` request to the Object resource with the object `_id` in the URI, and a `rate` property in the body specifying the rating as an integer.
-
-| Attribute   |         | Optional                  |
-|-------------|---------|:-------------------------:|
-| `object_id` | the Stamplay `_id` of the object to rate | <i class="unchecked"></i> |
-| `rate` | an integer rating | <i class="unchecked"></i> |
-
-
-The data for `ratings` is stored on a `actions` object on each Object.
-
-> The following data is stored for ratings.
-
-~~~ json
-{
-  "actions" : {
-    "ratings" : {
-      "users": ["user_id", "another_user_id", "third_user"],
-      "avg": 4,
-      "total": 3
-    }
-  }
-}
-~~~
