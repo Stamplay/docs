@@ -1,12 +1,17 @@
-require File.expand_path('../custom_lexers', __FILE__)
-require "uglifier"
-
+# Unique header generation
+require './lib/unique_head.rb'
 
 # Markdown
-set :markdown_engine, :kramdown
+set :markdown_engine, :redcarpet
 set :markdown,
-    parse_block_html: true,
-    parse_span_html: true
+    fenced_code_blocks: true,
+    smartypants: true,
+    disable_indented_code_blocks: true,
+    prettify: true,
+    tables: true,
+    with_toc_data: true,
+    no_intra_emphasis: true,
+    renderer: UniqueHeadCounter
 
 # Assets
 set :css_dir, 'stylesheets'
@@ -16,6 +21,11 @@ set :fonts_dir, 'fonts'
 
 # Activate the syntax highlighter
 activate :syntax
+ready do
+  require './lib/multilang.rb'
+end
+
+activate :sprockets
 
 activate :autoprefixer do |config|
   config.browsers = ['last 2 version', 'Firefox ESR']
@@ -32,20 +42,16 @@ configure :build do
   # If you're having trouble with Middleman hanging, commenting
   # out the following two lines has been known to help
   activate :minify_css
-  activate :minify_javascript, compressor: proc {
-    ::Uglifier.new(
-      :mangle => {
-        :toplevel => true
-      },
-      :compress => {
-        :unsafe => false
-      },
-      :output => {
-        :comments => :none
-      }
-    )
-  }
+  activate :minify_javascript
   # activate :relative_assets
   # activate :asset_hash
-  activate :gzip
+  # activate :gzip
+end
+
+# Deploy Configuration
+# If you want Middleman to listen on a different port, you can set that below
+set :port, 4567
+
+helpers do
+  require './lib/toc_data.rb'
 end
