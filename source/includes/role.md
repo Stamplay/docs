@@ -103,7 +103,7 @@ To fetch a single role, send a `GET` request to the Roles API resource, with the
 ## Assign Role
 
 ~~~shell
-curl -X "PATCH" "https://APP-ID.stamplayapp.com/api/user/v1/users/:user_id" \
+curl -X "PATCH" "https://APP-ID.stamplayapp.com/api/user/v1/users/:user_id/role" \
 -H "Content-Type: application/json" \
 -d "{\"givenRole\":\"role_id\"}"
 
