@@ -20,7 +20,6 @@ includes:
 - webhook
 - stripe
 - hosting
-- demo
 
 search: true
 ---
