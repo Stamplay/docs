@@ -389,25 +389,15 @@ Code Blocks allow you to securely store these parameters within the Secrets area
 
 ### Adding Secrets
 
-Four steps are required in order to save a secret value:
+Five steps are required in order to save a secret value:
 
+1. Navigate to the **Secrets** area, under the wrench icon.
+2. Choose **Add Secret**.
+3. Click the **Add** button.
+4. Type the key in which the secret will be saved and the value that the secret should have
+5. Click **Save** button.
 
-
-* 1. Navigate to the **Secrets** area, under the **Properties** tab.
-
-[![Navigate To Secrets Area](/images/cb_sec_save_1.png)](/images/cb_sec_save_1.png)
-
-* 2. Add a `name` key and a key `value`.
-
-[![Enter A New Secret](/images/cb_sec_save_2.png)](/images/cb_sec_save_2.png)
-
-* 3. Click the **Add** Button.
-
-[![Enter A New Secret](/images/cb_sec_save_3.png)](/images/cb_sec_save_3.png)
-
-Now your secret has been added and is ready for use with the Code Block.
-
-[![Enter A New Secret](/images/cb_sec_save_4.png)](/images/cb_sec_save_4.png)
+Now your secret has been added and is ready for use within the Code Block.
 
 ### Accessing Secrets
 
@@ -439,7 +429,12 @@ module.exports = function (context, cb) {
 };
 ~~~
 
-When using Code Blocks you can rely on all the public Node.js modules available on NPM. 
+When using Code Blocks you can rely on all the public Node.js modules available on NPM.   
+
+In order to correctly import the required node modules inside the Code Block, you need to declare them in the **NPM Modules** settings available under the wrench icon.
+
+[![NPM Modules](/images/npm_modules.png)](/images/npm_modules.png)
+
 
 ## Common Errors
 
