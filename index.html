@@ -4933,35 +4933,28 @@ curl -X <span class="s2">"GET"</span> <span class="s1">'https://APP-ID.stamplaya
 </code></pre>
 <p>A more advanced version of the programming model allows you to return a function that accepts two arguments: a <code>context</code> and a <code>callback</code>.</p>
 
-<p>The <code>context</code> parameter is a JavaScript object with data and optionally body properties.
-The <code>context.data</code> is a JavaScript object that combines parameters passed to the code using one of several mechanisms:</p>
+<p>The <code>context</code> parameter is a JavaScript object with <code>query</code>, <code>body</code> and <code>secrets</code> properties:</p>
 
 <ul>
-  <li>The <a href="#app-secrets">secrets</a> that you've defined in the Stamplay Editor.</li>
-  <li>The URL query parameters of the request.</li>
-  <li>The key value pairs passed in the request body.</li>
+  <li>the <code>query</code> property will contain the query parameters</li>
+  <li>the <code>body</code> property will let you access the request body  when the Code Block is invoked using an HTTP verb that supports a payload and request has a <code>Content-Type</code> header of either <code>application/x-www-form-urlencoded</code> or <code>application/json</code></li>
+  <li>the <code>secrets</code> property will allow access to the secrets saved within the Code Block</li>
 </ul>
-
-<p>The request can be parsed correctly only if <code>application/json</code> or <code>application/x-www-form-urlencoded</code> is used as <code>content-type</code>.</p>
 
 <h3 id="full-control-model">Full Control Model</h3>
 
 <pre class="highlight nodejs-always"><code>  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">});</span>
-    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"hello"</span> <span class="p">:</span> <span class="nx">context</span><span class="p">.</span><span class="nx">body</span> <span class="p">};</span>
+    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"hello"</span> <span class="p">:</span> <span class="s2">"world"</span> <span class="p">};</span>
     <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
   <span class="p">};</span>
 </code></pre>
 
 <p>The most flexible programming model allows you to take full control over the HTTP <code>request</code> and <code>response</code>.</p>
 
-<p>The <code>context</code> argument behaves the same way as in the two simpler programming models.</p>
+<p>The <code>context</code> argument won't contain the <code>body</code> property, you will have to parse it on your own by either using a Node.js library or listening by the <code>data</code> and <code>end</code> events on the <code>req</code> object.</p>
 
 <p>Note that this programming model does not have a concept of a callback. <a href="https://nodejs.org/api/http.html">Ending the HTTP response</a> indicates completion.</p>
-
-<p>If the request doesn't have <code>content-type</code> <code>application-json</code> or <code>x-www-form-urlencoded</code> the <code>Parse body</code> option must be disabled in order to allow further Code Block side processing.</p>
-
-<p>If the <code>Parse body</code> option is disabled the value of <code>context.data</code> parameter won't contain the body value.</p>
 
 <h3 id="express-application">Express application</h3>
 
@@ -4973,7 +4966,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
 
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">webtaskContext</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">webtaskContext</span><span class="p">.</span><span class="nx">secrets</span><span class="p">);</span>
   <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
 <span class="p">});</span>
 
@@ -4982,12 +4975,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <p>You can write an Express application in a Code Block by mimicking this code.</p>
 
-<p>Please note that :</p>
-
-<ul>
-  <li>you MUST uncheck the <code>Parse body</code> option in order let the <code>bodyParser.json()</code> middleware parse the request body that you'll then find in <code>req.body</code></li>
-  <li>you can access secrets from the <code>req.webtaskContext</code> parameter</li>
-</ul>
+<p>You can access secrets from the <code>req.webtaskContext.secrets</code> parameter.</p>
 
 <h2 id="executing-code-blocks">Executing Code Blocks</h2>
 
@@ -5029,18 +5017,18 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <p>You can pass parameters to the Code Block using URL query string of the Code Block request. All URL query parameters except the reserved ones (e.g. <code>user</code>) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the <code>context</code> and the callback <code>cb</code>.</p>
 
-<p>All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of <code>context.data</code> JavaScript object.</p>
+<p>All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of <code>context.query</code> JavaScript object.</p>
 
 <pre class="highlight shell"><code>Switch to Javascript or NodeJS view to see the Code Block sample
 </code></pre>
 
 <pre class="highlight javascript"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s2">"Hello, "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s2">"Hello, "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre>
 
 <pre class="highlight nodejs"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s2">"Hello, "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s2">"Hello, "</span> <span class="o">+</span> <span class="nx">context</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -5070,7 +5058,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <p>Parameters can be passed the Code Block also using <code>body</code> parameters of a <code>POST</code>, <code>PATCH</code> or <code>PUT</code> request. All the request<code>body</code> except the reserved ones (e.g. <code>user</code>) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the <code>context</code> and the callback <code>cb</code>.</p>
 
-<p>All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of <code>context.data</code> JavaScript object.</p>
+<p>All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of <code>context.body</code> JavaScript object.</p>
 
 <pre class="highlight shell"><code>Switch to Javascript or NodeJS view to see the Code Block sample
 </code></pre>
@@ -5149,7 +5137,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <h3 id="user-context-data">User context data</h3>
 
-<p>When executing a Code Block, you are able to pass in data, which is set to the <code>context.data</code> property. If an active user session is in place from the originating request, the user of the current session will be placed inside <code>context</code> on <code>context.data.user</code>.</p>
+<p>When executing a Code Block, you are able to pass in data, which is set to the <code>context.body</code> property. If an active user session is in place from the originating request, the user of the current session will be placed inside <code>context</code> on <code>context.body.user</code>.</p>
 
 <pre class="highlight javascript"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span><span class="err"> </span>
   <span class="c1">//context.data contain the request body parameters </span>
@@ -5300,7 +5288,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <p>In order to access secrets you need to use the <a href="#contextual-model">Contextual</a> or the <a href="#full-control-model">Full Control</a> programming model.</p>
 
-<p>You'll find your secrets in the <code>context.secrets</code>, or the <code>context.data</code> object in the key that you specified from the Stamplay Editor.</p>
+<p>You'll find your secrets in the <code>context.secrets</code> property in the key that you've specified from the Stamplay Editor.</p>
 
 <p>Example shown uses the <strong>Contextual</strong> programming model.</p>
 
@@ -5311,7 +5299,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">stamplay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stamplay</span><span class="p">(</span><span class="s1">'appId'</span><span class="p">,</span> <span class="nx">context</span><span class="p">.</span><span class="nx">secrets</span><span class="p">.</span><span class="nx">apiKey</span><span class="p">);</span>
-  <span class="kr">const</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
 
   <span class="nx">stamplay</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">'movie'</span><span class="p">).</span><span class="nx">save</span><span class="p">(</span><span class="nx">body</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">).</span><span class="nx">data</span><span class="p">);</span>
@@ -5319,15 +5307,7 @@ The <code>context.data</code> is a JavaScript object that combines parameters pa
 <span class="p">};</span>
 </code></pre>
 
-<p>When using Code Blocks you can rely on over 900 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.</p>
-
-<p>You can browse available modules at <a href="https://canirequire.stamplayapp.com">https://canirequire.stamplayapp.com</a>.</p>
-
-<p>If there is a module that is not list on the directory that you need, let us know at <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#115;&#116;&#097;&#109;&#112;&#108;&#097;&#121;&#046;&#099;&#111;&#109;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#115;&#116;&#097;&#109;&#112;&#108;&#097;&#121;&#046;&#099;&#111;&#109;</a> and we can have the requested module live within 24hrs or less typically.</p>
-
-<p>To use the <code>require</code> method, simply pass the name of the desired NPM module to <code>require</code> to include inside your Code Block as you normally may in a Node.js enviornment.</p>
-
-<p>The example <code>require</code>s the <a href="https://lodash.com">lodash</a> and <a href="https://github.com/Stamplay/stamplay-nodejs-sdk">Stamplay Node.js SDK</a> node module with a specific version.</p>
+<p>When using Code Blocks you can rely on all the public Node.js modules available on NPM.</p>
 
 <h2 id="common-errors">Common Errors</h2>
 
