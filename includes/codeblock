@@ -367,41 +367,17 @@
 
 <h3 id="adding-secrets">Adding Secrets</h3>
 
-<p>Four steps are required in order to save a secret value:</p>
+<p>Five steps are required in order to save a secret value:</p>
 
-<ul>
-  <li>
-    <ol>
-      <li>Navigate to the <strong>Secrets</strong> area, under the <strong>Properties</strong> tab.</li>
-    </ol>
-  </li>
-</ul>
+<ol>
+  <li>Navigate to the <strong>Secrets</strong> area, under the wrench icon.</li>
+  <li>Choose <strong>Add Secret</strong>.</li>
+  <li>Click the <strong>Add</strong> button.</li>
+  <li>Type the key in which the secret will be saved and the value that the secret should have</li>
+  <li>Click <strong>Save</strong> button.</li>
+</ol>
 
-<p><a href="../images/cb_sec_save_1.png"><img alt="Navigate To Secrets Area" src="/images/cb_sec_save_1.png" /></a></p>
-
-<ul>
-  <li>
-    <ol>
-      <li>Add a <code>name</code> key and a key <code>value</code>.</li>
-    </ol>
-  </li>
-</ul>
-
-<p><a href="../images/cb_sec_save_2.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_2.png" /></a></p>
-
-<ul>
-  <li>
-    <ol>
-      <li>Click the <strong>Add</strong> Button.</li>
-    </ol>
-  </li>
-</ul>
-
-<p><a href="../images/cb_sec_save_3.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_3.png" /></a></p>
-
-<p>Now your secret has been added and is ready for use with the Code Block.</p>
-
-<p><a href="../images/cb_sec_save_4.png"><img alt="Enter A New Secret" src="/images/cb_sec_save_4.png" /></a></p>
+<p>Now your secret has been added and is ready for use within the Code Block.</p>
 
 <h3 id="accessing-secrets">Accessing Secrets</h3>
 
@@ -432,6 +408,10 @@
 </code></pre>
 
 <p>When using Code Blocks you can rely on all the public Node.js modules available on NPM.</p>
+
+<p>In order to correctly import the required node modules inside the Code Block, you need to declare them in the <strong>NPM Modules</strong> settings available under the wrench icon.</p>
+
+<p><a href="../images/npm_modules.png"><img alt="NPM Modules" src="/images/npm_modules.png" /></a></p>
 
 <h2 id="common-errors">Common Errors</h2>
 
