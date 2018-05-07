@@ -51,34 +51,27 @@ When the callback is invoked, the result value or an error will be serialized as
 ~~~
 A more advanced version of the programming model allows you to return a function that accepts two arguments: a `context` and a `callback`.
 
-The `context` parameter is a JavaScript object with data and optionally body properties.
-The `context.data` is a JavaScript object that combines parameters passed to the code using one of several mechanisms:
+The `context` parameter is a JavaScript object with `query`, `body` and `secrets` properties: 
 
-* The [secrets](#app-secrets) that you've defined in the Stamplay Editor.
-* The URL query parameters of the request.
-* The key value pairs passed in the request body.
-
-The request can be parsed correctly only if `application/json` or `application/x-www-form-urlencoded` is used as `content-type`.
+- the `query` property will contain the query parameters
+- the `body` property will let you access the request body  when the Code Block is invoked using an HTTP verb that supports a payload and request has a `Content-Type` header of either `application/x-www-form-urlencoded` or `application/json`
+- the `secrets` property will allow access to the secrets saved within the Code Block
 
 ### Full Control Model
 
 ~~~ nodejs-always
   module.exports = function(context, req, res) {
     res.writeHead(200, { 'Content-Type': 'application/json'});
-    var result = { "hello" : context.body };
+    var result = { "hello" : "world" };
     return res.end(JSON.stringify(result));
   };
 ~~~
 
 The most flexible programming model allows you to take full control over the HTTP `request` and `response`.
 
-The `context` argument behaves the same way as in the two simpler programming models.
+The `context` argument won't contain the `body` property, you will have to parse it on your own by either using a Node.js library or listening by the `data` and `end` events on the `req` object. 
 
 Note that this programming model does not have a concept of a callback. [Ending the HTTP response](https://nodejs.org/api/http.html) indicates completion.
-
-If the request doesn't have `content-type` `application-json` or `x-www-form-urlencoded` the `Parse body` option must be disabled in order to allow further Code Block side processing. 
-
-If the `Parse body` option is disabled the value of `context.data` parameter won't contain the body value. 
 
 ### Express application
 
@@ -91,7 +84,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  console.log(req.webtaskContext);
+  console.log(req.webtaskContext.secrets);
   return res.sendStatus(200);
 });
 
@@ -100,10 +93,7 @@ module.exports = Webtask.fromExpress(app);
 
 You can write an Express application in a Code Block by mimicking this code.
 
-Please note that : 
-
-* you MUST uncheck the `Parse body` option in order let the `bodyParser.json()` middleware parse the request body that you'll then find in `req.body`
-* you can access secrets from the `req.webtaskContext` parameter
+You can access secrets from the `req.webtaskContext.secrets` parameter.
 
 
 ## Executing Code Blocks
@@ -150,7 +140,7 @@ Depending from the HTTP method, you can pass data to the Code Block within the b
 
 You can pass parameters to the Code Block using URL query string of the Code Block request. All URL query parameters except the reserved ones (e.g. `user`) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the `context` and the callback `cb`.
 
-All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of `context.data` JavaScript object.
+All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of `context.query` JavaScript object.
 
 ~~~ shell
 Switch to Javascript or NodeJS view to see the Code Block sample
@@ -158,13 +148,13 @@ Switch to Javascript or NodeJS view to see the Code Block sample
 
 ~~~ javascript
 module.exports = function(context, cb) {
-  return cb(null, "Hello, " + context.data.name);
+  return cb(null, "Hello, " + context.query.name);
 }
 ~~~
 
 ~~~ nodejs
 module.exports = function(context, cb) {
-  return cb(null, "Hello, " + context.data.name);
+  return cb(null, "Hello, " + context.query.name);
 }
 ~~~
 
@@ -197,7 +187,7 @@ curl -X "GET" "https://APPID.stamplayapp.com/api/codeblock/v1/run/{codeblock_nam
 
 Parameters can be passed the Code Block also using `body` parameters of a `POST`, `PATCH` or `PUT` request. All the request`body` except the reserved ones (e.g. `user`) will be propagated to the code when it runs. To take advantage of this feature, define your JavaScript function such that it accepts two arguments instead of one: the `context` and the callback `cb`.
 
-All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of `context.data` JavaScript object.
+All allowed URL query parameters of the Code Block request will be provided to the Code Block code in the form of `context.body` JavaScript object.
 
 ~~~ shell
 Switch to Javascript or NodeJS view to see the Code Block sample
@@ -284,7 +274,7 @@ You can try it out with `curl` or with our SDKs. Usually query parameters are pa
 
 ### User context data
 
-When executing a Code Block, you are able to pass in data, which is set to the `context.data` property. If an active user session is in place from the originating request, the user of the current session will be placed inside `context` on `context.data.user`.
+When executing a Code Block, you are able to pass in data, which is set to the `context.body` property. If an active user session is in place from the originating request, the user of the current session will be placed inside `context` on `context.body.user`.
 
 ~~~ javascript
 module.exports = function(context, cb) { 
@@ -429,7 +419,7 @@ Now your secret has been added and is ready for use with the Code Block.
 
 In order to access secrets you need to use the [Contextual](#contextual-model) or the [Full Control](#full-control-model) programming model.
 
-You'll find your secrets in the `context.secrets`, or the `context.data` object in the key that you specified from the Stamplay Editor.
+You'll find your secrets in the `context.secrets` property in the key that you've specified from the Stamplay Editor.
 
 Example shown uses the **Contextual** programming model.
 
@@ -441,7 +431,7 @@ const _ = require('lodash@4.8.2');
 
 module.exports = function (context, cb) {
   const stamplay = new Stamplay('appId', context.secrets.apiKey);
-  const body = context.data;
+  const body = context.body;
 
   stamplay.Object('movie').save(body, (err, res) => {
     return cb(null, JSON.parse(res).data);
@@ -449,15 +439,7 @@ module.exports = function (context, cb) {
 };
 ~~~
 
-When using Code Blocks you can rely on over 900 of the most popular Node.js modules available on NPM. You can use any of them in your Code Block code by simply requiring them.
-
-You can browse available modules at [https://canirequire.stamplayapp.com](https://canirequire.stamplayapp.com).
-
-If there is a module that is not list on the directory that you need, let us know at [support@stamplay.com](mailto:support@stamplay.com) and we can have the requested module live within 24hrs or less typically.
-
-To use the `require` method, simply pass the name of the desired NPM module to `require` to include inside your Code Block as you normally may in a Node.js enviornment.
-
-The example `require`s the [lodash](https://lodash.com) and [Stamplay Node.js SDK](https://github.com/Stamplay/stamplay-nodejs-sdk) node module with a specific version.
+When using Code Blocks you can rely on all the public Node.js modules available on NPM. 
 
 ## Common Errors
 
