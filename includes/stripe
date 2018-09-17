@@ -456,13 +456,12 @@
 
 <p>Remove a subscription from a Stripe customer.</p>
 
-<pre class="highlight shell"><code>  curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>  curl -X <span class="s2">"DELETE"</span> <span class="s2">"https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions/:subscriptionId"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">options</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{}</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre>
 
-<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">deleteSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span>
-     <span class="s2">"planId"</span><span class="p">)</span>
+<pre class="highlight javascript"><code>  <span class="nx">Stamplay</span><span class="p">.</span><span class="nx">Stripe</span><span class="p">.</span><span class="nx">deleteSubscription</span><span class="p">(</span><span class="s2">"userId"</span><span class="p">,</span> <span class="s2">"subscriptionId"</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// success</span>
       <span class="p">},</span>
@@ -528,6 +527,11 @@
     <tr>
       <td><code>userId</code></td>
       <td>the Stamplay <code>_id</code> of the user to remove a subscriptions for</td>
+      <td style="text-align: center"><i class="unchecked"></i></td>
+    </tr>
+    <tr>
+      <td><code>subscriptionId</code></td>
+      <td>the Stripe <code>_id</code> of the subscription to update</td>
       <td style="text-align: center"><i class="unchecked"></i></td>
     </tr>
   </tbody>
