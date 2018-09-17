@@ -376,14 +376,13 @@ Update a subscription for a Stripe customer.
 Remove a subscription from a Stripe customer.
 
 ~~~ shell
-  curl -X "DELETE" "https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions" \
+  curl -X "DELETE" "https://APP-ID.stamplayapp.com/api/stripe/v1/customers/:userId/subscriptions/:subscriptionId" \
     -H "Content-Type: application/json" \
     -d "{\"options\":\"{}\"}"
 ~~~
 
 ~~~ javascript
-  Stamplay.Stripe.deleteSubscription("userId",
-     "planId")
+  Stamplay.Stripe.deleteSubscription("userId", "subscriptionId", options)
       .then(function(res) {
         // success
       },
@@ -440,6 +439,8 @@ Remove a subscription from a Stripe customer.
 | Attribute   |         | Optional                  |
 |-------------|---------|:-------------------------:|
 | `userId` | the Stamplay `_id` of the user to remove a subscriptions for | <i class="unchecked"></i> |
+| `subscriptionId` | the Stripe `_id` of the subscription to update| <i class="unchecked"></i> |
+
 
 ## Cards
 
